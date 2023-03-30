@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="第二章：数据类型2.4 字符型作用：字符型变量用于显示单个字符 语法：char 变量名 &#x3D; ‘初始值’; 注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引导。注意2：单引号内只能有一个字符，不可以是字符串。 C&#x2F;C++中字符型变量只占用空间1个字节。 字符型变量并不是把字符本身放到内存中存储，而是将对应的ASCL编码放入到存储单元。  示例： 12345678910">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表">
+<meta property="og:url" content="https://notes.camcad.cn/post/29c728fa.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="第二章：数据类型2.4 字符型作用：字符型变量用于显示单个字符 语法：char 变量名 &#x3D; ‘初始值’; 注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引导。注意2：单引号内只能有一个字符，不可以是字符串。 C&#x2F;C++中字符型变量只占用空间1个字节。 字符型变量并不是把字符本身放到内存中存储，而是将对应的ASCL编码放入到存储单元。  示例： 12345678910">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2020/05/2020051901242386.jpg">
+<meta property="article:published_time" content="2020-05-23T17:05:40.000Z">
+<meta property="article:modified_time" content="2023-03-30T09:43:35.134Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="蚂蚁Emmet">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2020/05/2020051901242386.jpg">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/29c728fa.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/29c728fa.html","path":"post/29c728fa.html","title":"C/C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C/C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">第二章：数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E5%AD%97%E7%AC%A6%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">2.4 字符型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F1%EF%BC%9A%E5%9C%A8%E6%98%BE%E7%A4%BA%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%8F%98%E9%87%8F%E6%97%B6%EF%BC%8C%E7%94%A8%E5%8D%95%E5%BC%95%E5%8F%B7%E5%B0%86%E5%AD%97%E7%AC%A6%E6%8B%AC%E8%B5%B7%E6%9D%A5%EF%BC%8C%E4%B8%8D%E8%A6%81%E7%94%A8%E5%8F%8C%E5%BC%95%E5%AF%BC%E3%80%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引导。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F2%EF%BC%9A%E5%8D%95%E5%BC%95%E5%8F%B7%E5%86%85%E5%8F%AA%E8%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%EF%BC%8C%E4%B8%8D%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%82"><span class="nav-number">1.1.2.</span> <span class="nav-text">注意2：单引号内只能有一个字符，不可以是字符串。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">简介：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/29c728fa.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C/C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C/C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-23 17:05:40" itemprop="dateCreated datePublished" datetime="2020-05-23T17:05:40+00:00">2020-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-30 09:43:35" itemprop="dateModified" datetime="2023-03-30T09:43:35+00:00">2023-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-C-%E8%AF%AD%E8%A8%80-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C/C++语言 零基础入门教程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/29c728fa.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/29c728fa.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="第二章：数据类型"><a href="#第二章：数据类型" class="headerlink" title="第二章：数据类型"></a>第二章：数据类型</h1><h2 id="2-4-字符型"><a href="#2-4-字符型" class="headerlink" title="2.4 字符型"></a>2.4 字符型</h2><p><strong>作用：</strong>字符型变量用于显示单个字符</p>
+<p><strong>语法：</strong>char 变量名 &#x3D; ‘初始值’;</p>
+<h3 id="注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引导。"><a href="#注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引导。" class="headerlink" title="注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引导。"></a>注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引导。</h3><h3 id="注意2：单引号内只能有一个字符，不可以是字符串。"><a href="#注意2：单引号内只能有一个字符，不可以是字符串。" class="headerlink" title="注意2：单引号内只能有一个字符，不可以是字符串。"></a>注意2：单引号内只能有一个字符，不可以是字符串。</h3><ul>
+<li>C&#x2F;C++中字符型变量只占用空间1个字节。</li>
+<li>字符型变量并不是把字符本身放到内存中存储，而是将对应的ASCL编码放入到存储单元。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//1、字符型变量创建方式</span></span><br><span class="line"><span class="type">char</span> cChar01 = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">cout &lt;&lt; cChar01 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2、字符型变量所占用内存空间大小</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;char字符型变量所占用内存：&quot;</span> &lt;&lt; <span class="built_in">sizeof</span>(<span class="type">char</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//3、字符型变量常见错误</span></span><br><span class="line"><span class="comment">//char cChar02 = &quot;b&quot;;//创建字符型变量时候，要用单引号</span></span><br><span class="line"><span class="comment">//char cChar02 = &#x27;abcdefg&#x27;;//创建字符型变量时候，单引号内只能有一个字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//4、字符型变量对应的ASCII编码</span></span><br><span class="line"><span class="comment">// a = 97;</span></span><br><span class="line"><span class="comment">// A = 65;</span></span><br><span class="line"><span class="type">char</span> cChar03 = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">cout &lt;&lt; (<span class="type">int</span>)cChar03 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://image.camcad.cn/2020/05/2020051901242386.jpg"></p>
+<h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p>  ASCII（American Standard Code for Information Interchange，美国信息互换标准代码，ASCⅡ）是基于拉丁字母的一套电脑编码系统。它主要用于显示现代英语和其他西欧语言。它是现今最通用的单字节编码系统，并等同于国际标准ISO&#x2F;IEC 646。</p>
+<p>ASCII第一次以规范标准的型态发表是在1967年，最后一次更新则是在1986年，至今为止共定义了128个字符，其中33个字符无法显示（这是以现今操作系统为依归，但在DOS模式下可显示出一些诸如笑脸、扑克牌花式等8-bit符号），且这33个字符多数都已是陈废的控制字符，控制字符的用途主要是用来操控已经处理过的文字，在33个字符之外的是95个可显示的字符，包含用键盘敲下空白键所产生的空白字符也算1个可显示字符（显示为空白）。</p>
+<hr>
+<p><strong>ASCII控制字符</strong></p>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+<th>十六进制</th>
+<th>缩写</th>
+<th>名称&#x2F;意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0000 0000</td>
+<td>0</td>
+<td>00</td>
+<td>NUL</td>
+<td>空字符（Null）</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>01</td>
+<td>SOH</td>
+<td>标题开始</td>
+</tr>
+<tr>
+<td>0000 0010</td>
+<td>2</td>
+<td>02</td>
+<td>STX</td>
+<td>本文开始</td>
+</tr>
+<tr>
+<td>0000 0011</td>
+<td>3</td>
+<td>03</td>
+<td>ETX</td>
+<td>本文结束</td>
+</tr>
+<tr>
+<td>0000 0100</td>
+<td>4</td>
+<td>04</td>
+<td>EOT</td>
+<td>传输结束</td>
+</tr>
+<tr>
+<td>0000 0101</td>
+<td>5</td>
+<td>05</td>
+<td>ENQ</td>
+<td>请求</td>
+</tr>
+<tr>
+<td>0000 0110</td>
+<td>6</td>
+<td>06</td>
+<td>ACK</td>
+<td>确认回应</td>
+</tr>
+<tr>
+<td>0000 0111</td>
+<td>7</td>
+<td>07</td>
+<td>BEL</td>
+<td>响铃</td>
+</tr>
+<tr>
+<td>0000 1000</td>
+<td>8</td>
+<td>08</td>
+<td>BS</td>
+<td>退格</td>
+</tr>
+<tr>
+<td>0000 1001</td>
+<td>9</td>
+<td>09</td>
+<td>HT</td>
+<td>水平定位符号</td>
+</tr>
+<tr>
+<td>0000 1010</td>
+<td>10</td>
+<td>0A</td>
+<td>LF</td>
+<td>换行键</td>
+</tr>
+<tr>
+<td>0000 1011</td>
+<td>11</td>
+<td>0B</td>
+<td>VT</td>
+<td>垂直定位符号</td>
+</tr>
+<tr>
+<td>0000 1100</td>
+<td>12</td>
+<td>0C</td>
+<td>FF</td>
+<td>换页键</td>
+</tr>
+<tr>
+<td>0000 1101</td>
+<td>13</td>
+<td>0D</td>
+<td>CR</td>
+<td>归位键</td>
+</tr>
+<tr>
+<td>0000 1110</td>
+<td>14</td>
+<td>0E</td>
+<td>SO</td>
+<td>取消变换（Shift out）</td>
+</tr>
+<tr>
+<td>0000 1111</td>
+<td>15</td>
+<td>0F</td>
+<td>SI</td>
+<td>启用变换（Shift in）</td>
+</tr>
+<tr>
+<td>0001 0000</td>
+<td>16</td>
+<td>10</td>
+<td>DLE</td>
+<td>跳出数据通讯</td>
+</tr>
+<tr>
+<td>0001 0001</td>
+<td>17</td>
+<td>11</td>
+<td>DC1</td>
+<td>设备控制一（XON 启用软件速度控制）</td>
+</tr>
+<tr>
+<td>0001 0010</td>
+<td>18</td>
+<td>12</td>
+<td>DC2</td>
+<td>设备控制二</td>
+</tr>
+<tr>
+<td>0001 0011</td>
+<td>19</td>
+<td>13</td>
+<td>DC3</td>
+<td>设备控制三（XOFF 停用软件速度控制）</td>
+</tr>
+<tr>
+<td>0001 0100</td>
+<td>20</td>
+<td>14</td>
+<td>DC4</td>
+<td>设备控制四</td>
+</tr>
+<tr>
+<td>0001 0101</td>
+<td>21</td>
+<td>15</td>
+<td>NAK</td>
+<td>确认失败回应</td>
+</tr>
+<tr>
+<td>0001 0110</td>
+<td>22</td>
+<td>16</td>
+<td>SYN</td>
+<td>同步用暂停</td>
+</tr>
+<tr>
+<td>0001 0111</td>
+<td>23</td>
+<td>17</td>
+<td>ETB</td>
+<td>区块传输结束</td>
+</tr>
+<tr>
+<td>0001 1000</td>
+<td>24</td>
+<td>18</td>
+<td>CAN</td>
+<td>取消</td>
+</tr>
+<tr>
+<td>0001 1001</td>
+<td>25</td>
+<td>19</td>
+<td>EM</td>
+<td>连接介质中断</td>
+</tr>
+<tr>
+<td>0001 1010</td>
+<td>26</td>
+<td>1A</td>
+<td>SUB</td>
+<td>替换</td>
+</tr>
+<tr>
+<td>0001 1011</td>
+<td>27</td>
+<td>1B</td>
+<td>ESC</td>
+<td>跳出</td>
+</tr>
+<tr>
+<td>0001 1100</td>
+<td>28</td>
+<td>1C</td>
+<td>FS</td>
+<td>文件分割符</td>
+</tr>
+<tr>
+<td>0001 1101</td>
+<td>29</td>
+<td>1D</td>
+<td>GS</td>
+<td>组群分隔符</td>
+</tr>
+<tr>
+<td>0001 1110</td>
+<td>30</td>
+<td>1E</td>
+<td>RS</td>
+<td>记录分隔符</td>
+</tr>
+<tr>
+<td>0001 1111</td>
+<td>31</td>
+<td>1F</td>
+<td>US</td>
+<td>单元分隔符</td>
+</tr>
+<tr>
+<td>0111 1111</td>
+<td>127</td>
+<td>7F</td>
+<td>DEL</td>
+<td>删除</td>
+</tr>
+</tbody></table>
+<p><strong>ASCII可显示字符</strong></p>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+<th>十六进制</th>
+<th>图形</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0010 0000</td>
+<td>32</td>
+<td>20</td>
+<td>（空格）(␠)</td>
+</tr>
+<tr>
+<td>0010 0001</td>
+<td>33</td>
+<td>21</td>
+<td>!</td>
+</tr>
+<tr>
+<td>0010 0010</td>
+<td>34</td>
+<td>22</td>
+<td>“</td>
+</tr>
+<tr>
+<td>0010 0011</td>
+<td>35</td>
+<td>23</td>
+<td>#</td>
+</tr>
+<tr>
+<td>0010 0100</td>
+<td>36</td>
+<td>24</td>
+<td>$</td>
+</tr>
+<tr>
+<td>0010 0101</td>
+<td>37</td>
+<td>25</td>
+<td>%</td>
+</tr>
+<tr>
+<td>0010 0110</td>
+<td>38</td>
+<td>26</td>
+<td>&amp;</td>
+</tr>
+<tr>
+<td>0010 0111</td>
+<td>39</td>
+<td>27</td>
+<td>‘</td>
+</tr>
+<tr>
+<td>0010 1000</td>
+<td>40</td>
+<td>28</td>
+<td>(</td>
+</tr>
+<tr>
+<td>0010 1001</td>
+<td>41</td>
+<td>29</td>
+<td>)</td>
+</tr>
+<tr>
+<td>0010 1010</td>
+<td>42</td>
+<td>2A</td>
+<td>*</td>
+</tr>
+<tr>
+<td>0010 1011</td>
+<td>43</td>
+<td>2B</td>
+<td>+</td>
+</tr>
+<tr>
+<td>0010 1100</td>
+<td>44</td>
+<td>2C</td>
+<td>,</td>
+</tr>
+<tr>
+<td>0010 1101</td>
+<td>45</td>
+<td>2D</td>
+<td>-</td>
+</tr>
+<tr>
+<td>0010 1110</td>
+<td>46</td>
+<td>2E</td>
+<td>.</td>
+</tr>
+<tr>
+<td>0010 1111</td>
+<td>47</td>
+<td>2F</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>0011 0000</td>
+<td>48</td>
+<td>30</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0011 0001</td>
+<td>49</td>
+<td>31</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0011 0010</td>
+<td>50</td>
+<td>32</td>
+<td>2</td>
+</tr>
+<tr>
+<td>0011 0011</td>
+<td>51</td>
+<td>33</td>
+<td>3</td>
+</tr>
+<tr>
+<td>0011 0100</td>
+<td>52</td>
+<td>34</td>
+<td>4</td>
+</tr>
+<tr>
+<td>0011 0101</td>
+<td>53</td>
+<td>35</td>
+<td>5</td>
+</tr>
+<tr>
+<td>0011 0110</td>
+<td>54</td>
+<td>36</td>
+<td>6</td>
+</tr>
+<tr>
+<td>0011 0111</td>
+<td>55</td>
+<td>37</td>
+<td>7</td>
+</tr>
+<tr>
+<td>0011 1000</td>
+<td>56</td>
+<td>38</td>
+<td>8</td>
+</tr>
+<tr>
+<td>0011 1001</td>
+<td>57</td>
+<td>39</td>
+<td>9</td>
+</tr>
+<tr>
+<td>0011 1010</td>
+<td>58</td>
+<td>3A</td>
+<td>:</td>
+</tr>
+<tr>
+<td>0011 1011</td>
+<td>59</td>
+<td>3B</td>
+<td>;</td>
+</tr>
+<tr>
+<td>0011 1100</td>
+<td>60</td>
+<td>3C</td>
+<td>&lt;</td>
+</tr>
+<tr>
+<td>0011 1101</td>
+<td>61</td>
+<td>3D</td>
+<td>&#x3D;</td>
+</tr>
+<tr>
+<td>0011 1110</td>
+<td>62</td>
+<td>3E</td>
+<td>&gt;</td>
+</tr>
+<tr>
+<td>0011 1111</td>
+<td>63</td>
+<td>3F</td>
+<td>?</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+<th>十六进制</th>
+<th>图形</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0100 0000</td>
+<td>64</td>
+<td>40</td>
+<td>@</td>
+</tr>
+<tr>
+<td>0100 0001</td>
+<td>65</td>
+<td>41</td>
+<td>A</td>
+</tr>
+<tr>
+<td>0100 0010</td>
+<td>66</td>
+<td>42</td>
+<td>B</td>
+</tr>
+<tr>
+<td>0100 0011</td>
+<td>67</td>
+<td>43</td>
+<td>C</td>
+</tr>
+<tr>
+<td>0100 0100</td>
+<td>68</td>
+<td>44</td>
+<td>D</td>
+</tr>
+<tr>
+<td>0100 0101</td>
+<td>69</td>
+<td>45</td>
+<td>E</td>
+</tr>
+<tr>
+<td>0100 0110</td>
+<td>70</td>
+<td>46</td>
+<td>F</td>
+</tr>
+<tr>
+<td>0100 0111</td>
+<td>71</td>
+<td>47</td>
+<td>G</td>
+</tr>
+<tr>
+<td>0100 1000</td>
+<td>72</td>
+<td>48</td>
+<td>H</td>
+</tr>
+<tr>
+<td>0100 1001</td>
+<td>73</td>
+<td>49</td>
+<td>I</td>
+</tr>
+<tr>
+<td>0100 1010</td>
+<td>74</td>
+<td>4A</td>
+<td>J</td>
+</tr>
+<tr>
+<td>0100 1011</td>
+<td>75</td>
+<td>4B</td>
+<td>K</td>
+</tr>
+<tr>
+<td>0100 1100</td>
+<td>76</td>
+<td>4C</td>
+<td>L</td>
+</tr>
+<tr>
+<td>0100 1101</td>
+<td>77</td>
+<td>4D</td>
+<td>M</td>
+</tr>
+<tr>
+<td>0100 1110</td>
+<td>78</td>
+<td>4E</td>
+<td>N</td>
+</tr>
+<tr>
+<td>0100 1111</td>
+<td>79</td>
+<td>4F</td>
+<td>O</td>
+</tr>
+<tr>
+<td>0101 0000</td>
+<td>80</td>
+<td>50</td>
+<td>P</td>
+</tr>
+<tr>
+<td>0101 0001</td>
+<td>81</td>
+<td>51</td>
+<td>Q</td>
+</tr>
+<tr>
+<td>0101 0010</td>
+<td>82</td>
+<td>52</td>
+<td>R</td>
+</tr>
+<tr>
+<td>0101 0011</td>
+<td>83</td>
+<td>53</td>
+<td>S</td>
+</tr>
+<tr>
+<td>0101 0100</td>
+<td>84</td>
+<td>54</td>
+<td>T</td>
+</tr>
+<tr>
+<td>0101 0101</td>
+<td>85</td>
+<td>55</td>
+<td>U</td>
+</tr>
+<tr>
+<td>0101 0110</td>
+<td>86</td>
+<td>56</td>
+<td>V</td>
+</tr>
+<tr>
+<td>0101 0111</td>
+<td>87</td>
+<td>57</td>
+<td>W</td>
+</tr>
+<tr>
+<td>0101 1000</td>
+<td>88</td>
+<td>58</td>
+<td>X</td>
+</tr>
+<tr>
+<td>0101 1001</td>
+<td>89</td>
+<td>59</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>0101 1010</td>
+<td>90</td>
+<td>5A</td>
+<td>Z</td>
+</tr>
+<tr>
+<td>0101 1011</td>
+<td>91</td>
+<td>5B</td>
+<td>[</td>
+</tr>
+<tr>
+<td>0101 1100</td>
+<td>92</td>
+<td>5C</td>
+<td>|</td>
+</tr>
+<tr>
+<td>0101 1101</td>
+<td>93</td>
+<td>5D</td>
+<td>]</td>
+</tr>
+<tr>
+<td>0101 1110</td>
+<td>94</td>
+<td>5E</td>
+<td>^</td>
+</tr>
+<tr>
+<td>0101 1111</td>
+<td>95</td>
+<td>5F</td>
+<td>_</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+<th>十六进制</th>
+<th>图形</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0110 0000</td>
+<td>96</td>
+<td>60</td>
+<td>&#96;</td>
+</tr>
+<tr>
+<td>0110 0001</td>
+<td>97</td>
+<td>61</td>
+<td>a</td>
+</tr>
+<tr>
+<td>0110 0010</td>
+<td>98</td>
+<td>62</td>
+<td>b</td>
+</tr>
+<tr>
+<td>0110 0011</td>
+<td>99</td>
+<td>63</td>
+<td>c</td>
+</tr>
+<tr>
+<td>0110 0100</td>
+<td>100</td>
+<td>64</td>
+<td>d</td>
+</tr>
+<tr>
+<td>0110 0101</td>
+<td>101</td>
+<td>65</td>
+<td>e</td>
+</tr>
+<tr>
+<td>0110 0110</td>
+<td>102</td>
+<td>66</td>
+<td>f</td>
+</tr>
+<tr>
+<td>0110 0111</td>
+<td>103</td>
+<td>67</td>
+<td>g</td>
+</tr>
+<tr>
+<td>0110 1000</td>
+<td>104</td>
+<td>68</td>
+<td>h</td>
+</tr>
+<tr>
+<td>0110 1001</td>
+<td>105</td>
+<td>69</td>
+<td>i</td>
+</tr>
+<tr>
+<td>0110 1010</td>
+<td>106</td>
+<td>6A</td>
+<td>j</td>
+</tr>
+<tr>
+<td>0110 1011</td>
+<td>107</td>
+<td>6B</td>
+<td>k</td>
+</tr>
+<tr>
+<td>0110 1100</td>
+<td>108</td>
+<td>6C</td>
+<td>l</td>
+</tr>
+<tr>
+<td>0110 1101</td>
+<td>109</td>
+<td>6D</td>
+<td>m</td>
+</tr>
+<tr>
+<td>0110 1110</td>
+<td>110</td>
+<td>6E</td>
+<td>n</td>
+</tr>
+<tr>
+<td>0110 1111</td>
+<td>111</td>
+<td>6F</td>
+<td>o</td>
+</tr>
+<tr>
+<td>0111 0000</td>
+<td>112</td>
+<td>70</td>
+<td>p</td>
+</tr>
+<tr>
+<td>0111 0001</td>
+<td>113</td>
+<td>71</td>
+<td>q</td>
+</tr>
+<tr>
+<td>0111 0010</td>
+<td>114</td>
+<td>72</td>
+<td>r</td>
+</tr>
+<tr>
+<td>0111 0011</td>
+<td>115</td>
+<td>73</td>
+<td>s</td>
+</tr>
+<tr>
+<td>0111 0100</td>
+<td>116</td>
+<td>74</td>
+<td>t</td>
+</tr>
+<tr>
+<td>0111 0101</td>
+<td>117</td>
+<td>75</td>
+<td>u</td>
+</tr>
+<tr>
+<td>0111 0110</td>
+<td>118</td>
+<td>76</td>
+<td>v</td>
+</tr>
+<tr>
+<td>0111 0111</td>
+<td>119</td>
+<td>77</td>
+<td>w</td>
+</tr>
+<tr>
+<td>0111 1000</td>
+<td>120</td>
+<td>78</td>
+<td>x</td>
+</tr>
+<tr>
+<td>0111 1001</td>
+<td>121</td>
+<td>79</td>
+<td>y</td>
+</tr>
+<tr>
+<td>0111 1010</td>
+<td>122</td>
+<td>7A</td>
+<td>z</td>
+</tr>
+<tr>
+<td>0111 1011</td>
+<td>123</td>
+<td>7B</td>
+<td>{</td>
+</tr>
+<tr>
+<td>0111 1100</td>
+<td>124</td>
+<td>7C</td>
+<td></td>
+</tr>
+<tr>
+<td>0111 1101</td>
+<td>125</td>
+<td>7D</td>
+<td>}</td>
+</tr>
+<tr>
+<td>0111 1110</td>
+<td>126</td>
+<td>7E</td>
+<td>~</td>
+</tr>
+</tbody></table>
+<p><strong>ASCII 码大致由以下两部分组成：</strong></p>
+<ul>
+<li>ASCII 控制字符：ASCII 表上十制进数字 <strong>0-31&#x2F;127</strong> 分配给了控制字符，用于控制计算机或一些外围设备。</li>
+<li>ASCII 显示字符：ASCII 表上十制进数字 <strong>32-126</strong> 分配给了能在键盘上输出的字符，当编写或打印文档时就会出现。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/%E8%9A%82%E8%9A%81Emmet/" rel="tag"># 蚂蚁Emmet</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/d4eac064.html" rel="prev" title="C/C++语言 零基础入门教程09：数据类型-实型（float、double）">
+                  <i class="fa fa-chevron-left"></i> C/C++语言 零基础入门教程09：数据类型-实型（float、double）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/29c728fa.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
