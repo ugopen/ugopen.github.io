@@ -4,6 +4,141 @@
   
     
     <entry>
+      <title>C/C++语言 零基础入门教程15：运算符-算术运算符</title>
+      <link href="/post/f347932f.html"/>
+      <url>/post/f347932f.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="第三章：运算符"><a href="#第三章：运算符" class="headerlink" title="第三章：运算符"></a>第三章：运算符</h1><h2 id="3-运算符"><a href="#3-运算符" class="headerlink" title="3 运算符"></a>3 运算符</h2><p><strong>作用：</strong>用于执行代码的运算。</p><table><thead><tr><th>运算符类型</th><th>作用</th></tr></thead><tbody><tr><td>算术运算符</td><td>用于处理四则运算</td></tr><tr><td>赋值运算符</td><td>用于将表达式的值赋给变量</td></tr><tr><td>比较运算符</td><td>用于表达式的比较，并返回一个真值或假值</td></tr><tr><td>逻辑运算符</td><td>用于根据表达式的值返回真值或假值</td></tr></tbody></table><h2 id="3-1-算术运算符"><a href="#3-1-算术运算符" class="headerlink" title="3.1 算术运算符"></a>3.1 算术运算符</h2><p><strong>作用：</strong>用于处理四则运算。</p><p><strong>算术运算符包括以下符号：</strong></p><p>下表显示了 C 语言支持的所有算术运算符。假设变量 <strong>A</strong> 的值为 10，变量 <strong>B</strong> 的值为 20，则：</p><table><thead><tr><th align="center">运算符</th><th align="center">描述</th><th align="center">实例</th></tr></thead><tbody><tr><td align="center">+</td><td align="center">把两个操作数相加</td><td align="center">A + B 将得到 30</td></tr><tr><td align="center">-</td><td align="center">从第一个操作数中减去第二个操作数</td><td align="center">A - B 将得到 -10</td></tr><tr><td align="center">*</td><td align="center">把两个操作数相乘</td><td align="center">A * B 将得到 200</td></tr><tr><td align="center">&#x2F;</td><td align="center">分子除以分母</td><td align="center">B &#x2F; A 将得到 2</td></tr><tr><td align="center">%</td><td align="center">取模运算符，整除后的余数</td><td align="center">B % A 将得到 0</td></tr><tr><td align="center">++</td><td align="center">自增运算符，整数值增加 1</td><td align="center">A++ 将得到 11</td></tr><tr><td align="center">--</td><td align="center">自减运算符，整数值减少 1</td><td align="center">A– 将得到 9</td></tr></tbody></table><p><strong>示例：</strong></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="type">int</span> A = <span class="number">10</span>, B = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//加减乘除</span></span><br><span class="line">cout &lt;&lt; A + B &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; A - B &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; A \* B &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; B / A &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//取模</span></span><br><span class="line">cout &lt;&lt; B % A &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//自增</span></span><br><span class="line">A++;</span><br><span class="line">cout &lt;&lt; A &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//自减</span></span><br><span class="line">A = <span class="number">10</span>;</span><br><span class="line">A--;</span><br><span class="line">cout &lt;&lt; A &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>1、前置递增：先让变量+1，然后进行表达式运算。<br>++A;  &#x2F;&#x2F;让变量+1;</p><p>2、后置递增：先进行表达式运算，然后让变量+1。<br>A++;  &#x2F;&#x2F;让变量+1;</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C/C++语言 零基础入门教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+            <tag> 蚂蚁Emmet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C/C++语言 零基础入门教程14：数据类型-数据的输入</title>
+      <link href="/post/fa01f24.html"/>
+      <url>/post/fa01f24.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="第二章：数据类型"><a href="#第二章：数据类型" class="headerlink" title="第二章：数据类型"></a>第二章：数据类型</h1><h2 id="2-8-数据的输入"><a href="#2-8-数据的输入" class="headerlink" title="2.8 数据的输入"></a>2.8 数据的输入</h2><p><strong>作用：</strong>用于从键盘获取数据。</p><p><strong>关键字：</strong>cin</p><p><strong>语法：</strong>cin &gt;&gt; 变量名;</p><p><strong>示例：</strong></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//整型输入</span></span><br><span class="line"><span class="type">int</span> iNum = <span class="number">0</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;请输入整型变量值：&quot;</span>&lt;&lt; endl;</span><br><span class="line">        cin &gt;&gt; iNum;</span><br><span class="line">cout &lt;&lt;<span class="string">&quot;整型 iNum01= &quot;</span>&lt;&lt;iNum &lt;&lt;<span class="string">&quot;\\n&quot;</span>&lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//浮点型输入</span></span><br><span class="line"><span class="type">double</span> dNum = <span class="number">0.0</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;请输入浮点型变量值：&quot;</span> &lt;&lt; endl; </span><br><span class="line">        cin &gt;&gt; dNum;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;浮点型 dNum= &quot;</span> &lt;&lt; dNum &lt;&lt; <span class="string">&quot;\\n&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//字符型输入</span></span><br><span class="line"><span class="type">char</span> cCh;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;请输入字符型变量值：&quot;</span> &lt;&lt; endl;</span><br><span class="line">        cin &gt;&gt; cCh;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;字符型 cCh= &quot;</span> &lt;&lt; cCh &lt;&lt; <span class="string">&quot;\\n&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串型输入</span></span><br><span class="line">string sStr=<span class="string">&quot;&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;请输入字符串型变量值：&quot;</span> &lt;&lt; endl; </span><br><span class="line">        cin &gt;&gt; sStr;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;字符串型 sStr= &quot;</span> &lt;&lt; sStr &lt;&lt; <span class="string">&quot;\\n&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> C/C++语言 零基础入门教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+            <tag> 蚂蚁Emmet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C/C++语言 零基础入门教程13：数据类型-布尔类型（bool）</title>
+      <link href="/post/d38bc2de.html"/>
+      <url>/post/d38bc2de.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="第二章：数据类型"><a href="#第二章：数据类型" class="headerlink" title="第二章：数据类型"></a>第二章：数据类型</h1><h2 id="2-7-布尔类型-bool"><a href="#2-7-布尔类型-bool" class="headerlink" title="2.7 布尔类型 bool"></a>2.7 布尔类型 bool</h2><p><strong>作用：</strong>布尔数据类型代表真或假的值。</p><p>bool类型只有两个值：</p><ul><li>true~真（本质是1）</li><li>false~假（本质是0）</li></ul><p><strong>注意：bool类型 只要是非0的值都为真。</strong></p><p><strong>boo类型占用1个字节大小</strong></p><p><strong>示例:</strong></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="type">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">cout &lt;&lt; flag &lt;&lt; endl;<span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">flag = <span class="literal">false</span>;</span><br><span class="line">cout &lt;&lt; flag &lt;&lt; endl;<span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt;<span class="string">&quot;bool 占用内存空间：&quot;</span>&lt;&lt; (<span class="type">int</span>)<span class="built_in">sizeof</span>(<span class="type">bool</span>) &lt;&lt; <span class="string">&quot; 字节&quot;</span> &lt;&lt; endl;  <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>以上代码编译执行结果如下： <img src="http://image.camcad.cn/2020/05/2020051906195943.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C/C++语言 零基础入门教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+            <tag> 蚂蚁Emmet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C/C++语言 零基础入门教程12：数据类型-字符串型（char、string）</title>
+      <link href="/post/b12d45c4.html"/>
+      <url>/post/b12d45c4.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="第二章：数据类型"><a href="#第二章：数据类型" class="headerlink" title="第二章：数据类型"></a>第二章：数据类型</h1><h2 id="2-6-字符串型"><a href="#2-6-字符串型" class="headerlink" title="2.6 字符串型"></a>2.6 字符串型</h2><p><strong>作用：</strong>用于表示 一串字符</p><p><strong>两种风格:</strong></p><h3 id="1、C语言风格字符串：char-变量名-x3D-“字符串值”"><a href="#1、C语言风格字符串：char-变量名-x3D-“字符串值”" class="headerlink" title="1、C语言风格字符串：char 变量名[ ] &#x3D; “字符串值”;"></a>1、C语言风格字符串：char 变量名[ ] &#x3D; “字符串值”;</h3><p><strong>示例：</strong></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//1、C语言风格字符串：char 变量名\[ \] = &quot;字符串值&quot;;</span></span><br><span class="line"><span class="type">char</span> cChar01\[ \] = <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line">cout &lt;&lt; cChar01 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>注意：C风格的字符串需要用双引号括起来。</strong></p><h3 id="2、C-风格字符串：string-变量名-x3D-“字符串值”"><a href="#2、C-风格字符串：string-变量名-x3D-“字符串值”" class="headerlink" title="2、C++风格字符串：string 变量名 &#x3D; “字符串值”;"></a>2、C++风格字符串：string 变量名 &#x3D; “字符串值”;</h3><p><strong>示例：</strong></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span><span class="comment">//string字符串使用时，需加头文件</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//2、C++风格字符串：string 变量名 = &quot;字符串值&quot;;</span></span><br><span class="line">string sString01 = <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line"></span><br><span class="line">cout &lt;&lt; sString01 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>注意：C++风格字符串，需要加入头文件 #include <string></strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C/C++语言 零基础入门教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+            <tag> 蚂蚁Emmet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C/C++语言 零基础入门教程11：数据类型-转义字符</title>
+      <link href="/post/d374177.html"/>
+      <url>/post/d374177.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="第二章：数据类型"><a href="#第二章：数据类型" class="headerlink" title="第二章：数据类型"></a>第二章：数据类型</h1><h2 id="2-5-转义字符"><a href="#2-5-转义字符" class="headerlink" title="2.5 转义字符"></a>2.5 转义字符</h2><h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p>所有的ASCII码都可以用“\”加数字（一般是8进制数字）来表示。而C中定义了一些字母前加”\“来表示常见的那些不能显示的ASCII字符，如\0,\t,\n等，就称为转义字符，因为后面的字符，都不是它本来的ASCII字符意思了。</p><h3 id="转义字符表"><a href="#转义字符表" class="headerlink" title="转义字符表"></a>转义字符表</h3><p>所有的转义字符和所对应的意义：</p><table><thead><tr><th>转义字符</th><th>意义</th><th>ASCII 码值（十进制）</th></tr></thead><tbody><tr><td>\a</td><td>响铃(BEL)</td><td>007</td></tr><tr><td>\b</td><td>退格(BS) ，将当前位置移到前一列</td><td>008</td></tr><tr><td>\f</td><td>换页(FF)，将当前位置移到下页开头</td><td>012</td></tr><tr><td>\n</td><td>换行(LF) ，将当前位置移到下一行开头</td><td>010</td></tr><tr><td>\r</td><td>回车(CR) ，将当前位置移到本行开头</td><td>013</td></tr><tr><td>\t</td><td>水平制表(HT) （跳到下一个 TAB 位置）</td><td>009</td></tr><tr><td>\v</td><td>垂直制表(VT)</td><td>011</td></tr><tr><td>\\</td><td>代表一个反斜线字符’&#39;</td><td>092</td></tr><tr><td>\‘</td><td>代表一个单引号（撇号）字符</td><td>039</td></tr><tr><td>\“</td><td>代表一个双引号字符</td><td>034</td></tr><tr><td>\?</td><td>代表一个问号</td><td>063</td></tr><tr><td>\0</td><td>空字符(NUL)</td><td>000</td></tr><tr><td>\ddd</td><td>1 到 3 位八进制数所代表的任意字符</td><td>三位八进制</td></tr><tr><td>\xhh</td><td>十六进制所代表的任意字符</td><td>十六进制</td></tr></tbody></table><p><strong>示例：</strong></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// \\n 换行(LF) ，将当前位置移到下一行开头</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello World\\n&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// \\\\ 代表一个反斜线字符&#x27;\\&#x27;</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello\\\\World&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// \\t 水平制表(HT) （跳到下一个TAB位置）</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello\\tWorld&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>以上代码编译执行结果如下：</p><p><img src="http://image.camcad.cn/2020/05/2020051903314817.jpg"></p><p>在传值前 通过 java.net.URLEncoder.encode(param1) 编码处理后，可将转义字符转为16进制;</p><table><thead><tr><th>特殊字符</th><th>URL中用途</th><th>转义方式</th></tr></thead><tbody><tr><td>+</td><td>表示空格</td><td>%2B</td></tr><tr><td>(空格)</td><td>应换用加号 + 或%20 表示</td><td>%20</td></tr><tr><td>&#x2F;</td><td>分隔目录和子目录</td><td>%2F</td></tr><tr><td>?</td><td>分隔实际的 URL 和参数</td><td>%3F</td></tr><tr><td>%</td><td>指定特殊字符</td><td>%25</td></tr><tr><td>#</td><td>表示书签</td><td>%23</td></tr><tr><td>&amp;</td><td>URL中指定的参数间的分隔符</td><td>%26</td></tr><tr><td>=</td><td>URL中指定参数的值</td><td>%3D</td></tr><tr><td>!</td><td>URL中指定参数的值</td><td>%21</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> C/C++语言 零基础入门教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+            <tag> 蚂蚁Emmet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C/C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表</title>
       <link href="/post/29c728fa.html"/>
       <url>/post/29c728fa.html</url>

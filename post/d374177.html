@@ -19,36 +19,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="第一个C++程序“HelloWorlda”">
+    <meta name="description" content="数据类型-转义字符">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C&#x2F;C++语言 零基础入门教程01：第一个C++程序“HelloWorld”">
-<meta property="og:url" content="https://notes.camcad.cn/post/b896bb48.html">
+<meta property="og:title" content="C&#x2F;C++语言 零基础入门教程11：数据类型-转义字符">
+<meta property="og:url" content="https://notes.camcad.cn/post/d374177.html">
 <meta property="og:site_name" content="蚂蚁Emmet">
-<meta property="og:description" content="第一个C++程序“HelloWorlda”">
+<meta property="og:description" content="数据类型-转义字符">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://image.camcad.cn/2020/05/2020051702465231-1024x739.jpg">
-<meta property="og:image" content="http://image.camcad.cn/2020/05/2020051702461712-1024x760.jpg">
-<meta property="og:image" content="http://image.camcad.cn/2020/05/2020051703011331-1024x593.jpg">
-<meta property="og:image" content="http://image.camcad.cn/2020/05/2020051703141939-1024x724.jpg">
-<meta property="og:image" content="http://image.camcad.cn/2020/05/2020051703143081-1024x274.jpg">
-<meta property="article:published_time" content="2020-05-17T17:34:45.000Z">
+<meta property="og:image" content="http://image.camcad.cn/2020/05/2020051903314817.jpg">
+<meta property="article:published_time" content="2020-05-24T16:28:18.000Z">
 <meta property="article:modified_time" content="2023-03-30T14:33:45.355Z">
 <meta property="article:author" content="蚂蚁Emmet">
-<meta property="article:tag" content="C">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蚂蚁Emmet">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://image.camcad.cn/2020/05/2020051702465231-1024x739.jpg">
+<meta name="twitter:image" content="http://image.camcad.cn/2020/05/2020051903314817.jpg">
 
 
-<link rel="canonical" href="https://notes.camcad.cn/post/b896bb48.html">
+<link rel="canonical" href="https://notes.camcad.cn/post/d374177.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/b896bb48.html","path":"post/b896bb48.html","title":"C/C++语言 零基础入门教程01：第一个C++程序“HelloWorld”"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/d374177.html","path":"post/d374177.html","title":"C/C++语言 零基础入门教程11：数据类型-转义字符"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>C/C++语言 零基础入门教程01：第一个C++程序“HelloWorld” | 蚂蚁Emmet</title>
+<title>C/C++语言 零基础入门教程11：数据类型-转义字符 | 蚂蚁Emmet</title>
   
 
 
@@ -148,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9AC-%E5%88%9D%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">第一章：C++初识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%AC%AC%E4%B8%80%E4%B8%AAC-%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 第一个C++程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 创建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 创建文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 编写代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.1.4 运行程序</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">第二章：数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="nav-number">1.1.</span> <span class="nav-text">2.5 转义字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">简介：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6%E8%A1%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">转义字符表</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -197,7 +192,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b896bb48.html">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/d374177.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -210,12 +205,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="C/C++语言 零基础入门教程01：第一个C++程序“HelloWorld” | 蚂蚁Emmet">
-      <meta itemprop="description" content="第一个C++程序“HelloWorlda”">
+      <meta itemprop="name" content="C/C++语言 零基础入门教程11：数据类型-转义字符 | 蚂蚁Emmet">
+      <meta itemprop="description" content="数据类型-转义字符">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          C/C++语言 零基础入门教程01：第一个C++程序“HelloWorld”
+          C/C++语言 零基础入门教程11：数据类型-转义字符
         </h1>
 
         <div class="post-meta-container">
@@ -226,7 +221,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-05-17 17:34:45" itemprop="dateCreated datePublished" datetime="2020-05-17T17:34:45+00:00">2020-05-17</time>
+      <time title="创建时间：2020-05-24 16:28:18" itemprop="dateCreated datePublished" datetime="2020-05-24T16:28:18+00:00">2020-05-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,15 +249,15 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/post/b896bb48.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/b896bb48.html" itemprop="commentCount"></span>
+    <a title="waline" href="/post/d374177.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/d374177.html" itemprop="commentCount"></span>
     </a>
   </span>
   
   
 </div>
 
-            <div class="post-description">第一个C++程序“HelloWorlda”</div>
+            <div class="post-description">数据类型-转义字符</div>
         </div>
       </header>
 
@@ -270,20 +265,146 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="第一章：C-初识"><a href="#第一章：C-初识" class="headerlink" title="第一章：C++初识"></a>第一章：C++初识</h1><h2 id="1-1-第一个C-程序"><a href="#1-1-第一个C-程序" class="headerlink" title="1.1 第一个C++程序"></a>1.1 第一个C++程序</h2><p>编写一个C++程序总共分为4个步骤</p>
-<ul>
-<li>创建项目</li>
-<li>创建文件</li>
-<li>编写代码</li>
-<li>运行文件</li>
-</ul>
-<h3 id="1-1-1-创建项目"><a href="#1-1-1-创建项目" class="headerlink" title="1.1.1 创建项目"></a>1.1.1 创建项目</h3><p>Visual Studio 是我们用来编写C&#x2F;C++程序的主要工具，我们先将它打开。</p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/05/2020051702465231.jpg"><img src="http://image.camcad.cn/2020/05/2020051702465231-1024x739.jpg"></a><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/05/2020051702461712.jpg"><img src="http://image.camcad.cn/2020/05/2020051702461712-1024x760.jpg"></a></p>
-<h3 id="1-1-2-创建文件"><a href="#1-1-2-创建文件" class="headerlink" title="1.1.2 创建文件"></a>1.1.2 创建文件</h3><p>点击”源文件“–&gt;右键”源文件“–&gt;选择”添加“–&gt;点击“新建项”</p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/05/2020051703011331.jpg"><img src="http://image.camcad.cn/2020/05/2020051703011331-1024x593.jpg"></a></p>
-<h3 id="1-1-3-编写代码"><a href="#1-1-3-编写代码" class="headerlink" title="1.1.3 编写代码"></a>1.1.3 编写代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;Hello World&quot;</span> &lt;&lt; endl;</span><br><span class="line">  <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-4-运行程序"><a href="#1-1-4-运行程序" class="headerlink" title="1.1.4 运行程序"></a>1.1.4 运行程序</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/05/2020051703141939.jpg"><img src="http://image.camcad.cn/2020/05/2020051703141939-1024x724.jpg"></a><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/05/2020051703143081.jpg"><img src="http://image.camcad.cn/2020/05/2020051703143081-1024x274.jpg"></a></p>
+        <h1 id="第二章：数据类型"><a href="#第二章：数据类型" class="headerlink" title="第二章：数据类型"></a>第二章：数据类型</h1><h2 id="2-5-转义字符"><a href="#2-5-转义字符" class="headerlink" title="2.5 转义字符"></a>2.5 转义字符</h2><h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p>所有的ASCII码都可以用“\”加数字（一般是8进制数字）来表示。而C中定义了一些字母前加”\“来表示常见的那些不能显示的ASCII字符，如\0,\t,\n等，就称为转义字符，因为后面的字符，都不是它本来的ASCII字符意思了。</p>
+<h3 id="转义字符表"><a href="#转义字符表" class="headerlink" title="转义字符表"></a>转义字符表</h3><p>所有的转义字符和所对应的意义：</p>
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>意义</th>
+<th>ASCII 码值（十进制）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\a</td>
+<td>响铃(BEL)</td>
+<td>007</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>退格(BS) ，将当前位置移到前一列</td>
+<td>008</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>换页(FF)，将当前位置移到下页开头</td>
+<td>012</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行(LF) ，将当前位置移到下一行开头</td>
+<td>010</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车(CR) ，将当前位置移到本行开头</td>
+<td>013</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>水平制表(HT) （跳到下一个 TAB 位置）</td>
+<td>009</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>垂直制表(VT)</td>
+<td>011</td>
+</tr>
+<tr>
+<td>\\</td>
+<td>代表一个反斜线字符’&#39;</td>
+<td>092</td>
+</tr>
+<tr>
+<td>\‘</td>
+<td>代表一个单引号（撇号）字符</td>
+<td>039</td>
+</tr>
+<tr>
+<td>\“</td>
+<td>代表一个双引号字符</td>
+<td>034</td>
+</tr>
+<tr>
+<td>\?</td>
+<td>代表一个问号</td>
+<td>063</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>空字符(NUL)</td>
+<td>000</td>
+</tr>
+<tr>
+<td>\ddd</td>
+<td>1 到 3 位八进制数所代表的任意字符</td>
+<td>三位八进制</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td>十六进制所代表的任意字符</td>
+<td>十六进制</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// \\n 换行(LF) ，将当前位置移到下一行开头</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello World\\n&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// \\\\ 代表一个反斜线字符&#x27;\\&#x27;</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello\\\\World&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// \\t 水平制表(HT) （跳到下一个TAB位置）</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello\\tWorld&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码编译执行结果如下：</p>
+<p><img src="http://image.camcad.cn/2020/05/2020051903314817.jpg"></p>
+<p>在传值前 通过 java.net.URLEncoder.encode(param1) 编码处理后，可将转义字符转为16进制;</p>
+<table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th>URL中用途</th>
+<th>转义方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>表示空格</td>
+<td>%2B</td>
+</tr>
+<tr>
+<td>(空格)</td>
+<td>应换用加号 + 或%20 表示</td>
+<td>%20</td>
+</tr>
+<tr>
+<td>&#x2F;</td>
+<td>分隔目录和子目录</td>
+<td>%2F</td>
+</tr>
+<tr>
+<td>?</td>
+<td>分隔实际的 URL 和参数</td>
+<td>%3F</td>
+</tr>
+<tr>
+<td>%</td>
+<td>指定特殊字符</td>
+<td>%25</td>
+</tr>
+<tr>
+<td>#</td>
+<td>表示书签</td>
+<td>%23</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>URL中指定的参数间的分隔符</td>
+<td>%26</td>
+</tr>
+<tr>
+<td>=</td>
+<td>URL中指定参数的值</td>
+<td>%3D</td>
+</tr>
+<tr>
+<td>!</td>
+<td>URL中指定参数的值</td>
+<td>%21</td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -293,7 +414,6 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C/" rel="tag"># C</a>
               <a href="/tags/C-C/" rel="tag"># C/C++</a>
               <a href="/tags/%E8%9A%82%E8%9A%81Emmet/" rel="tag"># 蚂蚁Emmet</a>
           </div>
@@ -302,10 +422,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/post/29c728fa.html" rel="prev" title="C/C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表">
+                  <i class="fa fa-chevron-left"></i> C/C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/5a50df31.html" rel="next" title="C/C++语言 零基础入门教程02：单行注释/多行注释">
-                  C/C++语言 零基础入门教程02：单行注释/多行注释 <i class="fa fa-chevron-right"></i>
+                <a href="/post/b12d45c4.html" rel="next" title="C/C++语言 零基础入门教程12：数据类型-字符串型（char、string）">
+                  C/C++语言 零基础入门教程12：数据类型-字符串型（char、string） <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -367,7 +490,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/b896bb48.html"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/d374177.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
