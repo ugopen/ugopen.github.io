@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="程序流程结构-循环结构（嵌套循环）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++语言 零基础入门教程25：程序流程结构-循环结构（嵌套循环）">
+<meta property="og:url" content="https://notes.camcad.cn/post/fb12f7df.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="程序流程结构-循环结构（嵌套循环）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2020/05/2020052107523014.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2020/05/2020052108111218-1024x447.jpg">
+<meta property="article:published_time" content="2020-06-02T11:12:23.000Z">
+<meta property="article:modified_time" content="2023-03-31T05:58:15.185Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="蚂蚁Emmet">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2020/05/2020052107523014.jpg">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/fb12f7df.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/fb12f7df.html","path":"post/fb12f7df.html","title":"C/C++语言 零基础入门教程25：程序流程结构-循环结构（嵌套循环）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C/C++语言 零基础入门教程25：程序流程结构-循环结构（嵌套循环） | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">第四章：程序流程结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">4.2 循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">4.2.4 嵌套循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">练习案例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E4%B8%80%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">案例一：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E5%A4%96%E5%B1%82%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%EF%BC%8C%E5%86%85%E5%B1%82%E6%89%A7%E8%A1%8C%E4%B8%80%E8%BD%AE%E3%80%82"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">总结：外层执行一次，内层执行一轮。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E4%BA%8C%EF%BC%9A"><span class="nav-number">1.1.4.</span> <span class="nav-text">案例二：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/fb12f7df.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C/C++语言 零基础入门教程25：程序流程结构-循环结构（嵌套循环） | 蚂蚁Emmet">
+      <meta itemprop="description" content="程序流程结构-循环结构（嵌套循环）">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C/C++语言 零基础入门教程25：程序流程结构-循环结构（嵌套循环）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-06-02 11:12:23" itemprop="dateCreated datePublished" datetime="2020-06-02T11:12:23+00:00">2020-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-31 05:58:15" itemprop="dateModified" datetime="2023-03-31T05:58:15+00:00">2023-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-C-%E8%AF%AD%E8%A8%80-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C/C++语言 零基础入门教程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/fb12f7df.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/fb12f7df.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+            <div class="post-description">程序流程结构-循环结构（嵌套循环）</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="第四章：程序流程结构"><a href="#第四章：程序流程结构" class="headerlink" title="第四章：程序流程结构"></a>第四章：程序流程结构</h1><h2 id="4-2-循环结构"><a href="#4-2-循环结构" class="headerlink" title="4.2 循环结构"></a>4.2 循环结构</h2><h3 id="4-2-4-嵌套循环"><a href="#4-2-4-嵌套循环" class="headerlink" title="4.2.4 嵌套循环"></a>4.2.4 嵌套循环</h3><p><strong>作用：</strong>在循环体中再嵌套一层循环，解决一些实际问题。</p>
+<h3 id="练习案例："><a href="#练习案例：" class="headerlink" title="练习案例："></a>练习案例：</h3><h3 id="案例一："><a href="#案例一：" class="headerlink" title="案例一："></a>案例一：</h3><p>例如我们在屏幕中打印如下所示，就需要利用嵌套循环。 <img src="http://image.camcad.cn/2020/05/2020052107523014.jpg"></p>
+<p><strong>示例：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">size_t</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;*&quot;</span> &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结：外层执行一次，内层执行一轮。"><a href="#总结：外层执行一次，内层执行一轮。" class="headerlink" title="总结：外层执行一次，内层执行一轮。"></a>总结：外层执行一次，内层执行一轮。</h4><h3 id="案例二："><a href="#案例二：" class="headerlink" title="案例二："></a>案例二：</h3><p><strong>练习案例：</strong>乘法口诀表 <strong>案例描述：</strong>利用嵌套循环，实现九九乘法表。 <img src="http://image.camcad.cn/2020/05/2020052108111218-1024x447.jpg"></p>
+<p><strong>示例：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">size_t</span> j = <span class="number">1</span>; j &lt; i+<span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; j &lt;&lt; <span class="string">&quot;*&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;=&quot;</span> &lt;&lt; j * i &lt;&lt; <span class="string">&quot;\t&quot;</span> ;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/%E8%9A%82%E8%9A%81Emmet/" rel="tag"># 蚂蚁Emmet</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/c0f51a0.html" rel="prev" title="C/C++语言 零基础入门教程24：程序流程结构-循环结构（for循环语句）">
+                  <i class="fa fa-chevron-left"></i> C/C++语言 零基础入门教程24：程序流程结构-循环结构（for循环语句）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/ee302b30.html" rel="next" title="C/C++语言 零基础入门教程26：程序流程结构-跳转语句（break语句）">
+                  C/C++语言 零基础入门教程26：程序流程结构-跳转语句（break语句） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/fb12f7df.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
