@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="基础入门教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++语言 零基础入门教程">
+<meta property="og:url" content="https://notes.camcad.cn/post/b2d53884.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="基础入门教程">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-22T09:31:40.000Z">
+<meta property="article:modified_time" content="2023-03-31T11:33:46.974Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="蚂蚁Emmet">
+<meta property="article:tag" content="C++教程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/b2d53884.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/b2d53884.html","path":"post/b2d53884.html","title":"C/C++语言 零基础入门教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C/C++语言 零基础入门教程 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E8%AF%AD%E8%A8%80-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">C++语言 零基础入门教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">1、简介：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9AC-%E5%88%9D%E8%AF%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一章：C++初识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">第二章：数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.1.3.</span> <span class="nav-text">第三章：运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.4.</span> <span class="nav-text">第四章：程序流程结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.5.</span> <span class="nav-text">第五章：数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88"><span class="nav-number">1.1.6.</span> <span class="nav-text">第六章：指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.1.7.</span> <span class="nav-text">第七章：结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0%EF%BC%9A%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B%EF%BC%88%E9%80%9A%E8%AE%AF%E5%BD%95%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="nav-number">1.1.8.</span> <span class="nav-text">第八章：实战案例（通讯录管理系统）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E9%A2%91%E8%BD%AC%E8%BD%BD-bilibili%E5%8D%9A%E4%B8%BB%E3%80%8A%E9%BB%91%E9%A9%AC%E7%A8%8B%E5%BA%8F%E5%91%98%E3%80%8B"><span class="nav-number">1.2.</span> <span class="nav-text">视频转载 bilibili博主《黑马程序员》</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b2d53884.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C/C++语言 零基础入门教程 | 蚂蚁Emmet">
+      <meta itemprop="description" content="基础入门教程">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C/C++语言 零基础入门教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-06-22 09:31:40" itemprop="dateCreated datePublished" datetime="2020-06-22T09:31:40+00:00">2020-06-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-31 11:33:46" itemprop="dateModified" datetime="2023-03-31T11:33:46+00:00">2023-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-C-%E8%AF%AD%E8%A8%80-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C/C++语言 零基础入门教程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">视频教程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/b2d53884.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/b2d53884.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+            <div class="post-description">基础入门教程</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="C-语言-零基础入门教程"><a href="#C-语言-零基础入门教程" class="headerlink" title="C++语言 零基础入门教程"></a>C++语言 零基础入门教程</h1><h2 id="1、简介："><a href="#1、简介：" class="headerlink" title="1、简介："></a>1、简介：</h2><p>C++ 是一种面向对象的计算机程序设计语言，由美国AT&amp;T贝尔实验室的本贾尼·斯特劳斯特卢普博士在20世纪80年代初期发明并实现（最初这种语言被称作“C with Classes”带类的C）。它是一种静态数据类型检查的、支持多重编程范式的通用程序设计语言。它支持过程化程序设计、数据抽象、面向对象程序设计、泛型程序设计等多种程序设计风格。</p>
+<h3 id="第一章：C-初识"><a href="#第一章：C-初识" class="headerlink" title="第一章：C++初识"></a>第一章：C++初识</h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">名称</th>
+<th align="center">视频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">001</td>
+<td align="left"><a href="https://notes.camcad.cn/post/b896bb48.html">C&#x2F;C++语言 零基础入门教程01：第一个C++程序“HelloWorld”</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=2">08:22</a></td>
+</tr>
+<tr>
+<td align="center">002</td>
+<td align="left"><a href="https://notes.camcad.cn/post/5a50df31.html">C&#x2F;C++语言 零基础入门教程02：单行注释&#x2F;多行注释</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=3">05:41</a></td>
+</tr>
+<tr>
+<td align="center">003</td>
+<td align="left"><a href="https://notes.camcad.cn/post/6e88c124.html">C&#x2F;C++语言 零基础入门教程03：变量的意义&#x2F;变量的使用</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=2">05:17</a></td>
+</tr>
+<tr>
+<td align="center">004</td>
+<td align="left"><a href="https://notes.camcad.cn/post/8fe4479e.html">C&#x2F;C++语言 零基础入门教程04：常量与变量的区别&#x2F;变量的使用</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=5">07:57</a></td>
+</tr>
+<tr>
+<td align="center">005</td>
+<td align="left"><a href="https://notes.camcad.cn/post/b90c4483.html">C&#x2F;C++语言 零基础入门教程05：C&#x2F;C++中常用的编程关键字</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=6">03:43</a></td>
+</tr>
+<tr>
+<td align="center">006</td>
+<td align="left"><a href="https://notes.camcad.cn/post/6cc951e8.html">C&#x2F;C++语言 零基础入门教程06：标识符命名规则</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=7">09:00</a></td>
+</tr>
+</tbody></table>
+<h3 id="第二章：数据类型"><a href="#第二章：数据类型" class="headerlink" title="第二章：数据类型"></a>第二章：数据类型</h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">名称</th>
+<th align="center">视频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">007</td>
+<td align="left"><a href="https://notes.camcad.cn/post/145d1acc.html">C&#x2F;C++语言 零基础入门教程07：数据类型-整型（short、int、long、long long）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=8">11:11</a></td>
+</tr>
+<tr>
+<td align="center">008</td>
+<td align="left"><a href="https://notes.camcad.cn/post/2f84322d.html">C&#x2F;C++语言 零基础入门教程08：sizeof 关键字</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=9">06:54</a></td>
+</tr>
+<tr>
+<td align="center">009</td>
+<td align="left"><a href="https://notes.camcad.cn/post/d4eac064.html">C&#x2F;C++语言 零基础入门教程09：数据类型-实型（float、double）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=10">11:59</a></td>
+</tr>
+<tr>
+<td align="center">010</td>
+<td align="left"><a href="https://notes.camcad.cn/post/29c728fa.html">C&#x2F;C++语言 零基础入门教程10：数据类型-字符型（char）｜ASCII 编码对照表</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=11">10:33</a></td>
+</tr>
+<tr>
+<td align="center">011</td>
+<td align="left"><a href="https://notes.camcad.cn/post/d374177.html">C&#x2F;C++语言 零基础入门教程11：数据类型-转义字符</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=12">07:28</a></td>
+</tr>
+<tr>
+<td align="center">012</td>
+<td align="left"><a href="https://notes.camcad.cn/post/b12d45c4.html">C&#x2F;C++语言 零基础入门教程12：数据类型-字符串型（char、string）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=13">07:35</a></td>
+</tr>
+<tr>
+<td align="center">013</td>
+<td align="left"><a href="https://notes.camcad.cn/post/d38bc2de.html">C&#x2F;C++语言 零基础入门教程13：数据类型-布尔类型（bool）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=14">04:06</a></td>
+</tr>
+<tr>
+<td align="center">014</td>
+<td align="left"><a href="https://notes.camcad.cn/post/fa01f24.html">C&#x2F;C++语言 零基础入门教程14：数据类型-数据的输入</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=15">10:42</a></td>
+</tr>
+</tbody></table>
+<h3 id="第三章：运算符"><a href="#第三章：运算符" class="headerlink" title="第三章：运算符"></a>第三章：运算符</h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">名称</th>
+<th align="center">视频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">015</td>
+<td align="left"><a href="https://notes.camcad.cn/post/f347932f.html">C&#x2F;C++语言 零基础入门教程15：运算符-算术运算符</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=16">10:56</a></td>
+</tr>
+<tr>
+<td align="center">016</td>
+<td align="left"><a href="https://notes.camcad.cn/post/1a1b9d69.html">C&#x2F;C++语言 零基础入门教程16：运算符-赋值运算符</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=17">07:37</a></td>
+</tr>
+<tr>
+<td align="center">017</td>
+<td align="left"><a href="https://notes.camcad.cn/post/ced67161.html">C&#x2F;C++语言 零基础入门教程17：运算符-比较运算符</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=20">05:18</a></td>
+</tr>
+<tr>
+<td align="center">018</td>
+<td align="left"><a href="https://notes.camcad.cn/post/ea417dd8.html">C&#x2F;C++语言 零基础入门教程18：运算符-逻辑运算符</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=21">10:30</a></td>
+</tr>
+</tbody></table>
+<h3 id="第四章：程序流程结构"><a href="#第四章：程序流程结构" class="headerlink" title="第四章：程序流程结构"></a>第四章：程序流程结构</h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">名称</th>
+<th align="center">视频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">019</td>
+<td align="left"><a href="https://notes.camcad.cn/post/f87d550a.html">C&#x2F;C++语言 零基础入门教程19：程序流程结构-选择结构（if语句）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=24">10:41</a></td>
+</tr>
+<tr>
+<td align="center">020</td>
+<td align="left"><a href="https://notes.camcad.cn/post/1e4ffda8.html">C&#x2F;C++语言 零基础入门教程20：程序流程结构-选择结构（三目运算符）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=29">06:31</a></td>
+</tr>
+<tr>
+<td align="center">021</td>
+<td align="left"><a href="https://notes.camcad.cn/post/fd1e91e2.html">C&#x2F;C++语言 零基础入门教程21：程序流程结构-选择结构（switch语句）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=30">06:01</a></td>
+</tr>
+<tr>
+<td align="center">022</td>
+<td align="left"><a href="https://notes.camcad.cn/post/2a571973.html">C&#x2F;C++语言 零基础入门教程22：程序流程结构-循环结构（while循环语句）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=31">09:23</a></td>
+</tr>
+<tr>
+<td align="center">023</td>
+<td align="left"><a href="https://notes.camcad.cn/post/b20f232b.html">C&#x2F;C++语言 零基础入门教程23：程序流程结构-循环结构（do…while循环语句）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=33">06:46</a></td>
+</tr>
+<tr>
+<td align="center">024</td>
+<td align="left"><a href="https://notes.camcad.cn/post/c0f51a0.html">C&#x2F;C++语言 零基础入门教程24：程序流程结构-循环结构（for循环语句）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=35">07:17</a></td>
+</tr>
+<tr>
+<td align="center">025</td>
+<td align="left"><a href="https://notes.camcad.cn/post/fb12f7df.html">C&#x2F;C++语言 零基础入门教程25：程序流程结构-循环结构（嵌套循环）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=36">11:24</a></td>
+</tr>
+<tr>
+<td align="center">026</td>
+<td align="left"><a href="https://notes.camcad.cn/post/ee302b30.html">C&#x2F;C++语言 零基础入门教程26：程序流程结构-跳转语句（break语句）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=39">12:20</a></td>
+</tr>
+<tr>
+<td align="center">027</td>
+<td align="left"><a href="https://notes.camcad.cn/post/7c12f79e.html">C&#x2F;C++语言 零基础入门教程27：程序流程结构-跳转语句（continue语句）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=40">08:38</a></td>
+</tr>
+<tr>
+<td align="center">028</td>
+<td align="left"><a href="https://notes.camcad.cn/post/576f3422.html">C&#x2F;C++语言 零基础入门教程28：程序流程结构-跳转语句（goto语句）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=41">05:23</a></td>
+</tr>
+</tbody></table>
+<h3 id="第五章：数组"><a href="#第五章：数组" class="headerlink" title="第五章：数组"></a>第五章：数组</h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">名称</th>
+<th align="center">视频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">029</td>
+<td align="left"><a href="https://notes.camcad.cn/post/a644770e.html">C&#x2F;C++语言 零基础入门教程29：数组-一维数组（一维数组的定义方式）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=42">18:13</a></td>
+</tr>
+<tr>
+<td align="center">030</td>
+<td align="left"><a href="https://notes.camcad.cn/post/4796245.html">C&#x2F;C++语言 零基础入门教程30：数组-一维数组（一维数组数组名）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=43">14:26</a></td>
+</tr>
+<tr>
+<td align="center">031</td>
+<td align="left"><a href="https://notes.camcad.cn/post/3920124c.html">C&#x2F;C++语言 零基础入门教程31：数组-一维数组（冒泡排序）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=46">18:57</a></td>
+</tr>
+<tr>
+<td align="center">032</td>
+<td align="left"><a href="https://notes.camcad.cn/post/a5caedcb.html">C&#x2F;C++语言 零基础入门教程32：数组-二维数组</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=47">14:30</a></td>
+</tr>
+<tr>
+<td align="center">033</td>
+<td align="left"><a href="https://notes.camcad.cn/post/591da572.html">C&#x2F;C++语言 零基础入门教程33：数组-二维数组数组名</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=48">14:07</a></td>
+</tr>
+<tr>
+<td align="center">034</td>
+<td align="left"><a href="https://notes.camcad.cn/post/94c0b7aa.html">C&#x2F;C++语言 零基础入门教程34：数组-二维数组应用案例</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=49">10:20</a></td>
+</tr>
+<tr>
+<td align="center">035</td>
+<td align="left"><a href="https://notes.camcad.cn/post/245f3a26.html">C&#x2F;C++语言 零基础入门教程35：函数（概述、函数的定义）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=50">11:20</a></td>
+</tr>
+<tr>
+<td align="center">036</td>
+<td align="left"><a href="https://notes.camcad.cn/post/9cc4cf82.html">C&#x2F;C++语言 零基础入门教程36：函数（函数的调用）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=51">07:44</a></td>
+</tr>
+<tr>
+<td align="center">037</td>
+<td align="left"><a href="https://notes.camcad.cn/post/520ef675.html">C&#x2F;C++语言 零基础入门教程37：函数（值传递）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=52">11:54</a></td>
+</tr>
+<tr>
+<td align="center">038</td>
+<td align="left"><a href="https://notes.camcad.cn/post/94cbec15.html">C&#x2F;C++语言 零基础入门教程38：函数（函数的常见样式）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=53">08:57</a></td>
+</tr>
+<tr>
+<td align="center">039</td>
+<td align="left"><a href="https://notes.camcad.cn/post/d249b32b.html">C&#x2F;C++语言 零基础入门教程39：函数（函数的声明）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=54">08:24</a></td>
+</tr>
+<tr>
+<td align="center">040</td>
+<td align="left"><a href="https://notes.camcad.cn/post/3157c3fd.html">C&#x2F;C++语言 零基础入门教程40：函数（函数的分文件编写）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=55">09:49</a></td>
+</tr>
+</tbody></table>
+<h3 id="第六章：指针"><a href="#第六章：指针" class="headerlink" title="第六章：指针"></a>第六章：指针</h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">名称</th>
+<th align="center">视频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">041</td>
+<td align="left"><a href="https://notes.camcad.cn/post/9c0faa35.html">C&#x2F;C++语言 零基础入门教程41：指针（指针的基本概念&#x2F;指针变量的定义和使用）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=56">10:10</a></td>
+</tr>
+<tr>
+<td align="center">042</td>
+<td align="left"><a href="https://notes.camcad.cn/post/985d89af.html">C&#x2F;C++语言 零基础入门教程42：指针（指针所占内存空间）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=57">06:22</a></td>
+</tr>
+<tr>
+<td align="center">043</td>
+<td align="left"><a href="https://notes.camcad.cn/post/96e13ca0.html">C&#x2F;C++语言 零基础入门教程43：指针（空指针&#x2F;野指针）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=58">07:46</a></td>
+</tr>
+<tr>
+<td align="center">044</td>
+<td align="left"><a href="https://notes.camcad.cn/post/587782a3.html">C&#x2F;C++语言 零基础入门教程44：指针（const修饰指针）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=60">15:05</a></td>
+</tr>
+<tr>
+<td align="center">045</td>
+<td align="left"><a href="https://notes.camcad.cn/post/bb3e0de5.html">C&#x2F;C++语言 零基础入门教程45：指针（指针与数组）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=61">07:27</a></td>
+</tr>
+<tr>
+<td align="center">046</td>
+<td align="left"><a href="https://notes.camcad.cn/post/43672f3.html">C&#x2F;C++语言 零基础入门教程46：指针（指针与函数）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=62">11:23</a></td>
+</tr>
+<tr>
+<td align="center">047</td>
+<td align="left"><a href="https://notes.camcad.cn/post/924960a9.html">C&#x2F;C++语言 零基础入门教程47：指针（指针配合数组和函数案例）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=63">08:37</a></td>
+</tr>
+</tbody></table>
+<h3 id="第七章：结构体"><a href="#第七章：结构体" class="headerlink" title="第七章：结构体"></a>第七章：结构体</h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">名称</th>
+<th align="center">视频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">048</td>
+<td align="left"><a href="https://notes.camcad.cn/post/4b12509c.html">C&#x2F;C++语言 零基础入门教程48：结构体（结构体基本概念&#x2F;结构体定义和使用）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=64">14:27</a></td>
+</tr>
+<tr>
+<td align="center">049</td>
+<td align="left"><a href="https://notes.camcad.cn/post/5bba5fa.html">C&#x2F;C++语言 零基础入门教程49：结构体（结构体数组）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=65">08:10</a></td>
+</tr>
+<tr>
+<td align="center">050</td>
+<td align="left"><a href="https://notes.camcad.cn/post/a3f94e94.html">C&#x2F;C++语言 零基础入门教程50：结构体（结构体指针）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=66">06:28</a></td>
+</tr>
+<tr>
+<td align="center">051</td>
+<td align="left"><a href="https://notes.camcad.cn/post/3083a4c1.html">C&#x2F;C++语言 零基础入门教程51：结构体（结构体嵌套结构体）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=67">09:28</a></td>
+</tr>
+<tr>
+<td align="center">052</td>
+<td align="left"><a href="https://notes.camcad.cn/post/ac475861.html">C&#x2F;C++语言 零基础入门教程52：结构体（结构体做函数参数）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=68">10:57</a></td>
+</tr>
+<tr>
+<td align="center">053</td>
+<td align="left"><a href="https://notes.camcad.cn/post/798e4a4c.html">C&#x2F;C++语言 零基础入门教程53：结构体（结构体中const使用场景）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=69">11:17</a></td>
+</tr>
+<tr>
+<td align="center">054</td>
+<td align="left"><a href="https://notes.camcad.cn/post/cffa1c48.html">C&#x2F;C++语言 零基础入门教程54：结构体（结构体案例1）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=70">20:36</a></td>
+</tr>
+<tr>
+<td align="center">055</td>
+<td align="left"><a href="https://notes.camcad.cn/post/12d1a46e.html">C&#x2F;C++语言 零基础入门教程55：结构体（结构体案例2）</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=71">12:53</a></td>
+</tr>
+</tbody></table>
+<h3 id="第八章：实战案例（通讯录管理系统）"><a href="#第八章：实战案例（通讯录管理系统）" class="headerlink" title="第八章：实战案例（通讯录管理系统）"></a>第八章：实战案例（通讯录管理系统）</h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">名称</th>
+<th align="center">视频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">056</td>
+<td align="left"><a href="https://notes.camcad.cn/post/b95538fe.html">C&#x2F;C++语言 实战案例_通讯录管理系统01：系统需求</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=72">06:44</a></td>
+</tr>
+<tr>
+<td align="center">057</td>
+<td align="left"><a href="https://notes.camcad.cn/post/320e246.html">C&#x2F;C++语言 实战案例_通讯录管理系统02：创建项目</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=73">02:49</a></td>
+</tr>
+<tr>
+<td align="center">058</td>
+<td align="left"><a href="https://notes.camcad.cn/post/cb24df7a.html">C&#x2F;C++语言 实战案例_通讯录管理系统03：菜单功能</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=74">06:03</a></td>
+</tr>
+<tr>
+<td align="center">059</td>
+<td align="left"><a href="https://notes.camcad.cn/post/ab27ab7d.html">C&#x2F;C++语言 实战案例_通讯录管理系统04：退出功能</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=75">08:15</a></td>
+</tr>
+<tr>
+<td align="center">060</td>
+<td align="left"><a href="https://notes.camcad.cn/post/5d03cf40.html">C&#x2F;C++语言 实战案例_通讯录管理系统05：添加联系人</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=76">08:47</a></td>
+</tr>
+<tr>
+<td align="center">061</td>
+<td align="left"><a href="https://notes.camcad.cn/post/70d71dbb.html">C&#x2F;C++语言 实战案例_通讯录管理系统06：显示联系人</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=78">10:26</a></td>
+</tr>
+<tr>
+<td align="center">062</td>
+<td align="left"><a href="https://notes.camcad.cn/post/adb305c2.html">C&#x2F;C++语言 实战案例_通讯录管理系统07：删除联系人</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=79">09:49</a></td>
+</tr>
+<tr>
+<td align="center">063</td>
+<td align="left"><a href="https://notes.camcad.cn/post/def9651.html">C&#x2F;C++语言 实战案例_通讯录管理系统08：查找联系人</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=81">08:36</a></td>
+</tr>
+<tr>
+<td align="center">064</td>
+<td align="left"><a href="https://notes.camcad.cn/post/df98f256.html">C&#x2F;C++语言 实战案例_通讯录管理系统09：修改联系人</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=82">12:26</a></td>
+</tr>
+<tr>
+<td align="center">065</td>
+<td align="left"><a href="https://notes.camcad.cn/post/6e2c4abd.html">C&#x2F;C++语言 实战案例_通讯录管理系统10：清空联系人</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1et411b73Z?p=83">06:14</a></td>
+</tr>
+<tr>
+<td align="center">066</td>
+<td align="left"><a href="https://notes.camcad.cn/post/775fada.html">C&#x2F;C++语言 实战案例_通讯录管理系统11：头文件&#x2F;源文件</a></td>
+<td align="center">00:00</td>
+</tr>
+</tbody></table>
+<h2 id="视频转载-bilibili博主《黑马程序员》"><a href="#视频转载-bilibili博主《黑马程序员》" class="headerlink" title="视频转载 bilibili博主《黑马程序员》"></a>视频转载 bilibili博主《<a target="_blank" rel="noopener" href="https://space.bilibili.com/37974444?spm_id_from=333.788.b_765f7570696e666f.2">黑马程序员</a>》</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/%E8%9A%82%E8%9A%81Emmet/" rel="tag"># 蚂蚁Emmet</a>
+              <a href="/tags/C-%E6%95%99%E7%A8%8B/" rel="tag"># C++教程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/775fada.html" rel="prev" title="C/C++语言 实战案例_通讯录管理系统11：头文件/源文件">
+                  <i class="fa fa-chevron-left"></i> C/C++语言 实战案例_通讯录管理系统11：头文件/源文件
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/b2d53884.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
