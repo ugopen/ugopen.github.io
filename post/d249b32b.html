@@ -19,14 +19,14 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="数据类型-字符串型（char、string）">
+    <meta name="description" content="函数（函数的声明）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C&#x2F;C++语言 零基础入门教程12：数据类型-字符串型（char、string）">
-<meta property="og:url" content="https://notes.camcad.cn/post/b12d45c4.html">
+<meta property="og:title" content="C&#x2F;C++语言 零基础入门教程39：函数（函数的声明）">
+<meta property="og:url" content="https://notes.camcad.cn/post/d249b32b.html">
 <meta property="og:site_name" content="蚂蚁Emmet">
-<meta property="og:description" content="数据类型-字符串型（char、string）">
+<meta property="og:description" content="函数（函数的声明）">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-25T20:16:53.000Z">
+<meta property="article:published_time" content="2020-06-10T09:17:03.000Z">
 <meta property="article:modified_time" content="2023-03-31T06:29:15.741Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C&#x2F;C++">
@@ -34,14 +34,14 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://notes.camcad.cn/post/b12d45c4.html">
+<link rel="canonical" href="https://notes.camcad.cn/post/d249b32b.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/b12d45c4.html","path":"post/b12d45c4.html","title":"C/C++语言 零基础入门教程12：数据类型-字符串型（char、string）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/d249b32b.html","path":"post/d249b32b.html","title":"C/C++语言 零基础入门教程39：函数（函数的声明）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>C/C++语言 零基础入门教程12：数据类型-字符串型（char、string） | 蚂蚁Emmet</title>
+<title>C/C++语言 零基础入门教程39：函数（函数的声明） | 蚂蚁Emmet</title>
   
 
 
@@ -141,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">第二章：数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">2.6 字符串型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81C%E8%AF%AD%E8%A8%80%E9%A3%8E%E6%A0%BC%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9Achar-%E5%8F%98%E9%87%8F%E5%90%8D-x3D-%E2%80%9C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%80%BC%E2%80%9D"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、C语言风格字符串：char 变量名[ ] &#x3D; “字符串值”;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81C-%E9%A3%8E%E6%A0%BC%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9Astring-%E5%8F%98%E9%87%8F%E5%90%8D-x3D-%E2%80%9C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%80%BC%E2%80%9D"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、C++风格字符串：string 变量名 &#x3D; “字符串值”;</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">第六章：函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6-%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">6.6 函数的声明</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,7 +190,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b12d45c4.html">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/d249b32b.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,12 +203,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="C/C++语言 零基础入门教程12：数据类型-字符串型（char、string） | 蚂蚁Emmet">
-      <meta itemprop="description" content="数据类型-字符串型（char、string）">
+      <meta itemprop="name" content="C/C++语言 零基础入门教程39：函数（函数的声明） | 蚂蚁Emmet">
+      <meta itemprop="description" content="函数（函数的声明）">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          C/C++语言 零基础入门教程12：数据类型-字符串型（char、string）
+          C/C++语言 零基础入门教程39：函数（函数的声明）
         </h1>
 
         <div class="post-meta-container">
@@ -219,7 +219,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-05-25 20:16:53" itemprop="dateCreated datePublished" datetime="2020-05-25T20:16:53+00:00">2020-05-25</time>
+      <time title="创建时间：2020-06-10 09:17:03" itemprop="dateCreated datePublished" datetime="2020-06-10T09:17:03+00:00">2020-06-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -247,15 +247,15 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/post/b12d45c4.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/b12d45c4.html" itemprop="commentCount"></span>
+    <a title="waline" href="/post/d249b32b.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/d249b32b.html" itemprop="commentCount"></span>
     </a>
   </span>
   
   
 </div>
 
-            <div class="post-description">数据类型-字符串型（char、string）</div>
+            <div class="post-description">函数（函数的声明）</div>
         </div>
       </header>
 
@@ -263,17 +263,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="第二章：数据类型"><a href="#第二章：数据类型" class="headerlink" title="第二章：数据类型"></a>第二章：数据类型</h1><h2 id="2-6-字符串型"><a href="#2-6-字符串型" class="headerlink" title="2.6 字符串型"></a>2.6 字符串型</h2><p><strong>作用：</strong>用于表示 一串字符</p>
-<p><strong>两种风格:</strong></p>
-<h3 id="1、C语言风格字符串：char-变量名-x3D-“字符串值”"><a href="#1、C语言风格字符串：char-变量名-x3D-“字符串值”" class="headerlink" title="1、C语言风格字符串：char 变量名[ ] &#x3D; “字符串值”;"></a>1、C语言风格字符串：char 变量名[ ] &#x3D; “字符串值”;</h3><p><strong>示例：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//1、C语言风格字符串：char 变量名\[ \] = &quot;字符串值&quot;;</span></span><br><span class="line"><span class="type">char</span> cChar01\[ \] = <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line">cout &lt;&lt; cChar01 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：C风格的字符串需要用双引号括起来。</strong></p>
-<h3 id="2、C-风格字符串：string-变量名-x3D-“字符串值”"><a href="#2、C-风格字符串：string-变量名-x3D-“字符串值”" class="headerlink" title="2、C++风格字符串：string 变量名 &#x3D; “字符串值”;"></a>2、C++风格字符串：string 变量名 &#x3D; “字符串值”;</h3><p><strong>示例：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span><span class="comment">//string字符串使用时，需加头文件</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//2、C++风格字符串：string 变量名 = &quot;字符串值&quot;;</span></span><br><span class="line">string sString01 = <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line"></span><br><span class="line">cout &lt;&lt; sString01 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：C++风格字符串，需要加入头文件 #include <string></strong></p>
-
+        <h1 id="第六章：函数"><a href="#第六章：函数" class="headerlink" title="第六章：函数"></a>第六章：函数</h1><h2 id="6-6-函数的声明"><a href="#6-6-函数的声明" class="headerlink" title="6.6 函数的声明"></a>6.6 函数的声明</h2><p><strong>作用：</strong>告诉编译器函数名称及如何调用函数，函数的实际主体可以单独定义。</p>
+<ul>
+<li>函数的声明可以多次，但是函数的定义只能有一次。 <strong>示例：</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明函数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">test04</span><span class="params">(<span class="type">int</span> iNum01, <span class="type">int</span> iNum02)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">test04</span><span class="params">(<span class="type">int</span> iNum01, <span class="type">int</span> iNum02)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数定义</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">test04</span><span class="params">(<span class="type">int</span> iNum01,<span class="type">int</span> iNum02)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> iNum01 &gt; iNum02 ? iNum01 + iNum02 : iNum01 \* iNum02;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="type">int</span> a = <span class="number">40</span>, b = <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; test04(a, b) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -290,13 +284,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/d374177.html" rel="prev" title="C/C++语言 零基础入门教程11：数据类型-转义字符">
-                  <i class="fa fa-chevron-left"></i> C/C++语言 零基础入门教程11：数据类型-转义字符
+                <a href="/post/94cbec15.html" rel="prev" title="C/C++语言 零基础入门教程38：函数（函数的常见样式）">
+                  <i class="fa fa-chevron-left"></i> C/C++语言 零基础入门教程38：函数（函数的常见样式）
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/d38bc2de.html" rel="next" title="C/C++语言 零基础入门教程13：数据类型-布尔类型（bool）">
-                  C/C++语言 零基础入门教程13：数据类型-布尔类型（bool） <i class="fa fa-chevron-right"></i>
+                <a href="/post/3157c3fd.html" rel="next" title="C/C++语言 零基础入门教程40：函数（函数的分文件编写）">
+                  C/C++语言 零基础入门教程40：函数（函数的分文件编写） <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -358,7 +352,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/b12d45c4.html"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/d249b32b.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
