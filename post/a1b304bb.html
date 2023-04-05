@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="模板（类模板-类模板案例）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++提高编程16：模板（类模板-类模板案例）">
+<meta property="og:url" content="https://notes.camcad.cn/post/a1b304bb.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="模板（类模板-类模板案例）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2020/06/2020062001520059-1024x383.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2020/06/2020062015484681-1024x679.jpg">
+<meta property="article:published_time" content="2020-07-20T11:13:29.000Z">
+<meta property="article:modified_time" content="2023-04-05T05:49:30.801Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="蚂蚁Emmet">
+<meta property="article:tag" content="C++提高编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2020/06/2020062001520059-1024x383.jpg">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/a1b304bb.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/a1b304bb.html","path":"post/a1b304bb.html","title":"C++提高编程16：模板（类模板-类模板案例）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C++提高编程16：模板（类模板-类模板案例） | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-3-9-%E7%B1%BB%E6%A8%A1%E6%9D%BF%E6%A1%88%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">1.3.9 类模板案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">原理分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">示例代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%EF%BC%88myArray-hpp%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">头文件（myArray.hpp）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E6%96%87%E4%BB%B6%EF%BC%88main-cpp%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">主文件（main.cpp）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8A%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.2.3.</span> <span class="nav-text">以上代码编译执行结果如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E8%83%BD%E5%A4%9F%E5%88%A9%E7%94%A8%E6%89%80%E5%AD%A6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AE%9E%E7%8E%B0%E9%80%9A%E7%94%A8%E7%9A%84%E6%95%B0%E7%BB%84%E3%80%82"><span class="nav-number">1.3.</span> <span class="nav-text">总结：能够利用所学知识点实现通用的数组。</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">171</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/a1b304bb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C++提高编程16：模板（类模板-类模板案例） | 蚂蚁Emmet">
+      <meta itemprop="description" content="模板（类模板-类模板案例）">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++提高编程16：模板（类模板-类模板案例）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-20 11:13:29" itemprop="dateCreated datePublished" datetime="2020-07-20T11:13:29+00:00">2020-07-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-05 05:49:30" itemprop="dateModified" datetime="2023-04-05T05:49:30+00:00">2023-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/a1b304bb.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/a1b304bb.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+            <div class="post-description">模板（类模板-类模板案例）</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="1-3-9-类模板案例"><a href="#1-3-9-类模板案例" class="headerlink" title="1.3.9 类模板案例"></a>1.3.9 类模板案例</h1><p><strong>案例描述：</strong>实现一个通用的数组类，要求如下：</p>
+<ul>
+<li>可以对内置数据类型以及自定义数据类型的数据进行存储</li>
+<li>将数组中的数据存储到堆区</li>
+<li>构造函数中可以传入数组的容量</li>
+<li>提供对应的拷贝构造函数以及operator&#x3D;防止浅拷贝问题</li>
+<li>提供尾插和尾删法对数组中的数据进行增加和删除</li>
+<li>可以通过下标的方式访问数组中的元素</li>
+<li>可以获取数组中当前元素个数和数组容量</li>
+</ul>
+<h2 id="原理分析："><a href="#原理分析：" class="headerlink" title="原理分析："></a>原理分析：</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/06/2020062001520059.jpg"><img src="http://image.camcad.cn/2020/06/2020062001520059-1024x383.jpg"></a></p>
+<h2 id="示例代码："><a href="#示例代码：" class="headerlink" title="示例代码："></a>示例代码：</h2><h3 id="头文件（myArray-hpp）"><a href="#头文件（myArray-hpp）" class="headerlink" title="头文件（myArray.hpp）"></a>头文件（myArray.hpp）</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="title">std</span>;</span><br><span class="line"></span><br><span class="line">template &lt;<span class="keyword">class</span> <span class="title">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title">MyArray</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment">//有参构造函数（参数 容量）</span></span><br><span class="line">    MyArray(<span class="built_in">int</span> capacity)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//cout &lt;&lt; &quot;有参构造函数&quot; &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Capacity = capacity;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Size = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;pAddress = <span class="keyword">new</span> T[<span class="keyword">this</span>-&gt;m_Capacity];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//拷贝构造函数</span></span><br><span class="line">    MyArray(<span class="keyword">const</span> MyArray &amp;array)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//cout &lt;&lt; &quot;拷贝构造&quot; &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Capacity = array.m_Capacity;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Size = array.m_Size;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//深拷贝</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;pAddress = <span class="keyword">new</span> T[array.m_Capacity];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将数组array中的数据都拷贝过来</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>-&gt;m_Size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;pAddress[i] = array.pAddress[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//重载= 操作符operator= 防止浅拷贝问题</span></span><br><span class="line">    MyArray&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> MyArray &amp;array)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//先判断原来堆区是否有数据，如果有先释放</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;pAddress != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//cout &lt;&lt; &quot;operator=函数&quot; &lt;&lt; endl;</span></span><br><span class="line">            delete[] <span class="keyword">this</span>-&gt;pAddress;</span><br><span class="line">            <span class="keyword">this</span>-&gt;pAddress = NULL;</span><br><span class="line">            <span class="keyword">this</span>-&gt;m_Capacity = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;m_Size = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Capacity = array.m_Capacity;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Size = array.m_Size;</span><br><span class="line">        <span class="keyword">this</span>-&gt;pAddress = <span class="keyword">new</span> T[<span class="keyword">this</span>-&gt;m_Capacity];</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>-&gt;m_Size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;pAddress[i] = array.pAddress[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//尾插法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Push_Back</span>(<span class="params"><span class="keyword">const</span> T &amp;<span class="keyword">value</span></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//判断容量是否等于大小</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;m_Capacity==<span class="keyword">this</span>-&gt;m_Size)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;容量已满！&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>-&gt;pAddress[<span class="keyword">this</span>-&gt;m_Size] = <span class="keyword">value</span>;     <span class="comment">//在数组未尾插入数组</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Size++;      <span class="comment">//更新数组大小</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//尾删法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Pop_Back</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//让用户访问不到最后一个元素，即为尾删，逻辑删除</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;m_Size==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Size--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//重载[] 操作符 arr[0]</span></span><br><span class="line">    <span class="comment">//通过下标访问数组中的元素</span></span><br><span class="line">    T&amp; <span class="keyword">operator</span>[](<span class="built_in">int</span> index)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;pAddress[index];    <span class="comment">//不考虑越界，用户自己处理</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取数组中的容量</span></span><br><span class="line">    <span class="function"><span class="built_in">int</span> <span class="title">getCapacity</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;m_Capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取数组的大小</span></span><br><span class="line">    <span class="function"><span class="built_in">int</span> <span class="title">getSize</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;m_Size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//析构函数</span></span><br><span class="line">    ~MyArray()</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;pAddress != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//cout &lt;&lt; &quot;析构函数&quot; &lt;&lt; endl;</span></span><br><span class="line">            delete[] <span class="keyword">this</span>-&gt;pAddress;</span><br><span class="line">            <span class="keyword">this</span>-&gt;pAddress = NULL;</span><br><span class="line">            <span class="keyword">this</span>-&gt;m_Capacity = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;m_Size = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment">//数组</span></span><br><span class="line">    T* pAddress;;   <span class="comment">//指定一个堆空间，这个空间存储真正的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//容量</span></span><br><span class="line">    <span class="built_in">int</span> m_Capacity;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//大小</span></span><br><span class="line">    <span class="built_in">int</span> m_Size;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主文件（main-cpp）"><a href="#主文件（main-cpp）" class="headerlink" title="主文件（main.cpp）"></a>主文件（main.cpp）</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="title">std</span>;</span><br><span class="line"><span class="meta">#include &lt;string&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#include &quot;myArray.hpp&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printIntAttay</span>(<span class="params">MyArray&lt;<span class="built_in">int</span>&gt; p</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; p.getSize(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; p[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test01</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    MyArray&lt;<span class="built_in">int</span>&gt;p1(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        p1.Push_Back(i);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p1的打印输出为：&quot;</span> &lt;&lt; endl;</span><br><span class="line">    printIntAttay(p1);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p1的容量为：&quot;</span> &lt;&lt; p1.getCapacity() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p1的大小为：&quot;</span> &lt;&lt; p1.getSize() &lt;&lt; endl &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p2的打印输出为：&quot;</span> &lt;&lt; endl;</span><br><span class="line">    MyArray&lt;<span class="built_in">int</span>&gt;p2(p1);</span><br><span class="line">    printIntAttay(p2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//尾删</span></span><br><span class="line">    p2.Pop_Back();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p2尾删后：&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p2的容量为：&quot;</span> &lt;&lt; p2.getCapacity() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p2的大小为：&quot;</span> &lt;&lt; p2.getSize() &lt;&lt; endl;</span><br><span class="line">    printIntAttay(p2);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义数据类型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    Person() &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    Person(<span class="built_in">string</span> name, <span class="built_in">int</span> age)</span><br><span class="line">    &#123;</span><br><span class="line">        m_Name = name;</span><br><span class="line">        m_Age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">string</span> m_Name;</span><br><span class="line">    <span class="built_in">int</span> m_Age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printPersonArray</span>(<span class="params">MyArray&lt;Person&gt; &amp;arr</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; arr.getSize(); i++)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;姓名：&quot;</span> &lt;&lt; arr[i].m_Name &lt;&lt; <span class="string">&quot; 年龄：&quot;</span> &lt;&lt; arr[i].m_Age &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test02</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    MyArray &lt;Person&gt;arr(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function">Person <span class="title">p1</span>(<span class="params"><span class="string">&quot;小二&quot;</span>, <span class="number">18</span></span>)</span>;</span><br><span class="line">    <span class="function">Person <span class="title">p2</span>(<span class="params"><span class="string">&quot;张二&quot;</span>, <span class="number">20</span></span>)</span>;</span><br><span class="line">    <span class="function">Person <span class="title">p3</span>(<span class="params"><span class="string">&quot;李四&quot;</span>, <span class="number">23</span></span>)</span>;</span><br><span class="line">    <span class="function">Person <span class="title">p4</span>(<span class="params"><span class="string">&quot;王五&quot;</span>, <span class="number">19</span></span>)</span>;</span><br><span class="line">    <span class="function">Person <span class="title">p5</span>(<span class="params"><span class="string">&quot;赵六&quot;</span>, <span class="number">25</span></span>)</span>;</span><br><span class="line"></span><br><span class="line">    arr.Push_Back(p1);</span><br><span class="line">    arr.Push_Back(p2);</span><br><span class="line">    arr.Push_Back(p3);</span><br><span class="line">    arr.Push_Back(p4);</span><br><span class="line">    arr.Push_Back(p5);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将数据插入数组中</span></span><br><span class="line">    printPersonArray(arr);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;arr的容量为：&quot;</span> &lt;&lt; arr.getCapacity() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;arr的大小为：&quot;</span> &lt;&lt; arr.getSize() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">main</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;一、内置数据类型测试&quot;</span> &lt;&lt; endl;</span><br><span class="line">    test01();</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;二、自定义数据类型测试&quot;</span> &lt;&lt; endl;</span><br><span class="line">    test02();</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="以上代码编译执行结果如下："><a href="#以上代码编译执行结果如下：" class="headerlink" title="以上代码编译执行结果如下："></a>以上代码编译执行结果如下：</h3><p><img src="http://image.camcad.cn/2020/06/2020062015484681-1024x679.jpg"></p>
+<h2 id="总结：能够利用所学知识点实现通用的数组。"><a href="#总结：能够利用所学知识点实现通用的数组。" class="headerlink" title="总结：能够利用所学知识点实现通用的数组。"></a>总结：能够利用所学知识点实现通用的数组。</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/%E8%9A%82%E8%9A%81Emmet/" rel="tag"># 蚂蚁Emmet</a>
+              <a href="/tags/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" rel="tag"># C++提高编程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/809a0b8.html" rel="prev" title="C++提高编程15：模板（类模板-类模板与友元）">
+                  <i class="fa fa-chevron-left"></i> C++提高编程15：模板（类模板-类模板与友元）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/51a145f9.html" rel="next" title="C++提高编程17：STL初识（STL的诞生，STL基本概念，STL六大组件，STL中容器、算法、迭代器）">
+                  C++提高编程17：STL初识（STL的诞生，STL基本概念，STL六大组件，STL中容器、算法、迭代器） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/a1b304bb.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
