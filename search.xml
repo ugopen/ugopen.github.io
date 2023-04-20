@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>第一个C#程序</title>
+      <link href="/post/5bdc59ff.html"/>
+      <url>/post/5bdc59ff.html</url>
+      
+        <content type="html"><![CDATA[<p>创建第一个NX二次开发C#程序，然后<code>Ctrl + u</code>的方式调用C#通过编译生成的<code>.dll</code>动态链接文件。</p><span id="more"></span><h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> NXOpen;</span><br><span class="line"><span class="keyword">using</span> NXOpen.UF;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Emmet</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Session theSession;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Emmet theEmmet;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Emmet</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            theSession = Session.GetSession();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (NXOpen.NXException ex)</span><br><span class="line">        &#123;</span><br><span class="line">             UI.GetUI().NXMessageBox.Show(<span class="string">&quot;Message&quot;</span>, NXMessageBox.DialogType.Error, ex.Message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> retValue = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// TO-DO</span></span><br><span class="line">            UFSession theUFSession = UFSession.GetUFSession();</span><br><span class="line">            theUFSession.Ui.DisplayMessage(<span class="string">&quot;Hello World!&quot;</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (NXOpen.NXException ex)</span><br><span class="line">        &#123;</span><br><span class="line">             UI.GetUI().NXMessageBox.Show(<span class="string">&quot;Message&quot;</span>, NXMessageBox.DialogType.Error, ex.Message);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> retValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">GetUnloadOption</span>(<span class="params"><span class="built_in">string</span> arg</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> System.Convert.ToInt32(Session.LibraryUnloadOption.Immediately);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> NX二次开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> NX二次开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++提高编程</title>
       <link href="/post/13756432.html"/>
       <url>/post/13756432.html</url>
