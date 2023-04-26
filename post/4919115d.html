@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Observer 观察者模式“组件协作”模式 1）现代软件专业分工之后的第一个结果是“框架与应用程序的划分”，“组件协作”模式通过晚期绑定，来实现框架与应用程序之间的松耦合，是二者之间协作时常用的模式。  2）典型模式 123Template MethodStrategyObserver &#x2F; Event">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++设计模式05：观察者模式（Observer &#x2F; Event）">
+<meta property="og:url" content="https://notes.camcad.cn/post/4919115d.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="Observer 观察者模式“组件协作”模式 1）现代软件专业分工之后的第一个结果是“框架与应用程序的划分”，“组件协作”模式通过晚期绑定，来实现框架与应用程序之间的松耦合，是二者之间协作时常用的模式。  2）典型模式 123Template MethodStrategyObserver &#x2F; Event">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072207573188-1024x696.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/06/2021062915011927-1024x383.jpg">
+<meta property="article:published_time" content="2021-07-23T08:08:02.000Z">
+<meta property="article:modified_time" content="2023-04-26T14:49:04.760Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C++设计模式">
+<meta property="article:tag" content="蚂蚁Emmet">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2021/07/2021072207573188-1024x696.png">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/4919115d.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/4919115d.html","path":"post/4919115d.html","title":"C++设计模式05：观察者模式（Observer / Event）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C++设计模式05：观察者模式（Observer / Event） | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Observer-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Observer 观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C%E7%BB%84%E4%BB%B6%E5%8D%8F%E4%BD%9C%E2%80%9D%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">“组件协作”模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA%EF%BC%88Motivation%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">动机（Motivation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.</span> <span class="nav-text">模式定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%EF%BC%88Structure%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">结构（Structure）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">要点总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">示例代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main-observer-cpp"><span class="nav-number">1.6.1.</span> <span class="nav-text">main_observer.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#observer-cpp"><span class="nav-number">1.6.2.</span> <span class="nav-text">observer.cpp</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%80"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">文件一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BA%8C"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">文件二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%80"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">文件一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BA%8C"><span class="nav-number">1.6.2.4.</span> <span class="nav-text">文件二</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/4919115d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C++设计模式05：观察者模式（Observer / Event） | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++设计模式05：观察者模式（Observer / Event）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-23 08:08:02" itemprop="dateCreated datePublished" datetime="2021-07-23T08:08:02+00:00">2021-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">C++设计模式</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/4919115d.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/4919115d.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072207573188.png"><img src="http://image.camcad.cn/2021/07/2021072207573188-1024x696.png"></a></p>
+<h1 id="Observer-观察者模式"><a href="#Observer-观察者模式" class="headerlink" title="Observer 观察者模式"></a>Observer 观察者模式</h1><h2 id="“组件协作”模式"><a href="#“组件协作”模式" class="headerlink" title="“组件协作”模式"></a>“组件协作”模式</h2><ul>
+<li><p>1）现代软件专业分工之后的第一个结果是“框架与应用程序的划分”，“组件协作”模式通过晚期绑定，来实现框架与应用程序之间的松耦合，是二者之间协作时常用的模式。</p>
+</li>
+<li><p>2）典型模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Template Method</span><br><span class="line">Strategy</span><br><span class="line">Observer / Event</span><br></pre></td></tr></table></figure></li>
+</ul>
+<span id="more"></span>
+<h2 id="动机（Motivation）"><a href="#动机（Motivation）" class="headerlink" title="动机（Motivation）"></a>动机（Motivation）</h2><ul>
+<li>1）在软件构建过程中，我们需要为某些对象建立一种“通知依赖关系” ——一个对象（目标对象）的状态发生改变，所有的依赖对象（观察者对象）都将得到通知。如果这样的依赖关系过于紧密，将使软件不能很好地抵御变化。</li>
+<li>2）使用面向对象技术，可以将这种依赖关系弱化，并形成一种稳定的依赖关系。从而实现软件体系结构的松耦合。</li>
+</ul>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>定义对象间的一种一对多（变化）的依赖关系，以便当一个对象(Subject)的状态发生改变时，所有依赖于它的对象都得到通知并自动更新。——《设计模式》GoF</p>
+<h2 id="结构（Structure）"><a href="#结构（Structure）" class="headerlink" title="结构（Structure）"></a>结构（Structure）</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/06/2021062915011927.jpg"><img src="http://image.camcad.cn/2021/06/2021062915011927-1024x383.jpg"></a></p>
+<h2 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h2><ul>
+<li>1）使用面向对象的抽象，Observer模式使得我们可以独立地改变目标与观察者，从而使二者之间的依赖关系达致松耦合。</li>
+<li>2）目标发送通知时，无需指定观察者，通知（可以携带通知信息作为参数）会自动传播。</li>
+<li>3）观察者自己决定是否需要订阅通知，目标对象对此一无所知。</li>
+<li>4）Observer模式是基于事件的UI框架中非常常用的设计模式，也是MVC模式的一个重要组成部分。</li>
+</ul>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">观察者模式</a></li><li class="tab"><a href="#tab-2">进阶模式</a></li><li class="tab"><a href="#tab-3">普通模式</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><h3 id="main-observer-cpp"><a href="#main-observer-cpp" class="headerlink" title="main_observer.cpp"></a><code>main_observer.cpp</code></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;src/observer.cpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;\n--------boss separator----------&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 胡汉</span></span><br><span class="line">  <span class="function">std::shared_ptr&lt;Boss&gt; <span class="title">boss</span><span class="params">(<span class="keyword">new</span> Boss())</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 看投票的同事</span></span><br><span class="line">  <span class="function">std::shared_ptr&lt;TVObserver&gt; <span class="title">colleague1</span><span class="params">(<span class="keyword">new</span> TVObserver(<span class="string">&quot;li li&quot;</span>, boss))</span></span>;</span><br><span class="line">  <span class="function">std::shared_ptr&lt;StockObserver&gt; <span class="title">colleague2</span><span class="params">(<span class="keyword">new</span> StockObserver(<span class="string">&quot;hu hu&quot;</span>, boss))</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 增加同事</span></span><br><span class="line">  boss-&gt;<span class="built_in">attach</span>(colleague1);</span><br><span class="line">  boss-&gt;<span class="built_in">attach</span>(colleague2);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 老板回来</span></span><br><span class="line">  boss-&gt;<span class="built_in">setState</span>(<span class="string">&quot;I Hu Han is back again.&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发出通知</span></span><br><span class="line">  boss-&gt;<span class="built_in">notify</span>();</span><br><span class="line"></span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;\n--------detach separator----------&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 移除同事</span></span><br><span class="line">  boss-&gt;<span class="built_in">detach</span>(colleague1);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发出通知</span></span><br><span class="line">  boss-&gt;<span class="built_in">notify</span>();</span><br><span class="line"></span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;\n\n--------secretary separator----------&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 前台秘书</span></span><br><span class="line">  <span class="function">std::shared_ptr&lt;Secretary&gt; <span class="title">secretary</span><span class="params">(<span class="keyword">new</span> Secretary())</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">std::shared_ptr&lt;StockObserver&gt; <span class="title">colleague3</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">      <span class="keyword">new</span> StockObserver(<span class="string">&quot;huang min&quot;</span>, secretary))</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">std::shared_ptr&lt;TVObserver&gt; <span class="title">colleague4</span><span class="params">(<span class="keyword">new</span> TVObserver(<span class="string">&quot;emmet&quot;</span>, secretary))</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 增加同事</span></span><br><span class="line">  secretary-&gt;<span class="built_in">attach</span>(colleague3);</span><br><span class="line">  secretary-&gt;<span class="built_in">attach</span>(colleague4);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 领导回来了</span></span><br><span class="line">  secretary-&gt;<span class="built_in">setState</span>(<span class="string">&quot;The leader is back.&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发出通知</span></span><br><span class="line">  secretary-&gt;<span class="built_in">notify</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="observer-cpp"><a href="#observer-cpp" class="headerlink" title="observer.cpp"></a><code>observer.cpp</code></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _OBSERVER_A_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _OBSERVER_A_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(_MSC_VER) <span class="comment">// windows</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __EMMETFILE__                                                          \</span></span><br><span class="line"><span class="meta">  (strrchr(__FILE__, <span class="string">&#x27;\\&#x27;</span>) ? (strrchr(__FILE__, <span class="string">&#x27;\\&#x27;</span>) + 1) : __FILE__)</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span> <span class="comment">// linux</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __EMMETFILE__                                                          \</span></span><br><span class="line"><span class="meta">  (strrchr(__FILE__, <span class="string">&#x27;/&#x27;</span>) ? (strrchr(__FILE__, <span class="string">&#x27;/&#x27;</span>) + 1) : __FILE__)</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FILELINE                                                               \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;file: &quot;</span> &lt;&lt; __EMMETFILE__ &lt;&lt; <span class="string">&quot;, function: &quot;</span> &lt;&lt; __FUNCTION__                  \</span></span><br><span class="line"><span class="meta">           <span class="string">&lt;&lt; &quot;, line: &quot; &lt;&lt; __LINE__ &lt;&lt; &quot; --&gt;</span> <span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">// 通知者接口</span></span></span><br><span class="line"><span class="string"><span class="meta">class Subject;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">// 抽象观察者</span></span></span><br><span class="line"><span class="string"><span class="meta">class Observer &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">protected:</span></span></span><br><span class="line"><span class="string"><span class="meta">  std::string m_name;</span></span></span><br><span class="line"><span class="string"><span class="meta">  std::shared_ptr&lt;Subject&gt; m_subject;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">public:</span></span></span><br><span class="line"><span class="string"><span class="meta">  Observer() &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">    this-&gt;m_name = &quot;</span><span class="string">&quot;;</span></span></span><br><span class="line"><span class="string"><span class="meta">    this-&gt;m_subject = nullptr;</span></span></span><br><span class="line"><span class="string"><span class="meta">  &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">  virtual void update() = 0;</span></span></span><br><span class="line"><span class="string"><span class="meta">  virtual ~Observer() &#123;&#125;</span></span></span><br><span class="line"><span class="string"><span class="meta">&#125;;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">// 通知者接口</span></span></span><br><span class="line"><span class="string"><span class="meta">class Subject &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">  std::list&lt;std::shared_ptr&lt;Observer&gt;&gt; m_observers;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">protected:</span></span></span><br><span class="line"><span class="string"><span class="meta">  std::string m_state;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">public:</span></span></span><br><span class="line"><span class="string"><span class="meta">  Subject() &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">    this-&gt;m_state = &quot;</span><span class="string">&quot;;</span></span></span><br><span class="line"><span class="string"><span class="meta">    this-&gt;m_observers.clear();</span></span></span><br><span class="line"><span class="string"><span class="meta">  &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">  // 增加</span></span></span><br><span class="line"><span class="string"><span class="meta">  void attach(std::shared_ptr&lt;Observer&gt; observer) &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">    this-&gt;m_observers.push_back(std::move(observer));</span></span></span><br><span class="line"><span class="string"><span class="meta">  &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">  // 减少</span></span></span><br><span class="line"><span class="string"><span class="meta">  void detach(std::shared_ptr&lt;Observer&gt; observer) &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">    this-&gt;m_observers.remove(observer);</span></span></span><br><span class="line"><span class="string"><span class="meta">  &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">  // 通知</span></span></span><br><span class="line"><span class="string"><span class="meta">  void notify() &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">    for (const auto &amp;o : this-&gt;m_observers) &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">      if (o != nullptr) &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">        o-&gt;update();</span></span></span><br><span class="line"><span class="string"><span class="meta">      &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta">    &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta">  &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">  virtual void setState(std::string state) = 0;</span></span></span><br><span class="line"><span class="string"><span class="meta">  std::string getState() &#123; return this-&gt;m_state; &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">  virtual ~Subject() &#123;&#125;</span></span></span><br><span class="line"><span class="string"><span class="meta">&#125;;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">// 老板</span></span></span><br><span class="line"><span class="string"><span class="meta">class Boss : public Subject &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">public:</span></span></span><br><span class="line"><span class="string"><span class="meta">  // 状态</span></span></span><br><span class="line"><span class="string"><span class="meta">  void setState(std::string state) override &#123; this-&gt;m_state = state; &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta">&#125;;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">// 前台秘书</span></span></span><br><span class="line"><span class="string"><span class="meta">class Secretary : public Subject &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">public:</span></span></span><br><span class="line"><span class="string"><span class="meta">  // 状态</span></span></span><br><span class="line"><span class="string"><span class="meta">  void setState(std::string state) override &#123; this-&gt;m_state = state; &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta">&#125;;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">// 看股票的同事</span></span></span><br><span class="line"><span class="string"><span class="meta">class StockObserver : public Observer &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">public:</span></span></span><br><span class="line"><span class="string"><span class="meta">  StockObserver(std::string name, std::shared_ptr&lt;Subject&gt; sub) &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">    this-&gt;m_name = name;</span></span></span><br><span class="line"><span class="string"><span class="meta">    this-&gt;m_subject.swap(sub);</span></span></span><br><span class="line"><span class="string"><span class="meta">  &#125;</span></span></span><br><span class="line"><span class="string"><span class="meta"></span></span></span><br><span class="line"><span class="string"><span class="meta">  void update() override &#123;</span></span></span><br><span class="line"><span class="string"><span class="meta">    std::cout &lt;&lt; FILELINE &lt;&lt; this-&gt;m_subject-&gt;getState() &lt;&lt; &quot;</span>  \<span class="string">&quot;&quot;</span></span></span><br><span class="line">              &lt;&lt; <span class="keyword">this</span>-&gt;m_name &lt;&lt; <span class="string">&quot;\&quot;  &quot;</span></span><br><span class="line">              &lt;&lt; <span class="string">&quot;Close the stock market and keep working.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 看TV的同事</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TVObserver</span> : <span class="keyword">public</span> Observer &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">TVObserver</span>(std::string name, std::shared_ptr&lt;Subject&gt; sub) &#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;m_name = name;</span><br><span class="line">    <span class="keyword">this</span>-&gt;m_subject.<span class="built_in">swap</span>(sub);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; FILELINE &lt;&lt; <span class="keyword">this</span>-&gt;m_subject-&gt;<span class="built_in">getState</span>() &lt;&lt; <span class="string">&quot;  \&quot;&quot;</span></span><br><span class="line">              &lt;&lt; <span class="keyword">this</span>-&gt;m_name &lt;&lt; <span class="string">&quot;\&quot;  &quot;</span></span><br><span class="line">              &lt;&lt; <span class="string">&quot;Turn off the TV and continue working.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// _OBSERVER_A_H_</span></span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="tab-2"><h4 id="文件一"><a href="#文件一" class="headerlink" title="文件一"></a>文件一</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">class MainForm : public Form, public IProgress</span><br><span class="line">&#123;</span><br><span class="line">    TextBox* txtFilePath;</span><br><span class="line">    TextBox* txtFileNumber;</span><br><span class="line"></span><br><span class="line">    ProgressBar* progressBar;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    void Button1_Click()&#123;</span><br><span class="line"></span><br><span class="line">        string filePath = txtFilePath-&gt;getText();</span><br><span class="line">        int number = atoi(txtFileNumber-&gt;getText().c_str());</span><br><span class="line"></span><br><span class="line">        ConsoleNotifier cn;</span><br><span class="line"></span><br><span class="line">        FileSplitter splitter(filePath, number);</span><br><span class="line"></span><br><span class="line">        splitter.addIProgress(this); //订阅通知</span><br><span class="line">        splitter.addIProgress(&amp;cn)； //订阅通知</span><br><span class="line"></span><br><span class="line">        splitter.split();</span><br><span class="line"></span><br><span class="line">        splitter.removeIProgress(this);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    virtual void DoProgress(float value)&#123;</span><br><span class="line">        progressBar-&gt;setValue(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class ConsoleNotifier : public IProgress &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual void DoProgress(float value)&#123;</span><br><span class="line">        cout &lt;&lt; &quot;.&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件二"><a href="#文件二" class="headerlink" title="文件二"></a>文件二</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">class IProgress&#123;</span><br><span class="line">public:</span><br><span class="line">    virtual void DoProgress(float value)=0;</span><br><span class="line">    virtual ~IProgress()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class FileSplitter</span><br><span class="line">&#123;</span><br><span class="line">    string m_filePath;</span><br><span class="line">    int m_fileNumber;</span><br><span class="line"></span><br><span class="line">    List&lt;IProgress*&gt;  m_iprogressList; // 抽象通知机制，支持多个观察者</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    FileSplitter(const string&amp; filePath, int fileNumber) :</span><br><span class="line">        m_filePath(filePath), </span><br><span class="line">        m_fileNumber(fileNumber)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void split()&#123;</span><br><span class="line"></span><br><span class="line">        //1.读取大文件</span><br><span class="line"></span><br><span class="line">        //2.分批次向小文件中写入</span><br><span class="line">        for (int i = 0; i &lt; m_fileNumber; i++)&#123;</span><br><span class="line">            //...</span><br><span class="line"></span><br><span class="line">            float progressValue = m_fileNumber;</span><br><span class="line">            progressValue = (i + 1) / progressValue;</span><br><span class="line">            onProgress(progressValue);//发送通知</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void addIProgress(IProgress* iprogress)&#123;</span><br><span class="line">        m_iprogressList.push_back(iprogress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void removeIProgress(IProgress* iprogress)&#123;</span><br><span class="line">        m_iprogressList.remove(iprogress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">protected:</span><br><span class="line">    virtual void onProgress(float value)&#123;</span><br><span class="line"></span><br><span class="line">        List&lt;IProgress*&gt;::iterator itor=m_iprogressList.begin();</span><br><span class="line"></span><br><span class="line">        while (itor != m_iprogressList.end() )</span><br><span class="line">            (*itor)-&gt;DoProgress(value); //更新进度条</span><br><span class="line">            itor++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="tab-3"><h4 id="文件一"><a href="#文件一" class="headerlink" title="文件一"></a>文件一</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class MainForm : public Form</span><br><span class="line">&#123;</span><br><span class="line">    TextBox* txtFilePath;</span><br><span class="line">    TextBox* txtFileNumber;</span><br><span class="line">    ProgressBar* progressBar;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    void Button1_Click()&#123;</span><br><span class="line"></span><br><span class="line">        string filePath = txtFilePath-&gt;getText();</span><br><span class="line">        int number = atoi(txtFileNumber-&gt;getText().c_str());</span><br><span class="line"></span><br><span class="line">        FileSplitter splitter(filePath, number, progressBar);</span><br><span class="line"></span><br><span class="line">        splitter.split();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件二"><a href="#文件二" class="headerlink" title="文件二"></a>文件二</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class FileSplitter</span><br><span class="line">&#123;</span><br><span class="line">    string m_filePath;</span><br><span class="line">    int m_fileNumber;</span><br><span class="line">    ProgressBar* m_progressBar;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    FileSplitter(const string&amp; filePath, int fileNumber, ProgressBar* progressBar) :</span><br><span class="line">        m_filePath(filePath), </span><br><span class="line">        m_fileNumber(fileNumber),</span><br><span class="line">        m_progressBar(progressBar)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void split()&#123;</span><br><span class="line"></span><br><span class="line">        //1.读取大文件</span><br><span class="line"></span><br><span class="line">        //2.分批次向小文件中写入</span><br><span class="line">        for (int i = 0; i &lt; m_fileNumber; i++)&#123;</span><br><span class="line">            //...</span><br><span class="line">            float progressValue = m_fileNumber;</span><br><span class="line">            progressValue = (i + 1) / progressValue;</span><br><span class="line">            m_progressBar-&gt;setValue(progressValue);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/4919115d.html" title="C++设计模式05：观察者模式（Observer &#x2F; Event）">https://notes.camcad.cn/post/4919115d.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># C++设计模式</a>
+              <a href="/tags/%E8%9A%82%E8%9A%81Emmet/" rel="tag"># 蚂蚁Emmet</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/fecc2092.html" rel="prev" title="C++设计模式04：策略模式（Strategy）">
+                  <i class="fa fa-chevron-left"></i> C++设计模式04：策略模式（Strategy）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/1da0e9fd.html" rel="next" title="C++设计模式06：装饰模式（Decorator）">
+                  C++设计模式06：装饰模式（Decorator） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/4919115d.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
