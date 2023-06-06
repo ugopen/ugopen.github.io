@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>firefox剪切板无法粘贴设置</title>
+      <link href="/post/ce9787df.html"/>
+      <url>/post/ce9787df.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>无法从浏览器的剪贴板中读取，请确保你已授予此网站从剪贴板中读取的访问权限。</p><span id="more"></span><h3 id="firefox配置"><a href="#firefox配置" class="headerlink" title="firefox配置"></a>firefox配置</h3><p>在地址栏输入<code>about:config</code>回车，输入<code>clipboard</code>关键字搜索，再将<code>dom.events.asyncClipboard.readText</code>和<code>dom.events.testing.asyncClipboard</code>状态设置为<code>true</code>。</p><h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dom.events.asyncClipboard.readTexttrue</span><br><span class="line">dom.events.testing.asyncClipboardtrue</span><br></pre></td></tr></table></figure><p><img src="http://image.camcad.cn/2023/06/firefox%20clipboard.bmp" alt="firefox clipboard"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 疑难杂症 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> firefox </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>NX二次开发-Error detected during FMS operation</title>
+      <link href="/post/d9970f4.html"/>
+      <url>/post/d9970f4.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>C#开发的克隆应用，TC与NX集成环境下克隆，开启日志后，程序执行结束后弹出错误。<br><code>注：C++相同应用代码并没有此类问题出现。</code><br><img src="http://image.camcad.cn/2023/06/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91-Teamcenter%20Error.png" alt="NX二次开发-Teamcenter Error"><br><img src="http://image.camcad.cn/2023/06/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91-Error%20detected%20during%20FMS%20operation.png" alt="NX二次开发-Error detected during FMS operation"></p><span id="more"></span><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>由于指定的日志文件后缀不符合要求所致，将日志的后缀设置成<code>.clone</code>即可。<br><img src="http://image.camcad.cn/2023/06/nx_cloning_log_file.jpg" alt="nx_cloning_log_file"></p><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p><img src="http://image.camcad.cn/2023/06/uf_clone_set_logfile.jpg" alt="uf_clone_set_logfile"></p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">constants</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">const</span> <span class="built_in">string</span> CloneLogFilename = <span class="string">&quot;\\nxclone.clone&quot;</span>;       <span class="comment">// 克隆日志文件 </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 空运行</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.m_dryrun)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> getEnv = Environment.GetEnvironmentVariable(<span class="string">&quot;temp&quot;</span>);</span><br><span class="line">    <span class="built_in">string</span> filename = getEnv + constants.CloneLogFilename;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.m_clone.SetLogfile(filename);</span><br><span class="line">    <span class="keyword">this</span>.m_clone.SetDryrun(<span class="keyword">this</span>.m_dryrun);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 疑难杂症 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NX二次开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>NX外部模式-发布技术数据包/三维PDF</title>
       <link href="/post/771521dc.html"/>
       <url>/post/771521dc.html</url>
@@ -15,6 +65,35 @@
         <tags>
             
             <tag> NX </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>NX二次开发：C#调用C++界面获取值</title>
+      <link href="/post/6cvc59ff.html"/>
+      <url>/post/6cvc59ff.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="C-函数定义"><a href="#C-函数定义" class="headerlink" title="C++函数定义"></a>C++函数定义</h3><span id="more"></span><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> DllExport <span class="type">char</span>* g_value = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function">DllExport <span class="type">char</span>* <span class="title">returnCSharpValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">g_value = <span class="string">&quot;C++返回给C#的值&quot;</span>;</span><br><span class="line"><span class="keyword">return</span> g_value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入口</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function">DllExport <span class="type">void</span>  <span class="title">ufusr</span><span class="params">(<span class="type">char</span> *param, <span class="type">int</span> *retcod, <span class="type">int</span> param_len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    tc_select_action *thetc_select_action = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="built_in">UF_UGMGR_initialize</span>(<span class="number">0</span>, <span class="literal">nullptr</span>);</span><br><span class="line">        thetc_select_action = <span class="keyword">new</span> <span class="built_in">tc_select_action</span>();</span><br><span class="line">        <span class="comment">// The following method shows the dialog immediately</span></span><br><span class="line">        thetc_select_action-&gt;<span class="built_in">Show</span>();</span><br><span class="line"></span><br><span class="line">        <span class="built_in">UF_UGMGR_terminate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span>(exception&amp; ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//---- Enter your exception handling code here -----</span></span><br><span class="line">        tc_select_action::theUI-&gt;<span class="built_in">NXMessageBox</span>()-&gt;<span class="built_in">Show</span>(<span class="string">&quot;Block Styler&quot;</span>, NXOpen::NXMessageBox::DialogTypeError, ex.<span class="built_in">what</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(thetc_select_action != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">delete</span> thetc_select_action;</span><br><span class="line">        thetc_select_action = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="C-函数定义-1"><a href="#C-函数定义-1" class="headerlink" title="C#函数定义"></a>C#函数定义</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 入口定义</span></span><br><span class="line">[<span class="meta">DllImport(<span class="string">&quot;tc_select_action.dll&quot;</span>, EntryPoint = <span class="string">&quot;ufusr&quot;</span>, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">cplusplusUfusr</span>(<span class="params"><span class="built_in">string</span> param, <span class="built_in">int</span>[] retcod, <span class="built_in">int</span> param_len</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用函数定义</span></span><br><span class="line">[<span class="meta">DllImport(<span class="string">&quot;tc_select_action.dll&quot;</span>, EntryPoint = <span class="string">&quot;returnCSharpValue&quot;</span>, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">extern</span> IntPtr <span class="title">getCplusplusValue</span>()</span>;</span><br></pre></td></tr></table></figure><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 打开C++界面</span></span><br><span class="line">cplusplusUfusr(<span class="literal">null</span>, <span class="literal">null</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用C++内部函数</span></span><br><span class="line">IntPtr pCplusplusValue = getCplusplusValue();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 转成ANSI字符串</span></span><br><span class="line"><span class="built_in">string</span> cplusplusValue = Marshal.PtrToStringAnsi(pCplusplusValue);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印显示</span></span><br><span class="line">UFSession.GetUFSession().Ui.OpenListingWindow();</span><br><span class="line">UFSession.GetUFSession().Ui.WriteListingWindow(cplusplusValue);</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> NX二次开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> NX二次开发 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
       
@@ -39,9 +118,9 @@
       
         <tags>
             
-            <tag> C# </tag>
-            
             <tag> NX二次开发 </tag>
+            
+            <tag> C# </tag>
             
         </tags>
       
