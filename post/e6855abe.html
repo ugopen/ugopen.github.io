@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="课件转载《这个程猿有点呆_Linux基础教程》目录： 主机名称 DNS解析 网络相关命令 防火墙 加密算法 主机间的相互免秘钥 主机名与Host校验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 基础教程七：Linux 的网络信息">
+<meta property="og:url" content="https://notes.camcad.cn/post/e6855abe.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="课件转载《这个程猿有点呆_Linux基础教程》目录： 主机名称 DNS解析 网络相关命令 防火墙 加密算法 主机间的相互免秘钥 主机名与Host校验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032614204444.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032614360146.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/202203261446024.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032615074231.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/20220326151004100-1024x259.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/202203261511129-1024x542.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032615121564.jpg">
+<meta property="article:published_time" content="2022-03-31T19:35:12.000Z">
+<meta property="article:modified_time" content="2023-07-12T14:53:57.480Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2022/03/2022032614204444.jpg">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/e6855abe.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/e6855abe.html","path":"post/e6855abe.html","title":"Linux 基础教程七：Linux 的网络信息"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux 基础教程七：Linux 的网络信息 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E4%BB%B6%E8%BD%AC%E8%BD%BD%E3%80%8A%E8%BF%99%E4%B8%AA%E7%A8%8B%E7%8C%BF%E6%9C%89%E7%82%B9%E5%91%86-Linux%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%E3%80%8B"><span class="nav-number">1.</span> <span class="nav-text">课件转载《这个程猿有点呆_Linux基础教程》</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">目录：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%90%8D%E7%A7%B0"><span class="nav-number">1.</span> <span class="nav-text">主机名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">网络相关命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">4.</span> <span class="nav-text">防火墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%80%86%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">不可逆加密算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">5.2.</span> <span class="nav-text">对称加密算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">5.3.</span> <span class="nav-text">非对称加密算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BA%92%E5%85%8D%E7%A7%98%E9%92%A5"><span class="nav-number">6.</span> <span class="nav-text">主机间的相互免秘钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%90%8D%E4%B8%8EHost%E6%A0%A1%E9%AA%8C"><span class="nav-number">7.</span> <span class="nav-text">主机名与Host校验</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">271</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/e6855abe.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux 基础教程七：Linux 的网络信息 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux 基础教程七：Linux 的网络信息
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-31 19:35:12" itemprop="dateCreated datePublished" datetime="2022-03-31T19:35:12+00:00">2022-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E6%96%B0%E6%89%8B%E6%9D%91/" itemprop="url" rel="index"><span itemprop="name">Linux新手村</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/e6855abe.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/e6855abe.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="课件转载《这个程猿有点呆-Linux基础教程》"><a href="#课件转载《这个程猿有点呆-Linux基础教程》" class="headerlink" title="课件转载《这个程猿有点呆_Linux基础教程》"></a>课件转载《<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16Q4y1y7xS?p=1">这个程猿有点呆_Linux基础教程</a>》</h2><h1 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h1><ul>
+<li><a href="#l1.1">主机名称</a></li>
+<li><a href="#l1.2">DNS解析</a></li>
+<li><a href="#l1.3">网络相关命令</a></li>
+<li><a href="#l1.4">防火墙</a></li>
+<li><a href="#l1.5">加密算法</a></li>
+<li><a href="#l1.6">主机间的相互免秘钥</a></li>
+<li><a href="#l1.7">主机名与Host校验</a><span id="more"></span></li>
+</ul>
+<h2 id="主机名称"><a href="#主机名称" class="headerlink" title="主机名称"></a>主机名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">临时修改</span><br><span class="line">hostname school</span><br><span class="line"></span><br><span class="line">长久修改</span><br><span class="line">vi /etc/hostname</span><br></pre></td></tr></table></figure>
+<h2 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1、域名解析服务</span><br><span class="line"></span><br><span class="line">2、可以将域名转换为IP地址</span><br><span class="line"></span><br><span class="line">3、DNS域名劫持</span><br><span class="line">  window --&gt; C:\\Windows\\System32\\drivers\\etc\\hosts</span><br><span class="line">  123.56.138.186 www.baidu.com</span><br><span class="line">  123.56.138.186 www.taodao.com</span><br><span class="line"></span><br><span class="line">4、修改主机域名</span><br><span class="line">  vi /etc/hosts</span><br><span class="line">  将来我们需要把所有的虚拟机都配置hosts文件</span><br><span class="line">  192.168.31.101 bd1601</span><br><span class="line">  192.168.31.102 bd1602</span><br></pre></td></tr></table></figure>
+<h2 id="网络相关命令"><a href="#网络相关命令" class="headerlink" title="网络相关命令"></a>网络相关命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">一、ifconfig</span><br><span class="line">  1.查看当前网卡的配置信息</span><br><span class="line">  2.这个命令属于 net-tools中的一个命令，但是Centos7中minimal版并没有集成这个包</span><br><span class="line">  3.所以7的时候需要自己手动安装</span><br><span class="line">  4.如果没有ifconfig ，可以使用ip addr 临时代替</span><br><span class="line"></span><br><span class="line">二、netstat</span><br><span class="line">  1.查看当前网络的状态信息</span><br><span class="line">  2.一个机器默认有65536个端口号\[0,65535\]</span><br><span class="line">  3.这是一个逻辑的概念，将来我们需要使用程序监听指定的端口，等待别人的访问</span><br><span class="line">  4.一个端口只能被一个程序所监听, 端口已经被占用</span><br><span class="line">  5.netstat -anp</span><br><span class="line">  6.netstat -r 核心路由表 == route</span><br><span class="line"></span><br><span class="line">三、ping</span><br><span class="line">  1.查看与目标IP地址是否能够连通</span><br><span class="line"></span><br><span class="line">四、telnet</span><br><span class="line">  1.查看与目标IP的指定端口是否能够连通</span><br><span class="line">  2.yum install telnet -y</span><br><span class="line">  3.telnet 192.168.31.44 22</span><br><span class="line"></span><br><span class="line">五、curl</span><br><span class="line">  1.restful 我们所有的资源在网络上中都有唯一的定位</span><br><span class="line">  2.那么我们可以通过这个唯一定位标识指定的资源</span><br><span class="line">  3.http://localhost:8080/lucky/user.action/666</span><br><span class="line">  4.curl -X GET http://www.baidu.com</span><br></pre></td></tr></table></figure>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
+<li>防火墙技术是通过有机结合各类用于安全管理与筛选的软件和硬件设备，帮助计算机网络于其内、 外网之间构建一道相对隔绝的保护屏障，以保护用户资料与信息安全性的一种技术</li>
+<li>在centOS7+中 使用firewalld代替以前的 iptables ；<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#查看防火墙状态</span><br><span class="line">systemctl status firewalld.service</span><br><span class="line"></span><br><span class="line">#临时停止firewall</span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line"></span><br><span class="line">#禁止firewall开机启动</span><br><span class="line">systemctl disable firewalld.service</span><br><span class="line"></span><br><span class="line">firewall-cmd --state ##查看防火墙状态，是否是running</span><br><span class="line"></span><br><span class="line">firewall-cmd --reload ##重新载入配置，比如添加规则之后，需要执行此命令</span><br><span class="line"></span><br><span class="line">firewall-cmd --get-zones ##列出支持的zone</span><br><span class="line"></span><br><span class="line">firewall-cmd --get-services ##列出支持的服务，在列表中的服务是放行的</span><br><span class="line"></span><br><span class="line">firewall-cmd --query-service ftp ##查看ftp服务是否支持，返回yes或者no</span><br><span class="line"></span><br><span class="line">firewall-cmd --add-service=ftp ##临时开放ftp服务</span><br><span class="line"></span><br><span class="line">firewall-cmd --add-service=ftp --permanent ##永久开放ftp服务</span><br><span class="line"></span><br><span class="line">firewall-cmd --remove-service=ftp --permanent ##永久移除ftp服务</span><br><span class="line"></span><br><span class="line">firewall-cmd --add-port=80/tcp --permanent ##永久添加80端口</span><br></pre></td></tr></table></figure></li>
+<li>开启一个端口的正确操作<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">\# 添加</span><br><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line"></span><br><span class="line">#重新载入</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line">#查看</span><br><span class="line">firewall-cmd --zone=public --query-port=80/tcp</span><br><span class="line"></span><br><span class="line">#删除</span><br><span class="line">firewall-cmd --zone=public --remove-port=80/tcp --permanent</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h2><h3 id="不可逆加密算法"><a href="#不可逆加密算法" class="headerlink" title="不可逆加密算法"></a>不可逆加密算法</h3><p> </p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032614204444.jpg"><img src="http://image.camcad.cn/2022/03/2022032614204444.jpg"></a></p>
+<ul>
+<li><strong>可以通过数据计算加密后的结果，但是通过结果无法计算出加密数据</strong></li>
+<li><strong>应用场景</strong></li>
+</ul>
+<ol>
+<li>Hash算法常用在不可还原的密码存储、信息完整性校验。</li>
+<li>文档、音视频文件、软件安装包等用新老摘要对比是否一样(接收到的文件是否被修改)</li>
+<li>用户名或者密码加密后数据库存储(数据库大多数不会存储关键信息的明文，就像很多登录功能的忘记密码不能找回，只能重置)</li>
+</ol>
+<ul>
+<li><strong>常见加密算法</strong></li>
+</ul>
+<ol>
+<li>MD5（<a target="_blank" rel="noopener" href="http://www.jsons.cn/md5/">http://www.jsons.cn/md5/</a>）</li>
+<li>hash（<a target="_blank" rel="noopener" href="https://tool.oschina.net/encrypt?type=2">https://tool.oschina.net/encrypt?type=2</a>）</li>
+</ol>
+<ul>
+<li><strong>案例</strong></li>
+</ul>
+<ol>
+<li>蚂蚁emmet —&gt; MD5 —&gt; 1ce737794994523d1cb1603d404b18bf</li>
+<li>蚂蚁emmet —&gt; SHA1—&gt; eef246d5ba2da59177042e5afc6f26440ba4336c</li>
+</ol>
+<h3 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032614360146.jpg"><img src="http://image.camcad.cn/2022/03/2022032614360146.jpg"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1、Symmetric Key Encryption</span><br><span class="line"></span><br><span class="line">2、代表性算法叫做 DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和AES</span><br><span class="line"></span><br><span class="line">3、特点：</span><br><span class="line">  加密和解密使用相同的秘钥</span><br><span class="line"></span><br><span class="line">4、优点：</span><br><span class="line">  生成密钥的算法公开、计算量小、加密速度快、加密效率高、密钥较短</span><br><span class="line"></span><br><span class="line">5、缺点</span><br><span class="line">  双方共同的密钥，有一方密钥被窃取，双方都影响</span><br><span class="line">  如果为每个客户都生成不同密钥，则密钥数量巨大，密钥管理有压力</span><br><span class="line"></span><br><span class="line">6、应用场景</span><br><span class="line">  登录信息用户名和密码加密、传输加密、指令加密</span><br><span class="line"></span><br><span class="line">7、案例（AES）：(http://tool.chacuo.net/cryptaes/)</span><br><span class="line">  明文：Linux是世界上最好的操作系统，没有之一</span><br><span class="line">  密钥：蚂蚁emmet</span><br><span class="line">  加密：IoJu94+AOUyFSOxSwSSHxQFtumf2LQiOFSx6ZD2WdbNA5P/Bkb/NHPyRIDB4EwuQ</span><br></pre></td></tr></table></figure>
+<h3 id="非对称加密算法"><a href="#非对称加密算法" class="headerlink" title="非对称加密算法"></a>非对称加密算法</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/202203261446024.jpg"><img src="http://image.camcad.cn/2022/03/202203261446024.jpg"></a></p>
+<ul>
+<li><strong>Asymmetric Key Encryption</strong></li>
+<li><strong>非对称加密算法需要一对密钥(两个密钥)：</strong></li>
+</ul>
+<ol>
+<li>公开密钥(publickey)和私有密钥(privatekey)(简称公钥，私钥)</li>
+<li>公开密钥与私有密钥生成时是一对</li>
+<li>用公钥加密只能是对应的私钥解密，同理用私钥加密只能用对应的公钥解密</li>
+</ol>
+<ul>
+<li><strong>代表性算法叫做 RSA、ECC、Diffie-Hellman、El Gamal、DSA(数字签名用)</strong></li>
+<li><strong>优点：</strong></li>
+</ul>
+<ol>
+<li>安全高(几乎很难破解)</li>
+</ol>
+<ul>
+<li><strong>缺点：</strong></li>
+</ul>
+<ol>
+<li>加解密相对速度慢、密钥长、计算量大、效率低</li>
+</ol>
+<ul>
+<li><strong>应用场景</strong></li>
+</ul>
+<ol>
+<li>HTTPS(ssl)证书里制作、CRS请求证书、金融通信加密、蓝牙等硬件信息加密配对传输、关键的登录信息验证。</li>
+</ol>
+<ul>
+<li><strong>案例（RSA）</strong>：<a target="_blank" rel="noopener" href="http://tool.chacuo.net/cryptrsaprikey">http://tool.chacuo.net/cryptrsaprikey</a></li>
+</ul>
+<p> <strong>公钥</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjlHREYDiL9p5bAPBsMCy+UIaH</span><br><span class="line">e4MAm7djkuHYW3aGQLgG9Rc1CSRaFeNXBw+llDsnIgBPgoUI4S8N2m87n25zJ5jH</span><br><span class="line">7pEyWoZsAeTgpqJ6fzfciRpGHsawZ+AxVs0PeIvBMVIIZfpP4tIK5WVau7mVt0gy</span><br><span class="line">/bU+PtX35wVymIKy7QIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+<p><strong>私钥</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">\-----BEGIN PRIVATE KEY-----</span><br><span class="line">MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAOOUdERgOIv2nlsA</span><br><span class="line">8GwwLL5Qhod7gwCbt2OS4dhbdoZAuAb1FzUJJFoV41cHD6WUOyciAE+ChQjhLw3a</span><br><span class="line">bzufbnMnmMfukTJahmwB5OCmonp/N9yJGkYexrBn4DFWzQ94i8ExUghl+k/i0grl</span><br><span class="line">ZVq7uZW3SDL9tT4+1ffnBXKYgrLtAgMBAAECgYBOkrvNu7bqQ/yKiPl5MOzRzHWW</span><br><span class="line">I0OomxqnC1hkXbe/RGsFI+ueSQi+/Z2fN3XkghgmO6wFx5ds6GpZixgqarIz8z/Z</span><br><span class="line">AixGVx7BgUgAzIZ4OOsm7uLpPs7WEVLWn1I4/59HxnzWX85ShBsfJc4tFb566Bc2</span><br><span class="line">/5SaBurNXlOURFFs9QJBAPUL/qCWZ5JljXEtlLqaumEY54WT6+dJpL0j2bsmvktk</span><br><span class="line">CkMpzqCKy8ymiFPa5FyZDRsZfLQBoHWv7SVKD0wOFMcCQQDtwJcAsOrxWApQ19tr</span><br><span class="line">9wrrv0QB0XPkJjOL85x/I+6Q6CMd2YQs8ze2ex+J45VWtADQYi2VixgmtI9pNmW7</span><br><span class="line">eJ6rAkAe2s/I8KdB67+PjKm5hVoKd9RPIX0GtmMj3avAwPQdEg+ovU7jMBbRQfbQ</span><br><span class="line">eDNg5XSdAOyOzdWie/BkTZr3fJ5pAkEAr9OVGOK97ZxRjboyGRNMfVXdOwRV4YorJ</span><br><span class="line">5j9URkZ5gNrcVY/uixuX4TEvAte3MrbOP03MLmL+imlQAdxD4h/zHwJBANY0vxVf</span><br><span class="line">8tzwPdXcNWK8ZCqmWLR8sDTrzRdwNejBraYb00yEngGy1uALsDNevXtzrRkh8dzV</span><br><span class="line">QI5y+RliuFYWd14=</span><br><span class="line">-----END PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+<p><strong>加密</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IpaC8/W8s3UL9wDuz8pRUA3bG3jE0Ch0MqCiVd3LXHBXSDRVckvD20cUEnBkiG0N85NfY6rv</span><br><span class="line">M0iyb4fNkic4BhmLQg6AsV4L8LEIptSwPJwlVqJprqh7MHN+R9y/PekSmpZYAxitTaFFfgJP</span><br><span class="line">DhGYl45TmWLj2vhGoOQy/INK9boy=</span><br></pre></td></tr></table></figure>
+<p><strong>明文</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">今晚八点学校小树林见</span><br></pre></td></tr></table></figure>
+<h2 id="主机间的相互免秘钥"><a href="#主机间的相互免秘钥" class="headerlink" title="主机间的相互免秘钥"></a>主机间的相互免秘钥</h2><ul>
+<li><strong>可以通过ssh命令免秘钥连接到其他的主机</strong></li>
+<li><strong>如果是第一次建立连接，需要输入yes</strong></li>
+</ul>
+<ol>
+<li>在 ~&#x2F;.ssh&#x2F;known_hosts 文件记录了以前访问地址(ip hostname)的信息</li>
+<li>在访问地址的时候如果没有收录到known_hosts文件中，就需要输入yes</li>
+<li>如果以前收录到known_hosts中，直接输入密码即可</li>
+</ol>
+<ul>
+<li><strong>需要输入密码</strong></li>
+</ul>
+<ol>
+<li>生成秘钥</li>
+<li>ssh-keygen -t rsa -P ‘’ -f ~&#x2F;.ssh&#x2F;id_rsa</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032615074231.jpg"><img src="http://image.camcad.cn/2022/03/2022032615074231.jpg"></a></p>
+<ol>
+<li>如果你想免秘钥登录谁，只需要把自己的公钥传递给对方主机即可</li>
+<li>这个秘钥要放在 ~&#x2F;.ssh&#x2F;authorized_keys</li>
+<li>ssh-copy-id -i ~&#x2F;.ssh&#x2F;id_rsa.pub <a href="mailto:&#x72;&#111;&#111;&#x74;&#64;&#x31;&#x39;&#x32;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x35;&#x38;&#x2e;&#50;&#48;&#49;">&#x72;&#111;&#111;&#x74;&#64;&#x31;&#x39;&#x32;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x35;&#x38;&#x2e;&#50;&#48;&#49;</a></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/20220326151004100.jpg"><img src="http://image.camcad.cn/2022/03/20220326151004100-1024x259.jpg"></a></p>
+<ul>
+<li><strong>相互面秘钥工作流程</strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/202203261511129.jpg"><img src="http://image.camcad.cn/2022/03/202203261511129-1024x542.jpg"></a></p>
+<h2 id="主机名与Host校验"><a href="#主机名与Host校验" class="headerlink" title="主机名与Host校验"></a>主机名与Host校验</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032615121564.jpg"><img src="http://image.camcad.cn/2022/03/2022032615121564.jpg"></a></p>
+<ul>
+<li>错误原因：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Cannot determine realm for numeric host</span><br><span class="line"></span><br><span class="line">解决方案1--本次</span><br><span class="line">  ssh -v -o GSSAPIAuthentication=no root@192.168.189.201</span><br><span class="line"></span><br><span class="line">解决方案2--所有</span><br><span class="line">  1、修改 /etc/ssh/ssh\_config文件的配置，以后则不会再出现此问题</span><br><span class="line">  2、最后面添加两行：</span><br><span class="line">   StrictHostKeyChecking no</span><br><span class="line">   UserKnownHostsFile /dev/null</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/e6855abe.html" title="Linux 基础教程七：Linux 的网络信息">https://notes.camcad.cn/post/e6855abe.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/56333b4d.html" rel="prev" title="Linux 基础教程六：VI 和 VIM 编辑器">
+                  <i class="fa fa-chevron-left"></i> Linux 基础教程六：VI 和 VIM 编辑器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/a284483c.html" rel="next" title="Linux 基础教程八：日期与时间">
+                  Linux 基础教程八：日期与时间 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/e6855abe.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

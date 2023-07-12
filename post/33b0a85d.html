@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="课件转载《这个程猿有点呆_Linux基础教程》目录： 网络连接概念 网络连接模式 软件分类 Linux分支 Linux下载  网络连接概念IP地址IPADDR IP地址是一种逻辑地址，用来标识网络中一个个主机   IP地址&#x3D;网络地址+主机地址 IP地址是一个 4 * 8bit（1字节）由 0&#x2F;1 组成的数字串（IP4协议）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 基础教程二：计算机软件体系">
+<meta property="og:url" content="https://notes.camcad.cn/post/33b0a85d.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="课件转载《这个程猿有点呆_Linux基础教程》目录： 网络连接概念 网络连接模式 软件分类 Linux分支 Linux下载  网络连接概念IP地址IPADDR IP地址是一种逻辑地址，用来标识网络中一个个主机   IP地址&#x3D;网络地址+主机地址 IP地址是一个 4 * 8bit（1字节）由 0&#x2F;1 组成的数字串（IP4协议）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032603590677.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032604095623.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032604202270.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032604214147.jpg">
+<meta property="article:published_time" content="2022-03-29T21:56:00.000Z">
+<meta property="article:modified_time" content="2023-07-12T14:53:57.480Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2022/03/2022032603590677.jpg">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/33b0a85d.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/33b0a85d.html","path":"post/33b0a85d.html","title":"Linux 基础教程二：计算机软件体系"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux 基础教程二：计算机软件体系 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E4%BB%B6%E8%BD%AC%E8%BD%BD%E3%80%8A%E8%BF%99%E4%B8%AA%E7%A8%8B%E7%8C%BF%E6%9C%89%E7%82%B9%E5%91%86-Linux%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%E3%80%8B"><span class="nav-number">1.</span> <span class="nav-text">课件转载《这个程猿有点呆_Linux基础教程》</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">目录：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">网络连接概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP%E5%9C%B0%E5%9D%80IPADDR"><span class="nav-number">1.1.</span> <span class="nav-text">IP地址IPADDR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">网络连接模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#host-onboy-%E4%B8%BB%E6%9C%BA%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">host-onboy(主机模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bridged-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">bridged(桥接模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">NAT(网络地址转换模式)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">软件分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">应用软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">系统软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">3.3.</span> <span class="nav-text">系统软件的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E5%88%86%E6%94%AF"><span class="nav-number">4.</span> <span class="nav-text">Linux分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RedHat%EF%BC%88%E6%94%B6%E8%B4%B9%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">RedHat（收费）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debain%EF%BC%88%E5%85%8D%E8%B4%B9%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">Debain（免费）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E4%B8%8B%E8%BD%BD"><span class="nav-number">5.</span> <span class="nav-text">Linux下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E7%BD%91"><span class="nav-number">5.1.</span> <span class="nav-text">官网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2"><span class="nav-number">5.2.</span> <span class="nav-text">下载页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS7-6%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-number">5.3.</span> <span class="nav-text">CentOS7.6下载地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">5.4.</span> <span class="nav-text">镜像的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%8D%E6%95%B0"><span class="nav-number">5.5.</span> <span class="nav-text">操作系统的位数</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">271</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/33b0a85d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux 基础教程二：计算机软件体系 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux 基础教程二：计算机软件体系
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-29 21:56:00" itemprop="dateCreated datePublished" datetime="2022-03-29T21:56:00+00:00">2022-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E6%96%B0%E6%89%8B%E6%9D%91/" itemprop="url" rel="index"><span itemprop="name">Linux新手村</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/33b0a85d.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/33b0a85d.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="课件转载《这个程猿有点呆-Linux基础教程》"><a href="#课件转载《这个程猿有点呆-Linux基础教程》" class="headerlink" title="课件转载《这个程猿有点呆_Linux基础教程》"></a>课件转载《<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16Q4y1y7xS?p=1">这个程猿有点呆_Linux基础教程</a>》</h2><h1 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h1><ul>
+<li><a href="#l1.1">网络连接概念</a></li>
+<li><a href="#l1.2">网络连接模式</a></li>
+<li><a href="#l1.3">软件分类</a></li>
+<li><a href="#l1.4">Linux分支</a></li>
+<li><a href="#l1.5">Linux下载</a></li>
+</ul>
+<h2 id="网络连接概念"><a href="#网络连接概念" class="headerlink" title="网络连接概念"></a>网络连接概念</h2><h3 id="IP地址IPADDR"><a href="#IP地址IPADDR" class="headerlink" title="IP地址IPADDR"></a>IP地址IPADDR</h3><ul>
+<li><strong>IP地址是一种逻辑地址，用来标识网络中一个个主机</strong></li>
+</ul>
+<ol>
+<li>IP地址&#x3D;网络地址+主机地址</li>
+<li>IP地址是一个 4 * 8bit（1字节）由 0&#x2F;1 组成的数字串（IP4协议）<span id="more"></span></li>
+</ol>
+<ul>
+<li><strong>子网掩码NETMASK</strong></li>
+</ul>
+<ol>
+<li>子网掩码只有一个功能，就是将IP地址划分为网络地址和主机地址两部分</li>
+<li>子网掩码用来判断任意两台计算机的IP地址是否在同一个子网中的根据</li>
+<li>（A 192.168.7.111， B 192.168.8.222）</li>
+<li>（255.255.0.0）</li>
+</ol>
+<ul>
+<li><strong>默认网关GATEWAY</strong></li>
+</ul>
+<ol>
+<li>连接两个不同的网络的设备都可以叫网关设备；网关的作用就是实现两个网络之间进行通讯与控制</li>
+<li>网关地址就是网关设备的IP地址</li>
+</ol>
+<ul>
+<li><strong>域名服务器DNS</strong></li>
+</ul>
+<ol>
+<li>DNS是域名服务器，用来解析域名的（域名和IP之间的解析）</li>
+<li>如果没有这东西，登陆某个网站时就必须输入该网站的IP地址，有了DNS就可以直接输入网址</li>
+<li>C:\Windows\System32\drivers\etc\hosts（本地主机配置文件：127.0.0.1）</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032603590677.jpg"><img src="http://image.camcad.cn/2022/03/2022032603590677.jpg"></a></p>
+<h2 id="网络连接模式"><a href="#网络连接模式" class="headerlink" title="网络连接模式"></a>网络连接模式</h2><h3 id="host-onboy-主机模式"><a href="#host-onboy-主机模式" class="headerlink" title="host-onboy(主机模式)"></a>host-onboy(主机模式)</h3><ul>
+<li>在某些特殊的网络调试环境中，要求将真实环境和虚拟环境隔离开，这时你就可采用hostonboy模式</li>
+<li>在host-onboy模式中，所有的虚拟系统是可以相互通信的，但虚拟系统和真实的网络是被隔离开的</li>
+<li>在host-onboy模式下，虚拟系统的TCP&#x2F;IP配置信息都是由VMnet1(host-onboy)虚拟网络的DHCP服务器来动态分配的</li>
+</ul>
+<h3 id="bridged-桥接模式"><a href="#bridged-桥接模式" class="headerlink" title="bridged(桥接模式)"></a>bridged(桥接模式)</h3><ul>
+<li>VMWare虚拟出来的操作系统就像是局域网中的一台独立的主机，它可以访问网内任何一台机 器</li>
+<li>使用桥接模式的虚拟系统和宿主机器的关系，就像连接在同一个Hub上的两台电脑</li>
+<li>当前主机IP 为 192.168.8.100 虚拟机 192.168.8.xxx（学习期间为了防止IP冲突，所以不选择这种模式）</li>
+</ul>
+<h3 id="NAT-网络地址转换模式"><a href="#NAT-网络地址转换模式" class="headerlink" title="NAT(网络地址转换模式)"></a>NAT(网络地址转换模式)</h3><ul>
+<li>使用NAT模式，就是让虚拟系统借助NAT(网络地址转换)功能，通过宿主机器所在的网络来访问公网</li>
+<li>NAT模式下的虚拟系统的TCP&#x2F;IP配置信息是由VMnet8(NAT)虚拟网络的DHCP服务器提供的虚拟系统也就无法和本局域网中的其他真实主机进行通讯</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032604095623.jpg"><img src="http://image.camcad.cn/2022/03/2022032604095623.jpg"></a></p>
+<h2 id="软件分类"><a href="#软件分类" class="headerlink" title="软件分类"></a>软件分类</h2><h3 id="应用软件"><a href="#应用软件" class="headerlink" title="应用软件"></a>应用软件</h3><ul>
+<li>就是为了实现某些业务功能</li>
+<li>应用软件要基于对应的系统软件</li>
+<li>不同的操作系统要安装不同的软件</li>
+</ul>
+<h3 id="系统软件"><a href="#系统软件" class="headerlink" title="系统软件"></a>系统软件</h3><ul>
+<li>就是为了和硬件打交道</li>
+<li>屏蔽应用软件与硬件的差异</li>
+</ul>
+<h3 id="系统软件的分类"><a href="#系统软件的分类" class="headerlink" title="系统软件的分类"></a>系统软件的分类</h3><ul>
+<li><strong>Window</strong></li>
+</ul>
+<ol>
+<li>用户量全球最大</li>
+<li>收费，不开源，民用较多</li>
+<li>各种软件比较齐全</li>
+</ol>
+<ul>
+<li><strong>Mac</strong></li>
+</ul>
+<ol>
+<li>只限定于某些苹果的品牌机</li>
+<li>ios–自成一家</li>
+</ol>
+<ul>
+<li><strong>GNU&#x2F;Linux</strong></li>
+</ul>
+<ol>
+<li>GNU是一个开源软件组织,世界上所有的软件都应该开源免费</li>
+<li>GNU Is Not Unix</li>
+<li>GCC++</li>
+<li>托瓦兹 林纳斯 Linus – Linux(Linux is not unix)</li>
+<li>Logo是企鹅</li>
+</ol>
+<h2 id="Linux分支"><a href="#Linux分支" class="headerlink" title="Linux分支"></a>Linux分支</h2><h3 id="RedHat（收费）"><a href="#RedHat（收费）" class="headerlink" title="RedHat（收费）"></a>RedHat（收费）</h3><ul>
+<li><strong>CentOS</strong></li>
+</ul>
+<ol>
+<li>完全开源免费</li>
+<li>不要使用最新版的CentOS</li>
+</ol>
+<ul>
+<li><strong>主要用于服务器版本</strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032604202270.jpg"><img src="http://image.camcad.cn/2022/03/2022032604202270.jpg"></a></p>
+<h3 id="Debain（免费）"><a href="#Debain（免费）" class="headerlink" title="Debain（免费）"></a>Debain（免费）</h3><ul>
+<li><strong>Ubuntu</strong></li>
+</ul>
+<ol>
+<li>视窗界面良好的Linux系统</li>
+<li>一些主流的软件都支持Ubuntu系统</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032604214147.jpg"><img src="http://image.camcad.cn/2022/03/2022032604214147.jpg"></a></p>
+<h2 id="Linux下载"><a href="#Linux下载" class="headerlink" title="Linux下载"></a>Linux下载</h2><h3 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h3><p><a target="_blank" rel="noopener" href="https://linux.org/">https://linux.org/</a></p>
+<h3 id="下载页面"><a href="#下载页面" class="headerlink" title="下载页面"></a>下载页面</h3><p><a target="_blank" rel="noopener" href="https://linux.org/pages/download/">https://linux.org/pages/download/</a></p>
+<h3 id="CentOS7-6下载地址"><a href="#CentOS7-6下载地址" class="headerlink" title="CentOS7.6下载地址"></a>CentOS7.6下载地址</h3><p><a target="_blank" rel="noopener" href="http://vault.centos.org/7.6.1810/">http://vault.centos.org/7.6.1810/</a></p>
+<h3 id="镜像的分类"><a href="#镜像的分类" class="headerlink" title="镜像的分类"></a>镜像的分类</h3><ul>
+<li><strong>everything</strong></li>
+</ul>
+<p>This image contains the complete set of packages for CentOS Linux 7. It can be used for installing or populating a local mirror.</p>
+<p>此映像包含用于CentOS Linux 7的完整软件包集。它可以用于安装或填充本地镜像。</p>
+<ul>
+<li><strong>minimal</strong></li>
+</ul>
+<p>The aim of this image is to install a very basic CentOS 6.5 system with the minimum of packages needed to have a functional system.</p>
+<p>这个映像的目的是安装一个非常基本的CentOS 6.5系统，使用拥有一个功能系统所需的最小包。</p>
+<ul>
+<li><strong>netinstall</strong></li>
+</ul>
+<p>This is the network install and rescue image.</p>
+<p>这是网络安装和救援映像。</p>
+<h3 id="操作系统的位数"><a href="#操作系统的位数" class="headerlink" title="操作系统的位数"></a>操作系统的位数</h3><ul>
+<li><strong>优先选择64位，将来安装软件有更好兼容性</strong></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/33b0a85d.html" title="Linux 基础教程二：计算机软件体系">https://notes.camcad.cn/post/33b0a85d.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/cc034800.html" rel="prev" title="Linux 基础教程一：计算机硬件体系">
+                  <i class="fa fa-chevron-left"></i> Linux 基础教程一：计算机硬件体系
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/a0504be0.html" rel="next" title="Linux 基础教程三：虚拟机安装与配置">
+                  Linux 基础教程三：虚拟机安装与配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/33b0a85d.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

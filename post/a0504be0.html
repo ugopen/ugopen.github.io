@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="课件转载《这个程猿有点呆_Linux基础教程》目录： 虚拟化技术 创建虚拟主机 安装操作系统 配置常见参数 快照与克隆 修改克隆机配置 连接Linux服务器  虚拟化技术 可以更好的利用计算机闲置的资源 我们可以在计算机中虚拟出多台虚拟机帮助我们执行程序或者业务 虚拟机的各种组成理论上和真实主机是一样的 如果要使用这种技术只需要安装对应的软件即可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 基础教程三：虚拟机安装与配置">
+<meta property="og:url" content="https://notes.camcad.cn/post/a0504be0.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="课件转载《这个程猿有点呆_Linux基础教程》目录： 虚拟化技术 创建虚拟主机 安装操作系统 配置常见参数 快照与克隆 修改克隆机配置 连接Linux服务器  虚拟化技术 可以更好的利用计算机闲置的资源 我们可以在计算机中虚拟出多台虚拟机帮助我们执行程序或者业务 虚拟机的各种组成理论上和真实主机是一样的 如果要使用这种技术只需要安装对应的软件即可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032605551557.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032606072938.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032606130219.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032606260711.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2022/03/2022032606373816.jpg">
+<meta property="article:published_time" content="2022-03-29T22:02:06.000Z">
+<meta property="article:modified_time" content="2023-07-12T14:53:57.480Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2022/03/2022032605551557.jpg">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/a0504be0.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/a0504be0.html","path":"post/a0504be0.html","title":"Linux 基础教程三：虚拟机安装与配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux 基础教程三：虚拟机安装与配置 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E4%BB%B6%E8%BD%AC%E8%BD%BD%E3%80%8A%E8%BF%99%E4%B8%AA%E7%A8%8B%E7%8C%BF%E6%9C%89%E7%82%B9%E5%91%86-Linux%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%E3%80%8B"><span class="nav-number">1.</span> <span class="nav-text">课件转载《这个程猿有点呆_Linux基础教程》</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">目录：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">虚拟化技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA"><span class="nav-number">2.</span> <span class="nav-text">创建虚拟主机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.</span> <span class="nav-text">安装操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">配置常见参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%B7%B1%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E5%9C%B0%E5%9D%80"><span class="nav-number">4.1.</span> <span class="nav-text">查看自己虚拟网卡地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="nav-number">4.2.</span> <span class="nav-text">修改网络配置信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">4.3.</span> <span class="nav-text">防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E9%99%90%E5%88%B6"><span class="nav-number">4.4.</span> <span class="nav-text">软件安装限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E6%9C%BA"><span class="nav-number">4.5.</span> <span class="nav-text">关机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E7%85%A7%E4%B8%8E%E5%85%8B%E9%9A%86"><span class="nav-number">5.</span> <span class="nav-text">快照与克隆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%8D%E6%91%84%E5%BF%AB%E7%85%A7"><span class="nav-number">5.1.</span> <span class="nav-text">拍摄快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%88%B0"><span class="nav-number">5.2.</span> <span class="nav-text">转到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8B%E9%9A%86"><span class="nav-number">5.3.</span> <span class="nav-text">克隆</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%85%8B%E9%9A%86%E6%9C%BA%E9%85%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">修改克隆机配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF"><span class="nav-number">6.1.</span> <span class="nav-text">网络信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="nav-number">6.2.</span> <span class="nav-text">主机名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5Linux%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">7.</span> <span class="nav-text">连接Linux服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xshell%E2%80%94%E8%B4%9F%E8%B4%A3%E5%90%91%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BE%93%E5%85%A5%E5%91%BD%E4%BB%A4"><span class="nav-number">7.1.</span> <span class="nav-text">Xshell—负责向虚拟机输入命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XFtp%E2%80%94%E8%B4%9F%E8%B4%A3%E5%90%91%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6"><span class="nav-number">7.2.</span> <span class="nav-text">XFtp—负责向虚拟机传输文件</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">271</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/a0504be0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux 基础教程三：虚拟机安装与配置 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux 基础教程三：虚拟机安装与配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-29 22:02:06" itemprop="dateCreated datePublished" datetime="2022-03-29T22:02:06+00:00">2022-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux%E6%96%B0%E6%89%8B%E6%9D%91/" itemprop="url" rel="index"><span itemprop="name">Linux新手村</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/a0504be0.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/a0504be0.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="课件转载《这个程猿有点呆-Linux基础教程》"><a href="#课件转载《这个程猿有点呆-Linux基础教程》" class="headerlink" title="课件转载《这个程猿有点呆_Linux基础教程》"></a>课件转载《<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16Q4y1y7xS?p=1">这个程猿有点呆_Linux基础教程</a>》</h2><h1 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h1><ul>
+<li><a href="#l1.1">虚拟化技术</a></li>
+<li><a href="#l1.2">创建虚拟主机</a></li>
+<li><a href="#l1.3">安装操作系统</a></li>
+<li><a href="#l1.4">配置常见参数</a></li>
+<li><a href="#l1.5">快照与克隆</a></li>
+<li><a href="#l1.6">修改克隆机配置</a></li>
+<li><a href="#l1.7">连接Linux服务器</a></li>
+</ul>
+<h2 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h2><ul>
+<li><strong>可以更好的利用计算机闲置的资源</strong></li>
+<li><strong>我们可以在计算机中虚拟出多台虚拟机帮助我们执行程序或者业务</strong></li>
+<li><strong>虚拟机的各种组成理论上和真实主机是一样的</strong></li>
+<li><strong>如果要使用这种技术只需要安装对应的软件即可</strong><span id="more"></span></li>
+</ul>
+<ol>
+<li>Virtualbox</li>
+<li>VirtualMachine</li>
+</ol>
+<h2 id="创建虚拟主机"><a href="#创建虚拟主机" class="headerlink" title="创建虚拟主机"></a>创建虚拟主机</h2><p><a href="https://notes.camcad.cn/5175.html">https://notes.camcad.cn/5175.html</a></p>
+<h2 id="安装操作系统"><a href="#安装操作系统" class="headerlink" title="安装操作系统"></a>安装操作系统</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1554y1n7zv?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1554y1n7zv?spm_id_from&#x3D;333.999.0.0</a></p>
+<h2 id="配置常见参数"><a href="#配置常见参数" class="headerlink" title="配置常见参数"></a>配置常见参数</h2><h3 id="查看自己虚拟网卡地址"><a href="#查看自己虚拟网卡地址" class="headerlink" title="查看自己虚拟网卡地址"></a>查看自己虚拟网卡地址</h3><ul>
+<li><strong>编辑–&gt;虚拟机网络编辑器–&gt;vmnet8</strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032605551557.jpg"><img src="http://image.camcad.cn/2022/03/2022032605551557.jpg"></a></p>
+<h3 id="修改网络配置信息"><a href="#修改网络配置信息" class="headerlink" title="修改网络配置信息"></a>修改网络配置信息</h3><ul>
+<li><strong>vi编辑器简单使用</strong></li>
+</ul>
+<ol>
+<li>光标位置</li>
+<li>dd—删除一行</li>
+<li>i—将文档变成可修改模式</li>
+<li>esc—退出编辑</li>
+<li>:wq—保存并退出</li>
+</ol>
+<ul>
+<li><strong>修改网络信息</strong></li>
+</ul>
+<ol>
+<li>vi &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032606072938.jpg"><img src="http://image.camcad.cn/2022/03/2022032606072938.jpg"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">--修改</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=static //静态网络IP dhcp 动态获取网络IP</span><br><span class="line">--添加</span><br><span class="line">IPADDR=192.168.58.100</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.58.2</span><br><span class="line">DNS1=114.114.114.114</span><br><span class="line">删除------</span><br><span class="line">UUID</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032606130219.jpg"><img src="http://image.camcad.cn/2022/03/2022032606130219.jpg"></a></p>
+<ul>
+<li><strong>重启网卡重新加载配置文件</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br><span class="line">systemctl restart network.service</span><br><span class="line">ping www.baidu.com</span><br><span class="line">ctrl+c 终止命令的执行</span><br></pre></td></tr></table></figure>
+
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><ul>
+<li>保护本机的端口不被别人访问</li>
+<li>如果端口需要被别人访问到，需要添加端口的防火墙例外</li>
+<li>关闭防火墙</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">查看防火墙状态</span><br><span class="line">systemctl status firewalld (查看防火墙状态)</span><br><span class="line"></span><br><span class="line">本次开机状态下防火墙关闭</span><br><span class="line">systemctl stop firewalld (本次服务内关闭防火墙)</span><br><span class="line"></span><br><span class="line">服务器重启后防火墙禁用</span><br><span class="line">systemctl disable firewalld(禁用防火墙服务)</span><br></pre></td></tr></table></figure>
+
+<h3 id="软件安装限制"><a href="#软件安装限制" class="headerlink" title="软件安装限制"></a>软件安装限制</h3><ul>
+<li>操作系统对未知软件的安装有可能拒绝或者警告，我们需要禁用这个功能</li>
+<li><code>vi /etc/selinux/config</code></li>
+<li>SELINUX&#x3D;disabled</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032606260711.jpg"><img src="http://image.camcad.cn/2022/03/2022032606260711.jpg"></a></p>
+<h3 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">halt</span><br><span class="line">直接拔掉电源</span><br><span class="line"></span><br><span class="line">poweroff</span><br><span class="line">直接关闭机器，但是有可能当前虚拟机其他人在使用</span><br><span class="line"></span><br><span class="line">shutdown -h now</span><br><span class="line">马上关闭计算机 ，但是可以给其他用户发送消息</span><br><span class="line"></span><br><span class="line">reboot</span><br><span class="line">重启虚拟机</span><br></pre></td></tr></table></figure>
+
+<h2 id="快照与克隆"><a href="#快照与克隆" class="headerlink" title="快照与克隆"></a>快照与克隆</h2><h3 id="拍摄快照"><a href="#拍摄快照" class="headerlink" title="拍摄快照"></a>拍摄快照</h3><ul>
+<li>记录当前虚拟机的状态</li>
+<li>拍摄快照的时候一定要关机</li>
+</ul>
+<h3 id="转到"><a href="#转到" class="headerlink" title="转到"></a>转到</h3><ul>
+<li>回到某一个历史快照的节点</li>
+</ul>
+<h3 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h3><ul>
+<li>复制某一个历史快照节点</li>
+<li>克隆的方式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">链接克隆</span><br><span class="line">  1.当前节点文件夹只存储差异性数据</span><br><span class="line">  2.相同数据存放在原始节点上</span><br><span class="line">  3.优点：节省硬盘空间 缺点：耦合性大</span><br><span class="line"></span><br><span class="line">完整克隆</span><br><span class="line">  1.就是基于原始节点完全拷贝到新节点的文件夹中</span><br><span class="line">  2.优点：耦合性抵 缺点：硬盘空间使用大</span><br><span class="line">  3.推荐使用完整克隆</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/03/2022032606373816.jpg"><img src="http://image.camcad.cn/2022/03/2022032606373816.jpg"></a></p>
+<h2 id="修改克隆机配置"><a href="#修改克隆机配置" class="headerlink" title="修改克隆机配置"></a>修改克隆机配置</h2><h3 id="网络信息"><a href="#网络信息" class="headerlink" title="网络信息"></a>网络信息</h3><p>参考 <a href="#l1.4">修改网络配置信息</a></p>
+<h3 id="主机名"><a href="#主机名" class="headerlink" title="主机名"></a>主机名</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hostname</span><br><span class="line">修改完成后需要重启生效</span><br><span class="line"></span><br><span class="line">hostname bd16</span><br><span class="line">本次启动中有效，重启虚拟机还是使用原来的名字</span><br></pre></td></tr></table></figure>
+
+<h2 id="连接Linux服务器"><a href="#连接Linux服务器" class="headerlink" title="连接Linux服务器"></a>连接Linux服务器</h2><h3 id="Xshell—负责向虚拟机输入命令"><a href="#Xshell—负责向虚拟机输入命令" class="headerlink" title="Xshell—负责向虚拟机输入命令"></a>Xshell—负责向虚拟机输入命令</h3><h3 id="XFtp—负责向虚拟机传输文件"><a href="#XFtp—负责向虚拟机传输文件" class="headerlink" title="XFtp—负责向虚拟机传输文件"></a>XFtp—负责向虚拟机传输文件</h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/a0504be0.html" title="Linux 基础教程三：虚拟机安装与配置">https://notes.camcad.cn/post/a0504be0.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/33b0a85d.html" rel="prev" title="Linux 基础教程二：计算机软件体系">
+                  <i class="fa fa-chevron-left"></i> Linux 基础教程二：计算机软件体系
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/7c6d711a.html" rel="next" title="Linux 基础教程四：Linux 命令">
+                  Linux 基础教程四：Linux 命令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/a0504be0.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
