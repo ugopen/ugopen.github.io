@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">271</span>
+          <span class="site-state-item-count">272</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -194,6 +194,112 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/5a91b797.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/5a91b797.html" class="post-title-link" itemprop="url">C++设计模式25：解析器（Interpreter）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-25 15:04:10" itemprop="dateCreated datePublished" datetime="2021-07-25T15:04:10+00:00">2021-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">C++设计模式</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/5a91b797.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/5a91b797.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072207573188.png"><img src="http://image.camcad.cn/2021/07/2021072207573188-1024x696.png"></a></p>
+<h2 id="“领域规则”模式"><a href="#“领域规则”模式" class="headerlink" title="“领域规则”模式"></a>“领域规则”模式</h2><p>在特定领域中，某些变化虽然频繁，但可以抽象为某种规则。这时候，结合特定领域，将问题抽象为语法规则，从而给出在该领域下的一般性解决方案。</p>
+<h2 id="典型模式"><a href="#典型模式" class="headerlink" title="典型模式"></a>典型模式</h2><ul>
+<li>Interpreter</li>
+</ul>
+<h2 id="动机（Motivation）"><a href="#动机（Motivation）" class="headerlink" title="动机（Motivation）"></a>动机（Motivation）</h2><ul>
+<li>1）在软件构建过程中，如果某一特定领域的问题比较复杂，类似的结构不断重复出现，如果使用普通的编程方式来实现将面临非常频繁的变化。</li>
+<li>2）在这种情况下，将特定领域的问题表达为某种语法规则下的句子，然后构建一个解释器来解释这样的句子，从而达到解决问题的目的。 <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021071812332490.jpg"><img src="http://image.camcad.cn/2021/07/2021071812332490.jpg"></a>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/5a91b797.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1114,111 +1220,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/a3de17af.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/c80aa8ba.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/c80aa8ba.html" class="post-title-link" itemprop="url">C++设计模式15：代理模式（Proxy）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-25 10:47:09" itemprop="dateCreated datePublished" datetime="2021-07-25T10:47:09+00:00">2021-07-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">C++设计模式</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/c80aa8ba.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/c80aa8ba.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072207573188.png"><img src="http://image.camcad.cn/2021/07/2021072207573188-1024x696.png"></a></p>
-<h2 id="“接口隔离”模式"><a href="#“接口隔离”模式" class="headerlink" title="“接口隔离”模式"></a>“接口隔离”模式</h2><p>在组件构建过程中，某些接口之间直接的依赖常常会带来很多问题，甚至根本无法实现。采用添加一层间接（稳定）接口，来隔离本来互相紧密关联的接口是一种常见的解决方案。</p>
-<h2 id="典型模式"><a href="#典型模式" class="headerlink" title="典型模式"></a>典型模式</h2><ul>
-<li>1）Facade</li>
-<li>2）Proxy</li>
-<li>3）Adapter</li>
-<li>4）Mediator
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/c80aa8ba.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
