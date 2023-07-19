@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="QT新手村05：信号和槽机制">
+<meta property="og:url" content="https://notes.camcad.cn/post/a55f1847.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2022/02/2022021411463352-1024x696.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021071906043894.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021071906574650.png">
+<meta property="article:published_time" content="2022-02-14T19:52:35.000Z">
+<meta property="article:modified_time" content="2023-07-19T13:21:09.985Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="QT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2022/02/2022021411463352-1024x696.png">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/a55f1847.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/a55f1847.html","path":"post/a55f1847.html","title":"QT新手村05：信号和槽机制"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>QT新手村05：信号和槽机制 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%B8%A6%E7%9A%84%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD"><span class="nav-number">1.</span> <span class="nav-text">系统自带的信号和槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD"><span class="nav-number">2.</span> <span class="nav-text">自定义信号和槽</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%A1%E5%8F%B7%E6%A7%BD%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E9%A1%B9%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">自定义信号槽需要注意的事项：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E6%A7%BD%E7%9A%84%E6%8B%93%E5%B1%95"><span class="nav-number">3.</span> <span class="nav-text">信号槽的拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BF%A1%E5%8F%B7%E5%8F%AF%E4%BB%A5%E5%92%8C%E5%A4%9A%E4%B8%AA%E6%A7%BD%E7%9B%B8%E8%BF%9E"><span class="nav-number">3.1.</span> <span class="nav-text">一个信号可以和多个槽相连</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E4%BF%A1%E5%8F%B7%E5%8F%AF%E4%BB%A5%E8%BF%9E%E6%8E%A5%E5%88%B0%E4%B8%80%E4%B8%AA%E6%A7%BD"><span class="nav-number">3.2.</span> <span class="nav-text">多个信号可以连接到一个槽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BF%A1%E5%8F%B7%E5%8F%AF%E4%BB%A5%E8%BF%9E%E6%8E%A5%E5%88%B0%E5%8F%A6%E5%A4%96%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BF%A1%E5%8F%B7"><span class="nav-number">3.3.</span> <span class="nav-text">一个信号可以连接到另外的一个信号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A7%BD%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%8F%96%E6%B6%88%E9%93%BE%E6%8E%A5"><span class="nav-number">3.4.</span> <span class="nav-text">槽可以被取消链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E6%A7%BD%E5%8F%AF%E4%BB%A5%E6%96%AD%E5%BC%80"><span class="nav-number">3.5.</span> <span class="nav-text">信号槽可以断开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.6.</span> <span class="nav-text">使用Lambda 表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Qt4%E7%89%88%E6%9C%AC%E7%9A%84%E4%BF%A1%E5%8F%B7%E6%A7%BD%E5%86%99%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">Qt4版本的信号槽写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">Lambda表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E5%8F%82%E6%95%B0%EF%BC%9B"><span class="nav-number">5.1.</span> <span class="nav-text">函数对象参数；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="nav-number">5.2.</span> <span class="nav-text">操作符重载函数参数;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E4%BF%AE%E6%94%B9%E6%A0%87%E7%A4%BA%E7%AC%A6%EF%BC%9B"><span class="nav-number">5.3.</span> <span class="nav-text">可修改标示符；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%9B"><span class="nav-number">5.4.</span> <span class="nav-text">函数返回值；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%AF%E5%87%BD%E6%95%B0%E4%BD%93%EF%BC%9B"><span class="nav-number">5.5.</span> <span class="nav-text">是函数体；</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">279</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/a55f1847.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="QT新手村05：信号和槽机制 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          QT新手村05：信号和槽机制
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-14 19:52:35" itemprop="dateCreated datePublished" datetime="2022-02-14T19:52:35+00:00">2022-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/QT%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">QT基础教程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/a55f1847.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/a55f1847.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/02/2022021411463352.png"><img src="http://image.camcad.cn/2022/02/2022021411463352-1024x696.png"></a></p>
+<span id="more"></span>
+
+<p>信号槽是 Qt 框架引以为豪的机制之一。所谓信号槽，实际就是观察者模式。<code>当某个事件发生之后</code>，比如，按钮检测到自己被点击了一下，它就会发出一个信号（signal）。这种发出是没有目的的，类似广播。如果有对象对这个信号感兴趣，<code>它就会使用连接（connect）函数</code>，意思是，<code>将想要处理的信号和自己的一个函数（称为槽（slot））绑定来处理这个信号</code>。也就是说，<code>当信号发出时，被连接的槽函数会自动被回调</code>。这就类似观察者模式：当发生了感兴趣的事件，某一个操作就会被自动触发。</p>
+<h2 id="系统自带的信号和槽"><a href="#系统自带的信号和槽" class="headerlink" title="系统自带的信号和槽"></a>系统自带的信号和槽</h2><p>下面我们完成一个小功能，我们已经学习了按钮的创建，但是还没有体现出按钮的功能，按钮最大的功能也就是点击后触发一些事情，比如我们点击按钮，就把当前的窗口给关闭掉，那么在Qt中，这样的功能如何实现呢？</p>
+<p>其实无法两行代码就可以搞定了，我们看下面的代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QPushButton * quitBtn = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="string">&quot;关闭窗口&quot;</span>,<span class="keyword">this</span>);</span><br><span class="line"><span class="built_in">connect</span>(quitBtn,&amp;QPushButton::clicked,<span class="keyword">this</span>,&amp;MyWidget::close);</span><br></pre></td></tr></table></figure>
+
+<p>第一行是创建一个关闭按钮，这个之前已经学过，第二行就是核心了，也就是信号槽的使用方式</p>
+<p><strong>connect()函数最常用的一般形式：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(sender, signal, receiver, slot);</span><br><span class="line"></span><br><span class="line">参数解释：</span><br><span class="line"><span class="number">1</span>）sender：发出信号的对象</span><br><span class="line"><span class="number">2</span>）signal：发送对象发出的信号</span><br><span class="line"><span class="number">3</span>）receiver：接收信号的对象</span><br><span class="line"><span class="number">4</span>）slot：接收对象在接收到信号之后所需要调用的函数（槽函数）</span><br></pre></td></tr></table></figure>
+
+<p>那么系统自带的信号和槽通常如何查找呢，这个就需要利用帮助文档了，在帮助文档中比如我们上面的按钮的点击信号，在帮助文档中输入QPushButton，首先我们可以在Contents中寻找关键字 signals，信号的意思，但是我们发现并没有找到，这时候我们应该想到也许这个信号的被父类继承下来的，因此我们去他的父类QAbstractButton中就可以找到该关键字，点击signals索引到系统自带的信号有如下几个 <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021071906043894.png"><img src="http://image.camcad.cn/2021/07/2021071906043894.png"></a> 这里的clicked就是我们要找到，槽函数的寻找方式和信号一样，只不过他的关键字是slot。 <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021071906574650.png"><img src="http://image.camcad.cn/2021/07/2021071906574650.png"></a></p>
+<h2 id="自定义信号和槽"><a href="#自定义信号和槽" class="headerlink" title="自定义信号和槽"></a>自定义信号和槽</h2><p>使用connect()可以让我们连接系统提供的信号和槽。但是，Qt 的信号槽机制并不仅仅是使用系统提供的那部分，还会允许我们自己设计自己的信号和槽。 下面我们看看使用 Qt 的信号槽：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">首先定义一个学生类和老师类：</span><br><span class="line">    老师类中声明信号 饿了 hungry</span><br><span class="line">signals:</span><br><span class="line">       <span class="function"><span class="type">void</span> <span class="title">hungury</span><span class="params">()</span></span>;</span><br><span class="line">    学生类中声明槽   请客 treat</span><br><span class="line">    <span class="keyword">public</span> slots:</span><br><span class="line">       <span class="function"><span class="type">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">    在窗口中声明一个公共方法下课，这个方法的调用会触发老师饿了这个信号，而响应槽函数学生请客</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">MyWidget::ClassIsOver</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//发送信号</span></span><br><span class="line">    emit teacher-&gt;<span class="built_in">hungury</span>();</span><br><span class="line">&#125;</span><br><span class="line">    学生响应了槽函数，并且打印信息</span><br><span class="line"><span class="comment">//自定义槽函数 实现</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Student::treat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">       <span class="built_in">qDebug</span>() &lt;&lt; <span class="string">&quot;该吃饭了！&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">在窗口中连接信号槽</span><br><span class="line">    teacher = <span class="keyword">new</span> <span class="built_in">Teacher</span>(<span class="keyword">this</span>);</span><br><span class="line">    student = <span class="keyword">new</span> <span class="built_in">Student</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">connect</span>(teacher,&amp;Teacher::hungury,student,&amp;Student::treat);</span><br><span class="line">并且调用下课函数，测试打印出 “该吃饭了”</span><br><span class="line"></span><br><span class="line"><span class="comment">/**************************************************************/</span></span><br><span class="line"></span><br><span class="line">自定义的信号 hungry带参数，需要提供重载的自定义信号和 自定义槽</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">hungury</span><span class="params">(QString name)</span></span>;  自定义信号</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">treat</span><span class="params">(QString name )</span></span>;    自定义槽</span><br><span class="line">但是由于有两个重名的自定义信号和自定义的槽，直接连接会报错，所以需要利用函数指针来指向函数地址， 然后在做连接</span><br><span class="line"><span class="built_in">void</span> (Teacher:: * teacherSingal)(QString) = &amp;Teacher::hungury;</span><br><span class="line"><span class="built_in">void</span> (Student:: * studentSlot)(QString) = &amp;Student::treat;</span><br><span class="line"><span class="built_in">connect</span>(teacher,teacherSingal,student,studentSlot);</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义信号槽需要注意的事项："><a href="#自定义信号槽需要注意的事项：" class="headerlink" title="自定义信号槽需要注意的事项："></a>自定义信号槽需要注意的事项：</h3><ul>
+<li>发送者和接收者都需要是QObject的子类（当然，槽函数是全局函数、Lambda 表达式等无需接收者的时候除外）；</li>
+<li>信号和槽函数返回值是 void</li>
+<li>信号只需要声明，不需要实现</li>
+<li>槽函数需要声明也需要实现</li>
+<li>槽函数是普通的成员函数，作为成员函数，会受到 public、private、protected 的影响；</li>
+<li>使用 emit 在恰当的位置发送信号；</li>
+<li>使用connect()函数连接信号和槽。</li>
+<li>任何成员函数、static 函数、全局函数和 Lambda 表达式都可以作为槽函数</li>
+<li>信号槽要求信号和槽的参数一致，所谓一致，是参数类型一致。</li>
+<li>如果信号和槽的参数不一致，允许的情况是，槽函数的参数可以比信号的少，即便如此，槽函数存在的那些参数的顺序也必须和信号的前面几个一致起来。这是因为，你可以在槽函数中选择忽略信号传来的数据（也就是槽函数的参数比信号的少）。</li>
+</ul>
+<h2 id="信号槽的拓展"><a href="#信号槽的拓展" class="headerlink" title="信号槽的拓展"></a>信号槽的拓展</h2><h3 id="一个信号可以和多个槽相连"><a href="#一个信号可以和多个槽相连" class="headerlink" title="一个信号可以和多个槽相连"></a>一个信号可以和多个槽相连</h3><p>如果是这种情况，这些槽会一个接一个的被调用，但是它们的调用顺序是不确定的。</p>
+<h3 id="多个信号可以连接到一个槽"><a href="#多个信号可以连接到一个槽" class="headerlink" title="多个信号可以连接到一个槽"></a>多个信号可以连接到一个槽</h3><p>只要任意一个信号发出，这个槽就会被调用。</p>
+<h3 id="一个信号可以连接到另外的一个信号"><a href="#一个信号可以连接到另外的一个信号" class="headerlink" title="一个信号可以连接到另外的一个信号"></a>一个信号可以连接到另外的一个信号</h3><p>当第一个信号发出时，第二个信号被发出。除此之外，这种信号-信号的形式和信号-槽的形式没有什么区别。</p>
+<h3 id="槽可以被取消链接"><a href="#槽可以被取消链接" class="headerlink" title="槽可以被取消链接"></a>槽可以被取消链接</h3><p>这种情况并不经常出现，因为当一个对象delete之后，Qt自动取消所有连接到这个对象上面的槽。</p>
+<h3 id="信号槽可以断开"><a href="#信号槽可以断开" class="headerlink" title="信号槽可以断开"></a>信号槽可以断开</h3><p>利用disconnect关键字是可以断开信号槽的</p>
+<h3 id="使用Lambda-表达式"><a href="#使用Lambda-表达式" class="headerlink" title="使用Lambda 表达式"></a>使用Lambda 表达式</h3><p>在使用 Qt 5 的时候，能够支持 Qt 5 的编译器都是支持 Lambda 表达式的。在连接信号和槽的时候，槽函数可以使用Lambda表达式的方式进行处理。</p>
+<h2 id="Qt4版本的信号槽写法"><a href="#Qt4版本的信号槽写法" class="headerlink" title="Qt4版本的信号槽写法"></a>Qt4版本的信号槽写法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(zt,<span class="built_in">SIGNAL</span>(<span class="built_in">hungry</span>(QString)),st,<span class="built_in">SLOT</span>(<span class="built_in">treat</span>(QString)));</span><br></pre></td></tr></table></figure>
+
+<p>这里使用了SIGNAL和SLOT这两个宏，将两个函数名转换成了字符串。注意到connect()函数的 signal 和 slot 都是接受字符串，一旦出现连接不成功的情况，Qt4是没有编译错误的（因为一切都是字符串，编译期是不检查字符串是否匹配），而是在运行时给出错误。这无疑会增加程序的不稳定性。 Qt5在语法上完全兼容Qt4，而反之是不可以的。</p>
+<h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><p>C++11中的Lambda表达式用于定义并创建匿名的函数对象，以简化编程工作。</p>
+<p>首先看一下Lambda表达式的基本构成：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[capture](parameters) <span class="keyword">mutable</span> -&gt;<span class="keyword">return</span>-type</span><br><span class="line">&#123;</span><br><span class="line">    statement</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[函数对象参数](操作符重载函数参数)<span class="keyword">mutable</span> -&gt;返回值&#123;函数体&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数对象参数；"><a href="#函数对象参数；" class="headerlink" title="函数对象参数；"></a>函数对象参数；</h3><p>[]，标识一个Lambda的开始，这部分必须存在，不能省略。函数对象参数是传递给编译器自动生成的函数对象类的构造函数的。函数对象参数只能使用那些到定义Lambda为止时Lambda所在作用范围内可见的局部变量（包括Lambda所在类的this）。函数对象参数有以下形式：</p>
+<ul>
+<li>1）空。没有使用任何函数对象参数。</li>
+<li>2）&#x3D;。函数体内可以使用Lambda所在作用范围内所有可见的局部变量（包括Lambda所在类的this），并且是值传递方式（相当于编译器自动为我们按值传递了所有局部变量）。</li>
+<li>3）&amp;。函数体内可以使用Lambda所在作用范围内所有可见的局部变量（包括Lambda所在类的this），并且是引用传递方式（相当于编译器自动为我们按引用传递了所有局部变量）。</li>
+<li>4）this。函数体内可以使用Lambda所在类中的成员变量。</li>
+<li>5）a。将a按值进行传递。按值进行传递时，函数体内不能修改传递进来的a的拷贝，因为默认情况下函数是const的。要修改传递进来的a的拷贝，可以添加mutable修饰符。</li>
+<li>6）&amp;a。将a按引用进行传递。</li>
+<li>7）a, &amp;b。将a按值进行传递，b按引用进行传递。</li>
+<li>8）&#x3D;，&amp;a, &amp;b。除a和b按引用进行传递外，其他参数都按值进行传递。</li>
+<li>9）&amp;, a, b。除a和b按值进行传递外，其他参数都按引用进行传递。</li>
+</ul>
+<h3 id="操作符重载函数参数"><a href="#操作符重载函数参数" class="headerlink" title="操作符重载函数参数;"></a>操作符重载函数参数;</h3><p>标识重载的()操作符的参数，没有参数时，这部分可以省略。参数可以通过按值（如：(a,b)）和按引用（如：(&amp;a,&amp;b)）两种方式进行传递。</p>
+<h3 id="可修改标示符；"><a href="#可修改标示符；" class="headerlink" title="可修改标示符；"></a>可修改标示符；</h3><p>mutable声明，这部分可以省略。按值传递函数对象参数时，加上mutable修饰符后，可以修改按值传递进来的拷贝（注意是能修改拷贝，而不是值本身）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">QPushButton * myBtn = <span class="keyword">new</span> <span class="built_in">QPushButton</span> (<span class="keyword">this</span>);</span><br><span class="line">    QPushButton * myBtn2 = <span class="keyword">new</span> <span class="built_in">QPushButton</span> (<span class="keyword">this</span>);</span><br><span class="line">    myBtn2-&gt;<span class="built_in">move</span>(<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">    <span class="type">int</span> m = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">connect</span>(myBtn,&amp;QPushButton::clicked,<span class="keyword">this</span>,[m] ()<span class="keyword">mutable</span> &#123; m = <span class="number">100</span> + <span class="number">10</span>; <span class="built_in">qDebug</span>() &lt;&lt; m; &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">connect</span>(myBtn2,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=] ()  &#123; <span class="built_in">qDebug</span>() &lt;&lt; m; &#125;);</span><br><span class="line"> <span class="built_in">qDebug</span>() &lt;&lt; m;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数返回值；"><a href="#函数返回值；" class="headerlink" title="函数返回值；"></a>函数返回值；</h3><p>-&gt;返回值类型，标识函数返回值的类型，当返回值为void，或者函数体中只有一处return的地方（此时编译器可以自动推断出返回值类型）时，这部分可以省略。</p>
+<h3 id="是函数体；"><a href="#是函数体；" class="headerlink" title="是函数体；"></a>是函数体；</h3><p>{}，标识函数的实现，这部分不能省略，但函数体可以为空。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/a55f1847.html" title="QT新手村05：信号和槽机制">https://notes.camcad.cn/post/a55f1847.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/QT/" rel="tag"># QT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3a49afdb.html" rel="prev" title="QT新手村04：对象模型（对象树）">
+                  <i class="fa fa-chevron-left"></i> QT新手村04：对象模型（对象树）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/b094a100.html" rel="next" title="Linux基础教程">
+                  Linux基础教程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/a55f1847.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
