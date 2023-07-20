@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="mfc是什么?微软基础类库（英语：Microsoft Foundation Classes，简称mfc）是一个微软公司提供的类库（class libraries），以C++类的形式封装了Windows API，并且包含一个应用程序框架，以减少应用程序开发人员的工作量。其中包含的类包含大量Windows句柄封装类和很多Windows的内建控件和组件的封装类。 mfc把Windows SDK API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MFC新手村02：MFC入门">
+<meta property="og:url" content="https://notes.camcad.cn/post/ba6e8975.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="mfc是什么?微软基础类库（英语：Microsoft Foundation Classes，简称mfc）是一个微软公司提供的类库（class libraries），以C++类的形式封装了Windows API，并且包含一个应用程序框架，以减少应用程序开发人员的工作量。其中包含的类包含大量Windows句柄封装类和很多Windows的内建控件和组件的封装类。 mfc把Windows SDK API">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2022/02/202202141209188-1024x696.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107230307149-1024x608.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303090423.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303093445.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303170553-1024x313.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107230317406-1024x492.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303205596.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303214642.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107230322126.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303223433-1024x314.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303235097.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303241363.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303245229.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303251399-1024x597.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303340665.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303344140.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303351063.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107230335403.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303362296-1024x351.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303364395-1024x574.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303374646.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072303382047.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072304112270.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072304120116.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072304123263.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072304130746.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072304153074.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107230416086.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072304165663.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072304191211.png">
+<meta property="article:published_time" content="2022-02-14T20:10:42.000Z">
+<meta property="article:modified_time" content="2023-07-20T07:25:02.158Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="MFC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2022/02/202202141209188-1024x696.png">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/ba6e8975.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/ba6e8975.html","path":"post/ba6e8975.html","title":"MFC新手村02：MFC入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MFC新手村02：MFC入门 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mfc%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">mfc是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAmfc%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">编写第一个mfc应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BC%96%E5%86%99"><span class="nav-number">2.1.</span> <span class="nav-text">1) 代码的编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">2) 程序执行流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">2.3.</span> <span class="nav-text">3) 代码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-CFrameWnd-%E6%A1%86%E6%9E%B6%E7%AA%97%E5%8F%A3%E7%B1%BB"><span class="nav-number">2.3.1.</span> <span class="nav-text">a) CFrameWnd 框架窗口类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-CWinApp%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%B1%BB"><span class="nav-number">2.3.2.</span> <span class="nav-text">b) CWinApp应用程序类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-InitInstance%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.3.</span> <span class="nav-text">c) InitInstance函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-m-pMainWnd-%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="nav-number">2.3.4.</span> <span class="nav-text">d) m_pMainWnd 成员变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84"><span class="nav-number">3.</span> <span class="nav-text">消息映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">帮助文档的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81MSDN%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">1、MSDN的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81VC-%E4%B9%8Bmfc%E7%B1%BB%E5%BA%93%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C"><span class="nav-number">4.2.</span> <span class="nav-text">2、VC++之mfc类库中文手册</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Widnows%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">5.</span> <span class="nav-text">Widnows字符集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%A4%9A%E5%AD%97%E8%8A%82%E5%AD%97%E7%AC%A6%E9%9B%86-8%E4%BD%8D%E7%9A%84ANSI%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">5.1.</span> <span class="nav-text">1) 多字节字符集(8位的ANSI字符集)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%BD%E5%AD%97%E7%AC%A6%E9%9B%86-16%E4%BD%8D%E7%9A%84Unicode%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">5.2.</span> <span class="nav-text">2) 宽字符集(16位的Unicode字符集)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-TEXT%EF%BC%88-T%EF%BC%89%E5%AE%8F"><span class="nav-number">5.3.</span> <span class="nav-text">3) TEXT（_T）宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-TCHAR%E7%B1%BB%E5%9E%8B"><span class="nav-number">5.4.</span> <span class="nav-text">4) TCHAR类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E5%90%91%E5%AF%BC%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AAMFC%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">用向导生成一个MFC应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E5%AF%BC%E6%B5%81%E7%A8%8B"><span class="nav-number">6.1.</span> <span class="nav-text">向导流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E8%A7%86%E5%9B%BE"><span class="nav-number">6.2.</span> <span class="nav-text">类视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3-x2F-%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84%E4%BD%93%E7%B3%BB"><span class="nav-number">6.3.</span> <span class="nav-text">文档&#x2F;视图结构体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E7%9A%84%E6%B7%BB%E5%8A%A0"><span class="nav-number">6.4.</span> <span class="nav-text">消息处理的添加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mfc%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">7.</span> <span class="nav-text">mfc框架中一些重要的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-InitInstance%E5%87%BD%E6%95%B0"><span class="nav-number">7.1.</span> <span class="nav-text">1) InitInstance函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-PreCreateWindow%E5%87%BD%E6%95%B0"><span class="nav-number">7.2.</span> <span class="nav-text">2) PreCreateWindow函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oncreate%E5%87%BD%E6%95%B0"><span class="nav-number">7.3.</span> <span class="nav-text">Oncreate函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-OnDraw%E5%92%8COnPaint"><span class="nav-number">7.4.</span> <span class="nav-text">4) OnDraw和OnPaint</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">8.</span> <span class="nav-text">拓展知识点</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">283</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/ba6e8975.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MFC新手村02：MFC入门 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MFC新手村02：MFC入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-14 20:10:42" itemprop="dateCreated datePublished" datetime="2022-02-14T20:10:42+00:00">2022-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MFC%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">MFC基础教程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/ba6e8975.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/ba6e8975.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/02/202202141209188.png"><img src="http://image.camcad.cn/2022/02/202202141209188-1024x696.png"></a></p>
+<h2 id="mfc是什么"><a href="#mfc是什么" class="headerlink" title="mfc是什么?"></a>mfc是什么?</h2><p>微软基础类库（英语：Microsoft Foundation Classes，简称mfc）是一个微软公司提供的类库（class libraries），以C++类的形式封装了Windows API，并且包含一个应用程序框架，以减少应用程序开发人员的工作量。其中包含的类包含大量Windows句柄封装类和很多Windows的内建控件和组件的封装类。 mfc把Windows SDK API函数包装成了几百个类，mfc给Windows操作系统提供了面向对象的接口，支持可重用性、自包含性以及其他OPP原则。mfc通过编写类来封装窗口、对话框以及其他对象，引入某些关键的虚函数（覆盖这些虚函数可以改变派生类的功能）来完成，并且mfc设计者使类库带来的总开销降到了最低。</p>
+<span id="more"></span>
+
+<h2 id="编写第一个mfc应用程序"><a href="#编写第一个mfc应用程序" class="headerlink" title="编写第一个mfc应用程序"></a>编写第一个mfc应用程序</h2><h3 id="1-代码的编写"><a href="#1-代码的编写" class="headerlink" title="1) 代码的编写"></a>1) 代码的编写</h3><p>项目的创建和之前一样，只是此次的源文件后缀为.cpp，因为mfc是由C++编写的，编写mfc程序需要包含<code>afxwin.h</code>头文件。<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107230307149.png"><img src="http://image.camcad.cn/2021/07/202107230307149-1024x608.png"></a></p>
+<p>配置环境后，代码才可编译运行：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303090423.png"><img src="http://image.camcad.cn/2021/07/2021072303090423.png"></a><br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303093445.png"><img src="http://image.camcad.cn/2021/07/2021072303093445.png"></a></p>
+<h3 id="2-程序执行流程"><a href="#2-程序执行流程" class="headerlink" title="2) 程序执行流程"></a>2) 程序执行流程</h3><ul>
+<li>①　程序开始时，先实例化应用程序对象(有且只有一个)</li>
+<li>②　执行程序的入口函数InitInstance()</li>
+<li>③　给框架类MyFrame对象动态分配空间（自动调用它的构造函数），在其构造函数内部，通过CWnd::Create创建窗口</li>
+<li>④　框架类对象显示窗口CWnd::ShowWindow</li>
+<li>⑤　框架类对象更新窗口CWnd::UpdateWindow</li>
+<li>⑥　保存框架类对象指针CWinThread::m_pMainWnd</li>
+</ul>
+<h3 id="3-代码分析"><a href="#3-代码分析" class="headerlink" title="3) 代码分析"></a>3) 代码分析</h3><h4 id="a-CFrameWnd-框架窗口类"><a href="#a-CFrameWnd-框架窗口类" class="headerlink" title="a) CFrameWnd 框架窗口类"></a>a) CFrameWnd 框架窗口类</h4><p>CFrameWnd是从CWnd(窗口基类)派生出来的。CFrameWnd模仿框架窗口行为，我们可以把框架窗口作为顶层窗口看待，它是应用程序与外部世界的主要接口。</p>
+<p>如果想要创建一个窗口，可以在此类中调用CWnd::Create或CWnd::CreateEX函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">Create</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    LPCTSTR lpszClassName,</span></span></span><br><span class="line"><span class="params"><span class="function">    LPCTSTR lpszWindowName,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD dwStyle,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> RECT&amp; rect,</span></span></span><br><span class="line"><span class="params"><span class="function">    CWnd* pParentWnd,</span></span></span><br><span class="line"><span class="params"><span class="function">    UINT nID,</span></span></span><br><span class="line"><span class="params"><span class="function">    CCreateContext* pContext = <span class="literal">NULL</span></span></span></span><br><span class="line"><span class="params"><span class="function">    )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Create接收的8个参数后6个有默认值定义。</li>
+<li>lpszClassName指定了窗口基于WNDCLASS类的名称，为此将其设定为NULL将创建一个基于已注册的WNDCLASS类的默认框架窗口。</li>
+<li>lpszWindowName参数指定将在窗口的标题栏出现的文字。</li>
+</ul>
+<h4 id="b-CWinApp应用程序类"><a href="#b-CWinApp应用程序类" class="headerlink" title="b) CWinApp应用程序类"></a>b) CWinApp应用程序类</h4><p>mfc应用程序的核心就是基于CWinApp类的应用程序对象。CWinApp提供了消息循环来检索消息并将消息调度给应用程序窗口。它还包括可被覆盖的、用来自定义应用程序行为的主要虚函数。</p>
+<p>一个mfc程序可以有且仅有一个应用程序对象，此对象必须声明为在全局范围内有效，以便它在程序开始时即在内存中被实例化。</p>
+<h4 id="c-InitInstance函数"><a href="#c-InitInstance函数" class="headerlink" title="c) InitInstance函数"></a>c) InitInstance函数</h4><p>CWinApp::InitInstance函数是一个虚函数，其默认操作仅有一条语句：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">MyApp::InitInstance</span><span class="params">()</span><span class="comment">//程序入口地址</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>InitInstance的目的是给应用程序提供一个自身初始化的机会，其返回值决定了框架接下来要执行的内容，如果返回FALSE将关闭应用程序，如果初始化正常返回TRUE以便允许程序继续进行。此函数是mfc应用程序的入口。</p>
+<h4 id="d-m-pMainWnd-成员变量"><a href="#d-m-pMainWnd-成员变量" class="headerlink" title="d) m_pMainWnd 成员变量"></a>d) m_pMainWnd 成员变量</h4><p>在CWinApp中有一个名为CWinThread::m_pMainWnd的成员变量。 该变量是一个CWnd类型的指针，它保存了应用程序框架窗口对象的指针。也就是说，是指向CFramWnd对象（框架窗口类对象）的指针。</p>
+<h2 id="消息映射"><a href="#消息映射" class="headerlink" title="消息映射"></a>消息映射</h2><p>消息映射是一个将消息和成员函数相互关联的表。比如，框架窗口接收到一个鼠标左击消息，MFC将搜索该窗口的消息映射，如果存在一个处理WM_LBUTTONDOWN消息的处理程序，然后就调用OnLButtonDown。</p>
+<p>下面是是将消息映射添加到一个类中所做的全部工作：</p>
+<ul>
+<li><strong>1) 所操作类中，声明消息映射宏。</strong></li>
+<li><strong>2) 通过放置标识消息的宏来执行消息映射，相应的类将在对BEGIN_MESSAGE_MAP和END_MESSAGE_MAP的调用之间处理消息。</strong> </li>
+<li><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303170553.png"><img src="http://image.camcad.cn/2021/07/2021072303170553-1024x313.png"></a></li>
+<li><strong>3) 对应消息处理函数分别在类中声明，类外定义：</strong> </li>
+<li><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107230317406.png"><img src="http://image.camcad.cn/2021/07/202107230317406-1024x492.png"></a></li>
+</ul>
+<h2 id="帮助文档的使用"><a href="#帮助文档的使用" class="headerlink" title="帮助文档的使用"></a>帮助文档的使用</h2><h3 id="1、MSDN的使用"><a href="#1、MSDN的使用" class="headerlink" title="1、MSDN的使用"></a>1、MSDN的使用</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303205596.png"><img src="http://image.camcad.cn/2021/07/2021072303205596.png"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303214642.png"><img src="http://image.camcad.cn/2021/07/2021072303214642.png"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107230322126.png"><img src="http://image.camcad.cn/2021/07/202107230322126.png"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303223433.png"><img src="http://image.camcad.cn/2021/07/2021072303223433-1024x314.png"></a></p>
+<h3 id="2、VC-之mfc类库中文手册"><a href="#2、VC-之mfc类库中文手册" class="headerlink" title="2、VC++之mfc类库中文手册"></a>2、VC++之mfc类库中文手册</h3><p>通过此手册查找，必须加上成员所属的类作用域(类名::)，否则，无法查找到匹配的关键字。<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303235097.png"><img src="http://image.camcad.cn/2021/07/2021072303235097.png"></a><br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303241363.png"><img src="http://image.camcad.cn/2021/07/2021072303241363.png"></a></p>
+<h2 id="Widnows字符集"><a href="#Widnows字符集" class="headerlink" title="Widnows字符集"></a>Widnows字符集</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303245229.png"><img src="http://image.camcad.cn/2021/07/2021072303245229.png"></a><br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303251399.png"><img src="http://image.camcad.cn/2021/07/2021072303251399-1024x597.png"></a></p>
+<h3 id="1-多字节字符集-8位的ANSI字符集"><a href="#1-多字节字符集-8位的ANSI字符集" class="headerlink" title="1) 多字节字符集(8位的ANSI字符集)"></a>1) 多字节字符集(8位的ANSI字符集)</h3><p>在Windows98以及以前的版本使用8位ANSI字符集，它类似于我们程序员熟悉的ASCII字符集。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> sz[] = <span class="string">&quot;ABCDEFG&quot;</span>;</span><br><span class="line"><span class="type">char</span> *psz = <span class="string">&quot;ABCDEFG&quot;</span>;</span><br><span class="line"><span class="type">int</span> len = <span class="built_in">strlen</span>(sz);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-宽字符集-16位的Unicode字符集"><a href="#2-宽字符集-16位的Unicode字符集" class="headerlink" title="2) 宽字符集(16位的Unicode字符集)"></a>2) 宽字符集(16位的Unicode字符集)</h3><p>在WindowsNT和Windows2000后开始使用16位的Unicode字符集，它是ANSI字符集的一个超集。Unicode适用于国际市场销售的应用程序，因为它包含各种各样来自非U.S.字母表的字符，比如中文，日文，韩文，西欧语言等。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在字符串前加字母L表示将ANSI字符集转换成Unicode字符集。</span></span><br><span class="line"><span class="type">wchar_t</span> wsz[] = <span class="string">L&quot;ABCDEFG&quot;</span>; </span><br><span class="line"><span class="type">wchar_t</span> *pwsz = <span class="string">L&quot;ABCDEFG&quot;</span>;</span><br><span class="line"><span class="type">int</span> len = <span class="built_in">wcslen</span>(wsz); <span class="comment">//测试宽字节字符串的长度</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-TEXT（-T）宏"><a href="#3-TEXT（-T）宏" class="headerlink" title="3) TEXT（_T）宏"></a>3) TEXT（_T）宏</h3><p>MFC中的TEXT宏可以自动适应字符类型，如果定义了预处理器程序符号_UNICODE，那么编译器将使用Unicode字符，如果没用定义该预处理器程序符号，那么编译器将使用ANSI字符。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MessageBox</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;鼠标左键&quot;</span>));</span><br><span class="line"><span class="built_in">MessageBox</span>(_T(<span class="string">&quot;鼠标左键&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-TCHAR类型"><a href="#4-TCHAR类型" class="headerlink" title="4) TCHAR类型"></a>4) TCHAR类型</h3><p>如果定义了_UNICODE符号TCHAR将变为wchar_t类型。如果没有定义_UNICODE符号，TCHAR将变为普通古老的char类型。</p>
+<h2 id="用向导生成一个MFC应用程序"><a href="#用向导生成一个MFC应用程序" class="headerlink" title="用向导生成一个MFC应用程序"></a>用向导生成一个MFC应用程序</h2><h3 id="向导流程"><a href="#向导流程" class="headerlink" title="向导流程"></a>向导流程</h3><p>在VS中选择“文件” – “新建” – “项目”：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303340665.jpg"><img src="http://image.camcad.cn/2021/07/2021072303340665.jpg"></a></p>
+<p>选择 MFC – MFC应用程序，接下来我们创建一个单文档MFC标准类型应用程序。<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303344140.png"><img src="http://image.camcad.cn/2021/07/2021072303344140.png"></a></p>
+<p>一路按默认值next，到最后一个页面：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303351063.png"><img src="http://image.camcad.cn/2021/07/2021072303351063.png"></a></p>
+<p>MFC自动为我们生成了四个类，它们的继承关系如下：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107230335403.png"><img src="http://image.camcad.cn/2021/07/202107230335403.png"></a></p>
+<h3 id="类视图"><a href="#类视图" class="headerlink" title="类视图"></a>类视图</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303362296.png"><img src="http://image.camcad.cn/2021/07/2021072303362296-1024x351.png"></a><br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303364395.png"><img src="http://image.camcad.cn/2021/07/2021072303364395-1024x574.png"></a></p>
+<h3 id="文档-x2F-视图结构体系"><a href="#文档-x2F-视图结构体系" class="headerlink" title="文档&#x2F;视图结构体系"></a>文档&#x2F;视图结构体系</h3><p>MFC应用程序框架结构的基石是文档&#x2F;视图体系结构，它定义了一种程序结构，这种结构依靠文档对象保存应用程序的数据，并依靠视图对象控制视图中显示的数据，把数据本身与它的显示分离开。</p>
+<p>数据的存储和加载由文档类来完成，数据的显示和修改则由视类来完成。 MFC在类CDocument和CView中为稳定视图提供了基础结构。CWinApp、CFrameWnd和其他类与CDocument和CView合作，把所有的片段连在了一起。</p>
+<p>CView类也派生于CWnd类，框架窗口是视图窗口的一个父窗口。主框架窗口（CFrameWnd）是整个应用程序外框所包括的部分，即图中粗框以内的内容，而视类窗口只是主框架中空白的地方。<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303374646.png"><img src="http://image.camcad.cn/2021/07/2021072303374646.png"></a></p>
+<h3 id="消息处理的添加"><a href="#消息处理的添加" class="headerlink" title="消息处理的添加"></a>消息处理的添加</h3><p>在主框架类中添加WM_LBUTTONDOWN消息的响应函数，具体操作如下：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072303382047.png"><img src="http://image.camcad.cn/2021/07/2021072303382047.png"></a></p>
+<p>从类视图中找到CMainFrame（继承自CFrameWnd），选择此类然后从属性面板中找到消息按钮 ，在消息列表中找到WM_LBUTTONDOWN消息，添加。</p>
+<p><strong>工程文件增加几处改变：</strong></p>
+<ul>
+<li>第一处：在框架类头文件中添加了鼠标左键消息函数的函数声明 </li>
+<li><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072304112270.png"><img src="http://image.camcad.cn/2021/07/2021072304112270.png"></a></li>
+<li>第二处：在框架类cpp文件中添加了消息映射宏 </li>
+<li><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072304120116.png"><img src="http://image.camcad.cn/2021/07/2021072304120116.png"></a></li>
+<li>第三处：在框架列cpp文件中添加了处理鼠标左键消息的函数定义 </li>
+<li><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072304123263.png"><img src="http://image.camcad.cn/2021/07/2021072304123263.png"></a></li>
+</ul>
+<p>我们再此OnLButtonDown函数中添加一个MessageBox消息，鼠标左键按下弹出一个提示框，然后执行程序。我们会惊奇的发现程序并未如我们所愿弹出消息框。</p>
+<p>因为，框架窗口是视窗口的父窗口，那么视类窗口就应该始终覆盖在框架类窗口之上。就好比框架窗口是一面墙，视类窗口就是墙纸，它始终挡在这面墙前边。也就是说，所有操作，包括鼠标单击、鼠标移动等操作都只能有视类窗口捕获。<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072304130746.png"><img src="http://image.camcad.cn/2021/07/2021072304130746.png"></a></p>
+<h2 id="mfc框架中一些重要的函数"><a href="#mfc框架中一些重要的函数" class="headerlink" title="mfc框架中一些重要的函数"></a>mfc框架中一些重要的函数</h2><h3 id="1-InitInstance函数"><a href="#1-InitInstance函数" class="headerlink" title="1) InitInstance函数"></a>1) InitInstance函数</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072304153074.png"><img src="http://image.camcad.cn/2021/07/2021072304153074.png"></a><br>应用程序类的一个虚函数，MFC应用程序的入口。</p>
+<h3 id="2-PreCreateWindow函数"><a href="#2-PreCreateWindow函数" class="headerlink" title="2) PreCreateWindow函数"></a>2) PreCreateWindow函数</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107230416086.png"><img src="http://image.camcad.cn/2021/07/202107230416086.png"></a></p>
+<p>当框架调用CreateEx函数创建窗口时，会首先调用PreCreateWindow函数。</p>
+<p>通过修改传递给PreCreateWindow的结构体类型参数CREATESTRUCT，应用程序可以更改用于创建窗口的属性。在产生窗口之前让程序员有机会修改窗口的外观。</p>
+<p>最后再调用CreateWindowEx函数完成窗口的创建。</p>
+<h3 id="Oncreate函数"><a href="#Oncreate函数" class="headerlink" title="Oncreate函数"></a>Oncreate函数</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072304165663.png"><img src="http://image.camcad.cn/2021/07/2021072304165663.png"></a><br>OnCreate是一个消息响应函数，是响应WM_CREATE消息的一个函数，而WM_CREATE消息是由Create函数调用的。一个窗口创建（Create）之后，会向操作系统发送WM_CREATE消息，OnCreate()函数主要是用来响应此消息的。</p>
+<p><strong>Oncreate与Create的区别：</strong></p>
+<ul>
+<li>Create()负责注册并产生窗口，像动态创建控件中的Create()一样，窗口创建之后会向操作系统发送WM_CREATE消息。</li>
+<li>OnCreate()不产生窗口，只是在窗口显示前设置窗口的属性如风格、位置等。</li>
+<li>OnCreate()是消息WM_CREATE的消息响应函数。</li>
+</ul>
+<h3 id="4-OnDraw和OnPaint"><a href="#4-OnDraw和OnPaint" class="headerlink" title="4) OnDraw和OnPaint"></a>4) OnDraw和OnPaint</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072304191211.png"><img src="http://image.camcad.cn/2021/07/2021072304191211.png"></a></p>
+<p>OnPaint是WM_PAINT消息的消息处理函数，在OnPaint中调用OnDraw，一般来说，用户自己的绘图代码应放在OnDraw中。</p>
+<ul>
+<li>OnPaint()是CWnd的类成员，负责响应WM_PAINT消息。</li>
+<li>OnDraw()是CView的成员函数，没有响应消息的功能。</li>
+</ul>
+<p>当视图变得无效时（包括大小的改变，移动，被遮盖等等），Windows发送WM_PAINT消息。该视图的OnPaint 处理函数通过创建CPaintDC类的DC对象来响应该消息并调用视图的OnDraw成员函数。OnPaint最后也要调用OnDraw,因此一般在OnDraw函数中进行绘制。</p>
+<p>通常我们不必编写OnPaint处理函数。当在View类里添加了消息处理OnPaint()时，OnPaint()就会覆盖掉OnDraw()。</p>
+<h2 id="拓展知识点"><a href="#拓展知识点" class="headerlink" title="拓展知识点"></a>拓展知识点</h2><ul>
+<li>mfc中后缀名为Ex的函数都是扩展函数。</li>
+<li>在mfc中，以Afx为前缀的函数都是全局函数，可以在程序的任何地方调用它们。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/ba6e8975.html" title="MFC新手村02：MFC入门">https://notes.camcad.cn/post/ba6e8975.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/MFC/" rel="tag"># MFC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/c5f28f8.html" rel="prev" title="MFC新手村01：Windows消息机制">
+                  <i class="fa fa-chevron-left"></i> MFC新手村01：Windows消息机制
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/4534f609.html" rel="next" title="MFC新手村03：基于对话框编程">
+                  MFC新手村03：基于对话框编程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/ba6e8975.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

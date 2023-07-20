@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="静态文本框CStatic静态文本框是最简单的控件，它主要用来显示文本信息，不能接受用户输入，一般不需要连接变量，也不需要处理消息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MFC新手村04：常用控件">
+<meta property="og:url" content="https://notes.camcad.cn/post/436fba7d.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="静态文本框CStatic静态文本框是最简单的控件，它主要用来显示文本信息，不能接受用户输入，一般不需要连接变量，也不需要处理消息。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2022/02/202202141209188-1024x696.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503011564.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503053228-1024x494.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107250305593.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107250306308.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503072239.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107250308328.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503091951-1024x486.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107250311445.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503121839.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503150998.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107250319367.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503230651.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503235340.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503260710.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503301617.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503310466-1024x486.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503323093.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503330555.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503353754.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503363417.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072503370582.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504051379.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504062655.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504071697.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504075617.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504082269.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504085590.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504114316.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504120967-1024x632.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/202107250413095.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504134452.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504142880.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504151920.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504164017.png">
+<meta property="og:image" content="http://image.camcad.cn/2021/07/2021072504172859.png">
+<meta property="article:published_time" content="2022-02-14T20:11:40.000Z">
+<meta property="article:modified_time" content="2023-07-20T07:25:02.158Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="MFC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2022/02/202202141209188-1024x696.png">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/436fba7d.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/436fba7d.html","path":"post/436fba7d.html","title":"MFC新手村04：常用控件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MFC新手村04：常用控件 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%96%87%E6%9C%AC%E6%A1%86CStatic"><span class="nav-number">1.</span> <span class="nav-text">静态文本框CStatic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">常用接口：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E6%8E%A7%E4%BB%B6%E5%8F%98%E9%87%8F%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">关联控件变量：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%8C%89%E9%92%AE-CButton"><span class="nav-number">2.</span> <span class="nav-text">普通按钮 CButton</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.1.</span> <span class="nav-text">常用接口:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E6%8E%A7%E4%BB%B6%E5%8F%98%E9%87%8F"><span class="nav-number">2.2.</span> <span class="nav-text">关联控件变量:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E6%A1%86CEdit"><span class="nav-number">3.</span> <span class="nav-text">编辑框CEdit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%EF%BC%9A"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">常用属性设置：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%8F%A3-1"><span class="nav-number">3.1.</span> <span class="nav-text">常用接口:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E6%8E%A7%E4%BB%B6%E5%8F%98%E9%87%8F-1"><span class="nav-number">3.2.</span> <span class="nav-text">关联控件变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F"><span class="nav-number">3.3.</span> <span class="nav-text">关联基本类型变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%A1%86-%E4%B8%8B%E6%8B%89%E6%A1%86-CComboBox"><span class="nav-number">4.</span> <span class="nav-text">组合框(下拉框) CComboBox</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%EF%BC%9A-1"><span class="nav-number">4.0.1.</span> <span class="nav-text">常用属性设置：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%8F%A3-2"><span class="nav-number">4.1.</span> <span class="nav-text">常用接口:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E6%8E%A7%E4%BB%B6%E5%8F%98%E9%87%8F%E5%90%8E-%E6%B5%8B%E8%AF%95%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.2.</span> <span class="nav-text">关联控件变量后,测试接口:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%8E%A7%E4%BB%B6-CListCtrl"><span class="nav-number">4.3.</span> <span class="nav-text">列表控件 CListCtrl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%8F%A3-3"><span class="nav-number">4.4.</span> <span class="nav-text">常用接口:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E6%8E%A7%E4%BB%B6-CTreeCtrl"><span class="nav-number">5.</span> <span class="nav-text">树控件 CTreeCtrl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text">常用属性设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%8F%A3-4"><span class="nav-number">5.2.</span> <span class="nav-text">常用接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%85%B3%E8%81%94%E6%8E%A7%E4%BB%B6%E5%8F%98%E9%87%8F"><span class="nav-number">5.3.</span> <span class="nav-text">1)关联控件变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87%E8%B5%84%E6%BA%90-icon"><span class="nav-number">5.4.</span> <span class="nav-text">2)添加图标资源(icon)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E6%8A%8Aico%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E6%94%BE%E5%9C%A8%E9%A1%B9%E7%9B%AEres%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD"><span class="nav-number">5.4.1.</span> <span class="nav-text">a)把ico资源文件放在项目res文件夹中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E8%B5%84%E6%BA%90%E8%A7%86%E5%9B%BE-gt-Icon-gt-%E6%B7%BB%E5%8A%A0%E8%B5%84%E6%BA%90%EF%BC%9A"><span class="nav-number">5.4.2.</span> <span class="nav-text">b)资源视图 -&gt; Icon -&gt; 添加资源：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E5%AF%BC%E5%85%A5ico%E6%96%87%E4%BB%B6"><span class="nav-number">5.4.3.</span> <span class="nav-text">c)导入ico文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%80%9A%E8%BF%87%E4%BB%A3%E7%A0%81%E5%8A%A0%E8%BD%BD%E5%9B%BE%E6%A0%87"><span class="nav-number">5.5.</span> <span class="nav-text">3)通过代码加载图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%88%9B%E5%BB%BA%E5%9B%BE%E5%83%8F%E5%88%97%E8%A1%A8"><span class="nav-number">5.6.</span> <span class="nav-text">4)创建图像列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-h-%E6%96%87%E4%BB%B6%E7%B1%BB%E4%B8%AD%E5%AE%9A%E4%B9%89%E5%9B%BE%E5%BD%A2%E5%88%97%E8%A1%A8%EF%BC%88CImageList%EF%BC%89%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.6.1.</span> <span class="nav-text">a) .h 文件类中定义图形列表（CImageList）对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-OnInitDialog-%E5%87%BD%E6%95%B0%E4%B8%AD%E5%AE%8C%E6%88%90%E5%9B%BE%E5%83%8F%E5%88%97%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA%E3%80%81%E5%9B%BE%E6%A0%87%E7%9A%84%E8%BF%BD%E5%8A%A0"><span class="nav-number">5.6.2.</span> <span class="nav-text">b) OnInitDialog()函数中完成图像列表的创建、图标的追加</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%A0%91%E6%8E%A7%E4%BB%B6%E7%9A%84%E7%9B%B8%E5%BA%94%E6%93%8D%E4%BD%9C"><span class="nav-number">5.7.</span> <span class="nav-text">5)树控件的相应操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E6%8E%A7%E4%BB%B6-CTabCtrl"><span class="nav-number">6.</span> <span class="nav-text">标签控件 CTabCtrl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9C%A8ui%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%8B%96%E6%94%BE-Tab-Control"><span class="nav-number">6.1.</span> <span class="nav-text">1) 在ui工具箱拖放 Tab Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8A%8A-TabSheet-h%E5%92%8CTabSheet-cpp-%E6%94%BE%E5%9C%A8%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E5%90%8C%E7%BA%A7%E7%9B%AE%E5%BD%95%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%B7%BB"><span class="nav-number">6.2.</span> <span class="nav-text">2)把 TabSheet.h和TabSheet.cpp 放在项目文件同级目录，并且添</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BB%99ui%E4%B8%8A-Tab-Control-%E5%85%B3%E8%81%94Control%E7%B1%BB%E5%9E%8B%EF%BC%88CTabSheet%EF%BC%89"><span class="nav-number">6.3.</span> <span class="nav-text">3)给ui上 Tab Control 关联Control类型（CTabSheet）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B7%BB%E5%8A%A0%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="nav-number">6.4.</span> <span class="nav-text">4)添加对话框</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E8%B5%84%E6%BA%90%E8%A7%86%E5%9B%BE-gt-Dialog-gt-%E5%8F%B3%E5%87%BB-gt-%E6%8F%92%E5%85%A5-Dialog"><span class="nav-number">6.4.1.</span> <span class="nav-text">a) 资源视图 -&gt; Dialog -&gt; 右击 -&gt; 插入 Dialog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%BA%94%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="nav-number">6.4.2.</span> <span class="nav-text">b) 设置相应属性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%EF%BC%9A%E7%82%B9%E5%87%BB%E5%AF%B9%E8%AF%9D%E6%A1%86%E6%A8%A1%E6%9D%BF-gt-%E5%8F%B3%E5%87%BB-gt-%E6%B7%BB%E5%8A%A0%E7%B1%BB-MyDlg1%E3%80%81MyDlg2"><span class="nav-number">6.4.3.</span> <span class="nav-text">c) 自定义类：点击对话框模板 -&gt; 右击 -&gt; 添加类(MyDlg1、MyDlg2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E4%B8%BB%E5%AF%B9%E8%AF%9D%E6%A1%86%E7%B1%BB%E4%B8%AD-%E5%AE%9A%E4%B9%89%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%AF%B9%E8%B1%A1%EF%BC%8C%E9%9C%80%E8%A6%81%E7%9B%B8%E5%BA%94%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">6.4.4.</span> <span class="nav-text">d) 主对话框类中, 定义自定义类对象，需要相应头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-%E4%B8%BB%E5%AF%B9%E8%AF%9D%E6%A1%86%E7%B1%BB%E4%B8%AD-OnInitDialog-%E5%81%9A%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E4%BD%9C"><span class="nav-number">6.4.5.</span> <span class="nav-text">e) 主对话框类中 OnInitDialog() 做初始化工作</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">283</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/436fba7d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MFC新手村04：常用控件 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MFC新手村04：常用控件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-14 20:11:40" itemprop="dateCreated datePublished" datetime="2022-02-14T20:11:40+00:00">2022-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MFC%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">MFC基础教程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/436fba7d.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/436fba7d.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2022/02/202202141209188.png"><img src="http://image.camcad.cn/2022/02/202202141209188-1024x696.png"></a></p>
+<h2 id="静态文本框CStatic"><a href="#静态文本框CStatic" class="headerlink" title="静态文本框CStatic"></a>静态文本框CStatic</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503011564.png"><img src="http://image.camcad.cn/2021/07/2021072503011564.png"></a><br>静态文本框是最简单的控件，它主要用来显示文本信息，不能接受用户输入，一般不需要连接变量，也不需要处理消息。</p>
+<span id="more"></span>
+
+<p>静态文本框的重要属性有：</p>
+<ul>
+<li>ID：所有静态文本框的缺省ID都是IDC_STATIC，静态ID，不响应任何消息（事件）</li>
+<li>Caption：修改显示的内容</li>
+</ul>
+<h3 id="常用接口："><a href="#常用接口：" class="headerlink" title="常用接口："></a>常用接口：</h3><table>
+<thead>
+<tr>
+<th align="left">接口</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CWnd::SetWindowText</td>
+<td align="left">设置控件内容</td>
+</tr>
+<tr>
+<td align="left">CWnd::GetWindowText</td>
+<td align="left">获取控件内容</td>
+</tr>
+<tr>
+<td align="left">CStatic::SetBitmap</td>
+<td align="left">设置位图(后缀为bmp的图片)</td>
+</tr>
+</tbody></table>
+<h3 id="关联控件变量："><a href="#关联控件变量：" class="headerlink" title="关联控件变量："></a>关联控件变量：</h3><p>由于XXX_STATIC静态ID是不能关联变量，故需把ID修改后，再关联变量：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503053228.png"><img src="http://image.camcad.cn/2021/07/2021072503053228-1024x494.png"></a><br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107250305593.png"><img src="http://image.camcad.cn/2021/07/202107250305593.png"></a><br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107250306308.png"><img src="http://image.camcad.cn/2021/07/202107250306308.png"></a></p>
+<p>在主对话框类OnInitDialog()中，完成相应接口测试：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503072239.png"><img src="http://image.camcad.cn/2021/07/2021072503072239.png"></a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置静态控件内容为Tom</span></span><br><span class="line">    m_label.<span class="built_in">SetWindowText</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;Tom&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取静态控件的内容</span></span><br><span class="line">    CString str;</span><br><span class="line">    m_label.<span class="built_in">GetWindowText</span>(str);</span><br><span class="line">    <span class="built_in">MessageBox</span>(str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置静态控件窗口风格为位图居中显示</span></span><br><span class="line">    m_label.<span class="built_in">ModifyStyle</span>(<span class="number">0xf</span>, SS_BITMAP  SS_CENTERIMAGE);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过路径获取bitmap句柄</span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> HBMP(filepath,width,height) (HBITMAP)LoadImage(AfxGetInstanceHandle(),filepath,IMAGE_BITMAP,width,height,LR_LOADFROMFILELR_CREATEDIBSECTION)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//静态控件设置bitmap</span></span><br><span class="line">    m_label.<span class="built_in">SetBitmap</span>(<span class="built_in">HBMP</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;./1.bmp&quot;</span>), <span class="number">300</span>, <span class="number">250</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="普通按钮-CButton"><a href="#普通按钮-CButton" class="headerlink" title="普通按钮 CButton"></a>普通按钮 CButton</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107250308328.png"><img src="http://image.camcad.cn/2021/07/202107250308328.png"></a><br>按钮是最常见的、应用最广泛的一种控件。在程序执行期间，当单击某个按钮后就会执行相应的消息处理函数。</p>
+<ul>
+<li>按钮的主要属性是Caption，来设置在按钮上显示的文本。</li>
+<li>命令按钮处理的最多的消息是：BN_CLICKED，双击按钮即可跳转到处理函数。或者，通过按钮属性 -&gt; 控制事件 -&gt; 选择所需事件，添加处理函数：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503091951.png"><img src="http://image.camcad.cn/2021/07/2021072503091951-1024x486.png"></a></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//按钮BN_CLICKED事件处理函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CMFCApplication2Dlg::OnBnClickedButton1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span>  在此添加控件通知处理程序代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用接口"><a href="#常用接口" class="headerlink" title="常用接口:"></a>常用接口:</h3><table>
+<thead>
+<tr>
+<th align="left">接口</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CWnd::SetWindowText</td>
+<td align="left">设置控件内容</td>
+</tr>
+<tr>
+<td align="left">CWnd::GetWindowText</td>
+<td align="left">获取控件内容</td>
+</tr>
+<tr>
+<td align="left">CWnd::EnableWindow</td>
+<td align="left">设置控件是否变灰</td>
+</tr>
+</tbody></table>
+<h3 id="关联控件变量"><a href="#关联控件变量" class="headerlink" title="关联控件变量:"></a>关联控件变量:</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107250311445.png"><img src="http://image.camcad.cn/2021/07/202107250311445.png"></a></p>
+<p>主对话框类OnInitDialog()中，完成相应接口测试：<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503121839.png"><img src="http://image.camcad.cn/2021/07/2021072503121839.png"></a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取按钮的内容</span></span><br><span class="line">    CString str;</span><br><span class="line">    m_button.<span class="built_in">GetWindowText</span>(str);</span><br><span class="line">    <span class="built_in">MessageBox</span>(str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置按钮内容</span></span><br><span class="line">    m_button.<span class="built_in">SetWindowText</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;^_^&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置按钮状态为灰色</span></span><br><span class="line">    m_button.<span class="built_in">EnableWindow</span>(FALSE);</span><br><span class="line">    m_button.<span class="built_in">EnableWindow</span>(TRUE);</span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑框CEdit"><a href="#编辑框CEdit" class="headerlink" title="编辑框CEdit"></a>编辑框CEdit</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503150998.png"><img src="http://image.camcad.cn/2021/07/2021072503150998.png"></a> </p>
+<h5 id="常用属性设置："><a href="#常用属性设置：" class="headerlink" title="常用属性设置："></a>常用属性设置：</h5><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Number</td>
+<td align="left">True只能输入数字</td>
+</tr>
+<tr>
+<td align="left">Password</td>
+<td align="left">True密码模式</td>
+</tr>
+<tr>
+<td align="left">Want return</td>
+<td align="left">True接收回车键，自动换行，只有在多行模式下，才能换行</td>
+</tr>
+<tr>
+<td align="left">Multiline</td>
+<td align="left">True多行模式</td>
+</tr>
+<tr>
+<td align="left">Auto VScroll</td>
+<td align="left">True 当垂直方向字符太多，自动出现滚动条，同时设置Vertical Scroll才有效</td>
+</tr>
+<tr>
+<td align="left">Vertical Scroll</td>
+<td align="left">True当垂直方向字符太多，自动出现滚动条，和Auto VScroll配合使用</td>
+</tr>
+<tr>
+<td align="left">Horizontal Scroll</td>
+<td align="left">True当垂直方向字符太多，自动出现滚动条，和Auto HScroll配合使用</td>
+</tr>
+<tr>
+<td align="left">Read Only</td>
+<td align="left">True 只读</td>
+</tr>
+</tbody></table>
+<h3 id="常用接口-1"><a href="#常用接口-1" class="headerlink" title="常用接口:"></a>常用接口:</h3><table>
+<thead>
+<tr>
+<th align="left">接口</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CWnd::SetWindowText</td>
+<td align="left">设置控件内容</td>
+</tr>
+<tr>
+<td align="left">CWnd::GetWindowText</td>
+<td align="left">获取控件内容</td>
+</tr>
+</tbody></table>
+<h3 id="关联控件变量-1"><a href="#关联控件变量-1" class="headerlink" title="关联控件变量"></a>关联控件变量</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107250319367.png"><img src="http://image.camcad.cn/2021/07/202107250319367.png"></a></p>
+<p>在主对话框类OnInitDialog()中，完成相应接口测试：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置按钮内容</span></span><br><span class="line">    m_edit.<span class="built_in">SetWindowText</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;this is a test&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取按钮的内容</span></span><br><span class="line">    CString str;</span><br><span class="line">    m_edit.<span class="built_in">GetWindowText</span>(str);</span><br><span class="line">    <span class="built_in">MessageBox</span>(str);</span><br></pre></td></tr></table></figure>
+
+<h3 id="关联基本类型变量"><a href="#关联基本类型变量" class="headerlink" title="关联基本类型变量"></a>关联基本类型变量</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503230651.png"><img src="http://image.camcad.cn/2021/07/2021072503230651.png"></a><br>若一个编辑框连接了一个Value类别的变量，则该变量就表示这个编辑框，编辑框中显示的内容就是变量的值。</p>
+<p>但是，改变了编辑框的内容并不会自动更新对应的变量的值，同样，改变了变量的值也不会自动刷新编辑框的内容。若要保持一致，需要使用UpdateData()函数更新：</p>
+<ul>
+<li>若编辑框的内容改变了，则应使用语句UpdateData(TRUE) 获取对话框数据</li>
+<li>若变量的值改变了，则应使用语句UpdateData(FALSE) 初始化对话框控件<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503235340.png"><img src="http://image.camcad.cn/2021/07/2021072503235340.png"></a></li>
+</ul>
+<p>在主对话框类OnInitDialog()中，完成相应代码测试：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">m_e1 = <span class="number">10.11</span>;</span><br><span class="line">    <span class="built_in">UpdateData</span>(FALSE); <span class="comment">//FALSE说明把m_e1的值更新到对应的控件中</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">UpdateData</span>(TRUE); <span class="comment">//TRUE说明把控件的值更新到m_e1变量中</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="组合框-下拉框-CComboBox"><a href="#组合框-下拉框-CComboBox" class="headerlink" title="组合框(下拉框) CComboBox"></a>组合框(下拉框) CComboBox</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503260710.png"><img src="http://image.camcad.cn/2021/07/2021072503260710.png"></a></p>
+<h4 id="常用属性设置：-1"><a href="#常用属性设置：-1" class="headerlink" title="常用属性设置："></a>常用属性设置：</h4><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">data</td>
+<td align="left">设置内容，不同内容间用英文的分号“;”分隔</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">显示风格</td>
+</tr>
+<tr>
+<td align="left">Sort</td>
+<td align="left">True 内容自动排序</td>
+</tr>
+</tbody></table>
+<h3 id="常用接口-2"><a href="#常用接口-2" class="headerlink" title="常用接口:"></a>常用接口:</h3><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CComboBox::AddString</td>
+<td align="left">组合框添加一个字符串</td>
+</tr>
+<tr>
+<td align="left">CComboBox::SetCurSel</td>
+<td align="left">设置当前选择项(当前显示第几项)，下标从0开始</td>
+</tr>
+<tr>
+<td align="left">CComboBox::GetCurSel</td>
+<td align="left">获取组合框中当前选中项的下标</td>
+</tr>
+<tr>
+<td align="left">CComboBox::GetLBText</td>
+<td align="left">获取指定位置的内容</td>
+</tr>
+<tr>
+<td align="left">CComboBox::DeleteString</td>
+<td align="left">删除指定位置的字符串</td>
+</tr>
+<tr>
+<td align="left">CComboBox::InsertString</td>
+<td align="left">在指定位置插入字符串</td>
+</tr>
+</tbody></table>
+<h3 id="关联控件变量后-测试接口"><a href="#关联控件变量后-测试接口" class="headerlink" title="关联控件变量后,测试接口:"></a>关联控件变量后,测试接口:</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503301617.png"><img src="http://image.camcad.cn/2021/07/2021072503301617.png"></a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加字符串内容</span></span><br><span class="line">    m_combo.<span class="built_in">AddString</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;可乐&quot;</span>)); </span><br><span class="line">    m_combo.<span class="built_in">AddString</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;雪碧&quot;</span>));</span><br><span class="line"></span><br><span class="line">    m_combo.<span class="built_in">SetCurSel</span>(<span class="number">1</span>);<span class="comment">//显示显示第1项</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取组合框中当前选中项的下标</span></span><br><span class="line">    <span class="type">int</span> index = m_combo.<span class="built_in">GetCurSel</span>(); </span><br><span class="line">    CString str;</span><br><span class="line">    m_combo.<span class="built_in">GetLBText</span>(index, str); <span class="comment">//获取指定下标的内容</span></span><br><span class="line">    <span class="built_in">MessageBox</span>(str);</span><br><span class="line"></span><br><span class="line">    m_combo.<span class="built_in">DeleteString</span>(<span class="number">0</span>); <span class="comment">//删除第0项字符串</span></span><br><span class="line"></span><br><span class="line">    m_combo.<span class="built_in">InsertString</span>(<span class="number">0</span>, _T(<span class="string">&quot;hello&quot;</span>)); <span class="comment">//在第0位置插入“hello”</span></span><br></pre></td></tr></table></figure>
+
+<p>组合框常用的事件为：CBN_SELCHANGE，当选择组合框某一项时，自动触发此事件。<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503310466.png"><img src="http://image.camcad.cn/2021/07/2021072503310466-1024x486.png"></a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">CMFCApplication2Dlg::OnCbnSelchangeCombo1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span>  在此添加控件通知处理程序代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="列表控件-CListCtrl"><a href="#列表控件-CListCtrl" class="headerlink" title="列表控件 CListCtrl"></a>列表控件 CListCtrl</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503323093.png"><img src="http://image.camcad.cn/2021/07/2021072503323093.png"></a></p>
+<p>常用属性设置：view -&gt; Report(报表方式)<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503330555.png"><img src="http://image.camcad.cn/2021/07/2021072503330555.png"></a></p>
+<h3 id="常用接口-3"><a href="#常用接口-3" class="headerlink" title="常用接口:"></a>常用接口:</h3><table>
+<thead>
+<tr>
+<th align="left">接口</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CListCtrl::SetExtendedStyle</td>
+<td align="left">设置列表风格</td>
+</tr>
+<tr>
+<td align="left">CListCtrl::GetExtendedStyle</td>
+<td align="left">获取列表风格</td>
+</tr>
+<tr>
+<td align="left">CListCtrl::InsertColumn</td>
+<td align="left">插入某列内容，主要用于设置标题</td>
+</tr>
+<tr>
+<td align="left">CListCtrl::InsertItem</td>
+<td align="left">在某行插入新项内容</td>
+</tr>
+<tr>
+<td align="left">CListCtrl::SetItemText</td>
+<td align="left">设置某行某列的子项内容</td>
+</tr>
+<tr>
+<td align="left">CListCtrl::GetItemText</td>
+<td align="left">获取某行某列的内容</td>
+</tr>
+</tbody></table>
+<p>关联控件变量后,测试接口:<br><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503353754.png"><img src="http://image.camcad.cn/2021/07/2021072503353754.png"></a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置风格样式</span></span><br><span class="line">    <span class="comment">//LVS_EX_GRIDLINES 网格</span></span><br><span class="line">    <span class="comment">//LVS_EX_FULLROWSELECT 选中整行</span></span><br><span class="line">    m_list.<span class="built_in">SetExtendedStyle</span>(m_list.<span class="built_in">GetExtendedStyle</span>()</span><br><span class="line">         LVS_EX_GRIDLINES  LVS_EX_FULLROWSELECT);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入标题</span></span><br><span class="line">    CString head[] = &#123; <span class="built_in">TEXT</span>(<span class="string">&quot;姓名&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;年龄&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;性别&quot;</span>) &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入列</span></span><br><span class="line">    m_list.<span class="built_in">InsertColumn</span>(<span class="number">0</span>, head[<span class="number">0</span>], LVCFMT_LEFT, <span class="number">100</span>);</span><br><span class="line">    m_list.<span class="built_in">InsertColumn</span>(<span class="number">1</span>, head[<span class="number">1</span>], LVCFMT_LEFT, <span class="number">100</span>);</span><br><span class="line">    m_list.<span class="built_in">InsertColumn</span>(<span class="number">2</span>, head[<span class="number">2</span>], LVCFMT_LEFT, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入正文内容，先确定行，再确定列</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        CString str;</span><br><span class="line">        str.<span class="built_in">Format</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;张三_%d&quot;</span>), i );</span><br><span class="line"></span><br><span class="line">        <span class="comment">//确定行</span></span><br><span class="line">        m_list.<span class="built_in">InsertItem</span>(i, str);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置列</span></span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">        m_list.<span class="built_in">SetItemText</span>(i, ++j, <span class="built_in">TEXT</span>(<span class="string">&quot;男&quot;</span>));</span><br><span class="line">        m_list.<span class="built_in">SetItemText</span>(i, ++j, <span class="built_in">TEXT</span>(<span class="string">&quot;23&quot;</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>程度效果图: <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503363417.png"><img src="http://image.camcad.cn/2021/07/2021072503363417.png"></a></p>
+<h2 id="树控件-CTreeCtrl"><a href="#树控件-CTreeCtrl" class="headerlink" title="树控件 CTreeCtrl"></a>树控件 CTreeCtrl</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072503370582.png"><img src="http://image.camcad.cn/2021/07/2021072503370582.png"></a></p>
+<h3 id="常用属性设置"><a href="#常用属性设置" class="headerlink" title="常用属性设置"></a>常用属性设置</h3><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">has buttons</td>
+<td align="left">True 有展开按钮</td>
+</tr>
+<tr>
+<td align="left">has lines</td>
+<td align="left">True 有展开线</td>
+</tr>
+<tr>
+<td align="left">lines at root</td>
+<td align="left">True 有根节点</td>
+</tr>
+</tbody></table>
+<h3 id="常用接口-4"><a href="#常用接口-4" class="headerlink" title="常用接口"></a>常用接口</h3><table>
+<thead>
+<tr>
+<th align="left">接口</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">fxGetApp()</td>
+<td align="left">获取应用程序对象指针</td>
+</tr>
+<tr>
+<td align="left">CWinApp::LoadIcon</td>
+<td align="left">加载自定义图标</td>
+</tr>
+<tr>
+<td align="left">CImageList::Create</td>
+<td align="left">创建图像列表</td>
+</tr>
+<tr>
+<td align="left">CImageList::Add</td>
+<td align="left">图像列表追加图标</td>
+</tr>
+<tr>
+<td align="left">CTreeCtrl::SetImageList</td>
+<td align="left">设置图形状态列表</td>
+</tr>
+<tr>
+<td align="left">CTreeCtrl::InsertItem</td>
+<td align="left">插入节点</td>
+</tr>
+<tr>
+<td align="left">CTreeCtrl::SelectItem</td>
+<td align="left">设置默认选中项</td>
+</tr>
+<tr>
+<td align="left">CTreeCtrl::GetSelectedItem</td>
+<td align="left">获取选中项</td>
+</tr>
+<tr>
+<td align="left">CTreeCtrl::GetItemText</td>
+<td align="left">获取某项内容</td>
+</tr>
+</tbody></table>
+<h3 id="1-关联控件变量"><a href="#1-关联控件变量" class="headerlink" title="1)关联控件变量"></a>1)关联控件变量</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504051379.png"><img src="http://image.camcad.cn/2021/07/2021072504051379.png"></a></p>
+<h3 id="2-添加图标资源-icon"><a href="#2-添加图标资源-icon" class="headerlink" title="2)添加图标资源(icon)"></a>2)添加图标资源(icon)</h3><h4 id="a-把ico资源文件放在项目res文件夹中"><a href="#a-把ico资源文件放在项目res文件夹中" class="headerlink" title="a)把ico资源文件放在项目res文件夹中"></a>a)把ico资源文件放在项目res文件夹中</h4><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504062655.png"><img src="http://image.camcad.cn/2021/07/2021072504062655.png"></a></p>
+<h4 id="b-资源视图-gt-Icon-gt-添加资源："><a href="#b-资源视图-gt-Icon-gt-添加资源：" class="headerlink" title="b)资源视图 -&gt; Icon -&gt; 添加资源："></a>b)资源视图 -&gt; Icon -&gt; 添加资源：</h4><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504071697.png"><img src="http://image.camcad.cn/2021/07/2021072504071697.png"></a></p>
+<h4 id="c-导入ico文件"><a href="#c-导入ico文件" class="headerlink" title="c)导入ico文件"></a>c)导入ico文件</h4><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504075617.png"><img src="http://image.camcad.cn/2021/07/2021072504075617.png"></a> <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504082269.png"><img src="http://image.camcad.cn/2021/07/2021072504082269.png"></a> <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504085590.png"><img src="http://image.camcad.cn/2021/07/2021072504085590.png"></a></p>
+<h3 id="3-通过代码加载图标"><a href="#3-通过代码加载图标" class="headerlink" title="3)通过代码加载图标"></a>3)通过代码加载图标</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载图标</span></span><br><span class="line">    HICON icon[<span class="number">3</span>];</span><br><span class="line">    icon[<span class="number">0</span>] = <span class="built_in">AfxGetApp</span>()-&gt;<span class="built_in">LoadIconW</span>(IDI_ICON1);</span><br><span class="line">    icon[<span class="number">1</span>] = <span class="built_in">AfxGetApp</span>()-&gt;<span class="built_in">LoadIconW</span>(IDI_ICON2);</span><br><span class="line">    icon[<span class="number">2</span>] = <span class="built_in">AfxGetApp</span>()-&gt;<span class="built_in">LoadIconW</span>(IDI_ICON3);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-创建图像列表"><a href="#4-创建图像列表" class="headerlink" title="4)创建图像列表"></a>4)创建图像列表</h3><h4 id="a-h-文件类中定义图形列表（CImageList）对象"><a href="#a-h-文件类中定义图形列表（CImageList）对象" class="headerlink" title="a) .h 文件类中定义图形列表（CImageList）对象"></a>a) .h 文件类中定义图形列表（CImageList）对象</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CImageList m_imageList; <span class="comment">//图像列表</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="b-OnInitDialog-函数中完成图像列表的创建、图标的追加"><a href="#b-OnInitDialog-函数中完成图像列表的创建、图标的追加" class="headerlink" title="b) OnInitDialog()函数中完成图像列表的创建、图标的追加"></a>b) OnInitDialog()函数中完成图像列表的创建、图标的追加</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//图像列表，程序完毕不能释放， 创建</span></span><br><span class="line">    <span class="comment">//30, 30: 图片的宽度和高度</span></span><br><span class="line">    <span class="comment">//ILC_COLOR32：样式</span></span><br><span class="line">    <span class="comment">// 3, 3： 有多少图片写多少</span></span><br><span class="line">    m_imageList.<span class="built_in">Create</span>(<span class="number">30</span>, <span class="number">30</span>, ILC_COLOR32, <span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//给图像列表添加图片</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//图片列表加载图标</span></span><br><span class="line">        m_imageList.<span class="built_in">Add</span>(icon[i]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-树控件的相应操作"><a href="#5-树控件的相应操作" class="headerlink" title="5)树控件的相应操作"></a>5)树控件的相应操作</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//树控件设置图片列表</span></span><br><span class="line">    m_treeCtrl.<span class="built_in">SetImageList</span>(&amp;m_imageList, TVSIL_NORMAL);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//给树创建节点</span></span><br><span class="line">    <span class="comment">//根节点，父节点，子节点</span></span><br><span class="line">    HTREEITEM root = m_treeCtrl.<span class="built_in">InsertItem</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;中国&quot;</span>), <span class="number">0</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">    HTREEITEM fathter = m_treeCtrl.<span class="built_in">InsertItem</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;北京&quot;</span>), <span class="number">1</span>, <span class="number">1</span>, root);</span><br><span class="line">    HTREEITEM son = m_treeCtrl.<span class="built_in">InsertItem</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;海淀&quot;</span>), <span class="number">2</span>, <span class="number">2</span>, fathter);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置某个节点被选中</span></span><br><span class="line">    m_treeCtrl.<span class="built_in">SelectItem</span>(fathter);</span><br></pre></td></tr></table></figure>
+
+<p>程序效果图： <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504114316.png"><img src="http://image.camcad.cn/2021/07/2021072504114316.png"></a></p>
+<p>树控件常用事件为：TVN_SELCHANGED，当选择某个节点时，自动触发此事件。 <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504120967.png"><img src="http://image.camcad.cn/2021/07/2021072504120967-1024x632.png"></a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">CMy01_TreeCtrlDlg::OnTvnSelchangedTree1</span><span class="params">(NMHDR *pNMHDR, LRESULT *pResult)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LPNMTREEVIEW pNMTreeView = <span class="built_in">reinterpret_cast</span>&lt;LPNMTREEVIEW&gt;(pNMHDR);</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span>  在此添加控件通知处理程序代码</span></span><br><span class="line">    *pResult = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    HTREEITEM selItem;</span><br><span class="line">    <span class="comment">//获得选择项</span></span><br><span class="line">    selItem = m_treeCtrl.<span class="built_in">GetSelectedItem</span>();</span><br><span class="line">    <span class="comment">//获取选中的内容</span></span><br><span class="line">    CString cs = m_treeCtrl.<span class="built_in">GetItemText</span>(selItem);</span><br><span class="line">    <span class="built_in">MessageBox</span>(cs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="标签控件-CTabCtrl"><a href="#标签控件-CTabCtrl" class="headerlink" title="标签控件 CTabCtrl"></a>标签控件 CTabCtrl</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/202107250413095.png"><img src="http://image.camcad.cn/2021/07/202107250413095.png"></a></p>
+<h3 id="1-在ui工具箱拖放-Tab-Control"><a href="#1-在ui工具箱拖放-Tab-Control" class="headerlink" title="1) 在ui工具箱拖放 Tab Control"></a>1) 在ui工具箱拖放 Tab Control</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504134452.png"><img src="http://image.camcad.cn/2021/07/2021072504134452.png"></a></p>
+<h3 id="2-把-TabSheet-h和TabSheet-cpp-放在项目文件同级目录，并且添"><a href="#2-把-TabSheet-h和TabSheet-cpp-放在项目文件同级目录，并且添" class="headerlink" title="2)把 TabSheet.h和TabSheet.cpp 放在项目文件同级目录，并且添"></a>2)把 TabSheet.h和TabSheet.cpp 放在项目文件同级目录，并且添</h3><p>加到工程目录中 <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504142880.png"><img src="http://image.camcad.cn/2021/07/2021072504142880.png"></a></p>
+<h3 id="3-给ui上-Tab-Control-关联Control类型（CTabSheet）"><a href="#3-给ui上-Tab-Control-关联Control类型（CTabSheet）" class="headerlink" title="3)给ui上 Tab Control 关联Control类型（CTabSheet）"></a>3)给ui上 Tab Control 关联Control类型（CTabSheet）</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504151920.png"><img src="http://image.camcad.cn/2021/07/2021072504151920.png"></a></p>
+<h3 id="4-添加对话框"><a href="#4-添加对话框" class="headerlink" title="4)添加对话框"></a>4)添加对话框</h3><h4 id="a-资源视图-gt-Dialog-gt-右击-gt-插入-Dialog"><a href="#a-资源视图-gt-Dialog-gt-右击-gt-插入-Dialog" class="headerlink" title="a) 资源视图 -&gt; Dialog -&gt; 右击 -&gt; 插入 Dialog"></a>a) 资源视图 -&gt; Dialog -&gt; 右击 -&gt; 插入 Dialog</h4><h4 id="b-设置相应属性："><a href="#b-设置相应属性：" class="headerlink" title="b) 设置相应属性："></a>b) 设置相应属性：</h4><ul>
+<li>Style -&gt; Child (子窗口)</li>
+<li>Border -&gt; None (无边框)</li>
+</ul>
+<h4 id="c-自定义类：点击对话框模板-gt-右击-gt-添加类-MyDlg1、MyDlg2"><a href="#c-自定义类：点击对话框模板-gt-右击-gt-添加类-MyDlg1、MyDlg2" class="headerlink" title="c) 自定义类：点击对话框模板 -&gt; 右击 -&gt; 添加类(MyDlg1、MyDlg2)"></a>c) 自定义类：点击对话框模板 -&gt; 右击 -&gt; 添加类(MyDlg1、MyDlg2)</h4><h4 id="d-主对话框类中-定义自定义类对象，需要相应头文件"><a href="#d-主对话框类中-定义自定义类对象，需要相应头文件" class="headerlink" title="d) 主对话框类中, 定义自定义类对象，需要相应头文件"></a>d) 主对话框类中, 定义自定义类对象，需要相应头文件</h4><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504164017.png"><img src="http://image.camcad.cn/2021/07/2021072504164017.png"></a></p>
+<h4 id="e-主对话框类中-OnInitDialog-做初始化工作"><a href="#e-主对话框类中-OnInitDialog-做初始化工作" class="headerlink" title="e) 主对话框类中 OnInitDialog() 做初始化工作"></a>e) 主对话框类中 OnInitDialog() 做初始化工作</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//给tab控件添加对话框</span></span><br><span class="line"><span class="comment">//IDD_DIALOG1为dlg1资源ID</span></span><br><span class="line">    m_tabCtrl.<span class="built_in">AddPage</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;系统管理&quot;</span>), &amp;dlg1, IDD_DIALOG1); </span><br><span class="line"></span><br><span class="line"><span class="comment">//IDD_DIALOG1为dlg2资源ID</span></span><br><span class="line">    m_tabCtrl.<span class="built_in">AddPage</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;系统设置&quot;</span>), &amp;dlg2, IDD_DIALOG2); </span><br><span class="line"></span><br><span class="line">    <span class="comment">//显示tab控件</span></span><br><span class="line">    m_tabCtrl.<span class="built_in">Show</span>();</span><br></pre></td></tr></table></figure>
+
+<p>程序效果图： <a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021072504172859.png"><img src="http://image.camcad.cn/2021/07/2021072504172859.png"></a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/436fba7d.html" title="MFC新手村04：常用控件">https://notes.camcad.cn/post/436fba7d.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/MFC/" rel="tag"># MFC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/4534f609.html" rel="prev" title="MFC新手村03：基于对话框编程">
+                  <i class="fa fa-chevron-left"></i> MFC新手村03：基于对话框编程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/b094a100.html" rel="next" title="Linux基础教程">
+                  Linux基础教程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/436fba7d.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
