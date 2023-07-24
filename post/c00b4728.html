@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="通过对 NX 菜单--插入--曲线--文本功能进行二次开发，实现对零件、电极等实体定制刻字功能  刻字功能实现原理：1：先用鼠标选取平面，获得选择点的坐标和面的tag_t标识 选择点可以通过C++的UI控件 Point3d pickPoint &#x3D; selection0-&gt;PickPoint() 获得选择点的坐标值。 选择的面tag_t通过 Face *iface-&gt;Tag() 获得。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NX二次开发-文本刻字功能的实现原理与核心代码(UFUN&#x2F;NX OPEN)">
+<meta property="og:url" content="https://notes.camcad.cn/post/c00b4728.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="通过对 NX 菜单--插入--曲线--文本功能进行二次开发，实现对零件、电极等实体定制刻字功能  刻字功能实现原理：1：先用鼠标选取平面，获得选择点的坐标和面的tag_t标识 选择点可以通过C++的UI控件 Point3d pickPoint &#x3D; selection0-&gt;PickPoint() 获得选择点的坐标值。 选择的面tag_t通过 Face *iface-&gt;Tag() 获得。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2020/08/202008090805192-1024x793.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2020/08/2020080908073281.jpg">
+<meta property="article:published_time" content="2020-08-09T16:15:04.000Z">
+<meta property="article:modified_time" content="2023-07-24T08:59:14.141Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="NX二次开发">
+<meta property="article:tag" content="UG二次开发">
+<meta property="article:tag" content="蚂蚁Emmet">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/c00b4728.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/c00b4728.html","path":"post/c00b4728.html","title":"NX二次开发-文本刻字功能的实现原理与核心代码(UFUN/NX OPEN)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NX二次开发-文本刻字功能的实现原理与核心代码(UFUN/NX OPEN) | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%BB%E5%AD%97%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">刻字功能实现原理：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">349</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/c00b4728.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NX二次开发-文本刻字功能的实现原理与核心代码(UFUN/NX OPEN) | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NX二次开发-文本刻字功能的实现原理与核心代码(UFUN/NX OPEN)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-09 16:15:04" itemprop="dateCreated datePublished" datetime="2020-08-09T16:15:04+00:00">2020-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/c00b4728.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/c00b4728.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a><br>通过对 NX <code>菜单--插入--曲线--文本</code>功能进行二次开发，实现对零件、电极等实体定制刻字功能</p>
+<p><img src="http://image.camcad.cn/2020/08/202008090805192-1024x793.jpg"></p>
+<h2 id="刻字功能实现原理："><a href="#刻字功能实现原理：" class="headerlink" title="刻字功能实现原理："></a>刻字功能实现原理：</h2><p>1：先用鼠标选取平面，获得选择点的坐标和面的tag_t标识 选择点可以通过C++的UI控件 <code>Point3d pickPoint = selection0-&gt;PickPoint()</code> 获得选择点的坐标值。 选择的面tag_t通过 <code>Face *iface-&gt;Tag()</code> 获得。</p>
+<p>2，自定义一个函数，来获得选择平面的法向方向和X、Y的向量值，可以定义一个vector来返回，后面刻字定义放置平面的时候需要用到，函数原型在下面会列出。</p>
+<p>3，通过NXopen C++录制手动菜单–插入–曲线–文本功能进行创建文本，可以得到以下核心的代码部分，只需要对其中 Point3d origin放置原点的位置，和Vector3d xDirection与Vector3d yDirection两个方向的向量值进行传递即可快速创建文本，核心代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Part *<span class="title">workPart</span><span class="params">(theSession-&gt;Parts()-&gt;Work())</span></span>;</span><br><span class="line"><span class="function">Part *<span class="title">displayPart</span><span class="params">(theSession-&gt;Parts()-&gt;Display())</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">Features::Text *<span class="title">nullFeatures_Text</span><span class="params">(<span class="literal">NULL</span>)</span></span>;</span><br><span class="line">Features::TextBuilder *textBuilder1;</span><br><span class="line">textBuilder1 = workPart-&gt;<span class="built_in">Features</span>()-&gt;<span class="built_in">CreateTextBuilder</span>(nullFeatures_Text);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">AnchorPosition</span>()-&gt;<span class="built_in">Expression</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;50&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">SetScript</span>(Features::TextBuilder::ScriptOptionsWestern); </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">SetAnchorLocation</span>(GeometricUtilities::RectangularFrameBuilder::AnchorLocationTypeBottomCenter);   </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Length</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;5&quot;</span>);  </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置字体的高度</span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Height</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;2&quot;</span>);  </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置长宽比例                </span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">SetWScale</span>(<span class="number">100.0</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Shear</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;0&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">AnchorPosition</span>()-&gt;<span class="built_in">Expression</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;50&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Offset</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;0&quot;</span>);   </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Length</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;1&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Height</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;2&quot;</span>);    </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置字体</span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">SelectFont</span>(<span class="string">&quot;Arial&quot;</span>, Features::TextBuilder::ScriptOptionsWestern);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置要刻的文本                </span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">SetTextString</span>(<span class="string">&quot;NX90&quot;</span>);    </span><br><span class="line"></span><br><span class="line"><span class="comment">//获取鼠标选择的坐标点Point3d pickPoint = selection0-&gt;PickPoint()        </span></span><br><span class="line"><span class="function">Point3d <span class="title">origin2</span><span class="params">(pickPoint.X, pickPoint.Y,pickPoint.Z)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过自定义函数GetxyDirection来获得返回的X、y的向量值</span></span><br><span class="line">vector&lt;<span class="type">double</span>&gt; Directi= <span class="built_in">GetxyDirection</span>(objs);</span><br><span class="line"><span class="function">Vector3d <span class="title">xDirection1</span><span class="params">(Directi[<span class="number">0</span>], Directi[<span class="number">1</span>], Directi[<span class="number">2</span>])</span></span>;</span><br><span class="line"><span class="function">Vector3d <span class="title">yDirection1</span><span class="params">(Directi[<span class="number">3</span>], Directi[<span class="number">4</span>], Directi[<span class="number">5</span>])</span></span>;</span><br><span class="line"></span><br><span class="line">Xform *xform1;</span><br><span class="line">xform1 = workPart-&gt;<span class="built_in">Xforms</span>()-&gt;<span class="built_in">CreateXform</span>(origin2, xDirection1, yDirection1, SmartObject::UpdateOptionWithinModeling, <span class="number">1.0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>4，结合UI界面的定制，可以让用户自由选择字体样式、修改字体大小、字体方向、刻字深度等功能！</p>
+<p><img src="http://image.camcad.cn/2020/08/2020080908073281.jpg"></p>
+<p>5，通过对创建好的文本进行拉伸和布尔求差，即可实现刻字功能。</p>
+<p>以下是自定义的函数来获得选择面的X和Y的向量值，通过vector来返回一个数组。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">double</span>&gt; <span class="title">GetxyDirection</span><span class="params">(<span class="type">tag_t</span> object_tag)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UF_initialize</span>();</span><br><span class="line">    <span class="type">double</span> wsc_9[<span class="number">9</span>]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;; <span class="comment">//3x3矩阵</span></span><br><span class="line">    <span class="type">tag_t</span> matrix_id=NULL_TAG;  <span class="comment">//3x3矩阵标识</span></span><br><span class="line">    <span class="type">double</span> o_point[<span class="number">3</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;   <span class="comment">//坐标原点</span></span><br><span class="line">    <span class="type">tag_t</span> csys_id;            <span class="comment">//坐标标识</span></span><br><span class="line">    <span class="type">double</span> x_vec[ <span class="number">3</span> ]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;<span class="comment">//坐标x方向</span></span><br><span class="line">    <span class="type">double</span> y_vec[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;<span class="comment">//坐标y方向</span></span><br><span class="line">    <span class="type">double</span> z_vec[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;<span class="comment">//坐标z方向</span></span><br><span class="line">    <span class="type">int</span>  is_equal;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> type=<span class="number">0</span>;  <span class="comment">//判断面类型</span></span><br><span class="line">    <span class="type">int</span> norm_dir=<span class="number">0</span>;</span><br><span class="line">    <span class="type">double</span> point[<span class="number">3</span>]; <span class="comment">//轴中心 点</span></span><br><span class="line">    <span class="type">double</span> dir[<span class="number">3</span>];    <span class="comment">//轴方向</span></span><br><span class="line">    <span class="type">double</span> box[<span class="number">6</span>];    <span class="comment">//极点坐标</span></span><br><span class="line">    <span class="type">double</span> radius[<span class="number">1</span>];   <span class="comment">//半径 圆锥=最小半径 + 最大半径 /2</span></span><br><span class="line">    <span class="type">double</span> rad_data[<span class="number">3</span>]; <span class="comment">////面法向</span></span><br><span class="line">    <span class="type">double</span> z_vec2[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="type">double</span> uvs[<span class="number">4</span>];   <span class="comment">//面uv最小和最大值</span></span><br><span class="line">    <span class="type">double</span> param[<span class="number">2</span>];   <span class="comment">//输入U,V方向值</span></span><br><span class="line">    <span class="type">double</span> x_point[<span class="number">3</span>];   <span class="comment">//面点坐标</span></span><br><span class="line">    <span class="type">double</span> y_point[<span class="number">3</span>];   <span class="comment">//面点坐标</span></span><br><span class="line">    <span class="type">double</span> u1[ <span class="number">3</span> ];    <span class="comment">//输出 输出一阶导数在U位置</span></span><br><span class="line">    <span class="type">double</span> v1[ <span class="number">3</span> ];    <span class="comment">//输出 输出一阶导数在V位置</span></span><br><span class="line">    <span class="type">double</span> u2[ <span class="number">3</span> ];    <span class="comment">//输出 输出二阶导数在U位置</span></span><br><span class="line">    <span class="type">double</span> v2[ <span class="number">3</span> ];    <span class="comment">//输出 输出二阶导数在V位置</span></span><br><span class="line">    <span class="type">double</span> unit_norm[<span class="number">3</span>]; <span class="comment">//输出面上该点的矢量方向--------输出矢量方向</span></span><br><span class="line">    <span class="type">double</span> radii[ <span class="number">2</span> ];     <span class="comment">//输出，双半径，输出主曲率半径</span></span><br><span class="line">    <span class="type">double</span> vec[ <span class="number">3</span> ];<span class="comment">//输入向量</span></span><br><span class="line">    <span class="type">double</span> tolerance=<span class="number">0.001</span>; <span class="comment">//输入公差</span></span><br><span class="line">    <span class="type">double</span> magnitude[<span class="number">1</span>];   <span class="comment">//输出 向量的大小</span></span><br><span class="line">    <span class="type">double</span> unit_vec[ <span class="number">3</span> ];   <span class="comment">//输出单位向量</span></span><br><span class="line">    <span class="type">tag_t</span> point_tag=NULL_TAG;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_data</span> (object_tag,&amp;type,point,dir,box,radius,rad_data,&amp;norm_dir); </span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_uv_minmax</span> (object_tag, uvs); <span class="comment">//获得面u,v参数空间（u,v最小,最大值）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获得曲面上的中点</span></span><br><span class="line">    param[<span class="number">0</span>]=(uvs[<span class="number">0</span>]+uvs[<span class="number">1</span>])/<span class="number">2</span>; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=(uvs[<span class="number">2</span>]+uvs[<span class="number">3</span>])/<span class="number">2</span>; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,o_point,u1,v1,u2,v2,unit_norm,radii);</span><br><span class="line">    <span class="comment">//坐标z方向=曲面矢量方向</span></span><br><span class="line">    wsc_9[<span class="number">6</span>]=unit_norm[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">7</span>]=unit_norm[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">8</span>]=unit_norm[<span class="number">2</span>];</span><br><span class="line">    z_vec[<span class="number">0</span>]=wsc_9[<span class="number">6</span>];</span><br><span class="line">    z_vec[<span class="number">1</span>]=wsc_9[<span class="number">7</span>];</span><br><span class="line">    z_vec[<span class="number">2</span>]=wsc_9[<span class="number">8</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//x方向单位向量</span></span><br><span class="line">    param[<span class="number">0</span>]=(uvs[<span class="number">0</span>]+uvs[<span class="number">1</span>])/<span class="number">2</span>; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=uvs[<span class="number">3</span>]; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,x_point,u1,v1,u2,v2,unit_norm,radii);<span class="comment">//获得曲面上的点</span></span><br><span class="line">    vec[<span class="number">0</span>]=x_point[<span class="number">0</span>]-o_point[<span class="number">0</span>];</span><br><span class="line">    vec[<span class="number">1</span>]=x_point[<span class="number">1</span>]-o_point[<span class="number">1</span>];</span><br><span class="line">    vec[<span class="number">2</span>]=x_point[<span class="number">2</span>]-o_point[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">UF_VEC3_unitize</span> (vec,tolerance,magnitude,unit_vec); </span><br><span class="line">    wsc_9[<span class="number">0</span>]=unit_vec[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">1</span>]=unit_vec[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">2</span>]=unit_vec[<span class="number">2</span>];</span><br><span class="line">    x_vec[<span class="number">0</span>]=wsc_9[<span class="number">0</span>];</span><br><span class="line">    x_vec[<span class="number">1</span>]=wsc_9[<span class="number">1</span>];</span><br><span class="line">    x_vec[<span class="number">2</span>]=wsc_9[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//y方向单位向量</span></span><br><span class="line">    param[<span class="number">0</span>]=uvs[<span class="number">0</span>]; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=(uvs[<span class="number">2</span>]+uvs[<span class="number">3</span>])/<span class="number">2</span>; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,y_point,u1,v1,u2,v2,unit_norm,radii);<span class="comment">//获得曲面上的点</span></span><br><span class="line">    vec[<span class="number">0</span>]=y_point[<span class="number">0</span>]-o_point[<span class="number">0</span>];</span><br><span class="line">    vec[<span class="number">1</span>]=y_point[<span class="number">1</span>]-o_point[<span class="number">1</span>];</span><br><span class="line">    vec[<span class="number">2</span>]=y_point[<span class="number">2</span>]-o_point[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">UF_VEC3_unitize</span> (vec,tolerance,magnitude,unit_vec); </span><br><span class="line">    wsc_9[<span class="number">3</span>]=unit_vec[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">4</span>]=unit_vec[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">5</span>]=unit_vec[<span class="number">2</span>];</span><br><span class="line">    y_vec[<span class="number">0</span>]=wsc_9[<span class="number">3</span>];</span><br><span class="line">    y_vec[<span class="number">1</span>]=wsc_9[<span class="number">4</span>];</span><br><span class="line">    y_vec[<span class="number">2</span>]=wsc_9[<span class="number">5</span>];</span><br><span class="line">    <span class="comment">//---</span></span><br><span class="line">    <span class="comment">//输入x和y方向，获得3x3矩阵</span></span><br><span class="line">    <span class="built_in">UF_MTX3_initialize</span>(x_vec,y_vec,wsc_9);</span><br><span class="line">    <span class="comment">//输入一个矩阵返回z方向向量</span></span><br><span class="line">    <span class="built_in">UF_MTX3_z_vec</span>(wsc_9,z_vec2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断2个3维向量是否相等</span></span><br><span class="line">    <span class="built_in">UF_VEC3_is_equal</span>(z_vec,z_vec2,<span class="number">0.01</span>,&amp;is_equal);</span><br><span class="line">    <span class="keyword">if</span>(is_equal!=<span class="number">1</span>)  <span class="comment">//不相等</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获得3维向量反向</span></span><br><span class="line">        wsc_9[<span class="number">3</span>]=-wsc_9[<span class="number">3</span>];</span><br><span class="line">        wsc_9[<span class="number">4</span>]=-wsc_9[<span class="number">4</span>];</span><br><span class="line">        wsc_9[<span class="number">5</span>]=-wsc_9[<span class="number">5</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="type">double</span>&gt; matdouble;</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">0</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">1</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">2</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">3</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">4</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">5</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>转载：<a target="_blank" rel="noopener" href="http://www.vmould.cn/?post=79" title="http://www.vmould.cn/?post=79">http://www.vmould.cn/?post=79</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/c00b4728.html" title="NX二次开发-文本刻字功能的实现原理与核心代码(UFUN&#x2F;NX OPEN)">https://notes.camcad.cn/post/c00b4728.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" rel="tag"># NX二次开发</a>
+              <a href="/tags/UG%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" rel="tag"># UG二次开发</a>
+              <a href="/tags/%E8%9A%82%E8%9A%81Emmet/" rel="tag"># 蚂蚁Emmet</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/bfbcff9b.html" rel="prev" title="NX二次开发-实现缩略图源代码，包含h头文件和cpp文件代码">
+                  <i class="fa fa-chevron-left"></i> NX二次开发-实现缩略图源代码，包含h头文件和cpp文件代码
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/738fb218.html" rel="next" title="NX二次开发-获取面的最外边缘实例代码(UFUN)">
+                  NX二次开发-获取面的最外边缘实例代码(UFUN) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/c00b4728.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

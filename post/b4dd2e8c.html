@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="有东西被加密了, 请输入密码查看.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NX二次开发-选择范围（Selection Scope）设置（UF_load_library）">
+<meta property="og:url" content="https://notes.camcad.cn/post/b4dd2e8c.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="有东西被加密了, 请输入密码查看.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-22T18:43:58.000Z">
+<meta property="article:modified_time" content="2023-07-24T08:59:14.145Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="公共">
+<meta property="article:tag" content="NX二次开发">
+<meta property="article:tag" content="UG二次开发">
+<meta property="article:tag" content="蚂蚁Emmet">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/b4dd2e8c.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/b4dd2e8c.html","path":"post/b4dd2e8c.html","title":"NX二次开发-选择范围（Selection Scope）设置（UF_load_library）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NX二次开发-选择范围（Selection Scope）设置（UF_load_library） | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">349</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b4dd2e8c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NX二次开发-选择范围（Selection Scope）设置（UF_load_library） | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NX二次开发-选择范围（Selection Scope）设置（UF_load_library）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-22 18:43:58" itemprop="dateCreated datePublished" datetime="2020-08-22T18:43:58+00:00">2020-08-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/b4dd2e8c.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/b4dd2e8c.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="4f585c519b17add632da3dba9c0fca1d9e83203e2267a9adb13b8a901de5f19d">fb04e05d482b8255deb45e64d81692f95ff5421f6a3c4d6ffe4d08eb4bb497cda235247f658fe3d7008b08d4a2528097ef22d74c79afd2deb97143ea2662b4c8b6971b269f1f32de32e722ed2a8205c642a70a8f6df195eac718e4bf9a11c3af48106fe0a25ed3b366e26b3d8eddbe9d920f6383d034cfdd53bb8c49774a6d4d8795eaa35d95612469b3fcfc33cd2620633871cc121f8bdc08442b55166d51813dfc1df82643f9e600fb8af3db6088331d73d8cdc9116d77adeba545c2dbc8ba991cc2bc60f1a8d6b80d0baf44386983f27fabd28de53e9a919f0b66568297adfe4e583ae95e4e5bbf416965cf23fbf9b96dd1ff12961c681be1b60c3c7809ccd1d753743df8c11d12b50bfed0b4b090365f5ee130506e1da39438ab4138ae94c2b4fe1aff95d72a22ad7be0fdd32a3f70c914621db1a708f009bfa71ae4bd148d274d2c6a9dd5ad936d561ee738af0affaeb35986f48f32e03296cf8bbc785ce4c270f73dbf0447ad9476bb18196f3860cd9b4ad187b2b8c12f8ce11b449635e5dbbaa3018005780b1e306fb96b463a90835245671a4e551c555a32d20da4fa8b1ce6ede2067396ca71705b273e01bd22b1ea71266e04de3dd2ca440eecdb6e3602cd776f69002710e32299249409784c55fa8b0ff93c0572774793aee426e4ad58e393c44b31053d67fa12cd14e8f2a8ff2a30663b0c479ff591c10e61e25c472e561585107bc89a5f1cc53bacddf4a7540bddb819bb4e015d97794e1ac999d63672671663e2eba70f18940575d1dffea40efc7ac3ccbd2c68c672eae7bc9108ecf9c2242ab8caa30f19a8a9a98a3b0c25fdf41b67a817661b94dd8bdec8a83420b00c1fb2b4c3dc2a741fb3f6559c8a1e2c6dfae8b120fb50bf2c6b5ec5b5922a1dafb7097837aa2f6979dbbe4982863ddfce1ebc14a54cf50ca0eb55790dca8fd0fe034b201fab2af81153c45e78d12eb7be69f7780c280f77af88cfcd102aafa4e632d34a0d4574337147c0e57065bdacd8dff69b8f37c3e2897931058e55f937945438859abec81a8d8dafb8db34f2b2aaf1a38089f402ebadebeda3c914c8fa5c978c6a09ae801b66e53291c907377b6ef5f1e2bc3a5294f1d2570ba4f73eef47f37a96986fb3da28b9e67abb74f9c0566cf9b42880e490d237b3c151620c72468cbe6183d5610292ac69dfa3b312b334daef53a6199690044ef352dde92995ee3fc32c33fc7bdceffbe666999b5cca747c4a992458fbef5dd8ea86f9f0bae2a0f045fe845dbcbbc5d19cfcaeb007d9e9464e428ba52d2cacd4ec6b0c9ee92c9d186461388c858ee6964c75a1121b1222abf0c56296e8508b5bccb5b58fe3cb305e66981faaa85d816683e82487cffd13b9ca3c21627e9cf4126fb4ff4038c83a1321c3729837d1775aedcc71ecbf67c4a99d9ffa24c0583115752addd345a0965c450beb331cc1aaf5d2b8bf35ad3b5850a3934c39247c18398f72ee0b45b18c89fc742600c13ffc153d67180df84bf1aece50aeeddec1c56432074d55236e2ae21fa8fa2b9a1bfa16a930bd8c5fa793748eb267733347d0f51937d0f88c69a03454404b73ad9ce9c5a64551852fec70da7863538421e5289c29052b417a9c375f3f8f4f5a78ecf37daa412c4de734f95654f0c0e765b1e97c6eea8217f0e946cd3d5be3ba0207adef3b81c091828b86ddc2cf5b65dadecfd1bb546fa92033884d5b0758b591c5c20467254283d9b5800ee6413740ba15e1e24b6be8913833e04e4d18c9f74e7b003e0573c2cd6115578b4f2c1dfa047b0aa7e6722e71599bb567b34e2333816bc3895b95c107c5e34a4771a8f1cce034d14ae76c17eba8dad61c503f3be65f58695588ed24bdf41e5179eb5541fd7d3ee5d6015b43d3292a8e1ffd75186f85af42fffe7158e15dc4828e6d9fbda17957e9acae852a0f739b367ef6cdcdbac2231094cefabf07f7be6849c21dded4ae10e70b3bbd967361492863e1310b7f63a0de1d7524872989b404d385ac7d9dd104da731b4473ec915b0c9f77f653b0cc3780c5388924a6ba7e2f311ee9203555d0139bfa981ba4bddc5d460b190d496f909d283d1cabc8553938c0eea6abed044438d0c6825ccb6f01148eb01f9f6eb6e95a5ae7cc2e823acbd95169a9dc159810ff44760faa3f9ed3be3a70a9169ac73d09e0761a40ffec1d4054ce5b3233c36efa2a811d55bf5e55a66620029fd4539eff7d8199a5544ec4b38ad1fd6fc96aed724f9d3d28f1a71ac150b983b1195d0be7d45a224d1dbbf7f14294b984909a8c58ae27d8927204edaafbd3874dabbeb30dfe5cad297a76a580a5540a12218dfbf9ed3ad4191c44587c05b3514dfc038d4f82cc489fc71c08d73d356d0deb8d5f5b65373dc3646477aab280a126009b6e0411079641ab1cb81da25e80abc77b55c5446605f19d31c6628b252da1861cc3f875574c87b5169f677cbff580de684ac1115d705921fce1877af7a7d797af0bf8565de1fdee337ed88caf3cba18bc4883b759330ad8d36c336e91025bc8bbad80325e5056c508098b904ecac708146db685cbc8a301f6eeb7c853b802fc9fbf92dc523b1b76deb4277bdbdd121251edea8da66ca4136d6700cf44db469492098d9bfaa723bffcc9ae367f8a29db454360d58e2f2908f966d89e61819cd568132e12fb8d53186546547df01c5197e503bf308da877f404d3f853fe9edd0e0ac055c52cad7e37bd846aa453d1cd4088a5b88818c1b87cecddba616cea5b7c3b0ca07bb593e81c9f1e26665dea8a6bb2526aae5e7de2405edc22d39338b7eec8d59f470e28653151790768e92ddba8b99e051e475fd4ebdd6d74eaec111dba2136dbdd79a7f4877b1064f2dd118fbb3fb5db1a0ff50bb9a6af9baf0714866f4cbe6784d556e21d739f2e5822f7d9697925175385184d1eb192e958af0ba6caf9814aaa66da579afbbf3255c172fae87ae170c17218bef48c09655f41000531ae992a78e5904ad011fcffe0e3e88f2ebd162b5cf03db69302fe79b3613f0feb03fd370a5bc697f1edaf4b279fb2bf87c20c74e8f0567a9d6af28aab78e04c8e5981c83c2315338d994805e41f4c23c0092c59ffaef1c39c2f408b47d88c8bba8fa5d7f9037071cb9328b5cf4b299c37ceb74ef714cfd0293dd49e89c8eaec117b3e9465a43087b82c42b3a03213332e7bc36d2b7eb9f5f6487539ed25ba33c317d667f603355a6d9743626a9031e2a933bcd72ee45bddcd6e71f3d5590089ae32b2535096e02f6f659db4abb82bb19b196cbf95ef57996f9f26df0626457373cc49a978346a5a3caee335f36523cabb50a996cc0d0f458886ea9ea00d7bcc896fe18a0698b83c04f34630cac2da7a0066928f9ddc8906c37e20387a4c13b1e80ec6a7fd20e184d6241e5ad5d0b9823841afb1087908d27676959225bc8482de501a7425f92f86a538d2a3191120bfaf3ebce5c4fbd5c97429c338eb23b9555f3aef55fcb45e08a7205a008704152e7b0429b815dbbdf38267b687463407c5cae242c141705b52b82fac8832d80aabc3fa7d0d221ab4f9dbc9902e7bae4a8e8a4cd2a0e181472ca2b39dde7a46491ac3326f9ce131a6669c1b2f69c9fdf5ff71706d1538a828a63ce5c072fd638335a41a81fc79265b96b7fb3968eefe1365c869c40fe8d18accef1194b526971835e14357c971adcadabf7ad8a48a96caf9afd0a42a8c9b5a58fa88f0dcafa67ba36a605e392e334b063bc3204fc96683c8530d3a555bc0cc3709cfb1c784498f2ca372e0d93b1913951e86dc48d78fe8a67710882abfcbea716ba433877e810a21b90e87957bafe0ffda18b311ab9bb7d189e9a99536473e5e466aa22143f128eac7fda1058a201196587a2e7e6a4af7e9b342a1827b8c67503b88d1cf0f68cd7d998338c24315c08f8f77004a0cca126fda94e9fb62aab8bf9d3c7f5f708fd2ab506550a3db141f6d8234eb2706fc2296b6774d9abb665ded32b0a131968dc9d6e52148c7d21de676de0551a5484fccd7ffff8f5461aa8000b56aa54bb615fea49c9d359269cf31fe288a89573718d93d27d6b73c477176a29d91dab3969dfc25191379a9bad0b76f07595d6ce16440ebbbbbdf72c995eb4dd7e1e78823f48881a0ad50616b9c3aa8f3199b1c28372d68b37921a449e425298c205e2dca050800d3fde874f4b5ef929c60406afb454c1c93983638215b5082eeb2e258e17e6df00e942ed6741bd53f014cd26d702f7e81c42e43cae2305d04ba0425f1060e0ee5cdfd88eac2ef35c617c3ea08f94383969e850c8e27e8724d4cfbb188963399f6df7b022927b1713a359bc1fc653ac841d3a272059e5b6565e37086ed919314a20214eca5f798e887c77c679a7acffbee6f007b52c40b940090efc5cc63e92f90462a35f3a5a57560f9d46d8b89934a3b7fd6bc82afc3c359023f56caf218e383971a11a7b772c2be718dca4436c63c928c631679693fb0549b02193b834e2b55715958048aa989f3143a5c4b8c330aa7e14f2923cceb2530f27329949fd58db0bff23ba6ac4bec4491c5a6cf579513e6b1d147927eb6a5bafb4c78023a0a62e2777c05df9d4d769dc6aacf9057794aa28256364522b0fc0a9612cd6ce487789f41c6d5b7753ca1a22aff34062a2e0bde07010dfc356471bad0615b1d8e636af8963b7745b7352f929355f13d550ac0ebf4a2494d5e1f7fe152051dc734d6890ff09597e769c503500d4f8f1d536c923dabefbe23f1d018fcec3b78bccbc99f50a2d9b4d5971e6af47b5453be138000adb92785bdfff46bffed6b045469157ce4bb59fd3531e1c3987479c0b22f3a37ee938c9a5f4b1a14de05d24572191109835b5bd4bfa6de5c056313e2ebc6be91f38c7c4eedaf4f442484044411f5e1a4a8edaad470788da3a8978b853889b98afd18acf099eabf33f4cbb59c85f74088800e05d87bfe0b4148f4dcbb2236b6b477dd44c21c020c5102b280e5232f364345ee8207f85d746b1e01fd75bb52290c5d0ce9457c9709182a5140697998ffd3cddf7317064b28b8a26b7de753594ba8a26421d1c958b11e37ed05a7596a5c9b3b4ce5f135f1df9a7838a612b492b29e1ddc45a29612c43141cc19593015ccdc09336252db6f58c2a7d454f7e9578103ab05421a3e8e93d8e80aed90a6a7f935ed408e1d2092dcca91cbf7409a1bedd76072827d2aa26154f17b1aabe79477646382eb1eac67543adbf83ef94884bd68f574a806d7be15599a93c73b581fa978834a95e28c3c8850b9ed515fa7d19e0a70d7f530871529be42509bed43305d2838e7010f7a0681968b7f07ff30d6e13c1f796131a84cf0c913d0eaa55745cbc67ffc957e7f4ced2d6698b198016bc01d218d7d9ae12dd19b1e6391146c62f73cdae1de1b36107c958ec128f5aedfacd17c4abad20a08e12590b8dafce981dd7a075ee50d010832ef324cc32c90ce637bb194a7ae9edea43c2188688507ef7d6c8f87696cfd025721a3d69f5ec4ff630c995c66a43a6a8a23ebd9b82a2c1901924db06161da131251c3d838b14740db9c3db2ee50c7acf84c3f2c49c9b9d705461960304e9814dd88eff0576d84fa8ea510af5d3264a4e06a52878cbd76ace925309b8129f9d0151d6b61881faaa599cc5472b78e91a55bd5c35ce15e2e245e04aa0cbf358475afff7e2c29b8d35832bae56e28578bdea18531c49c40c1b34a5e1060d84858e0b65c5458eabe385488bf3edc78fc28e0f1dd466af0b6749afbe8e346ced0f2fbe427981bb32d070bd4859f6f767e06fbc396059b1c81e8e15f7967b8e105382a8bbf74cc77458766b8be01bfa0c96ec224b6f4a054dfa783125b9e923dd5c0288a1575aed2de5650c5a5a338079be8104348474cbc0845ea5afcb94f0b67386839b3f26896e36e83cd8bc72d50417a0a474ee7e85e5cafda799b334cc9bd25c9bd3dd779c91cc393bc99016cb86ffb3671fb43c238c0adda712fb3d878dd63d33d7be68e6fc126cddf139758f70a02771d7c57f5903871d86744f3ebedadfdb4074dcb1ca353cab27a85a62b1cc4634ee3790616f1f4f6e0a0aa204811dbc34ec7fe6c3657931005da3d9db99ca4a5b8db525c365f0c43dd7c68b79514cb63f739028d71d360fadd60fca56ef0376e674602cef7dd2f0b7d3e8c8c8246be3a3d7c1083e1af083e680c143d867277550414c8a9398997bc7e78cd6209e3fa6201e5ebad2e73aaaf8b5b5476f9075f0453c201eea5e4ece5c1c6b3ef79d384af2adc2195d27df494fbdc3060a034c3a8161ed2b8</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/b4dd2e8c.html" title="NX二次开发-选择范围（Selection Scope）设置（UF_load_library）">https://notes.camcad.cn/post/b4dd2e8c.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%AC%E5%85%B1/" rel="tag"># 公共</a>
+              <a href="/tags/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" rel="tag"># NX二次开发</a>
+              <a href="/tags/UG%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" rel="tag"># UG二次开发</a>
+              <a href="/tags/%E8%9A%82%E8%9A%81Emmet/" rel="tag"># 蚂蚁Emmet</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/43aa50b8.html" rel="prev" title="NX二次开发-求对象的最大边界框（UF_MODL_ask_bounding_box）">
+                  <i class="fa fa-chevron-left"></i> NX二次开发-求对象的最大边界框（UF_MODL_ask_bounding_box）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/c4e3a88a.html" rel="next" title="NX二次开发-获取面的中心（UF_MODL_ask_face_uv_minmax、UF_MODL_ask_face_props）">
+                  NX二次开发-获取面的中心（UF_MODL_ask_face_uv_minmax、UF_MODL_ask_face_props） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/b4dd2e8c.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
