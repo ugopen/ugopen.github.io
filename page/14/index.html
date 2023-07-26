@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">349</span>
+          <span class="site-state-item-count">358</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -194,6 +194,911 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/3eb7db29.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/3eb7db29.html" class="post-title-link" itemprop="url">NX二次开发-UDO用户自定义对象(UFUN)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-07 10:31:13" itemprop="dateCreated datePublished" datetime="2020-08-07T10:31:13+00:00">2020-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/3eb7db29.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/3eb7db29.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg"></a></p>
+<h3 id="一、UDO概述"><a href="#一、UDO概述" class="headerlink" title="一、UDO概述"></a>一、UDO概述</h3><p>用户定义对象（User Defined Objects &#x3D; UDO）允许您在NX中添加自己的自定义对象，以最大限度地提高生产力。当需要NX中不存在的对象时，可以使用UDO。定义存储在UDO中的数据，并定义它在NX中的行为。<br><code>警告：在打开包含UDO的部件之前，确保包含UDO类和定义的行为（即回调和属性）的所需库存在于NX会话中是很重要的。默认情况下，NX不会发出任何关于此类丢失库的警告或通知。所需的库可以在系统初始化期间自动加载到NX中。 </code></p>
+<h4 id="启动时自动加载"><a href="#启动时自动加载" class="headerlink" title="启动时自动加载"></a>启动时自动加载</h4><p>在交互式会话和外部NX-Open程序的系统初始化期间，类和方法可以自动加载到NX中。要加载类和方法，请自动创建一个包含启动、应用程序和udo子目录的用户目录。创建用户目录结构后，将基本目录添加到$UGII_base_DIR&#x2F;UGII&#x2F;ug菜单中的custom_dirs.dat文件中。然后，将库放置在“udo”目录中。</p>
+<p>例如，如果将目录“&#x2F;user&#x2F;myhome”添加到custom_dirs.dat，则将库放置在目录“&#x2F;uuser&#x2F;myhome&#x2F;udo”中。<br><img src="http://image.camcad.cn/2023/07/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91-UDO%E5%90%AF%E5%8A%A8%E6%97%B6%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD.png" alt="NX二次开发-UDO启动时自动加载"></p>
+<h3 id="二、代码"><a href="#二、代码" class="headerlink" title="二、代码"></a>二、代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">       Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">                    All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> std::ostringstream;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"><span class="keyword">using</span> std::ends;</span><br><span class="line"><span class="keyword">using</span> std::cerr;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_exit.h&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_disp.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Session.hxx&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Part.hxx&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/PartCollection.hxx&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Callback.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/NXException.hxx&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UI.hxx&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Selection.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/LogFile.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/NXObjectManager.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/ListingWindow.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/View.hxx&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedClass.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedClassManager.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedObject.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedObjectManager.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedEvent.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedDisplayEvent.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedLinkEvent.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedObjectDisplayContext.hxx&gt;</span> </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;elog.hpp&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> NXOpen;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> NXOpen::UserDefinedObjects;</span><br><span class="line"></span><br><span class="line"><span class="comment">//静态变量 </span></span><br><span class="line"><span class="type">static</span> NXOpen::Session* theSession = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">static</span> UI* theUI = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">static</span> UserDefinedClass* myUDOclass = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// 回调名称: myDisplayCB </span></span><br><span class="line"><span class="comment">// 这是一个与显示UDO相关联的回调方法。</span></span><br><span class="line"><span class="comment">// 这个相同的回调被注册用于显示、选择、拟合和关注点</span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">myDisplayCB</span><span class="params">(UserDefinedDisplayEvent* displayEvent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 获取用于定义此UDO的选定屏幕位置的替身。</span></span><br><span class="line">        std::vector&lt;<span class="type">double</span>&gt; myUDOdoubles = displayEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">GetDoubles</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用替身定义五角星的点 </span></span><br><span class="line">        <span class="function">std::vector&lt;Point3d&gt; <span class="title">myPoints</span><span class="params">(<span class="number">6</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">0</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">47.55282581476</span>;</span><br><span class="line">        myPoints[<span class="number">0</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">15.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">0</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">1</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">-47.55282581476</span>;</span><br><span class="line">        myPoints[<span class="number">1</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">15.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">1</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">2</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">29.38926261462</span>;</span><br><span class="line">        myPoints[<span class="number">2</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">-40.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">2</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">3</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">0.00000000000</span>;</span><br><span class="line">        myPoints[<span class="number">3</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">50.00000000000</span>;</span><br><span class="line">        myPoints[<span class="number">3</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">4</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">-29.38926261462</span>;</span><br><span class="line">        myPoints[<span class="number">4</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">-40.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">4</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">5</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">47.55282581476</span>;</span><br><span class="line">        myPoints[<span class="number">5</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">15.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">5</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 显示上下文</span></span><br><span class="line">        UserDefinedObjectDisplayContext* dispContext = displayEvent-&gt;<span class="built_in">DisplayContext</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 显示五角星</span></span><br><span class="line">        dispContext-&gt;<span class="built_in">DisplayPolyline</span>(myPoints);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 显示五角星中心文本</span></span><br><span class="line">		Point3d myPt = <span class="built_in">Point3d</span>(myUDOdoubles[<span class="number">0</span>], myUDOdoubles[<span class="number">1</span>], myUDOdoubles[<span class="number">2</span>]);</span><br><span class="line">        dispContext-&gt;<span class="built_in">DisplayText</span>(<span class="string">&quot;Text\nEmmet&quot;</span>, myPt, UserDefinedObjectDisplayContext::TextRefMiddleCenter);</span><br><span class="line">        <span class="keyword">delete</span> dispContext;</span><br><span class="line">        <span class="keyword">delete</span> displayEvent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (NXException ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ---- Enter your exception handling code here ----- </span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// 回调名称: myEditCB </span></span><br><span class="line"><span class="comment">// 这是一个与编辑UDO相关联的回调方法。</span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">myEditCB</span><span class="params">(UserDefinedEvent* editEvent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// UF函数调用初始化</span></span><br><span class="line">		<span class="comment">// 例如： UF_DISP_add_item_to_display </span></span><br><span class="line">        <span class="built_in">UF_initialize</span>();</span><br><span class="line"></span><br><span class="line">        View* myView = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="function">Point3d <span class="title">myCursor</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 突出显示我们要编辑的当前udo</span></span><br><span class="line">        editEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">Highlight</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 要求用户为此UDO选择一个新的原点 </span></span><br><span class="line">        Selection::DialogResponse myResponse = theUI-&gt;<span class="built_in">SelectionManager</span>()-&gt;<span class="built_in">SelectScreenPosition</span>(<span class="string">&quot;选择新的放置原点&quot;</span>, &amp;myView, &amp;myCursor);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 已经完成了向用户请求输入......取消高亮显示udo</span></span><br><span class="line">        editEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">Unhighlight</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用新的屏幕位置（如果用户选择了一个）</span></span><br><span class="line">        <span class="keyword">if</span> (myResponse == Selection::DialogResponsePick)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="function">std::vector&lt;<span class="type">double</span>&gt; <span class="title">myUDOdoubles</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line">            myUDOdoubles[<span class="number">0</span>] = myCursor.X;</span><br><span class="line">            myUDOdoubles[<span class="number">1</span>] = myCursor.Y;</span><br><span class="line">            myUDOdoubles[<span class="number">2</span>] = myCursor.Z;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 将新选择的原点与udo一起存储</span></span><br><span class="line">            editEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">SetDoubles</span>(myUDOdoubles);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 手动将udo添加到显示列表中</span></span><br><span class="line">            <span class="comment">// 这将强制重新生成udo显示</span></span><br><span class="line">            <span class="comment">// 立即显示我们刚刚做出的更改</span></span><br><span class="line">            <span class="built_in">UF_DISP_add_item_to_display</span>(editEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">Tag</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">UF_terminate</span>();</span><br><span class="line">        <span class="keyword">delete</span> editEvent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (NXException ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ---- Enter your exception handling code here ----- </span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// 回调名称: myInfoCB </span></span><br><span class="line"><span class="comment">// 这是一个与查询UDO信息相关联的回调方法。 </span></span><br><span class="line"><span class="comment">// 信息将打印在列表窗口中。 </span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">myInfoCB</span><span class="params">(UserDefinedEvent* infoEvent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        ListingWindow* theLW = theSession-&gt;<span class="built_in">ListingWindow</span>();</span><br><span class="line">        <span class="type">char</span> msg[<span class="number">256</span>];</span><br><span class="line">        theLW-&gt;<span class="built_in">Open</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot;------------------------------------------------------------&quot;</span>);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot;开始自定义信息&quot;</span>);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        NXOpen::NXString formattedMessage;</span><br><span class="line">        formattedMessage = <span class="string">&quot;UDO Class Name: &quot;</span> + (infoEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">UserDefinedClass</span>()-&gt;<span class="built_in">ClassName</span>());</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line">        formattedMessage = <span class="string">&quot;UDO Friendly Name: &quot;</span> + infoEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">UserDefinedClass</span>()-&gt;<span class="built_in">FriendlyName</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line"></span><br><span class="line">        std::vector&lt;<span class="type">double</span>&gt; myUDOdoubles = infoEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">GetDoubles</span>();</span><br><span class="line">        std::ostringstream DoubleBuffer;</span><br><span class="line">        DoubleBuffer &lt;&lt; myUDOdoubles[<span class="number">0</span>];</span><br><span class="line">        formattedMessage = DoubleBuffer.<span class="built_in">str</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line">        DoubleBuffer.<span class="built_in">str</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        DoubleBuffer.<span class="built_in">clear</span>();</span><br><span class="line">        DoubleBuffer &lt;&lt; myUDOdoubles[<span class="number">1</span>];</span><br><span class="line">        formattedMessage = DoubleBuffer.<span class="built_in">str</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line">        DoubleBuffer.<span class="built_in">str</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        DoubleBuffer.<span class="built_in">clear</span>();</span><br><span class="line">        DoubleBuffer &lt;&lt; myUDOdoubles[<span class="number">2</span>];</span><br><span class="line">        formattedMessage = DoubleBuffer.<span class="built_in">str</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot;结束自定义信息&quot;</span>);</span><br><span class="line">        <span class="keyword">delete</span> infoEvent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (NXException ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ---- Enter your exception handling code here ----- </span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// 回调名称: initUDO </span></span><br><span class="line"><span class="comment">// 检查应用程序的哪些静态变量（如果有的话） </span></span><br><span class="line"><span class="comment">// 未初始化，并相应地设置它们。</span></span><br><span class="line"><span class="comment">// 初始化UDO类并注册其所有回调方法。 </span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">initUDO</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (theSession == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            theSession = Session::<span class="built_in">GetSession</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (theUI == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            theUI = UI::<span class="built_in">GetUI</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">ELOG</span>(<span class="number">3</span>) &lt;&lt; <span class="string">&quot;UDO初始化&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line">        <span class="keyword">if</span> (myUDOclass == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">			<span class="built_in">ELOG</span>(<span class="number">3</span>) &lt;&lt; <span class="string">&quot;正在注册C++UDO类&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 定义自定义UDO类 </span></span><br><span class="line">            myUDOclass = theSession-&gt;<span class="built_in">UserDefinedClassManager</span>()-&gt;<span class="built_in">CreateUserDefinedObjectClass</span>(<span class="string">&quot;Emmet_Cpp_UDO&quot;</span>, <span class="string">&quot;Emmet C++ UDO&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 设置自定义UDO类的属性 </span></span><br><span class="line">            myUDOclass-&gt;<span class="built_in">SetAllowQueryClassFromName</span>(UserDefinedClass::AllowQueryClassOn);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 为UDO类注册回调</span></span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddDisplayHandler</span>(<span class="built_in">make_callback</span>(&amp;myDisplayCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddAttentionPointHandler</span>(<span class="built_in">make_callback</span>(&amp;myDisplayCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddFitHandler</span>(<span class="built_in">make_callback</span>(&amp;myDisplayCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddSelectionHandler</span>(<span class="built_in">make_callback</span>(&amp;myDisplayCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddEditHandler</span>(<span class="built_in">make_callback</span>(&amp;myEditCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddInformationHandler</span>(<span class="built_in">make_callback</span>(&amp;myInfoCB));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 将此类添加到NX中可供选择的对象类型列表中。</span></span><br><span class="line">			<span class="comment">// 如果您跳过此步骤，您将无法选择此类的UDO，即使您注册了一个选择回调。 </span></span><br><span class="line">            theUI-&gt;<span class="built_in">SelectionManager</span>()-&gt;<span class="built_in">SetSelectionStatusOfUserDefinedClass</span>(myUDOclass, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (NXException ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ---- Enter your exception handling code here ----- </span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// ufusr（显式激活） </span></span><br><span class="line"><span class="comment">// 此入口点用于显式激活应用程序，如 </span></span><br><span class="line"><span class="comment">// “文件-&gt;执行UG/Open-&gt;NX Open…”</span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">void</span> <span class="title">ufusr</span><span class="params">(<span class="type">char</span>* parm, <span class="type">int</span>* returnCode, <span class="type">int</span> rlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 跟踪是否调用了UF_initialize</span></span><br><span class="line">    <span class="comment">// 这告诉是否需要调用UF_terminate</span></span><br><span class="line">    <span class="type">bool</span> initialized = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        EMESSAGE &lt;&lt; <span class="string">&quot;\n&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line">        <span class="built_in">ELOG</span>(<span class="number">3</span>) &lt;&lt; <span class="string">&quot;ufusr 入口函数&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// UF函数调用初始化</span></span><br><span class="line">       <span class="comment">// 例如： UF_DISP_add_item_to_display </span></span><br><span class="line">        <span class="built_in">UF_initialize</span>();</span><br><span class="line">        initialized = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment">//初始化UDO，在启动时</span></span><br><span class="line">        <span class="built_in">initUDO</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果我们没有打开任何部件，请创建一个</span></span><br><span class="line">        BasePart* myBasePart = theSession-&gt;<span class="built_in">Parts</span>()-&gt;<span class="built_in">BaseDisplay</span>();</span><br><span class="line">        <span class="keyword">if</span> (myBasePart == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            myBasePart = theSession-&gt;<span class="built_in">Parts</span>()-&gt;<span class="built_in">NewBaseDisplay</span>(<span class="string">&quot;test_cpp_udo.prt&quot;</span>, BasePart::UnitsMillimeters);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        View* myView = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="function">Point3d <span class="title">myCursor</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 要求用户为此UDO选择原点</span></span><br><span class="line">        Selection::DialogResponse myResponse = theUI-&gt;<span class="built_in">SelectionManager</span>()-&gt;<span class="built_in">SelectScreenPosition</span>(<span class="string">&quot;Select Origin of C++ UDO&quot;</span>, &amp;myView, &amp;myCursor);</span><br><span class="line">        <span class="keyword">if</span> (myResponse == Selection::DialogResponsePick)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 用户选择了一个点-继续并创建udo </span></span><br><span class="line">            UserDefinedObjectManager* myUDOmanager = myBasePart-&gt;<span class="built_in">UserDefinedObjectManager</span>();</span><br><span class="line">            UserDefinedObject* firstUDO = myUDOmanager-&gt;<span class="built_in">CreateUserDefinedObject</span>(myUDOclass);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 设置udo的颜色属性</span></span><br><span class="line">            firstUDO-&gt;<span class="built_in">SetColor</span>(<span class="number">36</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 使用udo存储用户选择的原点</span></span><br><span class="line">            <span class="function">std::vector&lt;<span class="type">double</span>&gt; <span class="title">myUDOdoubles</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line">            myUDOdoubles[<span class="number">0</span>] = myCursor.X;</span><br><span class="line">            myUDOdoubles[<span class="number">1</span>] = myCursor.Y;</span><br><span class="line">            myUDOdoubles[<span class="number">2</span>] = myCursor.Z;</span><br><span class="line">            firstUDO-&gt;<span class="built_in">SetDoubles</span>(myUDOdoubles);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 手动将udo添加到显示列表中</span></span><br><span class="line">            <span class="comment">// 这将强制重新生成udo显示</span></span><br><span class="line">            <span class="built_in">UF_DISP_add_item_to_display</span>(firstUDO-&gt;<span class="built_in">Tag</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">UF_terminate</span>();</span><br><span class="line">        initialized = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (<span class="type">const</span> NXOpen::NXException&amp; ex)</span><br><span class="line">    &#123;</span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">if</span> (initialized)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">UF_terminate</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">void</span> <span class="title">ufsta</span><span class="params">(<span class="type">char</span>* param, <span class="type">int</span>* returnCode, <span class="type">int</span> rlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">		(*ELog::<span class="built_in">getInstance</span>()).<span class="built_in">deleteLogFile</span>();</span><br><span class="line">        <span class="built_in">ELOG</span>(<span class="number">3</span>) &lt;&lt; <span class="string">&quot;ufsta 入口函数&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line">        <span class="built_in">initUDO</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (<span class="type">const</span> NXOpen::NXException&amp; ex)</span><br><span class="line">    &#123;</span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">ufusr_ask_unload</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)Session::LibraryUnloadOptionAtTermination;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="三、文献"><a href="#三、文献" class="headerlink" title="三、文献"></a>三、文献</h3><h4 id="官方介绍：https-docs-sw-siemens-com-zh-CN-doc-209349590-PL20190529153442596-nxopen-prog-guide-genid-udo-overview-66-3929"><a href="#官方介绍：https-docs-sw-siemens-com-zh-CN-doc-209349590-PL20190529153442596-nxopen-prog-guide-genid-udo-overview-66-3929" class="headerlink" title="官方介绍：https://docs.sw.siemens.com/zh-CN/doc/209349590/PL20190529153442596.nxopen_prog_guide/genid_udo_overview_66_3929"></a>官方介绍：<a target="_blank" rel="noopener" href="https://docs.sw.siemens.com/zh-CN/doc/209349590/PL20190529153442596.nxopen_prog_guide/genid_udo_overview_66_3929">https://docs.sw.siemens.com/zh-CN/doc/209349590/PL20190529153442596.nxopen_prog_guide/genid_udo_overview_66_3929</a></h4><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080611573289.jpg"><img src="http://image.camcad.cn/2020/08/2020080611573289-724x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080611585368.jpg"><img src="http://image.camcad.cn/2020/08/2020080611585368-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080611595419.jpg"><img src="http://image.camcad.cn/2020/08/2020080611595419-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612005460.jpg"><img src="http://image.camcad.cn/2020/08/2020080612005460-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/202008061201516.jpg"><img src="http://image.camcad.cn/2020/08/202008061201516-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/202008061202588.jpg"><img src="http://image.camcad.cn/2020/08/202008061202588-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612034659.jpg"><img src="http://image.camcad.cn/2020/08/2020080612034659-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612043655.jpg"><img src="http://image.camcad.cn/2020/08/2020080612043655-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612052832.jpg"><img src="http://image.camcad.cn/2020/08/2020080612052832-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612061314.jpg"><img src="http://image.camcad.cn/2020/08/2020080612061314-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612072235.jpg"><img src="http://image.camcad.cn/2020/08/2020080612072235-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612081481.jpg"><img src="http://image.camcad.cn/2020/08/2020080612081481-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612091013.jpg"><img src="http://image.camcad.cn/2020/08/2020080612091013-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612100787.jpg"><img src="http://image.camcad.cn/2020/08/2020080612100787-734x1024.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612105595.jpg"><img src="http://image.camcad.cn/2020/08/2020080612105595-734x1024.jpg"></a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/13756432.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/13756432.html" class="post-title-link" itemprop="url">C++提高编程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-06 10:33:44" itemprop="dateCreated datePublished" datetime="2020-08-06T10:33:44+00:00">2020-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/13756432.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/13756432.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>C++提高编程目录</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/13756432.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b0cae4ad.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/b0cae4ad.html" class="post-title-link" itemprop="url">C++面向对象（案列）：机房预约系统(头文件/源文件)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-06 10:09:17" itemprop="dateCreated datePublished" datetime="2020-08-06T10:09:17+00:00">2020-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/b0cae4ad.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/b0cae4ad.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>机房预约系统(头文件/源文件)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/b0cae4ad.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/d0efdeb2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/d0efdeb2.html" class="post-title-link" itemprop="url">C++面向对象（案列）：机房预约系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-06 09:15:56" itemprop="dateCreated datePublished" datetime="2020-08-06T09:15:56+00:00">2020-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/d0efdeb2.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/d0efdeb2.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>机房预约系统</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/d0efdeb2.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/17c061d0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/17c061d0.html" class="post-title-link" itemprop="url">C++提高编程82：演讲比赛流程管理系统-头文件/源文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-05 13:03:20" itemprop="dateCreated datePublished" datetime="2020-08-05T13:03:20+00:00">2020-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/17c061d0.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/17c061d0.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>演讲比赛流程管理系统-头文件/源文件</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/17c061d0.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/adbe7ef1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/adbe7ef1.html" class="post-title-link" itemprop="url">C++提高编程81：演讲比赛流程管理系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-05 09:23:46" itemprop="dateCreated datePublished" datetime="2020-08-05T09:23:46+00:00">2020-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/adbe7ef1.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/adbe7ef1.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>演讲比赛流程管理系统</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/adbe7ef1.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/dfef9d8b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/dfef9d8b.html" class="post-title-link" itemprop="url">C++提高编程80：STL常用算法（常用集合算法）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-04 17:05:19" itemprop="dateCreated datePublished" datetime="2020-08-04T17:05:19+00:00">2020-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/dfef9d8b.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/dfef9d8b.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>STL常用算法（常用集合算法）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/dfef9d8b.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/56601927.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/56601927.html" class="post-title-link" itemprop="url">C++提高编程79：STL常用算法（常用算术生成算法）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-04 14:43:56" itemprop="dateCreated datePublished" datetime="2020-08-04T14:43:56+00:00">2020-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/56601927.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/56601927.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>STL常用算法（常用算术生成算法）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/56601927.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b764b3e7.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/b764b3e7.html" class="post-title-link" itemprop="url">C++提高编程78：STL常用算法（常用拷贝和替换算法）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-04 12:32:40" itemprop="dateCreated datePublished" datetime="2020-08-04T12:32:40+00:00">2020-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/b764b3e7.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/b764b3e7.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>STL常用算法（常用拷贝和替换算法）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/b764b3e7.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -294,899 +1199,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/4e4670d3.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/4e4670d3.html" class="post-title-link" itemprop="url">C++提高编程76：STL常用算法（常用查找算法）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-03 19:06:12" itemprop="dateCreated datePublished" datetime="2020-08-03T19:06:12+00:00">2020-08-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/4e4670d3.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/4e4670d3.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL常用算法（常用查找算法）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/4e4670d3.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/39184424.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/39184424.html" class="post-title-link" itemprop="url">C++提高编程75：STL常用算法（常用遍历算法-transform）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-03 15:22:24" itemprop="dateCreated datePublished" datetime="2020-08-03T15:22:24+00:00">2020-08-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/39184424.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/39184424.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL常用算法（常用遍历算法-transform）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/39184424.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/437af6a8.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/437af6a8.html" class="post-title-link" itemprop="url">C++提高编程74：STL常用算法（常用遍历算法-for_each）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-03 11:52:37" itemprop="dateCreated datePublished" datetime="2020-08-03T11:52:37+00:00">2020-08-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/437af6a8.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/437af6a8.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL常用算法（常用遍历算法-for_each）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/437af6a8.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/bb18a6d3.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/bb18a6d3.html" class="post-title-link" itemprop="url">C++提高编程73：STL函数对象（内建函数对象-逻辑仿函数）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-02 18:10:57" itemprop="dateCreated datePublished" datetime="2020-08-02T18:10:57+00:00">2020-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/bb18a6d3.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/bb18a6d3.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL函数对象（内建函数对象-逻辑仿函数）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/bb18a6d3.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/234337fe.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/234337fe.html" class="post-title-link" itemprop="url">C++提高编程72：STL函数对象（内建函数对象-关系仿函数）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-02 15:49:10" itemprop="dateCreated datePublished" datetime="2020-08-02T15:49:10+00:00">2020-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/234337fe.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/234337fe.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL函数对象（内建函数对象-关系仿函数）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/234337fe.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/d7fa12cb.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/d7fa12cb.html" class="post-title-link" itemprop="url">C++提高编程71：STL函数对象（内建函数对象-内建函数对象意义/算术仿函数）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-02 10:59:19" itemprop="dateCreated datePublished" datetime="2020-08-02T10:59:19+00:00">2020-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/d7fa12cb.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/d7fa12cb.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL函数对象（内建函数对象-内建函数对象意义/算术仿函数）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/d7fa12cb.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/f42f72e5.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/f42f72e5.html" class="post-title-link" itemprop="url">C++提高编程70：STL函数对象（谓词）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-02 09:09:36" itemprop="dateCreated datePublished" datetime="2020-08-02T09:09:36+00:00">2020-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/f42f72e5.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/f42f72e5.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL函数对象（谓词）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/f42f72e5.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b9db3b6b.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/b9db3b6b.html" class="post-title-link" itemprop="url">C++提高编程69：STL函数对象（函数对象）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-01 20:19:25" itemprop="dateCreated datePublished" datetime="2020-08-01T20:19:25+00:00">2020-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/b9db3b6b.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/b9db3b6b.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL函数对象（函数对象）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/b9db3b6b.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b4f414d.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/b4f414d.html" class="post-title-link" itemprop="url">C++提高编程68：STL常用容器（案例-员工分组）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-01 17:57:16" itemprop="dateCreated datePublished" datetime="2020-08-01T17:57:16+00:00">2020-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/b4f414d.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/b4f414d.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL常用容器（案例-员工分组）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/b4f414d.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/15/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/15/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
