@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -194,6 +194,104 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/eaf9fe4c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/eaf9fe4c.html" class="post-title-link" itemprop="url">NX二次开发-获取操作刀具轨迹的长度、时间、切削长度、切削时间(NX OPEN)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-08 13:49:51" itemprop="dateCreated datePublished" datetime="2020-08-08T13:49:51+00:00">2020-08-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/eaf9fe4c.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/eaf9fe4c.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><p>NX OPEN API-获取操作刀具轨迹的长度、时间、切削长度、切削时间(NX OPEN)</p>
+<h3 id="头文件："><a href="#头文件：" class="headerlink" title="头文件："></a>头文件：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">		  Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">				            All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/CAM_CAMSetup.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/CAM_CAMSession.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/CAM_FaceMilling.hxx&gt;</span>         </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/CAM_OperationCollection.hxx&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/CAM_NCGroupCollection.hxx&gt;</span>  </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="源文件："><a href="#源文件：" class="headerlink" title="源文件："></a>源文件：</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">  Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">              All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="keyword">void</span> MyClass::MyTestFunc()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//获取工作部件</span></span><br><span class="line">    NXOpen::Part *workPart = NXOpen::Session::GetSession()-&gt;Parts()-&gt;Work();</span><br><span class="line">    <span class="comment">//获取加工环境设置</span></span><br><span class="line">    NXOpen::CAM::CAMSetup *camSetup = workPart-&gt;CAMSetup();</span><br><span class="line">    <span class="comment">//获取操作容器</span></span><br><span class="line">    NXOpen::CAM::OperationCollection *operColl = camSetup-&gt;CAMOperationCollection();</span><br><span class="line">    <span class="comment">//初始化迭代器起始</span></span><br><span class="line">    NXOpen::CAM::OperationCollection::iterator it = operColl-&gt;begin();</span><br><span class="line">    <span class="comment">//遍历容器所有操作对象</span></span><br><span class="line">    <span class="keyword">while</span> (it != operColl-&gt;end())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数据类型转换</span></span><br><span class="line">        NXOpen::CAM::Operation *oper = (NXOpen::CAM::Operation*)(*it);</span><br><span class="line">        <span class="comment">//输出串流</span></span><br><span class="line">        ostringstream <span class="keyword">out</span>;</span><br><span class="line">        <span class="keyword">out</span> &lt;&lt; oper-&gt;Name().GetText() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">out</span> &lt;&lt; <span class="string">&quot; 刀具轨迹的长度: &quot;</span> &lt;&lt; oper-&gt;GetToolpathLength() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">out</span> &lt;&lt; <span class="string">&quot; 刀具轨迹的时间: &quot;</span> &lt;&lt; oper-&gt;GetToolpathTime() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">out</span> &lt;&lt; <span class="string">&quot; 刀具轨迹切削长度: &quot;</span> &lt;&lt; oper-&gt;GetToolpathCuttingLength() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">out</span> &lt;&lt; <span class="string">&quot; 刀具轨迹切削时间: &quot;</span> &lt;&lt; oper-&gt;GetToolpathCuttingTime() &lt;&lt; endl;</span><br><span class="line">        <span class="comment">//打印输出</span></span><br><span class="line">        print(<span class="keyword">out</span>.str());</span><br><span class="line">        it++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="以上源码编译执行结果如下"><a href="#以上源码编译执行结果如下" class="headerlink" title="以上源码编译执行结果如下:"></a>以上源码编译执行结果如下:</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080905222244.jpg"><img src="http://image.camcad.cn/2020/08/2020080905222244.jpg"></a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1078,105 +1176,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/b764b3e7.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/c9c5a6ae.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/c9c5a6ae.html" class="post-title-link" itemprop="url">C++提高编程77：STL常用算法（常用排序算法）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-04 09:35:43" itemprop="dateCreated datePublished" datetime="2020-08-04T09:35:43+00:00">2020-08-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/c9c5a6ae.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/c9c5a6ae.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL常用算法（常用排序算法）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/c9c5a6ae.html">
                 阅读全文 &raquo;
               </a>
             </div>
