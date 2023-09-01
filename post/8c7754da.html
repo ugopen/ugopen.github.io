@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在Ubuntu下编译安装nginx安装前提123456789a)epoll，linux内核版本为2.6或者以上b)gcc编译器，g++编译器c)pcre库，函数库，支持解析正则表达式d)zlib库：压缩解压功能e)openssl库：ssl功能相关库，用于网站加密通讯 Nginx是高度自由化的Web服务器，它的功能是由许多模块来支持。如果使用了某个模块，这个模块使用了一些类似zlib或OpenSSL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu 部署 nginx web服务器">
+<meta property="og:url" content="https://notes.camcad.cn/post/8c7754da.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="在Ubuntu下编译安装nginx安装前提123456789a)epoll，linux内核版本为2.6或者以上b)gcc编译器，g++编译器c)pcre库，函数库，支持解析正则表达式d)zlib库：压缩解压功能e)openssl库：ssl功能相关库，用于网站加密通讯 Nginx是高度自由化的Web服务器，它的功能是由许多模块来支持。如果使用了某个模块，这个模块使用了一些类似zlib或OpenSSL">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2023/09/nginx_01.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2023/09/nginx_02.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2023/09/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E03.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2023/09/nginx_04.jpg">
+<meta property="article:published_time" content="2023-08-01T10:35:33.000Z">
+<meta property="article:modified_time" content="2023-09-01T06:01:17.974Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2023/09/nginx_01.jpg">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/8c7754da.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/8c7754da.html","path":"post/8c7754da.html","title":"ubuntu 部署 nginx web服务器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ubuntu 部署 nginx web服务器 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">增长盈利，降本增效<br>逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Ubuntu%E4%B8%8B%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85nginx"><span class="nav-number">1.</span> <span class="nav-text">在Ubuntu下编译安装nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E6%8F%90"><span class="nav-number">1.1.</span> <span class="nav-text">安装前提</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-number">2.</span> <span class="nav-text">安装依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCRE%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text">PCRE库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zlib%E5%BA%93"><span class="nav-number">2.2.</span> <span class="nav-text">zlib库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenSSL%E5%BA%93"><span class="nav-number">2.3.</span> <span class="nav-text">OpenSSL库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#httpd"><span class="nav-number">2.4.</span> <span class="nav-text">httpd</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.</span> <span class="nav-text">nginx下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A"><span class="nav-number">3.1.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="nav-number">3.2.</span> <span class="nav-text">解压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="nav-number">3.3.</span> <span class="nav-text">创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E4%B8%89%E9%83%A8%E6%9B%B2"><span class="nav-number">3.4.</span> <span class="nav-text">编译三部曲</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E4%B8%8E%E9%85%8D%E7%BD%AE-PATH-%E5%8F%98%E9%87%8F"><span class="nav-number">3.5.</span> <span class="nav-text">增加与配置 PATH 变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%B3%E8%BD%AC%E5%88%B0%E2%80%9D-x2F-opt-x2F-nginx-x2F-sbin%E2%80%9C%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E9%A6%96%E6%AC%A1%E5%90%AF%E5%8A%A8%E4%BD%BF%E7%94%A8%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4"><span class="nav-number">3.6.</span> <span class="nav-text">跳转到”&#x2F;opt&#x2F;nginx&#x2F;sbin“目录下，首次启动使用如下命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx-%E5%91%BD%E4%BB%A4"><span class="nav-number">3.7.</span> <span class="nav-text">nginx 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEnginx%E6%8F%92%E4%BB%B6"><span class="nav-number">3.8.</span> <span class="nav-text">配置nginx插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="nav-number">3.9.</span> <span class="nav-text">nginx配置文件说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">3.10.</span> <span class="nav-text">虚拟主机配置文件介绍如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEnginx%E5%B7%A5%E4%BD%9C%E8%BF%9B%E7%A8%8B%E6%A0%B8%E5%BF%83%E6%95%B0"><span class="nav-number">3.11.</span> <span class="nav-text">设置nginx工作进程核心数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E5%99%A8CPU%E6%A0%B8%E5%BF%83%E6%95%B0"><span class="nav-number">3.11.1.</span> <span class="nav-text">查看服务器CPU核心数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEnginx-%E5%B7%A5%E4%BD%9C%E8%BF%9B%E7%A8%8B%E6%95%B0"><span class="nav-number">3.11.2.</span> <span class="nav-text">设置nginx 工作进程数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2"><span class="nav-number">4.</span> <span class="nav-text">nginx日志切割</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="nav-number">4.1.</span> <span class="nav-text">查看当前目录下文件的大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%8C%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">定时任务，脚本文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">4.3.</span> <span class="nav-text">定时任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEnginx-%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8"><span class="nav-number">5.</span> <span class="nav-text">设置nginx 开机启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx%E9%85%8D%E7%BD%AEssl"><span class="nav-number">6.</span> <span class="nav-text">nginx配置ssl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5http-ssl-module-%E6%A8%A1%E5%9D%97"><span class="nav-number">6.1.</span> <span class="nav-text">检查http_ssl_module 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEhttps"><span class="nav-number">6.2.</span> <span class="nav-text">配置https</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">6.3.</span> <span class="nav-text">配置重定向</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">369</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/8c7754da.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ubuntu 部署 nginx web服务器 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu 部署 nginx web服务器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-01 10:35:33" itemprop="dateCreated datePublished" datetime="2023-08-01T10:35:33+00:00">2023-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index"><span itemprop="name">辅助</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/8c7754da.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/8c7754da.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="在Ubuntu下编译安装nginx"><a href="#在Ubuntu下编译安装nginx" class="headerlink" title="在Ubuntu下编译安装nginx"></a>在Ubuntu下编译安装nginx</h2><h3 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a)epoll，linux内核版本为2.6或者以上</span><br><span class="line"></span><br><span class="line">b)gcc编译器，g++编译器</span><br><span class="line"></span><br><span class="line">c)pcre库，函数库，支持解析正则表达式</span><br><span class="line"></span><br><span class="line">d)zlib库：压缩解压功能</span><br><span class="line"></span><br><span class="line">e)openssl库：ssl功能相关库，用于网站加密通讯</span><br></pre></td></tr></table></figure>
+<p>Nginx是高度自由化的Web服务器，它的功能是由许多模块来支持。如果使用了某个模块，这个模块使用了一些类似zlib或OpenSSL等的第三方库，那么就必须先安装这些软件。Ubuntu下不像在centOS中使用yum直接在线安装，可以使用以下方法。</p>
+<span id="more"></span>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><h3 id="PCRE库"><a href="#PCRE库" class="headerlink" title="PCRE库"></a>PCRE库</h3><p>PCRE库支持正则表达式。如果我们在配置文件nginx.conf中使用了正则表达式，那么在编译Nginx时就必须把PCRE库编译进Nginx，因为Nginx的HTTP模块需要靠它来解析正则表达式。另外，pcre-devel是使用PCRE做二次开发时所需要的开发库，包括头文件等，这也是编译Nginx所必须使用的。可以这样安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libpcre3 libpcre3-dev </span><br></pre></td></tr></table></figure>
+
+<h3 id="zlib库"><a href="#zlib库" class="headerlink" title="zlib库"></a>zlib库</h3><p>zlib库用于对HTTP包的内容做gzip格式的压缩，如果我们在nginx.conf中配置了gzip on，并指定对于某些类型（content-type）的HTTP响应使用gzip来进行压缩以减少网络传输量，则在编译时就必须把zlib编译进Nginx。zlib-devel是二次开发所需要的库。可以这样安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install zlib1g-dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="OpenSSL库"><a href="#OpenSSL库" class="headerlink" title="OpenSSL库"></a>OpenSSL库</h3><p>如果服务器不只是要支持HTTP，还需要在更安全的SSL协议上传输HTTP，那么需要拥有OpenSSL。另外，如果我们想使用MD5、SHA1等散列函数，那么也需要安装它。可以这样安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssl libssl-dev </span><br></pre></td></tr></table></figure>
+
+<h3 id="httpd"><a href="#httpd" class="headerlink" title="httpd"></a>httpd</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx下载"><a href="#nginx下载" class="headerlink" title="nginx下载"></a>nginx下载</h2><p>官方网站：<a target="_blank" rel="noopener" href="https://nginx.org/">https://nginx.org/</a><br><img src="http://image.camcad.cn/2023/09/nginx_01.jpg" alt="nginx_01"></p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><strong>开发版本</strong>：Mainline version<br><strong>最新版本</strong>：Stable version<br><strong>历史版本</strong>：Legacy versions</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo wget 下载地址</span><br><span class="line"></span><br><span class="line">sudo wget https://nginx.org/download/nginx-1.22.1.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf 软件名称</span><br><span class="line"></span><br><span class="line">sudo tar -zxvf nginx-1.22.1.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /opt/nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译三部曲"><a href="#编译三部曲" class="headerlink" title="编译三部曲"></a>编译三部曲</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1、切换到 root 用户执行以下命令</span><br><span class="line">./configure --prefix=/opt/nginx --with-http_ssl_module --with-http_flv_module --with-http_gzip_static_module --with-http_stub_status_module --with-threads --with-file-aio</span><br><span class="line"></span><br><span class="line">2、终端中执行 make 命令开始编译</span><br><span class="line">make</span><br><span class="line">或者</span><br><span class="line">make -j$(nproc)</span><br><span class="line">PS：linux 下输入nproc返回数字是你的机器的线程数</span><br><span class="line"></span><br><span class="line">3、终端中执行 make install 命令开始安装</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>安装完成后，相关文件如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@my:/opt/nginx# ls</span><br><span class="line">conf  html  logs  sbin</span><br><span class="line"></span><br><span class="line">conf---存放nginx的配置文件 如：nginx.conf</span><br><span class="line">html---存放nginx的网页根目录文件，放在站点的静态文件数据</span><br><span class="line">logs---存放nginx的各种日志目录</span><br><span class="line">sbin---存放该软件的可执行命令</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加与配置-PATH-变量"><a href="#增加与配置-PATH-变量" class="headerlink" title="增加与配置 PATH 变量"></a>增加与配置 PATH 变量</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1、在终端上输入以下命令</span><br><span class="line">vim /etc/profile.d/nginx.sh</span><br><span class="line"></span><br><span class="line">2、在终端上编辑以下内容并保存退出</span><br><span class="line">export PATH=&quot;$PATH:/opt/nginx/sbin/&quot;</span><br><span class="line"></span><br><span class="line">3、加载配置（临时），如需永久生效，在 .bashrc 文件最后增加以下内容，保存即可</span><br><span class="line">source /etc/profile</span><br><span class="line"></span><br><span class="line">4、查看 PATH 变量的值</span><br><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+
+<h3 id="跳转到”-x2F-opt-x2F-nginx-x2F-sbin“目录下，首次启动使用如下命令"><a href="#跳转到”-x2F-opt-x2F-nginx-x2F-sbin“目录下，首次启动使用如下命令" class="headerlink" title="跳转到”&#x2F;opt&#x2F;nginx&#x2F;sbin“目录下，首次启动使用如下命令"></a>跳转到”&#x2F;opt&#x2F;nginx&#x2F;sbin“目录下，首次启动使用如下命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="nginx-命令"><a href="#nginx-命令" class="headerlink" title="nginx 命令"></a>nginx 命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">查看 80 端口</span><br><span class="line">netstat -ntlp|grep 80</span><br><span class="line"></span><br><span class="line">查看Nginx进程命令</span><br><span class="line">ps aux | grep nginx | grep -v grep</span><br><span class="line"></span><br><span class="line">暴力停止Nginx服务器命令</span><br><span class="line">sudo ./nginx -s stop</span><br><span class="line"></span><br><span class="line">优雅停止Nginx服务器命令</span><br><span class="line">sudo ./nginx -s quit</span><br><span class="line"></span><br><span class="line">重新加载配置文件，重新启动新的worker进程，并且优雅的退出旧的worker进程</span><br><span class="line">sudo ./nginx -s reload</span><br><span class="line"></span><br><span class="line">重新打开日志记录</span><br><span class="line">sudo ./nginx -s reopen</span><br><span class="line"></span><br><span class="line">强制停止Nginx服务器命令</span><br><span class="line">pkill -9 nginx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置nginx插件"><a href="#配置nginx插件" class="headerlink" title="配置nginx插件"></a>配置nginx插件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">复制 nginx 安装包中的自带vim插件到 .vim 文件夹配置中</span><br><span class="line">cp -r /opt/nginx-1.22.1/contrib/vim/* ~/.vim/</span><br></pre></td></tr></table></figure>
+
+<h3 id="nginx配置文件说明"><a href="#nginx配置文件说明" class="headerlink" title="nginx配置文件说明"></a>nginx配置文件说明</h3><p><img src="http://image.camcad.cn/2023/09/nginx_02.jpg" alt="nginx_02"></p>
+<h3 id="虚拟主机配置文件介绍如下："><a href="#虚拟主机配置文件介绍如下：" class="headerlink" title="虚拟主机配置文件介绍如下："></a>虚拟主机配置文件介绍如下：</h3><p><img src="http://image.camcad.cn/2023/09/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E03.jpg" alt="nginx虚拟主机配置说明03"></p>
+<h3 id="设置nginx工作进程核心数"><a href="#设置nginx工作进程核心数" class="headerlink" title="设置nginx工作进程核心数"></a>设置nginx工作进程核心数</h3><h4 id="查看服务器CPU核心数"><a href="#查看服务器CPU核心数" class="headerlink" title="查看服务器CPU核心数"></a>查看服务器CPU核心数</h4><p>在终端输入<code>top</code>命令，接着在键盘输入数字<code>1</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">emmet@ubuntu:/opt/nginx/sbin$ top</span><br><span class="line">top - 10:50:12 up 10:49,  1 user,  load average: 0.05, 0.11, 0.09</span><br><span class="line">Tasks: 242 total,   1 running, 241 sleeping,   0 stopped,   0 zombie</span><br><span class="line">%Cpu0  :  3.0 us,  0.3 sy,  0.0 ni, 96.0 id,  0.7 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu1  :  3.0 us,  0.7 sy,  0.0 ni, 96.0 id,  0.0 wa,  0.0 hi,  0.3 si,  0.0 st</span><br><span class="line">%Cpu2  :  2.0 us,  0.7 sy,  0.0 ni, 97.0 id,  0.0 wa,  0.0 hi,  0.3 si,  0.0 st</span><br><span class="line">%Cpu3  :  2.0 us,  0.0 sy,  0.0 ni, 98.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">MiB Mem :   7868.4 total,   2252.0 free,   4054.3 used,   1562.0 buff/cache</span><br><span class="line">MiB Swap:   8192.0 total,   8192.0 free,      0.0 used.   3414.1 avail Mem</span><br><span class="line"></span><br><span class="line">    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND</span><br><span class="line">   1834 git       20   0 1491960 910568  27488 S   5.6  11.3  42:53.90 bundle</span><br><span class="line">   1683 gitlab-+  20   0   74808  15652   6160 S   3.0   0.2  18:24.64 redis-s+</span><br><span class="line">   1657 gitlab-+  20   0  718164  21044  11488 S   2.7   0.3   4:04.66 node_ex+</span><br></pre></td></tr></table></figure>
+<p>通过得到的数据，知道我的服务器<code>%Cpu</code>数量为4；</p>
+<h4 id="设置nginx-工作进程数"><a href="#设置nginx-工作进程数" class="headerlink" title="设置nginx 工作进程数"></a>设置nginx 工作进程数</h4><p>在配置表<code>*/conf/nginx.conf</code>中修改nginx工作进程数量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">events &#123;</span><br><span class="line">     worker_connections  4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重新加载配置文件命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx日志切割"><a href="#nginx日志切割" class="headerlink" title="nginx日志切割"></a>nginx日志切割</h2><h3 id="查看当前目录下文件的大小"><a href="#查看当前目录下文件的大小" class="headerlink" title="查看当前目录下文件的大小"></a>查看当前目录下文件的大小</h3><p>通过<code>du -h ./*</code>命令查看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">emmet@ubuntu:/opt/nginx/sbin$ du -h ./*</span><br><span class="line">6.3M    ./nginx</span><br><span class="line">6.3M    ./nginx.old</span><br></pre></td></tr></table></figure>
+<h3 id="定时任务，脚本文件"><a href="#定时任务，脚本文件" class="headerlink" title="定时任务，脚本文件"></a>定时任务，脚本文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># 脚本写入crontab，每天0点执行，这是一个nginx日志切割脚本</span><br><span class="line"></span><br><span class="line"># nginx日志存放点</span><br><span class="line">LOGS_PATH=&quot;/opt/nginx/logs/&quot;</span><br><span class="line"></span><br><span class="line"># 年/月</span><br><span class="line">LOGS_DATE_LOCATION=$(date -d &quot;yesterday&quot; +&quot;%Y&quot;)/$(date -d &quot;yesterday&quot; +&quot;%m&quot;)</span><br><span class="line"></span><br><span class="line"># 文件</span><br><span class="line">FILENAME=&quot;access&quot;</span><br><span class="line"></span><br><span class="line"># 创建目录</span><br><span class="line">sudo mkdir -p $&#123;LOGS_PATH&#125;$&#123;LOGS_DATE_LOCATION&#125;</span><br><span class="line"></span><br><span class="line"># 移动文件</span><br><span class="line">sudo mv $&#123;LOGS_PATH&#125;$&#123;FILENAME&#125;.log $&#123;LOGS_PATH&#125;$&#123;LOGS_DATE_LOCATION&#125;/$&#123;FILENAME&#125;$(date -d &quot;yesterday&quot; +&quot;%Y-%m-%    d&quot;).log</span><br><span class="line"></span><br><span class="line"># 重新打开日志记录</span><br><span class="line">sudo /opt/nginx/sbin/./nginx -s reopen</span><br><span class="line"></span><br><span class="line"># 删除上个月日志文件</span><br><span class="line">sudo rm -r $&#123;LOGS_PATH&#125;$(date -d &quot;yesterday&quot; +&quot;%Y&quot;)/$(date +&quot;%m&quot; -d &quot;last month&quot;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h3><p>1、在终端上输入<code>crontab -e</code>进行定时任务的创建；<br><img src="http://image.camcad.cn/2023/09/nginx_04.jpg" alt="nginx_04"><br>2、在最下方输入定时任务，编辑完成保存即可；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * * /bin/bash  /myscripts/cut_nginx_log.sh</span><br><span class="line"></span><br><span class="line">0 0 * * * （表示系统每天0点0分执行一次）</span><br><span class="line">/bin/bash （bash绝对路径，必须输入绝对路径）</span><br><span class="line"> /myscripts/cut_nginx_log.sh （被执行程序绝对路径）</span><br></pre></td></tr></table></figure>
+<p>3、通过<code>sudo /etc/init.d/cron reload</code>命令重新加载配置表；<br>4、再通过<code>sudo /etc/init.d/cron restart</code>命令重启服务；<br>5、收工；</p>
+<p>参考视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Je4y1H7iB?p=1&vd_source=2ef65e99005307b98faba687dbdb5780">https://www.bilibili.com/video/BV1Je4y1H7iB?p=1&vd_source&#x3D;2ef65e99005307b98faba687dbdb5780</a></p>
+<hr>
+<h2 id="设置nginx-开机启动"><a href="#设置nginx-开机启动" class="headerlink" title="设置nginx 开机启动"></a>设置nginx 开机启动</h2><p>参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1841911">https://cloud.tencent.com/developer/article/1841911</a></p>
+<h2 id="nginx配置ssl"><a href="#nginx配置ssl" class="headerlink" title="nginx配置ssl"></a>nginx配置ssl</h2><h3 id="检查http-ssl-module-模块"><a href="#检查http-ssl-module-模块" class="headerlink" title="检查http_ssl_module 模块"></a>检查http_ssl_module 模块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ./nginx -V</span><br><span class="line"></span><br><span class="line">出现如下模块，表示可以部署ssl ，否则需要添加如下模块</span><br><span class="line">configure arguments: --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置https"><a href="#配置https" class="headerlink" title="配置https"></a>配置https</h3><p>和80端口配置基本相似，修改了端口和配置了ssl</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	 listen       443 ssl;							 #监听443端口（https默认端口）</span><br><span class="line">	 server_name www.example.org;	#填写绑定证书的域名</span><br><span class="line">     </span><br><span class="line">     # 同一端口实现 https</span><br><span class="line">	 error_page 497 https://$http_host$request_uri;</span><br><span class="line"></span><br><span class="line">	 ssl_certificate      *.pem;				#填写证书绝对位置</span><br><span class="line">	 ssl_certificate_key  *.key;			   #填写key绝对位置</span><br><span class="line"></span><br><span class="line">	 ssl_session_cache    shared:SSL:1m;</span><br><span class="line">	 ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">	 ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #按照这个协议配置</span><br><span class="line">	 ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE; #按照这个套件配置</span><br><span class="line">	 ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">	 location / &#123;</span><br><span class="line">		 root   html;									#填写你的你的站点目录</span><br><span class="line">		 index  index.html index.htm;</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置重定向"><a href="#配置重定向" class="headerlink" title="配置重定向"></a>配置重定向</h3><p>将80端口重定向到443端口</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	 <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">	 <span class="attribute">server_name</span>  gitlab.camcad.cn;</span><br><span class="line">	 <span class="attribute">return</span>       <span class="number">301</span> https://www.example.org<span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改配置文件后，需要重新加载配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35078688/article/details/121405907">https://blog.csdn.net/qq_35078688&#x2F;article&#x2F;details&#x2F;121405907</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/8c7754da.html" title="ubuntu 部署 nginx web服务器">https://notes.camcad.cn/post/8c7754da.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/nginx/" rel="tag"># nginx</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/b0e2cfa3.html" rel="prev" title="ubuntu server搭建gitlab环境详细步骤">
+                  <i class="fa fa-chevron-left"></i> ubuntu server搭建gitlab环境详细步骤
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/351d8fad.html" rel="next" title="NX二次开发-Teamcenter与NX集成环境下克隆总结">
+                  NX二次开发-Teamcenter与NX集成环境下克隆总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/8c7754da.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

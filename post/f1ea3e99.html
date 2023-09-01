@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ubuntu下修改时区1、输入“timedatectl”命令检查当前日期和时区设置12345678$ timedatectl                      Local time: Mon 2022-08-15 03:55:43 UTC                  Universal time: Mon 2022-08-15 03:55:43 UTC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu 同步时间">
+<meta property="og:url" content="https://notes.camcad.cn/post/f1ea3e99.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="ubuntu下修改时区1、输入“timedatectl”命令检查当前日期和时区设置12345678$ timedatectl                      Local time: Mon 2022-08-15 03:55:43 UTC                  Universal time: Mon 2022-08-15 03:55:43 UTC">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-01T10:49:18.000Z">
+<meta property="article:modified_time" content="2023-09-01T06:01:17.974Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/f1ea3e99.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/f1ea3e99.html","path":"post/f1ea3e99.html","title":"ubuntu 同步时间"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ubuntu 同步时间 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">增长盈利，降本增效<br>逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu%E4%B8%8B%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA"><span class="nav-number">1.</span> <span class="nav-text">ubuntu下修改时区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E8%BE%93%E5%85%A5%E2%80%9Ctimedatectl%E2%80%9D%E5%91%BD%E4%BB%A4%E6%A3%80%E6%9F%A5%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、输入“timedatectl”命令检查当前日期和时区设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E8%8E%B7%E5%8F%96%E6%97%B6%E5%8C%BA%E5%88%97%E8%A1%A8"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、获取时区列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%86%8D%E8%BE%93%E5%85%A5%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4%E6%90%9C%E7%B4%A2%E4%BD%A0%E7%9A%84%E6%97%B6%E5%8C%BA%EF%BC%8C%E4%BE%8B%E5%A6%82%E6%90%9C%E7%B4%A2%E4%B8%8A%E6%B5%B7%E7%9A%84%E6%97%B6%E5%8C%BA%E3%80%82"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、再输入以下命令搜索你的时区，例如搜索上海的时区。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、修改时区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E6%9C%80%E5%90%8E%E5%8F%AF%E4%BD%BF%E7%94%A8%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4%E6%9D%A5%E9%AA%8C%E8%AF%81%E4%BF%AE%E6%94%B9%E5%A5%BD%E7%9A%84%E6%97%B6%E9%97%B4%E6%97%B6%E5%8C%BA%E3%80%82"><span class="nav-number">1.0.5.</span> <span class="nav-text">5、最后可使用以下命令来验证修改好的时间时区。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NTP%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="nav-number">2.</span> <span class="nav-text">NTP时间同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E9%A6%96%E5%85%88%E5%AE%89%E8%A3%85ntp%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.0.1.</span> <span class="nav-text">1、首先安装ntp服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AEntp%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">2.0.2.</span> <span class="nav-text">2、配置ntp服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E5%B1%82%E4%B8%BB%E6%9C%BA%E8%AE%BE%E5%AE%9A"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">上层主机设定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%81%E8%AE%B8%E7%89%B9%E5%AE%9A%E7%BD%91%E6%AE%B5%E5%86%85%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E8%BF%87%E6%9C%AC%E6%9C%8D%E5%8A%A1%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4"><span class="nav-number">2.0.3.</span> <span class="nav-text">允许特定网段内的客户端通过本服务同步时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E5%A5%BD%E5%90%8E%EF%BC%8C%E9%87%8D%E5%90%AFntp%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.0.4.</span> <span class="nav-text">配置文件修改好后，重启ntp服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">2.0.5.</span> <span class="nav-text">开启防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E2%80%9Dntpq-p%E2%80%9C%E6%9D%A5%E6%9F%A5%E7%9C%8BNTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">2.0.6.</span> <span class="nav-text">使用”ntpq -p“来查看NTP服务器时间同步的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%90%8C%E6%97%B6%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%A1%AC%E4%BB%B6%E6%97%B6%E9%92%9F%E5%B9%B6%E8%BF%9B%E8%A1%8C%E6%9B%B4%E6%94%B9%EF%BC%9A"><span class="nav-number">2.0.7.</span> <span class="nav-text">可同时查看服务器的硬件时钟并进行更改：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTP%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.0.8.</span> <span class="nav-text">NTP常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E6%9B%B4%E6%96%B0"><span class="nav-number">2.0.9.</span> <span class="nav-text">定时更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cron-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="nav-number">2.0.10.</span> <span class="nav-text">cron 服务的启动与停止</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E3%80%81%E5%8F%8C%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">1、双系统时间同步问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.0.1.</span> <span class="nav-text">安装软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%90%8C%E6%AD%A5%E7%BD%91%E7%BB%9C%E6%97%B6%E9%97%B4"><span class="nav-number">3.0.2.</span> <span class="nav-text">2、同步网络时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%90%8C%E6%AD%A5%E7%A1%AC%E4%BB%B6%E6%97%B6%E9%97%B4"><span class="nav-number">3.0.3.</span> <span class="nav-text">3、同步硬件时间</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">369</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/f1ea3e99.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男，喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ubuntu 同步时间 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu 同步时间
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-01 10:49:18" itemprop="dateCreated datePublished" datetime="2023-05-01T10:49:18+00:00">2023-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index"><span itemprop="name">辅助</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/f1ea3e99.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/f1ea3e99.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="ubuntu下修改时区"><a href="#ubuntu下修改时区" class="headerlink" title="ubuntu下修改时区"></a>ubuntu下修改时区</h1><h3 id="1、输入“timedatectl”命令检查当前日期和时区设置"><a href="#1、输入“timedatectl”命令检查当前日期和时区设置" class="headerlink" title="1、输入“timedatectl”命令检查当前日期和时区设置"></a>1、输入“timedatectl”命令检查当前日期和时区设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ timedatectl</span><br><span class="line">                      Local time: Mon 2022-08-15 03:55:43 UTC</span><br><span class="line">                  Universal time: Mon 2022-08-15 03:55:43 UTC</span><br><span class="line">                        RTC time: Mon 2022-08-15 03:55:44</span><br><span class="line">                       Time zone: Etc/UTC (UTC, +0000)</span><br><span class="line">       System clock synchronized: yes</span><br><span class="line">systemd-timesyncd.service active: yes</span><br><span class="line">                 RTC in local TZ: no</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="2、获取时区列表"><a href="#2、获取时区列表" class="headerlink" title="2、获取时区列表"></a>2、获取时区列表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl list-timezones</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、再输入以下命令搜索你的时区，例如搜索上海的时区。"><a href="#3、再输入以下命令搜索你的时区，例如搜索上海的时区。" class="headerlink" title="3、再输入以下命令搜索你的时区，例如搜索上海的时区。"></a>3、再输入以下命令搜索你的时区，例如搜索上海的时区。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ timedatectl list-timezones | grep Shanghai</span><br><span class="line"></span><br><span class="line">Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、修改时区"><a href="#4、修改时区" class="headerlink" title="4、修改时区"></a>4、修改时区</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo timedatectl set-timezone Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、最后可使用以下命令来验证修改好的时间时区。"><a href="#5、最后可使用以下命令来验证修改好的时间时区。" class="headerlink" title="5、最后可使用以下命令来验证修改好的时间时区。"></a>5、最后可使用以下命令来验证修改好的时间时区。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ date -R</span><br><span class="line"></span><br><span class="line">Mon, 15 Aug 2022 11:57:32 +0800</span><br></pre></td></tr></table></figure>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43966534/article/details/126344307">https://blog.csdn.net/weixin_43966534&#x2F;article&#x2F;details&#x2F;126344307</a></p>
+<h1 id="NTP时间同步"><a href="#NTP时间同步" class="headerlink" title="NTP时间同步"></a>NTP时间同步</h1><h3 id="1、首先安装ntp服务"><a href="#1、首先安装ntp服务" class="headerlink" title="1、首先安装ntp服务"></a>1、首先安装ntp服务</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install  ntp</span><br></pre></td></tr></table></figure>
+<p>ps：如果不是ubuntu系统则执行 <code>yum install ntp –y</code></p>
+<h3 id="2、配置ntp服务器"><a href="#2、配置ntp服务器" class="headerlink" title="2、配置ntp服务器"></a>2、配置ntp服务器</h3><p>在终端输入<code>sudo vim /etc/ntp.conf</code>，相关重要配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#作用：允许外网所有client（0.0.0.0代表任意IP，如果限制局域网那么更改对应网段）连接</span><br><span class="line">#到这台服务器同步时间，但是拒绝他们修改服务器时间</span><br><span class="line">restrict 0.0.0.0 mask 255.255.255.255 nomodify notrap</span><br><span class="line"></span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line"></span><br><span class="line">#以阿里云时间服务器同步,210.72.145.44国家级校准ip</span><br><span class="line">server ntp.aliyun.com prefer</span><br><span class="line"></span><br><span class="line">#当无法访问外网时，以当前服务器为时间同步服务器</span><br><span class="line">server 127.127.1.0</span><br></pre></td></tr></table></figure>
+<h4 id="上层主机设定"><a href="#上层主机设定" class="headerlink" title="上层主机设定"></a>上层主机设定</h4><p>上层主机选择 <code>ntp.aliyun.com</code>，要设定上层主机主要以server这个参数来设定，语法为：<code>server [IP|域名] [prefer]</code><br>Server 后面接的就是我们上层的Time Server ！而如果 Server 参数后面加上perfer 的话，那表示我们的 NTP 主机主要以该部主机来作为时间较正的对应,优先使用。</p>
+<h3 id="允许特定网段内的客户端通过本服务同步时间"><a href="#允许特定网段内的客户端通过本服务同步时间" class="headerlink" title="允许特定网段内的客户端通过本服务同步时间"></a>允许特定网段内的客户端通过本服务同步时间</h3><p>权限设定主要以restrict这个参数来设定，主要的语法为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">restrict IP mask netmask_IP parameter</span><br><span class="line"></span><br><span class="line">#作用：允许外网所有client（0.0.0.0代表任意IP，如果限制局域网那么更改对应网段）连接</span><br><span class="line">#到这台服务器同步时间，但是拒绝他们修改服务器时间</span><br><span class="line">restrict 0.0.0.0 mask 255.255.255.255 nomodify notrap</span><br></pre></td></tr></table></figure>
+<p>至于 paramter则有：<br><code>ignore</code>：关闭所有的NTP 连线服务<br><code>nomodify</code>：表示Client 端不能更改 Server 端的时间参数，不过Client端仍然可以透过Server 端來进行网络较时。<br><code>notrust</code>：该 Client 除非通过认证，否则该 Client 来源将被视为不信任网域<br><code>noquery</code>：不提供 Client 端的时间查询<br>如果 paramter完全没有设定，那就表示该 IP (或网域) 没有任何限制</p>
+<h3 id="配置文件修改好后，重启ntp服务"><a href="#配置文件修改好后，重启ntp服务" class="headerlink" title="配置文件修改好后，重启ntp服务"></a>配置文件修改好后，重启ntp服务</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart ntp #重启</span><br></pre></td></tr></table></figure>
+
+<h3 id="开启防火墙"><a href="#开启防火墙" class="headerlink" title="开启防火墙"></a>开启防火墙</h3><p>然后配置系统的UFW防火墙，以使传入的连接可以通过UDP端口号123访问NTP服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 123/udp</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用”ntpq-p“来查看NTP服务器时间同步的过程"><a href="#使用”ntpq-p“来查看NTP服务器时间同步的过程" class="headerlink" title="使用”ntpq -p“来查看NTP服务器时间同步的过程"></a>使用”ntpq -p“来查看NTP服务器时间同步的过程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">emmet@ubuntu:~# ntpq -p</span><br><span class="line">     remote           refid      st t when poll reach   delay   offset  jitter</span><br><span class="line">==============================================================================</span><br><span class="line"> LOCAL(0)        .LOCL.           5 l  761   64    0    0.000    0.000   0.000</span><br><span class="line">*203.107.6.88    100.107.25.114   2 u   36   64  377   61.610    0.134   0.525</span><br><span class="line">+114.67.237.130  114.118.7.161    2 u   29   64  377   38.699   -5.763   0.359</span><br></pre></td></tr></table></figure>
+<p><code>*</code>:表示目前正在作用当中的上层NTP服务器;<br><code>+</code>:表示已经连接成功,并且可以作为下一个提供时间更新的候选者;</p>
+<h3 id="可同时查看服务器的硬件时钟并进行更改："><a href="#可同时查看服务器的硬件时钟并进行更改：" class="headerlink" title="可同时查看服务器的硬件时钟并进行更改："></a>可同时查看服务器的硬件时钟并进行更改：</h3><p><code>sudo hwclock</code><br><code>sudo hwclock -w</code><br><code>-w</code>:表示将软件时间写入为硬件时间</p>
+<h3 id="NTP常用命令"><a href="#NTP常用命令" class="headerlink" title="NTP常用命令"></a>NTP常用命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart ntp #重启</span><br><span class="line">systemctl start ntp	# 开始</span><br><span class="line">systemctl close ntp	# 关闭</span><br><span class="line">systemctl status ntp #查看状态</span><br></pre></td></tr></table></figure>
+
+<h3 id="定时更新"><a href="#定时更新" class="headerlink" title="定时更新"></a>定时更新</h3><p>上述指令是一次性更新，如果我们想要让客户端定期去更新维护，则需要用到crontab指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/crontab</span><br><span class="line"> </span><br><span class="line">15 05 * * * root /usr/sbin/ntpdate 192.168.*.*</span><br></pre></td></tr></table></figure>
+<p>表示每天8:30自动执行ntpdate指令，与服务器时间同步</p>
+<h3 id="cron-服务的启动与停止"><a href="#cron-服务的启动与停止" class="headerlink" title="cron 服务的启动与停止"></a>cron 服务的启动与停止</h3><p>cron是被默认安装并启动的。而 ubuntu 下启动，停止与重启cron，均是通过调用&#x2F;etc&#x2F;init.d&#x2F;中的脚本进行。命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">启动：sudo /etc/init.d/cron start </span><br><span class="line">关闭：sudo /etc/init.d/cron stop</span><br><span class="line">重启：sudo /etc/init.d/cron restart</span><br><span class="line">状态：sudo /etc/init.d/cron status</span><br><span class="line">重新载入配置：sudo /etc/init.d/cron reload</span><br><span class="line">可以用ps aux | grep cron命令查看cron是否已启动</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Wangjiachenga/article/details/118969691">https://blog.csdn.net/Wangjiachenga/article/details/118969691</a></p>
+<h1 id="1、双系统时间同步问题"><a href="#1、双系统时间同步问题" class="headerlink" title="1、双系统时间同步问题"></a>1、双系统时间同步问题</h1><h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ntpdate</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、同步网络时间"><a href="#2、同步网络时间" class="headerlink" title="2、同步网络时间"></a>2、同步网络时间</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ntpdate time.windows.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、同步硬件时间"><a href="#3、同步硬件时间" class="headerlink" title="3、同步硬件时间"></a>3、同步硬件时间</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hwclock --localtime --systohc</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1554y1n7zv?p=9&spm_id_from=pageDriver&vd_source=2ef65e99005307b98faba687dbdb5780">https://www.bilibili.com/video/BV1554y1n7zv?p=9&spm_id_from&#x3D;pageDriver&amp;vd_source&#x3D;2ef65e99005307b98faba687dbdb5780</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/f1ea3e99.html" title="ubuntu 同步时间">https://notes.camcad.cn/post/f1ea3e99.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/771521dc.html" rel="prev" title="NX外部模式-发布技术数据包/三维PDF">
+                  <i class="fa fa-chevron-left"></i> NX外部模式-发布技术数据包/三维PDF
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/d9970f4.html" rel="next" title="NX二次开发-Error detected during FMS operation">
+                  NX二次开发-Error detected during FMS operation <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/f1ea3e99.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
