@@ -19,26 +19,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-<meta property="og:type" content="website">
-<meta property="og:title" content="蚂蚁Emmet">
-<meta property="og:url" content="https://notes.camcad.cn/archives/page/17/index.html">
+    <meta name="description" content="概述在系统编码字符集为GB2312(Simplified)的环境下，通过HTTP协议发起GET请求（Content-type: application&#x2F;json;charset&#x3D;GBK），将响应的JSON字符串进行解析。将得到的字符串数组放入BlockStyler::Tree树列表中，导致部分中文字符乱码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NX二次开发-BlockStyler::Tree部分中文字符乱码原因">
+<meta property="og:url" content="https://notes.camcad.cn/post/4d8ef017.html">
 <meta property="og:site_name" content="蚂蚁Emmet">
-<meta property="og:description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+<meta property="og:description" content="概述在系统编码字符集为GB2312(Simplified)的环境下，通过HTTP协议发起GET请求（Content-type: application&#x2F;json;charset&#x3D;GBK），将响应的JSON字符串进行解析。将得到的字符串数组放入BlockStyler::Tree树列表中，导致部分中文字符乱码。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2023/11/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91-%E6%A0%91%E5%88%97%E8%A1%A8%E9%83%A8%E5%88%86%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.jpg">
+<meta property="og:image" content="http://image.camcad.cn/2023/11/%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7.jpg">
+<meta property="article:published_time" content="2023-11-16T15:18:39.000Z">
+<meta property="article:modified_time" content="2023-11-16T08:12:47.763Z">
 <meta property="article:author" content="蚂蚁Emmet">
-<meta property="article:tag" content="蚂蚁Emmet,蚂蚁,emmet,ugopen,nxopen,nx二次开发,ug二次开发">
+<meta property="article:tag" content="NX二次开发">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2023/11/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91-%E6%A0%91%E5%88%97%E8%A1%A8%E9%83%A8%E5%88%86%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.jpg">
 
 
-<link rel="canonical" href="https://notes.camcad.cn/archives/page/17/">
+<link rel="canonical" href="https://notes.camcad.cn/post/4d8ef017.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/page/17/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/4d8ef017.html","path":"post/4d8ef017.html","title":"NX二次开发-BlockStyler::Tree部分中文字符乱码原因"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 蚂蚁Emmet</title>
+<title>NX二次开发-BlockStyler::Tree部分中文字符乱码原因 | 蚂蚁Emmet</title>
   
 
 
@@ -74,7 +79,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">蚂蚁Emmet</h1>
+      <p class="site-title">蚂蚁Emmet</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">开源节流，降本增效<br>逆境求生存，顺境求发展</p>
@@ -128,7 +133,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -141,6 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -193,234 +199,141 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/4d8ef017.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NX二次开发-BlockStyler::Tree部分中文字符乱码原因 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NX二次开发-BlockStyler::Tree部分中文字符乱码原因
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-16 15:18:39" itemprop="dateCreated datePublished" datetime="2023-11-16T15:18:39+00:00">2023-11-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" itemprop="url" rel="index"><span itemprop="name">疑难杂症</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/4d8ef017.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/4d8ef017.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在系统编码字符集为<code>GB2312(Simplified)</code>的环境下，通过HTTP协议发起GET请求（<code>Content-type: application/json;charset=GBK</code>），将响应的JSON字符串进行解析。将得到的字符串数组放入<code>BlockStyler::Tree</code>树列表中，导致部分中文字符乱码。<br><img src="http://image.camcad.cn/2023/11/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91-%E6%A0%91%E5%88%97%E8%A1%A8%E9%83%A8%E5%88%86%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.jpg" alt="NX二次开发-树列表部分中文乱码"></p>
+<span id="more"></span>
+
+<h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>由于系统编码字符集<code>GB2312(Simplified)</code>和响应的编码字符集<code>GBK</code>不完全兼容所致。</p>
+<p>几种常见中文编码之间兼容性：<br><img src="http://image.camcad.cn/2023/11/%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7.jpg" alt="几种常见中文编码的兼容性"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>将字符串插入到树列表之前，将字符串进行本地转码，然后将转换后的字符串插入树列表中，NX已经提供对应接口<code>NXOpen::NXString</code>，如下操作：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、通过有参构造函数进行本地转码</span><br><span class="line">NXOpen::<span class="built_in">NXString</span>(<span class="string">&quot;中文字符串&quot;</span>, NXOpen::NXString::NXStringMode::Locale)</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、通过赋值的方式进行本地转码</span><br><span class="line">NXOpen::NXString nxNote = <span class="string">&quot;中文字符串&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a target="_blank" rel="noopener" href="http://zhuanlan.zhihu.com/p/46216008">程序员必备：彻底弄懂常见的7种中文字符编码</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/4d8ef017.html" title="NX二次开发-BlockStyler::Tree部分中文字符乱码原因">https://notes.camcad.cn/post/4d8ef017.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" rel="tag"># NX二次开发</a>
+          </div>
+
         
-        <span class="collection-header">太棒了! 目前共计 373 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-08-02T10:59:19+00:00"
-              content="2020-08-02">
-          08-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/d7fa12cb.html" itemprop="url">
-            <span itemprop="name">C++提高编程71：STL函数对象（内建函数对象-内建函数对象意义/算术仿函数）</span>
-          </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/4d747de1.html" rel="prev" title="C++实现HTTP超文本传送协议请求">
+                  <i class="fa fa-chevron-left"></i> C++实现HTTP超文本传送协议请求
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-08-02T09:09:36+00:00"
-              content="2020-08-02">
-          08-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/f42f72e5.html" itemprop="url">
-            <span itemprop="name">C++提高编程70：STL函数对象（谓词）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-08-01T20:19:25+00:00"
-              content="2020-08-01">
-          08-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/b9db3b6b.html" itemprop="url">
-            <span itemprop="name">C++提高编程69：STL函数对象（函数对象）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-08-01T17:57:16+00:00"
-              content="2020-08-01">
-          08-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/b4f414d.html" itemprop="url">
-            <span itemprop="name">C++提高编程68：STL常用容器（案例-员工分组）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-08-01T14:49:21+00:00"
-              content="2020-08-01">
-          08-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/4fea10f2.html" itemprop="url">
-            <span itemprop="name">C++提高编程67：STL常用容器（map/multimap容器-map容器排序）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-08-01T09:43:55+00:00"
-              content="2020-08-01">
-          08-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/f0634711.html" itemprop="url">
-            <span itemprop="name">C++提高编程66：STL常用容器（map/multimap容器-map查找和统计）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-07-31T19:30:20+00:00"
-              content="2020-07-31">
-          07-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/16d449a4.html" itemprop="url">
-            <span itemprop="name">C++提高编程65：STL常用容器（map/multimap容器-map插入和删除）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-07-31T14:48:59+00:00"
-              content="2020-07-31">
-          07-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/752fb09b.html" itemprop="url">
-            <span itemprop="name">C++提高编程63：STL常用容器（map/multimap容器-map基本概念/map构造和赋值）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-07-31T13:40:33+00:00"
-              content="2020-07-31">
-          07-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/99f475b2.html" itemprop="url">
-            <span itemprop="name">C++提高编程64：STL常用容器（map/multimap容器-map大小和交换）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-07-31T10:57:18+00:00"
-              content="2020-07-31">
-          07-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/2a5b6f84.html" itemprop="url">
-            <span itemprop="name">C++提高编程62：STL常用容器（set/multiset容器-set容器排序）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/archives/page/16/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/archives/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/38/">38</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/archives/page/18/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
+
+
+
+    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -471,7 +384,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/archives/page/17/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/4d8ef017.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
