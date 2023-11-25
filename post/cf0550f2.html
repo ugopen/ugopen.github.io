@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="SQL概要 SQL是为操作数据库而开发的语言 虽然SQL也有标准，但实际上根据RDBMS的不同SQL也不尽相同 SQL通过一条语句来描述想要进行的操作，发送给RDBMS 原则上SQL语句都会分号结尾 SQL根据操作目的可以分为DDL、DML和DCL（一般为DML）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL基础教程">
+<meta property="og:url" content="https://notes.camcad.cn/post/cf0550f2.html">
+<meta property="og:site_name" content="蚂蚁Emmet">
+<meta property="og:description" content="SQL概要 SQL是为操作数据库而开发的语言 虽然SQL也有标准，但实际上根据RDBMS的不同SQL也不尽相同 SQL通过一条语句来描述想要进行的操作，发送给RDBMS 原则上SQL语句都会分号结尾 SQL根据操作目的可以分为DDL、DML和DCL（一般为DML）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-23T11:22:45.000Z">
+<meta property="article:modified_time" content="2023-11-25T06:39:02.261Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/cf0550f2.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/cf0550f2.html","path":"post/cf0550f2.html","title":"SQL基础教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SQL基础教程 | 蚂蚁Emmet</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+<link rel="dns-prefetch" href="https://waline.notes.camcad.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="蚂蚁Emmet" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">蚂蚁Emmet</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源节流，降本增效<br>逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">SQL概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">排序检索数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E6%89%80%E6%9C%89%E5%88%97"><span class="nav-number">2.1.</span> <span class="nav-text">检索所有列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E5%A4%9A%E4%B8%AA%E5%88%97"><span class="nav-number">2.2.</span> <span class="nav-text">检索多个列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AA%E8%BF%94%E5%9B%9E%E4%B8%8D%E5%90%8C%E7%9A%84%E5%80%BC"><span class="nav-number">2.3.</span> <span class="nav-text">只返回不同的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AA%E6%A3%80%E7%B4%A2%E5%89%8D%E5%87%A0%E8%A1%8C%E6%95%B0%E6%8D%AE%EF%BC%88MySQL%E3%80%81MariaDB%E3%80%81PostgreSQL%E6%88%96SQLite%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">只检索前几行数据（MySQL、MariaDB、PostgreSQL或SQLite）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E4%BB%8E%E7%AC%AC%E5%87%A0%E8%A1%8C%E8%B5%B7%E7%9A%84%E5%87%A0%E8%A1%8C%E6%95%B0%E6%8D%AE"><span class="nav-number">2.5.</span> <span class="nav-text">返回从第几行起的几行数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%88%97%E5%8D%87%E5%BA%8F%E6%8E%92%E5%BA%8F%EF%BC%88%E4%BB%8E0%E5%88%B09%EF%BC%8C%E4%BB%8EA%E5%88%B0Z%EF%BC%89"><span class="nav-number">2.6.</span> <span class="nav-text">单列升序排序（从0到9，从A到Z）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%88%97%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F%EF%BC%88%E4%BB%8E9%E5%88%B00%EF%BC%8C%E4%BB%8EZ%E5%88%B0A%EF%BC%8CDESC%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%AA%E5%BA%94%E7%94%A8%E5%88%B0%E7%9B%B4%E6%8E%A5%E4%BD%8D%E4%BA%8E%E5%85%B6%E5%89%8D%E9%9D%A2%E7%9A%84%E5%88%97%E5%90%8D%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">单列降序排序（从9到0，从Z到A，DESC关键字只应用到直接位于其前面的列名）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%88%97%E6%8E%92%E5%BA%8F%EF%BC%88%E9%A6%96%E5%85%88%E6%8C%89%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E6%8E%92%E5%BA%8F%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E5%90%8D%E7%A7%B0%E6%8E%92%E5%BA%8F%EF%BC%89"><span class="nav-number">2.8.</span> <span class="nav-text">多列排序（首先按内存大小排序，然后按名称排序）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E5%88%97%E4%BD%8D%E7%BD%AE%E6%8E%92%E5%BA%8F%EF%BC%88%E6%8C%89%E7%AC%AC%E4%B8%89%E5%88%97%E6%8E%92%E5%BA%8F%E5%90%8E%EF%BC%8C%E5%86%8D%E6%8C%89%E7%AC%AC%E4%B8%80%E5%88%97%E6%8E%92%E5%BA%8F%EF%BC%89"><span class="nav-number">2.9.</span> <span class="nav-text">按列位置排序（按第三列排序后，再按第一列排序）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E6%95%B0%E6%8D%AE%EF%BC%88WHERE%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">过滤数据（WHERE）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WHERE-%E5%AD%90%E5%8F%A5%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">3.1.</span> <span class="nav-text">WHERE 子句操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E5%8D%95%E4%B8%AA%E5%80%BC"><span class="nav-number">3.2.</span> <span class="nav-text">检查单个值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%8C%B9%E9%85%8D%E6%A3%80%E6%9F%A5"><span class="nav-number">3.3.</span> <span class="nav-text">不匹配检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4%E5%80%BC%E6%A3%80%E6%9F%A5%EF%BC%88%E6%A3%80%E7%B4%A2-No-%E5%9C%A85%E8%A1%8C%E5%92%8C10%E8%A1%8C%E4%B9%8B%E9%97%B4%E7%9A%84%E5%80%BC%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">范围值检查（检索 No 在5行和10行之间的值）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E5%80%BC%E6%A3%80%E6%9F%A5"><span class="nav-number">3.5.</span> <span class="nav-text">空值检查</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">374</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/cf0550f2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SQL基础教程 | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SQL基础教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-23 11:22:45" itemprop="dateCreated datePublished" datetime="2023-11-23T11:22:45+00:00">2023-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index"><span itemprop="name">辅助</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/cf0550f2.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/cf0550f2.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="SQL概要"><a href="#SQL概要" class="headerlink" title="SQL概要"></a>SQL概要</h2><ul>
+<li>SQL是为操作数据库而开发的语言</li>
+<li>虽然SQL也有标准，但实际上根据RDBMS的不同SQL也不尽相同</li>
+<li>SQL通过一条语句来描述想要进行的操作，发送给RDBMS</li>
+<li>原则上SQL语句都会分号结尾</li>
+<li>SQL根据操作目的可以分为DDL、DML和DCL（一般为DML）<span id="more"></span></li>
+</ul>
+<h2 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h2><h3 id="检索所有列"><a href="#检索所有列" class="headerlink" title="检索所有列"></a>检索所有列</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> CAMCAD_USERS;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line"><span class="keyword">No</span> <span class="operator">|</span>Host_Name      <span class="operator">|</span>User_Name      <span class="operator">|</span>CPU_Vendor  <span class="operator">|</span>CPU_Brand                                      <span class="operator">|</span>CPU_ID          <span class="operator">|</span>Display_Adapters                                                                                    <span class="operator">|</span>Memory    <span class="operator">|</span>OS_Version                                                   <span class="operator">|</span>NX_Version                     <span class="operator">|</span>Login_Date         <span class="operator">|</span>Stop_Date<span class="operator">|</span></span><br><span class="line"><span class="comment">---+---------------+---------------+------------+-----------------------------------------------+----------------+----------------------------------------------------------------------------------------------------+----------+-------------------------------------------------------------+-------------------------------+-------------------+---------+</span></span><br><span class="line">  <span class="number">1</span><span class="operator">|</span>WIN<span class="number">-73</span>CP1JT5II8<span class="operator">|</span>Administrator  <span class="operator">|</span>GenuineIntel<span class="operator">|</span>Intel(R) Core(TM) i5<span class="number">-8500</span> CPU @ <span class="number">3.00</span>GHz        <span class="operator">|</span>BFEBFBFF000906EA<span class="operator">|</span>Microsoft Basic Render Driver,NVIDIA GeForce GTX <span class="number">1060</span> <span class="number">5</span>GB                                           <span class="operator">|</span><span class="number">15.922200</span> <span class="operator">|</span><span class="number">6.3</span> Windows <span class="number">10</span> Pro (Build <span class="number">18363</span>)                             <span class="operator">|</span>NX <span class="number">1957.1901</span>                   <span class="operator">|</span><span class="number">2021</span><span class="operator">/</span><span class="number">5</span><span class="operator">/</span><span class="number">12</span><span class="number">-17</span>:<span class="number">37</span>:<span class="number">00</span> <span class="operator">|</span><span class="keyword">null</span>     <span class="operator">|</span></span><br><span class="line">  <span class="number">2</span><span class="operator">|</span>PC<span class="number">-20201223</span>RMUE<span class="operator">|</span>Administrator  <span class="operator">|</span>GenuineIntel<span class="operator">|</span>      Intel(R) Xeon(R) CPU E5<span class="number">-2651</span> v2 @ <span class="number">1.80</span>GHz<span class="operator">|</span>BFEBFBFF000306E4<span class="operator">|</span>NVIDIA GeForce GTX <span class="number">1050</span> Ti                                                                          <span class="operator">|</span><span class="number">15.919800</span> <span class="operator">|</span><span class="number">6.1</span> Windows <span class="number">7</span> Ultimate (Build <span class="number">7601</span>) Service Pack <span class="number">1</span>           <span class="operator">|</span>NX <span class="number">1899.1700</span>                   <span class="operator">|</span><span class="number">2021</span><span class="operator">/</span><span class="number">5</span><span class="operator">/</span><span class="number">15</span><span class="number">-10</span>:<span class="number">11</span>:<span class="number">35</span> <span class="operator">|</span><span class="keyword">null</span>     <span class="operator">|</span></span><br><span class="line">  <span class="number">3</span><span class="operator">|</span>cc             <span class="operator">|</span>Administrator  <span class="operator">|</span>GenuineIntel<span class="operator">|</span>Intel(R) Core(TM) i7<span class="number">-9700</span> CPU @ <span class="number">3.00</span>GHz        <span class="operator">|</span>BFEBFBFF000906ED<span class="operator">|</span>Intel(R) UHD Graphics <span class="number">630</span>,Microsoft Basic Render Driver,NVIDIA GeForce GTX <span class="number">1050</span> Ti                  <span class="operator">|</span><span class="number">15.787000</span> <span class="operator">|</span><span class="number">6.3</span> Windows <span class="number">10</span> Enterprise (Build <span class="number">19042</span>)                      <span class="operator">|</span>NX <span class="number">1969.2802</span>                   <span class="operator">|</span><span class="number">2021</span><span class="operator">/</span><span class="number">6</span><span class="operator">/</span><span class="number">4</span><span class="number">-16</span>:<span class="number">11</span>:<span class="number">52</span>  <span class="operator">|</span><span class="keyword">null</span>     <span class="operator">|</span></span><br><span class="line">  <span class="number">4</span><span class="operator">|</span>LAPTOP<span class="operator">-</span>RUKV82NI<span class="operator">|</span>Brooks         <span class="operator">|</span>AuthenticAMD<span class="operator">|</span>AMD Ryzen <span class="number">7</span> <span class="number">4800</span>H <span class="keyword">with</span> Radeon Graphics         <span class="operator">|</span><span class="number">178</span>BFBFF00860F01<span class="operator">|</span>Microsoft Basic Render Driver,NVIDIA GeForce GTX <span class="number">1650</span>                                               <span class="operator">|</span><span class="number">15.372400</span> <span class="operator">|</span><span class="number">6.3</span> Windows <span class="number">10</span> Home China (Build <span class="number">19042</span>)                      <span class="operator">|</span>NX <span class="number">12.0</span><span class="number">.1</span><span class="number">.7</span>                    <span class="operator">|</span><span class="number">2021</span><span class="operator">/</span><span class="number">6</span><span class="operator">/</span><span class="number">7</span><span class="number">-18</span>:<span class="number">18</span>:<span class="number">23</span>  <span class="operator">|</span><span class="keyword">null</span>     <span class="operator">|</span></span><br><span class="line">  <span class="number">5</span><span class="operator">|</span>DESKTOP<span class="number">-29</span>J8660<span class="operator">|</span>lijunfeng      <span class="operator">|</span>GenuineIntel<span class="operator">|</span>Intel(R) Core(TM) i7<span class="number">-4770</span> CPU @ <span class="number">3.40</span>GHz        <span class="operator">|</span>BFEBFBFF000306C3<span class="operator">|</span>Microsoft Basic Render Driver,NVIDIA Quadro K600                                                    <span class="operator">|</span><span class="number">7.945300</span>  <span class="operator">|</span><span class="number">6.3</span> Windows <span class="number">10</span> Pro <span class="keyword">for</span> Workstations (Build <span class="number">19043</span>)            <span class="operator">|</span>NX <span class="number">1892.2903</span>                   <span class="operator">|</span><span class="number">2021</span><span class="operator">/</span><span class="number">6</span><span class="operator">/</span><span class="number">12</span><span class="number">-10</span>:<span class="number">57</span>:<span class="number">33</span> <span class="operator">|</span><span class="keyword">null</span>     <span class="operator">|</span></span><br><span class="line">.................</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,<span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> &quot;No&quot;,CPU_Brand,NX_Version <span class="keyword">FROM</span> CAMCAD_USERS;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line"><span class="keyword">No</span> <span class="operator">|</span>CPU_Brand                                      <span class="operator">|</span>NX_Version                     <span class="operator">|</span></span><br><span class="line"><span class="comment">---+-----------------------------------------------+-------------------------------+</span></span><br><span class="line">  <span class="number">1</span><span class="operator">|</span>Intel(R) Core(TM) i5<span class="number">-8500</span> CPU @ <span class="number">3.00</span>GHz        <span class="operator">|</span>NX <span class="number">1957.1901</span>                   <span class="operator">|</span></span><br><span class="line">  <span class="number">2</span><span class="operator">|</span>      Intel(R) Xeon(R) CPU E5<span class="number">-2651</span> v2 @ <span class="number">1.80</span>GHz<span class="operator">|</span>NX <span class="number">1899.1700</span>                   <span class="operator">|</span></span><br><span class="line">  <span class="number">3</span><span class="operator">|</span>Intel(R) Core(TM) i7<span class="number">-9700</span> CPU @ <span class="number">3.00</span>GHz        <span class="operator">|</span>NX <span class="number">1969.2802</span>                   <span class="operator">|</span></span><br><span class="line">  <span class="number">4</span><span class="operator">|</span>AMD Ryzen <span class="number">7</span> <span class="number">4800</span>H <span class="keyword">with</span> Radeon Graphics         <span class="operator">|</span>NX <span class="number">12.0</span><span class="number">.1</span><span class="number">.7</span>                    <span class="operator">|</span></span><br><span class="line">  <span class="number">5</span><span class="operator">|</span>Intel(R) Core(TM) i7<span class="number">-4770</span> CPU @ <span class="number">3.40</span>GHz        <span class="operator">|</span>NX <span class="number">1892.2903</span>                   <span class="operator">|</span></span><br><span class="line">  ............</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="只返回不同的值"><a href="#只返回不同的值" class="headerlink" title="只返回不同的值"></a>只返回不同的值</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,<span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> cpu_brand <span class="keyword">FROM</span> CAMCAD_USERS;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line">CPU_Brand                                      <span class="operator">|</span></span><br><span class="line"><span class="comment">-----------------------------------------------+</span></span><br><span class="line">Intel(R) Core(TM) i5<span class="number">-8500</span> CPU @ <span class="number">3.00</span>GHz        <span class="operator">|</span></span><br><span class="line">      Intel(R) Xeon(R) CPU E5<span class="number">-2651</span> v2 @ <span class="number">1.80</span>GHz<span class="operator">|</span></span><br><span class="line">Intel(R) Core(TM) i7<span class="number">-9700</span> CPU @ <span class="number">3.00</span>GHz        <span class="operator">|</span></span><br><span class="line">AMD Ryzen <span class="number">7</span> <span class="number">4800</span>H <span class="keyword">with</span> Radeon Graphics         <span class="operator">|</span></span><br><span class="line">Intel(R) Core(TM) i7<span class="number">-4770</span> CPU @ <span class="number">3.40</span>GHz        <span class="operator">|</span></span><br><span class="line">.........</span><br></pre></td></tr></table></figure>
+
+<h3 id="只检索前几行数据（MySQL、MariaDB、PostgreSQL或SQLite）"><a href="#只检索前几行数据（MySQL、MariaDB、PostgreSQL或SQLite）" class="headerlink" title="只检索前几行数据（MySQL、MariaDB、PostgreSQL或SQLite）"></a>只检索前几行数据（MySQL、MariaDB、PostgreSQL或SQLite）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> LIMIT <span class="operator">&lt;</span>数字<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> cpu_brand <span class="keyword">FROM</span> CAMCAD_USERS LIMIT <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line">CPU_Brand                                      <span class="operator">|</span></span><br><span class="line"><span class="comment">-----------------------------------------------+</span></span><br><span class="line">Intel(R) Core(TM) i5<span class="number">-8500</span> CPU @ <span class="number">3.00</span>GHz        <span class="operator">|</span></span><br><span class="line">      Intel(R) Xeon(R) CPU E5<span class="number">-2651</span> v2 @ <span class="number">1.80</span>GHz<span class="operator">|</span></span><br><span class="line">Intel(R) Core(TM) i7<span class="number">-9700</span> CPU @ <span class="number">3.00</span>GHz        <span class="operator">|</span></span><br><span class="line">AMD Ryzen <span class="number">7</span> <span class="number">4800</span>H <span class="keyword">with</span> Radeon Graphics         <span class="operator">|</span></span><br><span class="line">Intel(R) Core(TM) i7<span class="number">-4770</span> CPU @ <span class="number">3.40</span>GHz        <span class="operator">|</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="返回从第几行起的几行数据"><a href="#返回从第几行起的几行数据" class="headerlink" title="返回从第几行起的几行数据"></a>返回从第几行起的几行数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> LIMIT <span class="operator">&lt;</span>数字<span class="operator">&gt;</span> <span class="keyword">OFFSET</span> <span class="operator">&lt;</span>数字<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> cpu_brand <span class="keyword">FROM</span> CAMCAD_USERS LIMIT <span class="number">5</span> <span class="keyword">OFFSET</span> <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line">CPU_Brand                                      <span class="operator">|</span></span><br><span class="line"><span class="comment">-----------------------------------------------+</span></span><br><span class="line">Intel(R) Core(TM) i7<span class="number">-8700</span> CPU @ <span class="number">3.20</span>GHz        <span class="operator">|</span></span><br><span class="line">Intel(R) Core(TM) i5<span class="number">-7300</span>HQ CPU @ <span class="number">2.50</span>GHz      <span class="operator">|</span></span><br><span class="line">Intel(R) Core(TM) i7<span class="number">-7700</span> CPU @ <span class="number">3.60</span>GHz        <span class="operator">|</span></span><br><span class="line">AMD A6<span class="number">-5350</span>M APU <span class="keyword">with</span> Radeon(tm) HD Graphics   <span class="operator">|</span></span><br><span class="line">Intel(R) Xeon(R) CPU E5<span class="number">-1620</span> v3 @ <span class="number">3.50</span>GHz      <span class="operator">|</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="单列升序排序（从0到9，从A到Z）"><a href="#单列升序排序（从0到9，从A到Z）" class="headerlink" title="单列升序排序（从0到9，从A到Z）"></a>单列升序排序（从0到9，从A到Z）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> Host_Name <span class="keyword">FROM</span> CAMCAD_USERS <span class="keyword">ORDER</span> <span class="keyword">BY</span> Host_Name;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line"><span class="number">20210124</span><span class="number">-205150</span> <span class="operator">|</span></span><br><span class="line"><span class="number">7</span>X8RHBGHYPGT713 <span class="operator">|</span></span><br><span class="line">Azhou           <span class="operator">|</span></span><br><span class="line">BUYIOS          <span class="operator">|</span></span><br><span class="line">Chensy          <span class="operator">|</span></span><br><span class="line">DEH<span class="number">-211130</span>      <span class="operator">|</span></span><br><span class="line">........</span><br></pre></td></tr></table></figure>
+
+<h3 id="单列降序排序（从9到0，从Z到A，DESC关键字只应用到直接位于其前面的列名）"><a href="#单列降序排序（从9到0，从Z到A，DESC关键字只应用到直接位于其前面的列名）" class="headerlink" title="单列降序排序（从9到0，从Z到A，DESC关键字只应用到直接位于其前面的列名）"></a>单列降序排序（从9到0，从Z到A，DESC关键字只应用到直接位于其前面的列名）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span> <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> Host_Name <span class="keyword">FROM</span> CAMCAD_USERS <span class="keyword">ORDER</span> <span class="keyword">BY</span> Host_Name <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line">DEH<span class="number">-211130</span>      <span class="operator">|</span></span><br><span class="line">Chensy          <span class="operator">|</span></span><br><span class="line">BUYIOS          <span class="operator">|</span></span><br><span class="line">Azhou           <span class="operator">|</span></span><br><span class="line"><span class="number">7</span>X8RHBGHYPGT713 <span class="operator">|</span></span><br><span class="line"><span class="number">20210124</span><span class="number">-205150</span> <span class="operator">|</span></span><br><span class="line">........</span><br></pre></td></tr></table></figure>
+
+<h3 id="多列排序（首先按内存大小排序，然后按名称排序）"><a href="#多列排序（首先按内存大小排序，然后按名称排序）" class="headerlink" title="多列排序（首先按内存大小排序，然后按名称排序）"></a>多列排序（首先按内存大小排序，然后按名称排序）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,...;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> Memory,Host_Name,Display_Adapters <span class="keyword">FROM</span> CAMCAD_USERS <span class="keyword">ORDER</span> <span class="keyword">BY</span> Memory,Host_Name;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line">Memory    <span class="operator">|</span>Host_Name       <span class="operator">|</span>Display_Adapters                                                                                    <span class="operator">|</span></span><br><span class="line"><span class="comment">----------+----------------+----------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="number">1.81561</span>   <span class="operator">|</span><span class="keyword">USER</span><span class="number">-20200131</span>HG <span class="operator">|</span>Intel(R) HD Graphics                                                                                <span class="operator">|</span></span><br><span class="line"><span class="number">11.6823</span>   <span class="operator">|</span>SK<span class="number">-20200401</span>OTGH <span class="operator">|</span>Intel(R) HD Graphics <span class="number">4600</span>                                                                           <span class="operator">|</span></span><br><span class="line"><span class="number">11.7997</span>   <span class="operator">|</span>SKY<span class="number">-20190921</span>ZEJ <span class="operator">|</span>Intel(R) HD Graphics <span class="number">530</span>,Microsoft Basic Render Driver,NVIDIA GeForce GTX <span class="number">950</span>M                      <span class="operator">|</span></span><br><span class="line"><span class="number">11.8549</span>   <span class="operator">|</span>LAPTOP<span class="operator">-</span>N0BJVI0D <span class="operator">|</span>Intel(R) UHD Graphics <span class="number">620</span>,Microsoft Basic Render Driver,NVIDIA GeForce MX250                        <span class="operator">|</span></span><br><span class="line"><span class="number">11.8653</span>   <span class="operator">|</span>XTZJ<span class="number">-20210529</span>GG <span class="operator">|</span>Intel(R) UHD Graphics <span class="number">620</span>,Microsoft Basic Render Driver,Radeon (TM) <span class="number">520</span>                             <span class="operator">|</span></span><br><span class="line">...........</span><br></pre></td></tr></table></figure>
+
+<h3 id="按列位置排序（按第三列排序后，再按第一列排序）"><a href="#按列位置排序（按第三列排序后，再按第一列排序）" class="headerlink" title="按列位置排序（按第三列排序后，再按第一列排序）"></a>按列位置排序（按第三列排序后，再按第一列排序）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>数字<span class="operator">&gt;</span>,...;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输入</span></span><br><span class="line"><span class="keyword">SELECT</span> Host_Name,Display_Adapters,Memory <span class="keyword">FROM</span> CAMCAD_USERS <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">3</span>,<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 输出</span></span><br><span class="line">Host_Name       <span class="operator">|</span>Display_Adapters                                                                                    <span class="operator">|</span>Memory    <span class="operator">|</span></span><br><span class="line"><span class="comment">----------------+----------------------------------------------------------------------------------------------------+----------+</span></span><br><span class="line"><span class="keyword">USER</span><span class="number">-20200131</span>HG <span class="operator">|</span>Intel(R) HD Graphics                                                                                <span class="operator">|</span><span class="number">1.81561</span>   <span class="operator">|</span></span><br><span class="line">SK<span class="number">-20200401</span>OTGH <span class="operator">|</span>Intel(R) HD Graphics <span class="number">4600</span>                                                                           <span class="operator">|</span><span class="number">11.6823</span>   <span class="operator">|</span></span><br><span class="line">SKY<span class="number">-20190921</span>ZEJ <span class="operator">|</span>Intel(R) HD Graphics <span class="number">530</span>,Microsoft Basic Render Driver,NVIDIA GeForce GTX <span class="number">950</span>M                      <span class="operator">|</span><span class="number">11.7997</span>   <span class="operator">|</span></span><br><span class="line">LAPTOP<span class="operator">-</span>N0BJVI0D <span class="operator">|</span>Intel(R) UHD Graphics <span class="number">620</span>,Microsoft Basic Render Driver,NVIDIA GeForce MX250                        <span class="operator">|</span><span class="number">11.8549</span>   <span class="operator">|</span></span><br><span class="line">XTZJ<span class="number">-20210529</span>GG <span class="operator">|</span>Intel(R) UHD Graphics <span class="number">620</span>,Microsoft Basic Render Driver,Radeon (TM) <span class="number">520</span>                             <span class="operator">|</span><span class="number">11.8653</span>   <span class="operator">|</span></span><br><span class="line">............</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="过滤数据（WHERE）"><a href="#过滤数据（WHERE）" class="headerlink" title="过滤数据（WHERE）"></a>过滤数据（WHERE）</h2><h3 id="WHERE-子句操作符"><a href="#WHERE-子句操作符" class="headerlink" title="WHERE 子句操作符"></a>WHERE 子句操作符</h3><table>
+<thead>
+<tr>
+<th align="center">操作符</th>
+<th align="center">说明</th>
+<th align="center">操作符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x3D;</td>
+<td align="center">等于</td>
+<td align="center">&gt;</td>
+<td align="center">大于</td>
+</tr>
+<tr>
+<td align="center">&lt;&gt;</td>
+<td align="center">不等于</td>
+<td align="center">&gt;&#x3D;</td>
+<td align="center">大于等于</td>
+</tr>
+<tr>
+<td align="center">!&#x3D;</td>
+<td align="center">不等于</td>
+<td align="center">!&gt;</td>
+<td align="center">不大于</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">小于</td>
+<td align="center">BETWEEN</td>
+<td align="center">在指定的两个值之间</td>
+</tr>
+<tr>
+<td align="center">&lt;&#x3D;</td>
+<td align="center">小于等于</td>
+<td align="center">IS NULL</td>
+<td align="center">为NULL值</td>
+</tr>
+<tr>
+<td align="center">!&lt;</td>
+<td align="center">不小于</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="检查单个值"><a href="#检查单个值" class="headerlink" title="检查单个值"></a>检查单个值</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span> ,<span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> <span class="keyword">WHERE</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span> <span class="operator">=</span> <span class="operator">&lt;</span>列的值<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--输入</span></span><br><span class="line"><span class="comment">--只返回 User_Name 值为&#x27;Administrator&#x27;的行</span></span><br><span class="line"><span class="keyword">SELECT</span> User_Name ,Memory <span class="keyword">FROM</span> CAMCAD_USERS <span class="keyword">WHERE</span> User_Name <span class="operator">=</span><span class="string">&#x27;Administrator&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--输出</span></span><br><span class="line">User_Name    <span class="operator">|</span>Memory    <span class="operator">|</span></span><br><span class="line"><span class="comment">-------------+----------+</span></span><br><span class="line">Administrator<span class="operator">|</span><span class="number">15.922200</span> <span class="operator">|</span></span><br><span class="line">Administrator<span class="operator">|</span><span class="number">15.919800</span> <span class="operator">|</span></span><br><span class="line">Administrator<span class="operator">|</span><span class="number">15.787000</span> <span class="operator">|</span></span><br><span class="line">Administrator<span class="operator">|</span><span class="number">15.950000</span> <span class="operator">|</span></span><br><span class="line">Administrator<span class="operator">|</span><span class="number">6.061470</span>  <span class="operator">|</span></span><br><span class="line">.........</span><br></pre></td></tr></table></figure>
+
+<h3 id="不匹配检查"><a href="#不匹配检查" class="headerlink" title="不匹配检查"></a>不匹配检查</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,<span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> <span class="keyword">WHERE</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span> <span class="operator">&lt;</span>操作符<span class="operator">&gt;</span> <span class="operator">&lt;</span>列的值<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--输入</span></span><br><span class="line"><span class="keyword">SELECT</span> User_Name,Memory <span class="keyword">FROM</span> CAMCAD_USERS <span class="keyword">WHERE</span> User_Name <span class="operator">!=</span> <span class="string">&#x27;Administrator&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--输出</span></span><br><span class="line">User_Name      <span class="operator">|</span>Memory    <span class="operator">|</span></span><br><span class="line"><span class="comment">---------------+----------+</span></span><br><span class="line">Brooks         <span class="operator">|</span><span class="number">15.372400</span> <span class="operator">|</span></span><br><span class="line">lijunfeng      <span class="operator">|</span><span class="number">7.945300</span>  <span class="operator">|</span></span><br><span class="line">cnc            <span class="operator">|</span><span class="number">15.938900</span> <span class="operator">|</span></span><br><span class="line">Emmet_huang    <span class="operator">|</span><span class="number">7.91433</span>   <span class="operator">|</span></span><br><span class="line">shenchy        <span class="operator">|</span><span class="number">31.7203</span>   <span class="operator">|</span></span><br><span class="line">.........</span><br></pre></td></tr></table></figure>
+
+<h3 id="范围值检查（检索-No-在5行和10行之间的值）"><a href="#范围值检查（检索-No-在5行和10行之间的值）" class="headerlink" title="范围值检查（检索 No 在5行和10行之间的值）"></a>范围值检查（检索 No 在5行和10行之间的值）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,<span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> <span class="keyword">WHERE</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span> <span class="keyword">BETWEEN</span> <span class="operator">&lt;</span>条件<span class="operator">&gt;</span> <span class="keyword">AND</span> <span class="operator">&lt;</span>条件<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--输入</span></span><br><span class="line"><span class="keyword">SELECT</span> &quot;No&quot;,MEMORY <span class="keyword">FROM</span> CAMCAD_USERS <span class="keyword">WHERE</span> &quot;No&quot; <span class="keyword">BETWEEN</span> <span class="number">5</span> <span class="keyword">AND</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--输出</span></span><br><span class="line"><span class="keyword">No</span><span class="operator">|</span>Memory    <span class="operator">|</span></span><br><span class="line"><span class="comment">--+----------+</span></span><br><span class="line"> <span class="number">5</span><span class="operator">|</span><span class="number">7.945300</span>  <span class="operator">|</span></span><br><span class="line"> <span class="number">6</span><span class="operator">|</span><span class="number">15.950000</span> <span class="operator">|</span></span><br><span class="line"> <span class="number">7</span><span class="operator">|</span><span class="number">6.061470</span>  <span class="operator">|</span></span><br><span class="line"> <span class="number">8</span><span class="operator">|</span><span class="number">15.938900</span> <span class="operator">|</span></span><br><span class="line"> <span class="number">9</span><span class="operator">|</span><span class="number">3.205720</span>  <span class="operator">|</span></span><br><span class="line"><span class="number">10</span><span class="operator">|</span><span class="number">15.918100</span> <span class="operator">|</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="空值检查"><a href="#空值检查" class="headerlink" title="空值检查"></a>空值检查</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--语法</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span>,<span class="operator">&lt;</span>列<span class="operator">&gt;</span>,... <span class="keyword">FROM</span> <span class="operator">&lt;</span>表<span class="operator">&gt;</span> <span class="keyword">WHERE</span> <span class="operator">&lt;</span>列<span class="operator">&gt;</span> <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--输入</span></span><br><span class="line"><span class="keyword">SELECT</span> &quot;No&quot;,NX_Version <span class="keyword">FROM</span> CAMCAD_USERS <span class="keyword">WHERE</span> Stop_Date <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--输出</span></span><br><span class="line"><span class="keyword">No</span><span class="operator">|</span>NX_Version<span class="operator">|</span></span><br><span class="line"><span class="comment">--+----------+</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/cf0550f2.html" title="SQL基础教程">https://notes.camcad.cn/post/cf0550f2.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/SQL/" rel="tag"># SQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/4d8ef017.html" rel="prev" title="NX二次开发-BlockStyler::Tree部分中文字符乱码原因">
+                  <i class="fa fa-chevron-left"></i> NX二次开发-BlockStyler::Tree部分中文字符乱码原因
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">湘ICP备20003716号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.notes.camcad.cn/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/post/cf0550f2.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

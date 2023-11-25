@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">373</span>
+          <span class="site-state-item-count">374</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -194,6 +194,101 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/da2c8a70.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蚂蚁Emmet">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/da2c8a70.html" class="post-title-link" itemprop="url">NX二次开发-对象边框信息（UF_MODL_ask_bounding_box_exact ）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-03 17:27:37" itemprop="dateCreated datePublished" datetime="2020-12-03T17:27:37+00:00">2020-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/da2c8a70.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/da2c8a70.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h3 id="返回与CSYS对齐的线框和实体类型对象的边框信息。"><a href="#返回与CSYS对齐的线框和实体类型对象的边框信息。" class="headerlink" title="返回与CSYS对齐的线框和实体类型对象的边框信息。"></a>返回与CSYS对齐的线框和实体类型对象的边框信息。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UF_initialize</span>();</span><br><span class="line">    std ::vector&lt;TaggedObject *&gt; selection=selection0-&gt;<span class="built_in">GetSelectedObjects</span>();</span><br><span class="line">    std::vector&lt;<span class="type">double</span>&gt;x_point,y_point,z_point;</span><br><span class="line">   <span class="type">tag_t</span> csys_tag=null_tag;;</span><br><span class="line">   <span class="type">double</span> min_corner [ <span class="number">3</span> ] ;</span><br><span class="line">   <span class="type">double</span> directions [ <span class="number">3</span> ] [ <span class="number">3</span> ] ;</span><br><span class="line">   <span class="type">double</span> distances [ <span class="number">3</span> ] ;      </span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; selection.<span class="built_in">size</span>(); i++)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="built_in">UF_MODL_ask_bounding_box_exact</span>(selection-&gt;<span class="built_in">Tag</span>(),csys_tag,min_corner,directions,distances);</span><br><span class="line">       <span class="type">double</span> point_max[<span class="number">3</span>]=&#123;min_corner [ <span class="number">0</span> ]+distances [ <span class="number">0</span>], min_corner [ <span class="number">1</span> ]+distances [ <span class="number">1</span>],min_corner [ <span class="number">2</span>]+distances [ <span class="number">2</span>],&#125;;</span><br><span class="line">       x_point.<span class="built_in">push_back</span>(min_corner[<span class="number">0</span>]);</span><br><span class="line">       x_point.<span class="built_in">push_back</span>(point_max[<span class="number">0</span>]);</span><br><span class="line">       y_point.<span class="built_in">push_back</span>(min_corner[<span class="number">1</span>]);</span><br><span class="line">       y_point.<span class="built_in">push_back</span>(point_max[<span class="number">1</span>]);</span><br><span class="line">       z_point.<span class="built_in">push_back</span>(min_corner[<span class="number">2</span>]);</span><br><span class="line">       z_point.<span class="built_in">push_back</span>(point_max[<span class="number">2</span>]);</span><br><span class="line">       <span class="built_in">sort</span>(x_point.<span class="built_in">begin</span>(),x_point.<span class="built_in">end</span>());</span><br><span class="line">       <span class="built_in">sort</span>(y_point.<span class="built_in">begin</span>(),y_point.<span class="built_in">end</span>());</span><br><span class="line">       <span class="built_in">sort</span>(z_point.<span class="built_in">begin</span>(),z_point.<span class="built_in">end</span>());</span><br><span class="line">   &#125;</span><br><span class="line">       <span class="type">double</span> xvaule=(x_point.<span class="built_in">back</span>()-x_point[<span class="number">0</span>]);<span class="comment">//计算X方向最大长度</span></span><br><span class="line">       <span class="type">double</span> yvaule=(y_point.<span class="built_in">back</span>()-y_point[<span class="number">0</span>]);<span class="comment">//计算Y方向最大长度</span></span><br><span class="line">       <span class="type">double</span> zvaule=(z_point.<span class="built_in">back</span>()-z_point[<span class="number">0</span>]);<span class="comment">//计算Z方向最大长度</span></span><br><span class="line">       <span class="type">char</span> xvaule_new[<span class="number">256</span>],yvaule_new[<span class="number">256</span>],zvaule_new[<span class="number">256</span>];</span><br><span class="line">       <span class="built_in">sprintf</span>(xvaule_new,<span class="string">&quot;%f &quot;</span>,xvaule);</span><br><span class="line">       <span class="built_in">sprintf</span>(yvaule_new,<span class="string">&quot;%f &quot;</span>,yvaule);</span><br><span class="line">       <span class="built_in">sprintf</span>(zvaule_new,<span class="string">&quot;%f &quot;</span>,zvaule);</span><br><span class="line">       <span class="comment">//创建块</span></span><br><span class="line">       UF_FEATURE_SIGN sign=UF_NULLSIGN;</span><br><span class="line">       <span class="type">double</span> corner_pt [ <span class="number">3</span> ] =&#123;x_point[<span class="number">0</span>],y_point[<span class="number">0</span>],z_point[<span class="number">0</span>]&#125;;</span><br><span class="line">       <span class="type">char</span> * edge_len [ <span class="number">3</span> ] =&#123;xvaule_new,yvaule_new,zvaule_new&#125;;</span><br><span class="line">       <span class="built_in">UF_MODL_create_block1</span>(sign,corner_pt,edge_len,&amp;blk_obj_id);</span><br><span class="line">       <span class="built_in">UF_MODL_ask_feat_body</span>(blk_obj_id,&amp;blk_obj_id_body);</span><br><span class="line">       <span class="built_in">UF_OBJ_set_translucency</span>( blk_obj_id_body,<span class="number">80</span>);</span><br><span class="line"></span><br><span class="line">       <span class="built_in">UF_terminate</span>();</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://nxopen.cn/thread-42-1-1.html">http://nxopen.cn/thread-42-1-1.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1072,108 +1167,6 @@
 <h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::do_it</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">          Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">                               All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line">   <span class="type">tag_t</span> tagObj1 = <span class="number">55568</span><span class="comment">/*螺丝螺纹面*/</span>;</span><br><span class="line">    <span class="type">tag_t</span> tagObj2 = <span class="number">60368</span><span class="comment">/*基准平面*/</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建相交的曲线</span></span><br><span class="line">    <span class="keyword">this</span>-&gt;<span class="built_in">GetIntersectingCurves</span>(tagObj1, tagObj2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="以上代码编译执行结果如下（GIF动态图）："><a href="#以上代码编译执行结果如下（GIF动态图）：" class="headerlink" title="以上代码编译执行结果如下（GIF动态图）："></a>以上代码编译执行结果如下（GIF动态图）：</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020082214530763.gif"><img src="http://image.camcad.cn/2020/08/2020082214530763-1024x625.gif"></a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/c4e3a88a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蚂蚁Emmet">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 蚂蚁Emmet">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/c4e3a88a.html" class="post-title-link" itemprop="url">NX二次开发-获取面的中心（UF_MODL_ask_face_uv_minmax、UF_MODL_ask_face_props）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-22 22:06:16" itemprop="dateCreated datePublished" datetime="2020-08-22T22:06:16+00:00">2020-08-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/post/c4e3a88a.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/c4e3a88a.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>在实际项目开发中，有时候需要求出面的中心点，但是好像NX OPEN API中没有对应的函数接口。所以需要我们使用其它的方法实现。</p>
-<h2 id="关键函数算法如下："><a href="#关键函数算法如下：" class="headerlink" title="关键函数算法如下："></a>关键函数算法如下：</h2><ul>
-<li><a href="https://notes.camcad.cn/NXOPEN_UFun_API/uf_modl/global.html#UF_MODL_ask_face_uv_minmax" title="UF_MODL_ask_face_uv_minmax">UF_MODL_ask_face_uv_minmax</a>（计算u,v参数空间的最小值，最大值）</li>
-<li><a href="https://notes.camcad.cn/NXOPEN_UFun_API/uf_modl/global.html#UF_MODL_ask_face_props" title="UF_MODL_ask_face_props">UF_MODL_ask_face_props</a>（获取面的数据，UV参数、面单位方向、半径）</li>
-</ul>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取面的中点</span></span><br><span class="line"><span class="function">Point3d <span class="title">MyClass::ask_face_midpoint</span><span class="params">(<span class="type">tag_t</span> Face)</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> Para[<span class="number">2</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="built_in">AskFaceUV</span>(Face, Para);</span><br><span class="line">    <span class="type">double</span> PointOnFace[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> Dir[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="built_in">AskFaceDir</span>(Face, Para, PointOnFace, Dir);</span><br><span class="line">    Point3d RetPoi = &#123; PointOnFace[<span class="number">0</span>], PointOnFace[<span class="number">1</span>], PointOnFace[<span class="number">2</span>] &#125;;</span><br><span class="line">    <span class="keyword">return</span> RetPoi;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获得面 UV</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::AskFaceUV</span><span class="params">(<span class="type">tag_t</span> face_tag, <span class="type">double</span> uv_out[<span class="number">2</span>])</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> uv[<span class="number">4</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_uv_minmax</span>(face_tag, uv);</span><br><span class="line">    <span class="type">double</span> uv_para[<span class="number">2</span>] = &#123; (uv[<span class="number">0</span>] + uv[<span class="number">1</span>]) / <span class="number">2</span>, (uv[<span class="number">2</span>] + uv[<span class="number">3</span>]) / <span class="number">2</span> &#125;;</span><br><span class="line">    uv_out[<span class="number">0</span>] = uv_para[<span class="number">0</span>];</span><br><span class="line">    uv_out[<span class="number">1</span>] = uv_para[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获得面法向</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::AskFaceDir</span><span class="params">(<span class="type">tag_t</span> face_tag, <span class="type">double</span> uv_para[<span class="number">2</span>], <span class="type">double</span> point[<span class="number">3</span>], <span class="type">double</span> dir[<span class="number">3</span>])</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> u1[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> v1[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> u2[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> v2[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> rad[<span class="number">2</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span>(face_tag, uv_para, point, u1, v1, u2, v2, dir, rad);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_it</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">tag_t</span> tag = <span class="number">54969</span><span class="comment">/*查询的标签*/</span>;</span><br><span class="line">    Point3d point = <span class="keyword">this</span>-&gt;<span class="built_in">ask_face_midpoint</span>(tag);</span><br><span class="line"></span><br><span class="line">    <span class="type">tag_t</span> tagPoint = NULL_TAG;</span><br><span class="line">    <span class="type">double</span> origin[<span class="number">3</span>] = &#123; point.X,point.Y,point.Z &#125;;</span><br><span class="line">    <span class="built_in">UF_CURVE_create_point</span>(origin, &amp;tagPoint);</span><br><span class="line"></span><br><span class="line">    stringstream strMsg;</span><br><span class="line">    strMsg &lt;&lt; <span class="string">&quot;X=&quot;</span> &lt;&lt; point.X &lt;&lt; <span class="string">&quot;\nY=&quot;</span> &lt;&lt; point.Y &lt;&lt; <span class="string">&quot;\nZ=&quot;</span> &lt;&lt; point.Z &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">print</span>(strMsg.<span class="built_in">str</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="以上代码编译执行结果如下（GIF动态图）："><a href="#以上代码编译执行结果如下（GIF动态图）：" class="headerlink" title="以上代码编译执行结果如下（GIF动态图）："></a>以上代码编译执行结果如下（GIF动态图）：</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020082213585826.gif"><img src="http://image.camcad.cn/2020/08/2020082213585826-1024x587.gif"></a></p>
 
       
     </div>
