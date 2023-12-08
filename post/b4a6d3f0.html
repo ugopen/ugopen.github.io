@@ -27,7 +27,7 @@
 <meta property="og:description" content="常用命令1、git 拉取&amp;推送1234git clone [仓库地址]        # 克隆仓库，加上-b 可以拉指定分支git pull             	   # 拉取远程最新代码 + 合并git fetch                  # 拉取远程最新数据git push                   # 推送代码到远程">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-01T09:37:27.000Z">
-<meta property="article:modified_time" content="2023-11-30T10:39:12.058Z">
+<meta property="article:modified_time" content="2023-12-08T09:56:38.843Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
@@ -303,7 +303,7 @@
 <h4 id="17、提交多行-commit-信息"><a href="#17、提交多行-commit-信息" class="headerlink" title="17、提交多行 commit 信息"></a>17、提交多行 commit 信息</h4><blockquote>
 <p>有两种方法实现多行信息提交：</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. git commit -m “标题” -m “描述”</span><br><span class="line">2. git commit -m <span class="string">&quot;</span></span><br><span class="line"><span class="string">标题</span></span><br><span class="line"><span class="string">描述</span></span><br><span class="line"><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. git commit -m “标题” -m “描述”</span><br><span class="line">2. git commit -m <span class="string">&quot;</span></span><br><span class="line"><span class="string">标题</span></span><br><span class="line"><span class="string">描述</span></span><br><span class="line"><span class="string">&quot;</span></span><br><span class="line"></span><br><span class="line"> git commit --amend   <span class="comment"># 本地修改commit信息</span></span><br></pre></td></tr></table></figure>
 <h4 id="18、查看日志"><a href="#18、查看日志" class="headerlink" title="18、查看日志"></a>18、查看日志</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span>			  <span class="comment"># 详细日志</span></span><br><span class="line">git <span class="built_in">log</span> --oneline	  <span class="comment"># 简短⽇志</span></span><br><span class="line">git reflog		  <span class="comment"># 操作记录，包括回退记录也会被显示</span></span><br></pre></td></tr></table></figure>
 <h4 id="19、把指定-commit-移动到当前分支上"><a href="#19、把指定-commit-移动到当前分支上" class="headerlink" title="19、把指定 commit 移动到当前分支上"></a>19、把指定 commit 移动到当前分支上</h4><blockquote>
 <p>可以把多个 commit 移动到当前分支上。</p>
