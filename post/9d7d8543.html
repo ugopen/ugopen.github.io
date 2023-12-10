@@ -27,7 +27,7 @@
 <meta property="og:description" content="模式Pimpl（pointer to implementation &#x3D; 指向实现的指针）惯用法Pimpl（pointer to implementation &#x3D; 指向实现的指针）惯用法，该技巧支持在公有接口中完全隐藏内部细节。从本质上讲，它支持将私有的成员数据和方法转移到.cpp文件中。因此，Pimpl惯用法是构建接口和实现恰当分离的API的不可或缺的技巧。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-09T16:19:02.000Z">
-<meta property="article:modified_time" content="2023-12-10T02:31:07.209Z">
+<meta property="article:modified_time" content="2023-12-10T04:34:32.663Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -143,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pimpl%EF%BC%88pointer-to-implementation-x3D-%E6%8C%87%E5%90%91%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%8C%87%E9%92%88%EF%BC%89%E6%83%AF%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">Pimpl（pointer to implementation &#x3D; 指向实现的指针）惯用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pimpl%EF%BC%88pointer-to-implementation-x3D-%E6%8C%87%E5%90%91%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%8C%87%E9%92%88%EF%BC%89%E6%83%AF%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">Pimpl（pointer to implementation &#x3D; 指向实现的指针）惯用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E8%AE%BE%E8%AE%A1%E9%80%89%E9%A1%B9"><span class="nav-number">2.1.</span> <span class="nav-text">类设计选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -291,9 +291,22 @@
 <li>Pimpl惯用法最主要的缺点是，必须为你创建的每个对象<code>分配并释放</code>实现对象。这使对象增加了一个指针，同时因为必须通过指针间接访问所有成员变量，这种额外的调用层次与新增的<code>new和delete</code>开销类似，可能引入性能冲击。</li>
 <li>编译器将不再能够捕获<code>const</code>方法中对成员变量的修改。这是由于成员变量现在存在于独立的对象中。编译器仅检查<code>const</code>方法中的<code>mImp1</code>指针值是否发生变化，而不检查<code>mImp1</code>指向的任何成员。事实上，采用Pimpl的类中的每个成员函数都可以定义为<code>const</code>的。(除了构造函数和析构函数。)下面的const方法改变了Imp1对象中的变量，这证明了上述说法。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">PimpledObject::ConstMethod</span><span class="params">()</span> <span class="type">const</span></span>&#123;</span><br><span class="line">    mImp1-&gt;mName = <span class="string">&quot;const方法更改的字符串&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><h3 id="类设计选项"><a href="#类设计选项" class="headerlink" title="类设计选项"></a>类设计选项</h3><ol>
+<li><strong>const的使用</strong>—尽可能将参数、返回值和方法定义为const。</li>
+<li><strong>exp1icit的使用</strong>—对于单参数构造函数使用<code>explicit</code>关键字以避免意外的类型转换。</li>
+</ol>
+<figure class="highlight c++"><figcaption><span>定义</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">A</span>();		<span class="comment">// default构造函数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">explicit</span> <span class="title">B</span><span class="params">(<span class="type">int</span> x = <span class="number">0</span>,<span class="type">bool</span> b = <span class="literal">true</span>)</span></span>;		<span class="comment">//explicit和default构造函数;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">doSomething</span><span class="params">(B bObject)</span></span>;		<span class="comment">// 接受一个类型为B的对象</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><figcaption><span>正确示例</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">B bObj1;			<span class="comment">// 一个类型为B的对象</span></span><br><span class="line"><span class="built_in">doSomething</span>(bObj1);		<span class="comment">// 没问题，传递一个B对象给doSomething函数</span></span><br><span class="line"><span class="function">B <span class="title">bObj2</span><span class="params">(<span class="number">26</span>)</span></span>;			<span class="comment">// 没问题，根据int（26）建立一个B对象（函数的bool参数缺省值为true）</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><figcaption><span>错误示例</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">doSomething</span>(<span class="number">26</span>);		<span class="comment">//explicit：错误，doSomething应该接受一个B对象，不是一个int，而int至B对象之间，并没有隐式转换</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">doSomething</span>(<span class="built_in">B</span>(<span class="number">26</span>));		<span class="comment">// 没有问题，使用B构造函数将int显式转换（也就是转型，cast）为一个B对象以促成此一调用</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li>C++ API设计( API Design for C++) ([美]Martin Reddy 刘晓娜，臧秀涛，林健)</li>
 <li><a target="_blank" rel="noopener" href="http://apibook.com/">http://apibook.com</a></li>
+<li>Effective C++ Effective C++ 改善程序与设计的55个具体做法 第3版 ([美] Scott Meyers  侯捷 译)</li>
 </ol>
 
     </div>
