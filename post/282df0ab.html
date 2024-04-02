@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="要在Windows上安装和运行GitLab Runner，您需要：1、本机需要有Git，可以从官方网站安装。2、如果你想在你的用户帐户而不是内置系统帐户下运行它，你的用户账户的密码。3、git的基本操作。4、gitlab Runner配置文件.gitlab-ci.yml的基础语法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows上运行GitLab Runner">
+<meta property="og:url" content="https://notes.camcad.cn/post/282df0ab.html">
+<meta property="og:site_name" content="知识储存库">
+<meta property="og:description" content="要在Windows上安装和运行GitLab Runner，您需要：1、本机需要有Git，可以从官方网站安装。2、如果你想在你的用户帐户而不是内置系统帐户下运行它，你的用户账户的密码。3、git的基本操作。4、gitlab Runner配置文件.gitlab-ci.yml的基础语法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.camcad.cn/2024/04/gitlab-add-runner.png">
+<meta property="og:image" content="http://image.camcad.cn/2024/04/gitlab-runner-deploy-test.png">
+<meta property="og:image" content="http://image.camcad.cn/2024/04/gitlab-runner.png">
+<meta property="article:published_time" content="2024-04-02T20:17:27.000Z">
+<meta property="article:modified_time" content="2024-04-02T13:53:59.563Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="gitlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.camcad.cn/2024/04/gitlab-add-runner.png">
+
+
+<link rel="canonical" href="https://notes.camcad.cn/post/282df0ab.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/282df0ab.html","path":"post/282df0ab.html","title":"Windows上运行GitLab Runner"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Windows上运行GitLab Runner | 知识储存库</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="知识储存库" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">知识储存库</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">增长盈利，降本增效<br>逆境求生存，顺境求发展</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">安装软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CRunner%EF%BC%88%E5%86%85%E7%BD%AE%E7%B3%BB%E7%BB%9F%E8%B4%A6%E6%88%B7%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">注册Runner（内置系统账户）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-gitlab-runner-exe-install%E8%A7%A3%E5%86%B3%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">安装.\gitlab-runner.exe install解决权限问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Runner"><span class="nav-number">2.2.</span> <span class="nav-text">安装Runner</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8Runner"><span class="nav-number">2.3.</span> <span class="nav-text">启动Runner</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Registering-runners"><span class="nav-number">2.4.</span> <span class="nav-text">Registering runners</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%EF%BC%9AERROR-Job-failed-system-failure-prepare-environment-failed-to-start-process-exec-%E2%80%9Cpwsh%E2%80%9D-executable-file-not-found-in-PATH"><span class="nav-number">2.5.</span> <span class="nav-text">问题处理：ERROR: Job failed (system failure): prepare environment: failed to start process: exec: “pwsh”: executable file not found in %PATH%.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8CRunner"><span class="nav-number">3.</span> <span class="nav-text">本地运行Runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%A7%84%E5%88%99%E5%AE%9A%E4%B9%89"><span class="nav-number">4.</span> <span class="nav-text">流水线规则定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0%E5%88%B0%E4%BB%93%E5%BA%93%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">5.</span> <span class="nav-text">将代码上传到仓库，查看流水线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">379</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/282df0ab.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Windows上运行GitLab Runner | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows上运行GitLab Runner
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-02 20:17:27" itemprop="dateCreated datePublished" datetime="2024-04-02T20:17:27+00:00">2024-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/gitlab/" itemprop="url" rel="index"><span itemprop="name">gitlab</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>要在Windows上安装和运行GitLab Runner，您需要：<br>1、本机需要有Git，可以从<a target="_blank" rel="noopener" href="http://git-scm.com/downloads">官方网站</a>安装。<br>2、如果你想在你的用户帐户而不是内置系统帐户下运行它，你的用户账户的密码。<br>3、git的基本操作。<br>4、gitlab Runner配置文件<code>.gitlab-ci.yml</code>的基础语法。</p>
+<span id="more"></span>
+
+<h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><p>1、创建文件夹，在系统中的某个位置创建一个文件夹，例如：<code>C:\GitLab Runner</code>。</p>
+<p>2、下载Runner软件，下载<a target="_blank" rel="noopener" href="https://s3.dualstack.us-east-1.amazonaws.com/gitlab-runner-downloads/latest/binaries/gitlab-runner-windows-amd64.exe">64位</a>或<a target="_blank" rel="noopener" href="https://s3.dualstack.us-east-1.amazonaws.com/gitlab-runner-downloads/latest/binaries/gitlab-runner-windows-386.exe">32位</a>的二进制文件，并将其放入您创建的文件夹中。以下假设您已将二进制文件重命名为<code>gitlab-runner.exe</code>（可选）。</p>
+<h3 id="注册Runner（内置系统账户）"><a href="#注册Runner（内置系统账户）" class="headerlink" title="注册Runner（内置系统账户）"></a>注册Runner（内置系统账户）</h3><h4 id="安装-gitlab-runner-exe-install解决权限问题"><a href="#安装-gitlab-runner-exe-install解决权限问题" class="headerlink" title="安装.\gitlab-runner.exe install解决权限问题"></a>安装<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/61310681/fatal-failed-to-start-gitlab-runner-access-is-denied">.\gitlab-runner.exe install</a>解决权限问题</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">步骤：</span><br><span class="line"></span><br><span class="line">1、Windows + X</span><br><span class="line">2、终端管理员</span><br><span class="line">3、cd &quot;C:\GitLab-Runner&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装Runner"><a href="#安装Runner" class="headerlink" title="安装Runner"></a>安装Runner</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\GitLab-Runner&gt; .\gitlab-runner.exe install</span><br><span class="line">Runtime platform                                    arch=amd64 os=windows pid=22100 revision=81ab07f6 version=16.10.0</span><br></pre></td></tr></table></figure>
+
+<h4 id="启动Runner"><a href="#启动Runner" class="headerlink" title="启动Runner"></a>启动Runner</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\GitLab-Runner&gt; .\gitlab-runner.exe start</span><br><span class="line">Runtime platform                                    arch=amd64 os=windows pid=9320 revision=81ab07f6 version=16.10.0</span><br></pre></td></tr></table></figure>
+
+<h4 id="Registering-runners"><a href="#Registering-runners" class="headerlink" title="Registering runners"></a>Registering runners</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">step1：</span><br><span class="line">PS C:\GitLab-Runner&gt; .\gitlab-runner.exe register</span><br><span class="line">Runtime platform                                    arch=amd64 os=windows pid=19132 revision=81ab07f6 version=16.10.0</span><br><span class="line">Enter the GitLab instance URL (for example, https://gitlab.com/):</span><br><span class="line">https://gitlab.com/</span><br><span class="line"></span><br><span class="line">step 2：</span><br><span class="line">Enter the registration token:</span><br><span class="line">GR13489419-azyx4zw35diAddjseWFfh</span><br><span class="line"></span><br><span class="line">step 3：</span><br><span class="line">Enter a description for the runner:</span><br><span class="line">[emmet]: 用于打包程序</span><br><span class="line"></span><br><span class="line">step 4：</span><br><span class="line">Enter tags for the runner (comma-separated):</span><br><span class="line">MyDeploy</span><br><span class="line"></span><br><span class="line">step 5：</span><br><span class="line">Enter optional maintenance note for the runner:</span><br><span class="line">other</span><br><span class="line"></span><br><span class="line">step 6：</span><br><span class="line">WARNING: Support for registration tokens and runner parameters in the &#x27;register&#x27; command has been deprecated in GitLab Runner 15.6 and will be replaced with support for authentication tokens. For more information, see https://docs.gitlab.com/ee/ci/runners/new_creation_workflow</span><br><span class="line">Registering runner... succeeded                     runner=GR13489419-Vzyx4z</span><br><span class="line">Enter an executor: ssh, parallels, docker, kubernetes, docker-autoscaler, custom, virtualbox, docker-windows, docker+machine, instance, shell:</span><br><span class="line">shell</span><br></pre></td></tr></table></figure>
+<p>如图所示，本机添加runner成功<br><img src="http://image.camcad.cn/2024/04/gitlab-add-runner.png" alt="gitlab-add-runner"></p>
+<h4 id="问题处理：ERROR-Job-failed-system-failure-prepare-environment-failed-to-start-process-exec-“pwsh”-executable-file-not-found-in-PATH"><a href="#问题处理：ERROR-Job-failed-system-failure-prepare-environment-failed-to-start-process-exec-“pwsh”-executable-file-not-found-in-PATH" class="headerlink" title="问题处理：ERROR: Job failed (system failure): prepare environment: failed to start process: exec: “pwsh”: executable file not found in %PATH%."></a>问题处理：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/68050125/gitlab-runner-prepare-environment-failed-to-start-process-pwsh-in-windows">ERROR: Job failed (system failure): prepare environment: failed to start process: exec: “pwsh”: executable file not found in %PATH%.</a></h4><p>编辑config.toml以使用较旧的powershell.exe：</p>
+<figure class="highlight plaintext"><figcaption><span>from</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[[runners]]</span><br><span class="line">  name = &quot;ci-runner&quot;</span><br><span class="line">  url = &quot;http://xxx.yyy.xx/&quot;</span><br><span class="line">  token = &quot;XXXXX&quot;</span><br><span class="line">  executor = &quot;shell&quot;</span><br><span class="line">  shell = &quot;pwsh&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>to</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[[runners]]</span><br><span class="line">  name = &quot;ci-runner&quot;</span><br><span class="line">  url = &quot;http://xxx.yyy.xx/&quot;</span><br><span class="line">  token = &quot;XXXXX&quot;</span><br><span class="line">  executor = &quot;shell&quot;</span><br><span class="line">  shell = &quot;powershell&quot;</span><br></pre></td></tr></table></figure>
+<p>然后重新启动gitlab runner解决了这个问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gitlab-runner.exe restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="本地运行Runner"><a href="#本地运行Runner" class="headerlink" title="本地运行Runner"></a>本地运行Runner</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS C:\GitLab-Runner&gt; .\gitlab-runner.exe run</span><br><span class="line">Runtime platform                                    arch=amd64 os=windows pid=27404 revision=81ab07f6 version=16.10.0</span><br><span class="line">Starting multi-runner from C:\GitLab-Runner\config.toml...  builds=0 max_builds=0</span><br><span class="line">There might be a problem with your config based on jsonschema annotations in common/config.go (experimental feature):</span><br><span class="line">jsonschema: &#x27;/runners/0/Monitoring&#x27; does not validate with https://gitlab.com/gitlab-org/gitlab-runner/common/config#/$ref/properties/runners/items/$ref/properties/Monitoring/$ref/type: expected object, but got null</span><br><span class="line"></span><br><span class="line">Configuration loaded                                builds=0 max_builds=1</span><br><span class="line">listen_address not defined, metrics &amp; debug endpoints disabled  builds=0 max_builds=1</span><br><span class="line">[session_server].listen_address not defined, session endpoints disabled  builds=0 max_builds=1</span><br><span class="line">Initializing executor providers                     builds=0 max_builds=1</span><br></pre></td></tr></table></figure>
+
+<h3 id="流水线规则定义"><a href="#流水线规则定义" class="headerlink" title="流水线规则定义"></a>流水线规则定义</h3><p>在项目目录下创建<code>.gitlab-ci.yml</code>文件，内容如下：</p>
+<figure class="highlight yaml"><figcaption><span>.gitlab-ci.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">deploy</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 逻辑规则</span></span><br><span class="line"><span class="attr">workflow:</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_BRANCH</span> <span class="string">==</span> <span class="string">&quot;main&quot;</span> <span class="comment"># CI_COMMIT_BRANCH 表示分支为main就触发</span></span><br><span class="line">      <span class="attr">when:</span> <span class="string">always</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">when:</span> <span class="string">never</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy_emmet:</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">MyDeploy</span> <span class="comment"># 本地 Runner名称</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">hostname</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">pwd</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ls</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;本地程序部署&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="将代码上传到仓库，查看流水线"><a href="#将代码上传到仓库，查看流水线" class="headerlink" title="将代码上传到仓库，查看流水线"></a>将代码上传到仓库，查看流水线</h3><p>如下所示表示Runner完成<br><img src="http://image.camcad.cn/2024/04/gitlab-runner-deploy-test.png" alt="gitlab-runner-deploy-test"></p>
+<hr>
+<p><img src="http://image.camcad.cn/2024/04/gitlab-runner.png" alt="gitlab-runner"></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/runner/install/windows.html">Install GitLab Runner on Windows</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=wRXBztn6OkE&list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu&index=11">為你自己學 GitLab CI&#x2F;CD</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://notes.camcad.cn/post/282df0ab.html" title="Windows上运行GitLab Runner">https://notes.camcad.cn/post/282df0ab.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/gitlab/" rel="tag"># gitlab</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/e7d1d05.html" rel="prev" title="gitlab升级流程（ubuntu serve ）">
+                  <i class="fa fa-chevron-left"></i> gitlab升级流程（ubuntu serve ）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">湘ICP备20003716号-1 </a>
+      <img src="http://image.camcad.cn/2024/02/gongan_icon.png" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43122302000045" rel="noopener" target="_blank">湘公网安备43122302000045号 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/4.14.2/algoliasearch-lite.umd.js" integrity="sha256-dImjLPUsG/6p3+i7gVKBiDM8EemJAhQ0VvkRK2pVsQY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/4.49.1/instantsearch.production.min.js" integrity="sha256-3s8yn/IU/hV+UjoqczP+9xDS1VXIpMf3QYRUi9XoG0Y=" crossorigin="anonymous"></script><script src="/js/third-party/search/algolia-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
