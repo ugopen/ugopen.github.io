@@ -27,8 +27,10 @@
 <meta property="og:description" content="浏览器中的VSCode">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.camcad.cn/2024/04/01.png">
+<meta property="og:image" content="http://image.camcad.cn/2024/04/vscode_vsix.png">
+<meta property="og:image" content="http://image.camcad.cn/2024/04/vscode_vsix_install.png">
 <meta property="article:published_time" content="2024-04-05T16:11:57.000Z">
-<meta property="article:modified_time" content="2024-04-08T11:05:28.570Z">
+<meta property="article:modified_time" content="2024-04-08T12:02:46.106Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="vscode">
 <meta property="article:tag" content="code-server">
@@ -119,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">下载安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">下载安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">离线安装插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">5.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,6 +248,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bind-addr: 0.0.0.0:6868     # 0.0.0.0表示本地IP，6868表示访问端口</span><br><span class="line">auth: password</span><br><span class="line">password: 321456            # 登录密码</span><br><span class="line"></span><br><span class="line"># https访问</span><br><span class="line">cert: /home/emmet/.config/code-server/vscode.camcad.cn.pem  # 私钥</span><br><span class="line">cert-key: /home/emmet/.config/code-server/vscode.camcad.cn.key  # 公钥</span><br></pre></td></tr></table></figure>
 
 <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 加载新的unit配置文件</span><br><span class="line">sudo systemctl reload-daemon</span><br><span class="line"></span><br><span class="line"># 重启code-server配置文件</span><br><span class="line">sudo systemctl restart code-server@$USER</span><br><span class="line"></span><br><span class="line"># 设置code-server开机自启动</span><br><span class="line">sudo systemctl enable code-server@$USER</span><br><span class="line"></span><br><span class="line"># 停止code-server服务</span><br><span class="line">sudo systemctl stop code-server@$USER</span><br><span class="line"></span><br><span class="line"># 执行如下命令将相关文件全部删除即可完成卸载</span><br><span class="line">sudo rm -rf /usr/lib/code-server</span><br><span class="line">sudo rm -rf ~/.local/share/code-server</span><br><span class="line">sudo rm -rf ~/.config/code-server</span><br></pre></td></tr></table></figure>
+
+<h3 id="离线安装插件"><a href="#离线安装插件" class="headerlink" title="离线安装插件"></a>离线安装插件</h3><p>在官网下载插件：<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/vscode">https://marketplace.visualstudio.com/vscode</a><br><img src="http://image.camcad.cn/2024/04/vscode_vsix.png" alt="vscode_vsix"></p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><p>将下载好的软件上传至服务器中，通过<code>扩展 --&gt; 从 VSIX 安装</code>。<br><img src="http://image.camcad.cn/2024/04/vscode_vsix_install.png" alt="vscode_vsix_install"></p>
+
     </div>
 
     
