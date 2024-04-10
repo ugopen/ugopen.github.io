@@ -128,18 +128,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">381</span>
+          <span class="site-state-item-count">384</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -167,6 +167,261 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/c4e3a88a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/c4e3a88a.html" class="post-title-link" itemprop="url">NX二次开发-获取面的中心（UF_MODL_ask_face_uv_minmax、UF_MODL_ask_face_props）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-22 22:06:16" itemprop="dateCreated datePublished" datetime="2020-08-22T22:06:16+00:00">2020-08-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>在实际项目开发中，有时候需要求出面的中心点，但是好像NX OPEN API中没有对应的函数接口。所以需要我们使用其它的方法实现。</p>
+<h2 id="关键函数算法如下："><a href="#关键函数算法如下：" class="headerlink" title="关键函数算法如下："></a>关键函数算法如下：</h2><ul>
+<li><a href="https://notes.camcad.cn/NXOPEN_UFun_API/uf_modl/global.html#UF_MODL_ask_face_uv_minmax" title="UF_MODL_ask_face_uv_minmax">UF_MODL_ask_face_uv_minmax</a>（计算u,v参数空间的最小值，最大值）</li>
+<li><a href="https://notes.camcad.cn/NXOPEN_UFun_API/uf_modl/global.html#UF_MODL_ask_face_props" title="UF_MODL_ask_face_props">UF_MODL_ask_face_props</a>（获取面的数据，UV参数、面单位方向、半径）</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取面的中点</span></span><br><span class="line"><span class="function">Point3d <span class="title">MyClass::ask_face_midpoint</span><span class="params">(<span class="type">tag_t</span> Face)</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> Para[<span class="number">2</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="built_in">AskFaceUV</span>(Face, Para);</span><br><span class="line">    <span class="type">double</span> PointOnFace[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> Dir[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="built_in">AskFaceDir</span>(Face, Para, PointOnFace, Dir);</span><br><span class="line">    Point3d RetPoi = &#123; PointOnFace[<span class="number">0</span>], PointOnFace[<span class="number">1</span>], PointOnFace[<span class="number">2</span>] &#125;;</span><br><span class="line">    <span class="keyword">return</span> RetPoi;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获得面 UV</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::AskFaceUV</span><span class="params">(<span class="type">tag_t</span> face_tag, <span class="type">double</span> uv_out[<span class="number">2</span>])</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> uv[<span class="number">4</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_uv_minmax</span>(face_tag, uv);</span><br><span class="line">    <span class="type">double</span> uv_para[<span class="number">2</span>] = &#123; (uv[<span class="number">0</span>] + uv[<span class="number">1</span>]) / <span class="number">2</span>, (uv[<span class="number">2</span>] + uv[<span class="number">3</span>]) / <span class="number">2</span> &#125;;</span><br><span class="line">    uv_out[<span class="number">0</span>] = uv_para[<span class="number">0</span>];</span><br><span class="line">    uv_out[<span class="number">1</span>] = uv_para[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获得面法向</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::AskFaceDir</span><span class="params">(<span class="type">tag_t</span> face_tag, <span class="type">double</span> uv_para[<span class="number">2</span>], <span class="type">double</span> point[<span class="number">3</span>], <span class="type">double</span> dir[<span class="number">3</span>])</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> u1[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> v1[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> u2[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> v2[<span class="number">3</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">double</span> rad[<span class="number">2</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span>(face_tag, uv_para, point, u1, v1, u2, v2, dir, rad);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_it</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">tag_t</span> tag = <span class="number">54969</span><span class="comment">/*查询的标签*/</span>;</span><br><span class="line">    Point3d point = <span class="keyword">this</span>-&gt;<span class="built_in">ask_face_midpoint</span>(tag);</span><br><span class="line"></span><br><span class="line">    <span class="type">tag_t</span> tagPoint = NULL_TAG;</span><br><span class="line">    <span class="type">double</span> origin[<span class="number">3</span>] = &#123; point.X,point.Y,point.Z &#125;;</span><br><span class="line">    <span class="built_in">UF_CURVE_create_point</span>(origin, &amp;tagPoint);</span><br><span class="line"></span><br><span class="line">    stringstream strMsg;</span><br><span class="line">    strMsg &lt;&lt; <span class="string">&quot;X=&quot;</span> &lt;&lt; point.X &lt;&lt; <span class="string">&quot;\nY=&quot;</span> &lt;&lt; point.Y &lt;&lt; <span class="string">&quot;\nZ=&quot;</span> &lt;&lt; point.Z &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">print</span>(strMsg.<span class="built_in">str</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="以上代码编译执行结果如下（GIF动态图）："><a href="#以上代码编译执行结果如下（GIF动态图）：" class="headerlink" title="以上代码编译执行结果如下（GIF动态图）："></a>以上代码编译执行结果如下（GIF动态图）：</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020082213585826.gif"><img src="http://image.camcad.cn/2020/08/2020082213585826-1024x587.gif"></a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b4dd2e8c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/b4dd2e8c.html" class="post-title-link" itemprop="url">NX二次开发-选择范围（Selection Scope）设置（UF_load_library）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-22 18:43:58" itemprop="dateCreated datePublished" datetime="2020-08-22T18:43:58+00:00">2020-08-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/b4dd2e8c.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/43aa50b8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/43aa50b8.html" class="post-title-link" itemprop="url">NX二次开发-求对象的最大边界框（UF_MODL_ask_bounding_box）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-16 20:32:29" itemprop="dateCreated datePublished" datetime="2020-08-16T20:32:29+00:00">2020-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_obj.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_modl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_part.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="源文件"><a href="#源文件" class="headerlink" title="源文件"></a>源文件</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::MyFunc</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//遍历当前显示部件所有体</span></span><br><span class="line">    std::vector&lt;<span class="type">tag_t</span>&gt; SolidVector;</span><br><span class="line">    <span class="type">tag_t</span> ObjectTag = NULL_TAG;</span><br><span class="line">    <span class="type">int</span> Type, SubType, Body_Type;</span><br><span class="line">    <span class="type">int</span> Count = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> msg[<span class="number">256</span>];</span><br><span class="line">    <span class="built_in">UF_OBJ_cycle_objs_in_part</span>(<span class="built_in">UF_PART_ask_display_part</span>(), UF_solid_type, &amp;ObjectTag);</span><br><span class="line">    <span class="keyword">while</span> (ObjectTag != NULL_TAG)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">UF_OBJ_ask_type_and_subtype</span>(ObjectTag, &amp;Type, &amp;SubType);</span><br><span class="line">        <span class="keyword">if</span> (SubType == UF_solid_body_subtype)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">UF_MODL_ask_body_type</span>(ObjectTag, &amp;Body_Type);</span><br><span class="line">            <span class="keyword">if</span> (Body_Type == UF_MODL_SOLID_BODY)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">UF_OBJ_set_color</span>(ObjectTag, <span class="number">186</span>);</span><br><span class="line">                SolidVector.<span class="built_in">push_back</span>(ObjectTag);</span><br><span class="line">                Count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">UF_OBJ_cycle_objs_in_part</span>(<span class="built_in">UF_PART_ask_display_part</span>(), UF_solid_type, &amp;ObjectTag);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//求所有体的最大边界</span></span><br><span class="line">    <span class="type">double</span> MaxBox[<span class="number">6</span>] = &#123; <span class="number">10000</span>, <span class="number">10000</span>, <span class="number">10000</span>, <span class="number">-10000</span>, <span class="number">-10000</span>, <span class="number">-10000</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; Count; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">double</span> Box[<span class="number">6</span>];</span><br><span class="line">        <span class="built_in">UF_MODL_ask_bounding_box</span>(SolidVector[i], Box);</span><br><span class="line">        MaxBox[<span class="number">0</span>] = MaxBox[<span class="number">0</span>] &lt; Box[<span class="number">0</span>] ? MaxBox[<span class="number">0</span>] : Box[<span class="number">0</span>];</span><br><span class="line">        MaxBox[<span class="number">1</span>] = MaxBox[<span class="number">1</span>] &lt; Box[<span class="number">1</span>] ? MaxBox[<span class="number">1</span>] : Box[<span class="number">1</span>];</span><br><span class="line">        MaxBox[<span class="number">2</span>] = MaxBox[<span class="number">2</span>] &lt; Box[<span class="number">2</span>] ? MaxBox[<span class="number">2</span>] : Box[<span class="number">2</span>];</span><br><span class="line">        MaxBox[<span class="number">3</span>] = MaxBox[<span class="number">3</span>] &gt; Box[<span class="number">3</span>] ? MaxBox[<span class="number">3</span>] : Box[<span class="number">3</span>];</span><br><span class="line">        MaxBox[<span class="number">4</span>] = MaxBox[<span class="number">4</span>] &gt; Box[<span class="number">4</span>] ? MaxBox[<span class="number">4</span>] : Box[<span class="number">4</span>];</span><br><span class="line">        MaxBox[<span class="number">5</span>] = MaxBox[<span class="number">5</span>] &gt; Box[<span class="number">5</span>] ? MaxBox[<span class="number">5</span>] : Box[<span class="number">5</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//转换</span></span><br><span class="line">    <span class="type">char</span> Length[<span class="number">200</span>], Width[<span class="number">200</span>], Height[<span class="number">200</span>];</span><br><span class="line">    <span class="built_in">sprintf</span>(Length, <span class="string">&quot;%f&quot;</span>, MaxBox[<span class="number">3</span>] - MaxBox[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">sprintf</span>(Width, <span class="string">&quot;%f&quot;</span>, MaxBox[<span class="number">4</span>] - MaxBox[<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">sprintf</span>(Height, <span class="string">&quot;%f&quot;</span>, MaxBox[<span class="number">5</span>] - MaxBox[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span>* Len[<span class="number">3</span>];</span><br><span class="line">    Len[<span class="number">0</span>] = Length;</span><br><span class="line">    Len[<span class="number">1</span>] = Width;</span><br><span class="line">    Len[<span class="number">2</span>] = Height;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建块</span></span><br><span class="line">    <span class="type">double</span> Ori[<span class="number">3</span>] = &#123; MaxBox[<span class="number">0</span>], MaxBox[<span class="number">1</span>], MaxBox[<span class="number">2</span>] &#125;;</span><br><span class="line">    <span class="type">tag_t</span> BlkTag = NULL_TAG;</span><br><span class="line">    <span class="built_in">UF_MODL_create_block1</span>(UF_NULLSIGN, Ori, Len, &amp;BlkTag);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//特征找体</span></span><br><span class="line">    <span class="type">tag_t</span> BodyTag = NULL_TAG;</span><br><span class="line">    <span class="built_in">UF_MODL_ask_feat_body</span>(BlkTag, &amp;BodyTag);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>转载：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nxopen2018/p/10975871.html">https://www.cnblogs.com/nxopen2018/p/10975871.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3666,265 +3921,6 @@
 <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081102461755.png"><img src="http://image.camcad.cn/2020/08/2020081102461755.png"></a></p>
 <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081102464172.png"><img src="http://image.camcad.cn/2020/08/2020081102464172.png"></a></p>
 <p>转载：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bizca/p/4598094.html">https://www.cnblogs.com/bizca/p/4598094.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/d8dff6e4.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/d8dff6e4.html" class="post-title-link" itemprop="url">NX二次开发-孔加工特征的创建过程源码（UFUN）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-10 17:31:21" itemprop="dateCreated datePublished" datetime="2020-08-10T17:31:21+00:00">2020-08-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><p>NX OPEN API-孔加工特征的创建过程源码（UFUN）</p>
-<h3 id="头文件："><a href="#头文件：" class="headerlink" title="头文件："></a>头文件：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">          Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">                       All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;uf_ui.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_defs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_cfi.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_cam.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ncgroup.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_part.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_setup.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_fbm_geom.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui_param.h&gt;</span> </span></span><br></pre></td></tr></table></figure>
-
-<h3 id="源文件："><a href="#源文件：" class="headerlink" title="源文件："></a>源文件：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::MyTestFunc01</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">		  Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">							   All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line">	<span class="type">int</span> error_code = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>, count = <span class="number">0</span>, part_units;</span><br><span class="line">	<span class="type">char</span> reason[UF_NCGROUP_MAX_REASON_BUFSIZE];</span><br><span class="line">	<span class="type">char</span> *env_trans;</span><br><span class="line">	<span class="type">char</span> opt_name[MAX_FSPEC_BUFSIZE];</span><br><span class="line">	<span class="type">char</span> part_name[MAX_FSPEC_BUFSIZE];</span><br><span class="line">	<span class="type">char</span> open_part_name[MAX_FSPEC_BUFSIZE] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">	<span class="type">char</span>  **feature_names;</span><br><span class="line">	UF_NCFEAT_t *features;</span><br><span class="line"></span><br><span class="line">	<span class="type">tag_t</span> setupTag = <span class="number">0</span>, wp_tag = <span class="number">0</span>;</span><br><span class="line">	<span class="type">tag_t</span> part_tag = <span class="number">0</span>, geomTag = <span class="number">0</span>, geomRootTag = <span class="number">0</span>;</span><br><span class="line">	logical answer;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> **criteria_list;</span><br><span class="line">	<span class="type">char</span>                         **criteria_to_consider;</span><br><span class="line">	<span class="type">int</span>                           num_of_classified_sets;</span><br><span class="line">	UF_FBM_GEOM_classified_crit_t classified_sets;</span><br><span class="line">	UF_FBM_GEOM_crit_value_type_t crit_type;</span><br><span class="line">	<span class="type">double</span>                        value;</span><br><span class="line">	UF_PART_load_status_t         load_status;</span><br><span class="line"></span><br><span class="line">	error_code = <span class="built_in">UF_initialize</span>();</span><br><span class="line">	<span class="keyword">if</span> (error_code != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;uf 初始化失败 %d\n&quot;</span>, error_code);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//分配存储器</span></span><br><span class="line">	criteria_to_consider = (<span class="type">char</span> **)<span class="built_in">UF_allocate_memory</span>(<span class="built_in">sizeof</span>(<span class="type">char</span>*),</span><br><span class="line">		&amp;error_code);</span><br><span class="line"></span><br><span class="line">	criteria_to_consider[<span class="number">0</span>] = (<span class="type">char</span> *)<span class="built_in">UF_allocate_memory</span>(<span class="built_in">sizeof</span>(<span class="type">char</span>) * <span class="number">132</span>,</span><br><span class="line">		&amp;error_code);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*** This program works with the part files in the CAM samples directory</span></span><br><span class="line"><span class="comment">		 so we need to get the path of the directory and the file name</span></span><br><span class="line"><span class="comment">		 这个程序使用 CAM 示例目录中的零件文件</span></span><br><span class="line"><span class="comment">		 因此，我们需要获得目录的路径和文件名</span></span><br><span class="line"><span class="comment">	*****/</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* ...\MACH\samples\ */</span></span><br><span class="line">	<span class="built_in">UF_translate_variable</span>(<span class="string">&quot;UGII_CAM_SAMPLES_DIR&quot;</span>, &amp;env_trans);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//字符串拼接</span></span><br><span class="line">	<span class="built_in">strcpy</span>(part_name, env_trans);</span><br><span class="line">	<span class="built_in">strcat</span>(part_name, <span class="string">&quot;cam_holemaking_base_&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*** If no part is open then open the part cam_holemaking_base_in.prt</span></span><br><span class="line"><span class="comment">		 from the CAM samples directory</span></span><br><span class="line"><span class="comment">		 If not check to see if the units of the open part so that we can open</span></span><br><span class="line"><span class="comment">		 the same units part</span></span><br><span class="line"><span class="comment">		 如果没有打开部件，那么打开部件 cam_holemaking_base_in.prt</span></span><br><span class="line"><span class="comment">		从 CAM 示例目录中如果不检查一下，看看是否有单位的开口部分，以便我们可以打开</span></span><br><span class="line"><span class="comment">		相同单位的部分</span></span><br><span class="line"><span class="comment">	****/</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//查询当前显示部件的 tag</span></span><br><span class="line">	<span class="keyword">if</span> ((part_tag = <span class="built_in">UF_PART_ask_display_part</span>()) == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">strcat</span>(part_name, <span class="string">&quot;in.prt&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//查询部件的名称 路径+文件名</span></span><br><span class="line">		<span class="built_in">UF_PART_ask_part_name</span>(part_tag, open_part_name);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//查询部件的单位，公制或英制</span></span><br><span class="line">		<span class="built_in">UF_PART_ask_units</span>(part_tag, &amp;part_units);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (part_units == UF_PART_ENGLISH<span class="comment">/*英寸*/</span>)</span><br><span class="line">			<span class="built_in">strcat</span>(part_name, <span class="string">&quot;in.prt&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">strcat</span>(part_name, <span class="string">&quot;mm.prt&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/***</span></span><br><span class="line"><span class="comment">		 If the file we are trying to open is the currently open file</span></span><br><span class="line"><span class="comment">		 then continue on</span></span><br><span class="line"><span class="comment">		 如果我们试图打开的文件是当前打开的文件然后继续</span></span><br><span class="line"><span class="comment">	***/</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">strcmp</span>(open_part_name, part_name) != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//打开一个已有部件</span></span><br><span class="line">		<span class="built_in">UF_PART_open</span>(part_name, &amp;part_tag, &amp;load_status);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//初始化由$UGII_CAM_CONFIG 指定的 CAM 会话</span></span><br><span class="line">	error_code = <span class="built_in">UF_CAM_init_session</span>();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (error_code != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;初始化 CAM 会话失败 %d\n&quot;</span>, error_code);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//查询当前部件的 UF_SETUP 对象</span></span><br><span class="line">	<span class="built_in">UF_SETUP_ask_setup</span>(&amp;setupTag);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (setupTag == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//环境变量翻译为等价字符串</span></span><br><span class="line">	<span class="built_in">UF_translate_variable</span>(<span class="string">&quot;UGII_CAM_TEMPLATE_SET_DIR&quot;</span>, &amp;env_trans);</span><br><span class="line">	<span class="comment">/*...\MACH\resource\template_set*/</span></span><br><span class="line">	<span class="built_in">strcpy</span>(opt_name, env_trans);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*...\MACH\resource\template_set\hole_making.opt*/</span></span><br><span class="line">	<span class="built_in">strcat</span>(opt_name, <span class="string">&quot;hole_making.opt&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//依据指定模板文件重新初始化 OPTS</span></span><br><span class="line">	<span class="built_in">UF_CAM_reinit_opt</span>(opt_name);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建 NC 几何组</span></span><br><span class="line">	<span class="comment">//特征组名称：FBM_GEOM</span></span><br><span class="line">	<span class="built_in">UF_NCGEOM_create</span>(<span class="string">&quot;hole_making&quot;</span>, <span class="string">&quot;fbm_geom&quot;</span>, &amp;geomTag);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//查询 NC 几何组的根组</span></span><br><span class="line">	<span class="built_in">UF_SETUP_ask_geom_root</span>(setupTag, &amp;geomRootTag);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//查询指定名称对象的 tag 列表</span></span><br><span class="line">	<span class="built_in">UF_NCGROUP_ask_object_of_name</span>(geomRootTag, <span class="string">&quot;WORKPIECE&quot;</span>, &amp;wp_tag);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//查询一个组是否接受另一个组</span></span><br><span class="line">	<span class="built_in">UF_NCGROUP_can_accept_member</span>(wp_tag, geomTag, &amp;answer, reason);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (answer == TRUE)</span><br><span class="line">		<span class="comment">//添加成员</span></span><br><span class="line">		<span class="built_in">UF_NCGROUP_accept_member</span>(wp_tag, geomTag);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取 FBM_GEOM 组中当前有效的特征名字</span></span><br><span class="line">	<span class="built_in">UF_FBM_GEOM_ask_list_of_feature_names</span>(geomTag, &amp;count, &amp;feature_names);</span><br><span class="line"></span><br><span class="line">	<span class="comment">////常用数据类型 int，double 向 String 转换</span></span><br><span class="line">	<span class="comment">//stringstream sstream;</span></span><br><span class="line">	<span class="comment">//sstream &lt;&lt; count; //uc1601(sstream.str().c_str(), 1); if (count &gt; 0)</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//释放字符串数组内存</span></span><br><span class="line">	<span class="built_in">UF_free_string_array</span>(count, feature_names);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//设置 FBM_GERO 组中特征的名称，并用名称创建特征对象</span></span><br><span class="line">	<span class="comment">//特征类型：SIMPLE_HOLE</span></span><br><span class="line">	<span class="built_in">UF_FBM_GEOM_set_feature_name</span>(geomTag, <span class="string">&quot;SIMPLE_HOLE&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取 FBM_GEOM 组中的特征</span></span><br><span class="line">	<span class="built_in">UF_FBM_GEOM_ask_features</span>(geomTag, &amp;count, &amp;features);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (count &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">UF_free</span>(features);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取 FBM_GEOM 组的所有可用条件。</span></span><br><span class="line">	<span class="built_in">UF_FBM_GEOM_ask_available_criteria</span>(geomTag, &amp;count, &amp;criteria_list);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (count == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">strcpy</span>(criteria_to_consider[<span class="number">0</span>], criteria_list[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//根据给定的标准返回分类的结果</span></span><br><span class="line">	<span class="built_in">UF_FBM_GEOM_classify_by_criteria</span>(geomTag, <span class="number">1</span>, criteria_to_consider,</span><br><span class="line">		&amp;num_of_classified_sets,</span><br><span class="line">		&amp;classified_sets);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取 FBM_GERO 组的标准数据类型</span></span><br><span class="line">	<span class="built_in">UF_FBM_GEOM_ask_type_of_criterion</span>(geomTag, criteria_list[<span class="number">0</span>], &amp;crit_type);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= num_of_classified_sets; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">switch</span> (crit_type)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> UF_FBM_GEOM_crit_value_type_double:</span><br><span class="line"></span><br><span class="line">			<span class="comment">//获取由 classified_set 索引指示集合的标准的实数值</span></span><br><span class="line">			<span class="built_in">UF_FBM_GEOM_ask_double_value_of_classified_crit</span>(geomTag,</span><br><span class="line">				criteria_list[<span class="number">0</span>],</span><br><span class="line">				classified_sets, i, &amp;value);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//设置 FBM_GERO 组中特征对象的分类设定</span></span><br><span class="line">	<span class="built_in">UF_FBM_GEOM_set_classified_features</span>(geomTag, classified_sets, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="以上源码编译执行结果如下（GIF动态图）"><a href="#以上源码编译执行结果如下（GIF动态图）" class="headerlink" title="以上源码编译执行结果如下（GIF动态图）:"></a>以上源码编译执行结果如下（GIF动态图）:</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/202008100929183.gif"><img src="http://image.camcad.cn/2020/08/202008100929183-1024x564.gif"></a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/738fb218.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/738fb218.html" class="post-title-link" itemprop="url">NX二次开发-获取面的最外边缘实例代码(UFUN)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-10 10:13:44" itemprop="dateCreated datePublished" datetime="2020-08-10T10:13:44+00:00">2020-08-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
-<h2 id="头文件："><a href="#头文件：" class="headerlink" title="头文件："></a>头文件：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取面的最外边缘实例代码</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_exit.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> ! defined ( __hp9000s800 ) &amp;&amp; ! defined ( __sgi ) &amp;&amp; ! defined ( __sun )</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;strstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> std::ostrstream;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"><span class="keyword">using</span> std::ends;</span><br><span class="line"><span class="keyword">using</span> std::cerr;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;strstream.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_csys.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_obj.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_modl.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="源文件："><a href="#源文件：" class="headerlink" title="源文件："></a>源文件：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置选择的实体类型</span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">init_proc</span><span class="params">(UF_UI_selection_p_t select, <span class="type">void</span> *user_data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span>  errorCode = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>  num_triples = <span class="number">1</span>; <span class="comment">//选择类型 数量</span></span><br><span class="line">    UF_UI_mask_t mask_triples[] = &#123; UF_face_type,<span class="number">0</span>,<span class="number">0</span>, &#125;; <span class="comment">//定义选择类型</span></span><br><span class="line"></span><br><span class="line">    errorCode = <span class="built_in">UF_UI_set_sel_mask</span>(select, UF_UI_SEL_MASK_CLEAR_AND_ENABLE_SPECIFIC, num_triples, mask_triples);</span><br><span class="line">    <span class="keyword">if</span> (errorCode == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> UF_UI_SEL_SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> UF_UI_SEL_FAILURE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function">DllExport <span class="type">void</span> <span class="title">ufsta</span><span class="params">(<span class="type">char</span> *param, <span class="type">int</span> *returnCode, <span class="type">int</span> rlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* Initialize the API environment */</span></span><br><span class="line">    <span class="type">int</span> errorCode = <span class="built_in">UF_initialize</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> == errorCode)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span> *message = <span class="string">&quot;提示！请选择表面。&quot;</span>;</span><br><span class="line">        <span class="type">char</span> *title = <span class="string">&quot;请选择表面&quot;</span>;</span><br><span class="line">        <span class="type">int</span>  scope = UF_UI_SEL_SCOPE_WORK_PART;<span class="comment">//UF_UI_SEL_SCOPE_NO_CHANGE</span></span><br><span class="line">        <span class="type">int</span>  response;</span><br><span class="line">        <span class="type">tag_t</span> object_tag;</span><br><span class="line">        <span class="type">double</span>  cursor[<span class="number">3</span>] = &#123; <span class="number">0.0</span> &#125;;</span><br><span class="line">        <span class="type">tag_t</span> view = NULL_TAG;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">UF_UI_lock_ug_access</span>(UF_UI_FROM_CUSTOM);<span class="comment">//加锁</span></span><br><span class="line">        <span class="built_in">UF_UI_select_with_single_dialog</span>(message, title, scope, init_proc, <span class="literal">NULL</span>, &amp;response, &amp;object_tag, cursor, &amp;view);  <span class="comment">//选择框</span></span><br><span class="line">        <span class="built_in">UF_DISP_set_highlight</span>(object_tag, <span class="number">0</span>); <span class="comment">//1 高亮显示 0 不高亮显示</span></span><br><span class="line">        <span class="built_in">UF_UI_unlock_ug_access</span>(UF_UI_FROM_CUSTOM);<span class="comment">//解锁</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (response == UF_UI_OBJECT_SELECTED)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//获得面最外边缘 </span></span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">            <span class="type">tag_t</span>    edge_id[<span class="number">2000</span>];</span><br><span class="line">            <span class="type">uf_loop_p_t</span>   loops_list = NULL_TAG;</span><br><span class="line">            <span class="built_in">UF_MODL_ask_face_loops</span>(object_tag, &amp;loops_list);     <span class="comment">//查询面的边</span></span><br><span class="line"></span><br><span class="line">            <span class="type">int</span>      loops_count = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">UF_MODL_ask_loop_list_count</span>(loops_list, &amp;loops_count);<span class="comment">//查询数量</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> l_i = <span class="number">0</span>; l_i &lt; loops_count; l_i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">int</span>    loops_type = <span class="number">0</span>;              <span class="comment">//类型</span></span><br><span class="line">                <span class="type">uf_list_p_t</span>   edge_list = NULL_TAG; <span class="comment">//边缘菜单指针 ID</span></span><br><span class="line">                <span class="built_in">UF_MODL_ask_loop_list_item</span>(loops_list, l_i, &amp;loops_type, &amp;edge_list);</span><br><span class="line">                <span class="keyword">if</span> (<span class="number">1</span> == loops_type)                <span class="comment">//边界=1, 洞=2, 其他=3</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="type">int</span>  edge_count = <span class="number">0</span>;             <span class="comment">//边缘数量</span></span><br><span class="line">                    <span class="built_in">UF_MODL_ask_list_count</span>(edge_list, &amp;edge_count);</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> edge_i = <span class="number">0</span>; edge_i &lt; edge_count; edge_i++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        n = n + <span class="number">1</span>;</span><br><span class="line">                        <span class="built_in">UF_MODL_ask_list_item</span>(edge_list, edge_i, &amp;edge_id[n - <span class="number">1</span>]);     <span class="comment">//n-1 是因为 数组是从 0 开始的</span></span><br><span class="line">                        <span class="built_in">UF_MODL_create_curve_from_edge</span>(edge_id[n - <span class="number">1</span>], &amp;edge_id[n - <span class="number">1</span>]); <span class="comment">//提取实体边缘  </span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (n != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">char</span> msg[<span class="number">32</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                <span class="built_in">sprintf</span>(msg, <span class="string">&quot;%d&quot;</span>, n);</span><br><span class="line">                <span class="built_in">uc1601</span>(msg, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">uc1601</span>(<span class="string">&quot;提示！你选择的面没有发现边缘（比如：首尾相连的圆柱面不返回边缘）&quot;</span>, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        errorCode = <span class="built_in">UF_terminate</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function"><span class="type">int</span> <span class="title">ufusr_ask_unload</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (UF_UNLOAD_IMMEDIATELY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>转载：<a target="_blank" rel="noopener" href="http://www.vmould.cn/?post=71">http://www.vmould.cn/?post=71</a> </p>
-<h2 id="以上代码编译执行结果如下（GIF动态图）："><a href="#以上代码编译执行结果如下（GIF动态图）：" class="headerlink" title="以上代码编译执行结果如下（GIF动态图）："></a>以上代码编译执行结果如下（GIF动态图）：</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080909231936.gif"><img src="http://image.camcad.cn/2020/08/2020080909231936-1024x690.gif"></a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/c00b4728.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/c00b4728.html" class="post-title-link" itemprop="url">NX二次开发-文本刻字功能的实现原理与核心代码(UFUN/NX OPEN)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-09 16:15:04" itemprop="dateCreated datePublished" datetime="2020-08-09T16:15:04+00:00">2020-08-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a><br>通过对 NX <code>菜单--插入--曲线--文本</code>功能进行二次开发，实现对零件、电极等实体定制刻字功能</p>
-<p><img src="http://image.camcad.cn/2020/08/202008090805192-1024x793.jpg"></p>
-<h2 id="刻字功能实现原理："><a href="#刻字功能实现原理：" class="headerlink" title="刻字功能实现原理："></a>刻字功能实现原理：</h2><p>1：先用鼠标选取平面，获得选择点的坐标和面的tag_t标识 选择点可以通过C++的UI控件 <code>Point3d pickPoint = selection0-&gt;PickPoint()</code> 获得选择点的坐标值。 选择的面tag_t通过 <code>Face *iface-&gt;Tag()</code> 获得。</p>
-<p>2，自定义一个函数，来获得选择平面的法向方向和X、Y的向量值，可以定义一个vector来返回，后面刻字定义放置平面的时候需要用到，函数原型在下面会列出。</p>
-<p>3，通过NXopen C++录制手动菜单–插入–曲线–文本功能进行创建文本，可以得到以下核心的代码部分，只需要对其中 Point3d origin放置原点的位置，和Vector3d xDirection与Vector3d yDirection两个方向的向量值进行传递即可快速创建文本，核心代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Part *<span class="title">workPart</span><span class="params">(theSession-&gt;Parts()-&gt;Work())</span></span>;</span><br><span class="line"><span class="function">Part *<span class="title">displayPart</span><span class="params">(theSession-&gt;Parts()-&gt;Display())</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">Features::Text *<span class="title">nullFeatures_Text</span><span class="params">(<span class="literal">NULL</span>)</span></span>;</span><br><span class="line">Features::TextBuilder *textBuilder1;</span><br><span class="line">textBuilder1 = workPart-&gt;<span class="built_in">Features</span>()-&gt;<span class="built_in">CreateTextBuilder</span>(nullFeatures_Text);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">AnchorPosition</span>()-&gt;<span class="built_in">Expression</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;50&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">SetScript</span>(Features::TextBuilder::ScriptOptionsWestern); </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">SetAnchorLocation</span>(GeometricUtilities::RectangularFrameBuilder::AnchorLocationTypeBottomCenter);   </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Length</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;5&quot;</span>);  </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置字体的高度</span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Height</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;2&quot;</span>);  </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置长宽比例                </span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">SetWScale</span>(<span class="number">100.0</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Shear</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;0&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">AnchorPosition</span>()-&gt;<span class="built_in">Expression</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;50&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Offset</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;0&quot;</span>);   </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Length</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;1&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Height</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;2&quot;</span>);    </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置字体</span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">SelectFont</span>(<span class="string">&quot;Arial&quot;</span>, Features::TextBuilder::ScriptOptionsWestern);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置要刻的文本                </span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">SetTextString</span>(<span class="string">&quot;NX90&quot;</span>);    </span><br><span class="line"></span><br><span class="line"><span class="comment">//获取鼠标选择的坐标点Point3d pickPoint = selection0-&gt;PickPoint()        </span></span><br><span class="line"><span class="function">Point3d <span class="title">origin2</span><span class="params">(pickPoint.X, pickPoint.Y,pickPoint.Z)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过自定义函数GetxyDirection来获得返回的X、y的向量值</span></span><br><span class="line">vector&lt;<span class="type">double</span>&gt; Directi= <span class="built_in">GetxyDirection</span>(objs);</span><br><span class="line"><span class="function">Vector3d <span class="title">xDirection1</span><span class="params">(Directi[<span class="number">0</span>], Directi[<span class="number">1</span>], Directi[<span class="number">2</span>])</span></span>;</span><br><span class="line"><span class="function">Vector3d <span class="title">yDirection1</span><span class="params">(Directi[<span class="number">3</span>], Directi[<span class="number">4</span>], Directi[<span class="number">5</span>])</span></span>;</span><br><span class="line"></span><br><span class="line">Xform *xform1;</span><br><span class="line">xform1 = workPart-&gt;<span class="built_in">Xforms</span>()-&gt;<span class="built_in">CreateXform</span>(origin2, xDirection1, yDirection1, SmartObject::UpdateOptionWithinModeling, <span class="number">1.0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>4，结合UI界面的定制，可以让用户自由选择字体样式、修改字体大小、字体方向、刻字深度等功能！</p>
-<p><img src="http://image.camcad.cn/2020/08/2020080908073281.jpg"></p>
-<p>5，通过对创建好的文本进行拉伸和布尔求差，即可实现刻字功能。</p>
-<p>以下是自定义的函数来获得选择面的X和Y的向量值，通过vector来返回一个数组。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">double</span>&gt; <span class="title">GetxyDirection</span><span class="params">(<span class="type">tag_t</span> object_tag)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UF_initialize</span>();</span><br><span class="line">    <span class="type">double</span> wsc_9[<span class="number">9</span>]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;; <span class="comment">//3x3矩阵</span></span><br><span class="line">    <span class="type">tag_t</span> matrix_id=NULL_TAG;  <span class="comment">//3x3矩阵标识</span></span><br><span class="line">    <span class="type">double</span> o_point[<span class="number">3</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;   <span class="comment">//坐标原点</span></span><br><span class="line">    <span class="type">tag_t</span> csys_id;            <span class="comment">//坐标标识</span></span><br><span class="line">    <span class="type">double</span> x_vec[ <span class="number">3</span> ]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;<span class="comment">//坐标x方向</span></span><br><span class="line">    <span class="type">double</span> y_vec[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;<span class="comment">//坐标y方向</span></span><br><span class="line">    <span class="type">double</span> z_vec[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;<span class="comment">//坐标z方向</span></span><br><span class="line">    <span class="type">int</span>  is_equal;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> type=<span class="number">0</span>;  <span class="comment">//判断面类型</span></span><br><span class="line">    <span class="type">int</span> norm_dir=<span class="number">0</span>;</span><br><span class="line">    <span class="type">double</span> point[<span class="number">3</span>]; <span class="comment">//轴中心 点</span></span><br><span class="line">    <span class="type">double</span> dir[<span class="number">3</span>];    <span class="comment">//轴方向</span></span><br><span class="line">    <span class="type">double</span> box[<span class="number">6</span>];    <span class="comment">//极点坐标</span></span><br><span class="line">    <span class="type">double</span> radius[<span class="number">1</span>];   <span class="comment">//半径 圆锥=最小半径 + 最大半径 /2</span></span><br><span class="line">    <span class="type">double</span> rad_data[<span class="number">3</span>]; <span class="comment">////面法向</span></span><br><span class="line">    <span class="type">double</span> z_vec2[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="type">double</span> uvs[<span class="number">4</span>];   <span class="comment">//面uv最小和最大值</span></span><br><span class="line">    <span class="type">double</span> param[<span class="number">2</span>];   <span class="comment">//输入U,V方向值</span></span><br><span class="line">    <span class="type">double</span> x_point[<span class="number">3</span>];   <span class="comment">//面点坐标</span></span><br><span class="line">    <span class="type">double</span> y_point[<span class="number">3</span>];   <span class="comment">//面点坐标</span></span><br><span class="line">    <span class="type">double</span> u1[ <span class="number">3</span> ];    <span class="comment">//输出 输出一阶导数在U位置</span></span><br><span class="line">    <span class="type">double</span> v1[ <span class="number">3</span> ];    <span class="comment">//输出 输出一阶导数在V位置</span></span><br><span class="line">    <span class="type">double</span> u2[ <span class="number">3</span> ];    <span class="comment">//输出 输出二阶导数在U位置</span></span><br><span class="line">    <span class="type">double</span> v2[ <span class="number">3</span> ];    <span class="comment">//输出 输出二阶导数在V位置</span></span><br><span class="line">    <span class="type">double</span> unit_norm[<span class="number">3</span>]; <span class="comment">//输出面上该点的矢量方向--------输出矢量方向</span></span><br><span class="line">    <span class="type">double</span> radii[ <span class="number">2</span> ];     <span class="comment">//输出，双半径，输出主曲率半径</span></span><br><span class="line">    <span class="type">double</span> vec[ <span class="number">3</span> ];<span class="comment">//输入向量</span></span><br><span class="line">    <span class="type">double</span> tolerance=<span class="number">0.001</span>; <span class="comment">//输入公差</span></span><br><span class="line">    <span class="type">double</span> magnitude[<span class="number">1</span>];   <span class="comment">//输出 向量的大小</span></span><br><span class="line">    <span class="type">double</span> unit_vec[ <span class="number">3</span> ];   <span class="comment">//输出单位向量</span></span><br><span class="line">    <span class="type">tag_t</span> point_tag=NULL_TAG;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_data</span> (object_tag,&amp;type,point,dir,box,radius,rad_data,&amp;norm_dir); </span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_uv_minmax</span> (object_tag, uvs); <span class="comment">//获得面u,v参数空间（u,v最小,最大值）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获得曲面上的中点</span></span><br><span class="line">    param[<span class="number">0</span>]=(uvs[<span class="number">0</span>]+uvs[<span class="number">1</span>])/<span class="number">2</span>; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=(uvs[<span class="number">2</span>]+uvs[<span class="number">3</span>])/<span class="number">2</span>; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,o_point,u1,v1,u2,v2,unit_norm,radii);</span><br><span class="line">    <span class="comment">//坐标z方向=曲面矢量方向</span></span><br><span class="line">    wsc_9[<span class="number">6</span>]=unit_norm[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">7</span>]=unit_norm[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">8</span>]=unit_norm[<span class="number">2</span>];</span><br><span class="line">    z_vec[<span class="number">0</span>]=wsc_9[<span class="number">6</span>];</span><br><span class="line">    z_vec[<span class="number">1</span>]=wsc_9[<span class="number">7</span>];</span><br><span class="line">    z_vec[<span class="number">2</span>]=wsc_9[<span class="number">8</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//x方向单位向量</span></span><br><span class="line">    param[<span class="number">0</span>]=(uvs[<span class="number">0</span>]+uvs[<span class="number">1</span>])/<span class="number">2</span>; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=uvs[<span class="number">3</span>]; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,x_point,u1,v1,u2,v2,unit_norm,radii);<span class="comment">//获得曲面上的点</span></span><br><span class="line">    vec[<span class="number">0</span>]=x_point[<span class="number">0</span>]-o_point[<span class="number">0</span>];</span><br><span class="line">    vec[<span class="number">1</span>]=x_point[<span class="number">1</span>]-o_point[<span class="number">1</span>];</span><br><span class="line">    vec[<span class="number">2</span>]=x_point[<span class="number">2</span>]-o_point[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">UF_VEC3_unitize</span> (vec,tolerance,magnitude,unit_vec); </span><br><span class="line">    wsc_9[<span class="number">0</span>]=unit_vec[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">1</span>]=unit_vec[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">2</span>]=unit_vec[<span class="number">2</span>];</span><br><span class="line">    x_vec[<span class="number">0</span>]=wsc_9[<span class="number">0</span>];</span><br><span class="line">    x_vec[<span class="number">1</span>]=wsc_9[<span class="number">1</span>];</span><br><span class="line">    x_vec[<span class="number">2</span>]=wsc_9[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//y方向单位向量</span></span><br><span class="line">    param[<span class="number">0</span>]=uvs[<span class="number">0</span>]; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=(uvs[<span class="number">2</span>]+uvs[<span class="number">3</span>])/<span class="number">2</span>; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,y_point,u1,v1,u2,v2,unit_norm,radii);<span class="comment">//获得曲面上的点</span></span><br><span class="line">    vec[<span class="number">0</span>]=y_point[<span class="number">0</span>]-o_point[<span class="number">0</span>];</span><br><span class="line">    vec[<span class="number">1</span>]=y_point[<span class="number">1</span>]-o_point[<span class="number">1</span>];</span><br><span class="line">    vec[<span class="number">2</span>]=y_point[<span class="number">2</span>]-o_point[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">UF_VEC3_unitize</span> (vec,tolerance,magnitude,unit_vec); </span><br><span class="line">    wsc_9[<span class="number">3</span>]=unit_vec[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">4</span>]=unit_vec[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">5</span>]=unit_vec[<span class="number">2</span>];</span><br><span class="line">    y_vec[<span class="number">0</span>]=wsc_9[<span class="number">3</span>];</span><br><span class="line">    y_vec[<span class="number">1</span>]=wsc_9[<span class="number">4</span>];</span><br><span class="line">    y_vec[<span class="number">2</span>]=wsc_9[<span class="number">5</span>];</span><br><span class="line">    <span class="comment">//---</span></span><br><span class="line">    <span class="comment">//输入x和y方向，获得3x3矩阵</span></span><br><span class="line">    <span class="built_in">UF_MTX3_initialize</span>(x_vec,y_vec,wsc_9);</span><br><span class="line">    <span class="comment">//输入一个矩阵返回z方向向量</span></span><br><span class="line">    <span class="built_in">UF_MTX3_z_vec</span>(wsc_9,z_vec2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断2个3维向量是否相等</span></span><br><span class="line">    <span class="built_in">UF_VEC3_is_equal</span>(z_vec,z_vec2,<span class="number">0.01</span>,&amp;is_equal);</span><br><span class="line">    <span class="keyword">if</span>(is_equal!=<span class="number">1</span>)  <span class="comment">//不相等</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获得3维向量反向</span></span><br><span class="line">        wsc_9[<span class="number">3</span>]=-wsc_9[<span class="number">3</span>];</span><br><span class="line">        wsc_9[<span class="number">4</span>]=-wsc_9[<span class="number">4</span>];</span><br><span class="line">        wsc_9[<span class="number">5</span>]=-wsc_9[<span class="number">5</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="type">double</span>&gt; matdouble;</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">0</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">1</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">2</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">3</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">4</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">5</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>转载：<a target="_blank" rel="noopener" href="http://www.vmould.cn/?post=79" title="http://www.vmould.cn/?post=79">http://www.vmould.cn/?post=79</a></p>
 
       
     </div>
