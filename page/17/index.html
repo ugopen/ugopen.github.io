@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">394</span>
+          <span class="site-state-item-count">396</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,177 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/ff625382.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/ff625382.html" class="post-title-link" itemprop="url">NX二次开发-获取选取的注释文本信息以及标签（NX OPEN）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-11 19:12:37" itemprop="dateCreated datePublished" datetime="2020-08-11T19:12:37+00:00">2020-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><p>NX OPEN API-获取选取的注释文本信息以及标签（NX OPEN）</p>
+<h3 id="头文件："><a href="#头文件：" class="headerlink" title="头文件："></a>头文件：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">          Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">                        All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_object_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Annotations.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Annotations_Note.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/NXException.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/NXMessageBox.hxx&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/NXObject.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Selection.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Session.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UI.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/ListingWindow.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/NXMessageBox.hxx&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> NXOpen;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
+
+<h3 id="源文件："><a href="#源文件：" class="headerlink" title="源文件："></a>源文件：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">          Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">                        All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> DllExport <span class="type">void</span> <span class="title">ufusr</span><span class="params">(<span class="type">char</span> *parm, <span class="type">int</span> *returnCode, <span class="type">int</span> rlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/* 初始化 API 环境 */</span></span><br><span class="line">	Session* theSession = NXOpen::Session::<span class="built_in">GetSession</span>();</span><br><span class="line">	<span class="keyword">try</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 要求用户选择文本</span></span><br><span class="line">		UI *ui = UI::<span class="built_in">GetUI</span>();</span><br><span class="line">		Selection *sm = ui-&gt;<span class="built_in">SelectionManager</span>();</span><br><span class="line">		NXMessageBox *mb = ui-&gt;<span class="built_in">NXMessageBox</span>(); <span class="comment">// as of NX5</span></span><br><span class="line"></span><br><span class="line">		<span class="function">NXString <span class="title">message</span><span class="params">(<span class="string">&quot;请选择注释对象：&quot;</span>)</span></span>;</span><br><span class="line">		<span class="function">NXString <span class="title">title</span><span class="params">(<span class="string">&quot;WeChat：Huangmy-Emmet&quot;</span>)</span></span>;</span><br><span class="line">		Selection::SelectionScope scope = Selection::SelectionScopeUseDefault;</span><br><span class="line">		Selection::SelectionAction action = Selection::SelectionActionClearAndEnableSpecific;</span><br><span class="line">		<span class="type">bool</span> include_features = <span class="number">0</span>;</span><br><span class="line">		<span class="type">bool</span> keep_highlighted = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 定义遮罩三层</span></span><br><span class="line">		<span class="function">std::vector <span class="title">mask</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">		mask[<span class="number">0</span>] = Selection::<span class="built_in">MaskTriple</span>(UF_drafting_entity_type, UF_draft_note_subtype, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">		std::vector objects;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 使用掩码三元组定义的筛选器选择对象</span></span><br><span class="line">		Selection::Response res = sm-&gt;<span class="built_in">SelectObjects</span>(</span><br><span class="line">			message,</span><br><span class="line">			title,</span><br><span class="line">			scope,</span><br><span class="line">			action,</span><br><span class="line">			include_features,</span><br><span class="line">			keep_highlighted,</span><br><span class="line">			mask,</span><br><span class="line">			objects</span><br><span class="line">		);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (objects.<span class="built_in">size</span>())</span><br><span class="line">		&#123;</span><br><span class="line">			Annotations::Note *note;</span><br><span class="line">			std::vector messages;</span><br><span class="line">			std::vector texts;</span><br><span class="line">			std::vectorvTag;</span><br><span class="line"></span><br><span class="line">			</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; objects.<span class="built_in">size</span>(); i++)</span><br><span class="line">			&#123;</span><br><span class="line">				note = <span class="built_in">dynamic_cast</span>(objects[i]);</span><br><span class="line">				texts = note-&gt;<span class="built_in">GetText</span>();</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//标签（TAG）</span></span><br><span class="line">				<span class="type">char</span> cMsg[<span class="number">256</span>];</span><br><span class="line">				<span class="built_in">sprintf</span>(cMsg, <span class="string">&quot;%d&quot;</span>, note-&gt;<span class="built_in">Tag</span>());</span><br><span class="line">				messages.<span class="built_in">push_back</span>(cMsg);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> j = <span class="number">0</span>; j &lt; texts.<span class="built_in">size</span>(); j++) &#123; messages.<span class="built_in">push_back</span>(texts[j]); &#125; &#125; <span class="comment">// NX 消息框从 NX5 开始工作 mb-&gt;Show(&quot;WeChat：Huangmy-Emmet&quot;, NXMessageBox::DialogTypeInformation, messages);</span></span><br><span class="line"></span><br><span class="line">			<span class="comment">// 信息窗口</span></span><br><span class="line">			 <span class="comment">//ListingWindow *lw = theSession-&gt;ListingWindow();</span></span><br><span class="line">			 <span class="comment">//lw-&gt;Open();</span></span><br><span class="line">			 <span class="comment">//for (unsigned int kk = 0; kk &lt; messages.size(); kk++) //&#123; // lw-&gt;WriteLine(messages[kk].getText());</span></span><br><span class="line">			 <span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 处理错误 */</span></span><br><span class="line">	<span class="built_in">catch</span> (<span class="type">const</span> NXOpen::NXException&amp; ex)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// NXMessageBox works as of NX5</span></span><br><span class="line">		UI::<span class="built_in">GetUI</span>()-&gt;<span class="built_in">NXMessageBox</span>()-&gt;<span class="built_in">Show</span>(<span class="string">&quot;Error&quot;</span>, NXMessageBox::DialogTypeInformation, ex.<span class="built_in">Message</span>());</span><br><span class="line">		<span class="comment">// Until NX4 simply write to the listing window</span></span><br><span class="line">		<span class="comment">// theSession-&gt;GetListingWindow()-&gt;WriteLine(ex.GetMessage());</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function">DllExport <span class="type">int</span> <span class="title">ufusr_ask_unload</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (<span class="type">int</span>)NXOpen::Session::LibraryUnloadOptionImmediately;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="以上源码编译执行结果如下（GIF动态图）："><a href="#以上源码编译执行结果如下（GIF动态图）：" class="headerlink" title="以上源码编译执行结果如下（GIF动态图）："></a>以上源码编译执行结果如下（GIF动态图）：</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081014045592.gif"><img src="http://image.camcad.cn/2020/08/2020081014045592-1024x625.gif" alt="NX OPEN API-获取选取的注释文本信息以及标签（NX OPEN）"></a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/a89253a3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/a89253a3.html" class="post-title-link" itemprop="url">NX二次开发-符号标记的类型（UF_DISP_poly_marker_e）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-11 10:53:34" itemprop="dateCreated datePublished" datetime="2020-08-11T10:53:34+00:00">2020-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>枚举：</strong> UF_DISP_poly_marker_t</p>
+<p><strong>描述：</strong>此枚举类型指定要显示的标记的类型</p>
+<h2 id="效果图、序号、名称-如下所示："><a href="#效果图、序号、名称-如下所示：" class="headerlink" title="效果图、序号、名称 如下所示："></a>效果图、序号、名称 如下所示：</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081102394581.png"><img src="http://image.camcad.cn/2020/08/2020081102394581.png"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081102421585.png"><img src="http://image.camcad.cn/2020/08/2020081102421585.png"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081102452640.png"><img src="http://image.camcad.cn/2020/08/2020081102452640.png"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081102455152.png"><img src="http://image.camcad.cn/2020/08/2020081102455152.png"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081102461755.png"><img src="http://image.camcad.cn/2020/08/2020081102461755.png"></a></p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020081102464172.png"><img src="http://image.camcad.cn/2020/08/2020081102464172.png"></a></p>
+<p>转载：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bizca/p/4598094.html">https://www.cnblogs.com/bizca/p/4598094.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -847,176 +1018,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/13756432.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/b0cae4ad.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/b0cae4ad.html" class="post-title-link" itemprop="url">C++面向对象（案列）：机房预约系统(头文件/源文件)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-06 10:09:17" itemprop="dateCreated datePublished" datetime="2020-08-06T10:09:17+00:00">2020-08-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>机房预约系统(头文件/源文件)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/b0cae4ad.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/d0efdeb2.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/d0efdeb2.html" class="post-title-link" itemprop="url">C++面向对象（案列）：机房预约系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-06 09:15:56" itemprop="dateCreated datePublished" datetime="2020-08-06T09:15:56+00:00">2020-08-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>机房预约系统</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/d0efdeb2.html">
                 阅读全文 &raquo;
               </a>
             </div>
