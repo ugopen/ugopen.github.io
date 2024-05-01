@@ -19,33 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="安装GitLab Runnerhttps:&#x2F;&#x2F;docs.gitlab.com&#x2F;runner&#x2F;install&#x2F;linux-repository.html使用官方GitLab存储库安装GitLab Runner。For Debian&#x2F;Ubuntu&#x2F;Mint: 123curl -L &quot;https:&#x2F;&#x2F;packages.gitlab.com&#x2F;install&#x2F;repositor">
+    <meta name="description" content="该作业的目的是通过 SSH 连接到一个远程服务器并执行命令。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gitlab-ci&#x2F;cd学习10：debian系统注册gitlab runner">
-<meta property="og:url" content="https://notes.camcad.cn/post/ec1e8394.html">
+<meta property="og:title" content="gitlab-ci&#x2F;cd学习15：使用SSH连接服务器">
+<meta property="og:url" content="https://notes.camcad.cn/post/3e2c2269.html">
 <meta property="og:site_name" content="知识储存库">
-<meta property="og:description" content="安装GitLab Runnerhttps:&#x2F;&#x2F;docs.gitlab.com&#x2F;runner&#x2F;install&#x2F;linux-repository.html使用官方GitLab存储库安装GitLab Runner。For Debian&#x2F;Ubuntu&#x2F;Mint: 123curl -L &quot;https:&#x2F;&#x2F;packages.gitlab.com&#x2F;install&#x2F;repositor">
+<meta property="og:description" content="该作业的目的是通过 SSH 连接到一个远程服务器并执行命令。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://image.camcad.cn/vscode/20240422231307.png">
-<meta property="og:image" content="https://image.camcad.cn/vscode/20240422231432.png">
-<meta property="og:image" content="https://image.camcad.cn/vscode/20240422233617.png">
-<meta property="article:published_time" content="2024-04-22T22:50:52.000Z">
+<meta property="og:image" content="https://image.camcad.cn/vscode/20240502003921.png">
+<meta property="og:image" content="https://image.camcad.cn/vscode/20240502005618.png">
+<meta property="og:image" content="https://image.camcad.cn/vscode/20240502004939.png">
+<meta property="article:published_time" content="2024-05-02T00:26:29.000Z">
 <meta property="article:modified_time" content="2024-05-01T17:00:57.189Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="gitlab">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://image.camcad.cn/vscode/20240422231307.png">
+<meta name="twitter:image" content="https://image.camcad.cn/vscode/20240502003921.png">
 
 
-<link rel="canonical" href="https://notes.camcad.cn/post/ec1e8394.html">
+<link rel="canonical" href="https://notes.camcad.cn/post/3e2c2269.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/ec1e8394.html","path":"post/ec1e8394.html","title":"gitlab-ci/cd学习10：debian系统注册gitlab runner"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/3e2c2269.html","path":"post/3e2c2269.html","title":"gitlab-ci/cd学习15：使用SSH连接服务器"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>gitlab-ci/cd学习10：debian系统注册gitlab runner | 知识储存库</title>
+<title>gitlab-ci/cd学习15：使用SSH连接服务器 | 知识储存库</title>
   
 
 
@@ -121,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85GitLab-Runner"><span class="nav-number">1.</span> <span class="nav-text">安装GitLab Runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E8%BD%AF%E4%BB%B6%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="nav-number">2.</span> <span class="nav-text">查询软件是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8Crunner"><span class="nav-number">3.</span> <span class="nav-text">注册runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%B8%AE%E5%8A%A9"><span class="nav-number">4.</span> <span class="nav-text">查看帮助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8Runner"><span class="nav-number">5.</span> <span class="nav-text">启动Runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BRunner%E7%8A%B6%E6%80%81"><span class="nav-number">6.</span> <span class="nav-text">查看Runner状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC"><span class="nav-number">7.</span> <span class="nav-text">脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90ssh-keygen"><span class="nav-number">1.</span> <span class="nav-text">生成ssh-keygen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">添加环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitlab-ci-yml-%E8%84%9A%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">gitlab-ci.yml 脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">4.</span> <span class="nav-text">问题解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -185,7 +185,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/ec1e8394.html">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/3e2c2269.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -198,12 +198,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="gitlab-ci/cd学习10：debian系统注册gitlab runner | 知识储存库">
+      <meta itemprop="name" content="gitlab-ci/cd学习15：使用SSH连接服务器 | 知识储存库">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          gitlab-ci/cd学习10：debian系统注册gitlab runner
+          gitlab-ci/cd学习15：使用SSH连接服务器
         </h1>
 
         <div class="post-meta-container">
@@ -214,7 +214,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2024-04-22 22:50:52" itemprop="dateCreated datePublished" datetime="2024-04-22T22:50:52+00:00">2024-04-22</time>
+      <time title="创建时间：2024-05-02 00:26:29" itemprop="dateCreated datePublished" datetime="2024-05-02T00:26:29+00:00">2024-05-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -240,27 +240,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="安装GitLab-Runner"><a href="#安装GitLab-Runner" class="headerlink" title="安装GitLab Runner"></a>安装GitLab Runner</h3><p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/runner/install/linux-repository.html">https://docs.gitlab.com/runner/install/linux-repository.html</a><br>使用官方GitLab存储库安装GitLab Runner。<br>For Debian&#x2F;Ubuntu&#x2F;Mint:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -L &quot;https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh&quot; | sudo bash</span><br><span class="line"></span><br><span class="line">sudo apt-get install gitlab-runner</span><br></pre></td></tr></table></figure>
+        <p>该作业的目的是通过 SSH 连接到一个远程服务器并执行命令。</p>
 <span id="more"></span>
 
-<p>For RHEL&#x2F;CentOS&#x2F;Fedora:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -L &quot;https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh&quot; | sudo bash</span><br><span class="line"></span><br><span class="line">sudo yum install gitlab-runner</span><br></pre></td></tr></table></figure>
-
-<h3 id="查询软件是否存在"><a href="#查询软件是否存在" class="headerlink" title="查询软件是否存在"></a>查询软件是否存在</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which gitlab-runner</span><br></pre></td></tr></table></figure>
-
-<h3 id="注册runner"><a href="#注册runner" class="headerlink" title="注册runner"></a>注册runner</h3><p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/runner/register/">https://docs.gitlab.com/runner/register/</a><br>runner注册是将runner与一个或多个GitLab实例链接起来的过程。您必须注册runner，以便它可以从GitLab实例中获取作业。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner register</span><br></pre></td></tr></table></figure>
-<p><img src="https://image.camcad.cn/vscode/20240422231307.png" alt="20240422231307"><br><img src="https://image.camcad.cn/vscode/20240422231432.png" alt="20240422231432"></p>
-<h3 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner help</span><br></pre></td></tr></table></figure>
-
-<h3 id="启动Runner"><a href="#启动Runner" class="headerlink" title="启动Runner"></a>启动Runner</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner start</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看Runner状态"><a href="#查看Runner状态" class="headerlink" title="查看Runner状态"></a>查看Runner状态</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner status</span><br></pre></td></tr></table></figure>
-
-<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><figure class="highlight yml"><figcaption><span>gitlab-ci.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">testing</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">image:</span> <span class="string">alpine:latest</span></span><br><span class="line"></span><br><span class="line"><span class="attr">emmet_build:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;构建项目...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">emmet_unit_testing:</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">mydebian</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">testing</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">uname</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">hostname</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;单元测试...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">emmet_deploy:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;上线部署...&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://image.camcad.cn/vscode/20240422233617.png" alt="20240422233617"></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=wRXBztn6OkE&list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu&index=11">為你自己學 GitLab CI&#x2F;CD Day 11 - 在本機的 GitLab Runner</a></p>
+<h3 id="生成ssh-keygen"><a href="#生成ssh-keygen" class="headerlink" title="生成ssh-keygen"></a>生成ssh-keygen</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -f 存放位置</span><br><span class="line"></span><br><span class="line">ssh-keygen -f ~/.ssh/gitlab-ci-cd</span><br></pre></td></tr></table></figure>
+<p><strong>1、将私钥（PRIVATE KEY）添加到CI-CD环境变量中</strong><br><strong>2、将公钥（PUBLIC KEY）添加到被连接服务器<code>~/.ssh/authorized_keys</code>文件中</strong></p>
+<h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p><img src="https://image.camcad.cn/vscode/20240502003921.png" alt="20240502003921"></p>
+<h3 id="gitlab-ci-yml-脚本"><a href="#gitlab-ci-yml-脚本" class="headerlink" title="gitlab-ci.yml 脚本"></a>gitlab-ci.yml 脚本</h3><figure class="highlight bash"><figcaption><span>gitlab-ci.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">stages:</span><br><span class="line">  - connection</span><br><span class="line"></span><br><span class="line">ssh_server:</span><br><span class="line">  stage: connection</span><br><span class="line">  tags:</span><br><span class="line">    - mydebian</span><br><span class="line">  before_script:</span><br><span class="line">    - <span class="built_in">eval</span> $(ssh-agent -s)</span><br><span class="line">    - ssh-add &lt;(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$DEV_SERVER_PRIVATE_KEY</span>&quot;</span>)</span><br><span class="line">  script:</span><br><span class="line">    - ssh -o StrictHostKeyChecking=no <span class="variable">$DEV_SERVER_USER</span>@<span class="variable">$DEV_SERVER_URL</span> <span class="string">&quot;ls -al&quot;</span></span><br></pre></td></tr></table></figure>
+<p>以下是配置的详细说明：</p>
+<ol>
+<li><p><code>stages</code>: 定义了一个名为 <code>connection</code> 的阶段，这个名称可以根据实际情况自定义。</p>
+</li>
+<li><p><code>ssh_server</code>: 定义了一个作业，它将在 <code>connection</code> 阶段执行。</p>
+</li>
+<li><p><code>tags</code>: 指定了作业需要在具有 <code>mydebian</code> 标签的 Runner 上运行。这意味着只有配置了 <code>mydebian</code> 标签的 GitLab Runner 会执行这个作业。</p>
+</li>
+<li><p><code>before_script</code>:</p>
+<ul>
+<li><code>eval $(ssh-agent -s)</code>: 初始化一个新的 SSH 会话并启动 SSH 代理。<code>eval</code> 命令用于执行由 <code>ssh-agent -s</code> 生成的命令，<code>-s</code> 参数表示在启动时不输出任何信息。</li>
+<li><code>ssh-add &lt;(echo &quot;$DEV_SERVER_PRIVATE_KEY&quot;)</code>: 将 SSH 私钥添加到 SSH 代理中。这里使用了进程替换 <code>&lt;()</code> 来传递私钥内容，避免了将私钥写入文件，增加了安全性。</li>
+</ul>
+</li>
+<li><p><code>script</code>:</p>
+<ul>
+<li><code>ssh -o StrictHostKeyChecking=no $DEV_SERVER_USER@$DEV_SERVER_URL &quot;ls -al&quot;</code>: 通过 SSH 连接到远程服务器并执行 <code>ls -al</code> 命令。这里使用了 <code>-o StrictHostKeyChecking=no</code> 选项来禁用严格的主机键检查，这样做可以避免在首次连接时出现警告或错误，但在生产环境中可能会带来安全风险，因为它允许连接到未验证的主机。</li>
+</ul>
+</li>
+</ol>
+<p>请注意以下几点：</p>
+<ul>
+<li>确保 <code>DEV_SERVER_PRIVATE_KEY</code>、<code>DEV_SERVER_USER</code> 和 <code>DEV_SERVER_URL</code> 这些环境变量已经在项目的 CI&#x2F;CD 设置中被正确配置，并且它们是受保护的，以防止敏感信息泄露。</li>
+<li>禁用 <code>StrictHostKeyChecking</code> 可以简化自动化脚本，但请确保您信任目标主机，或者在生产环境中使用更安全的 SSH 配置。</li>
+<li>作业中的 <code>ssh-agent</code> 和 <code>ssh-add</code> 命令依赖于 Runner 机器上安装了 SSH 客户端和相关的密钥管理工具。<br><img src="https://image.camcad.cn/vscode/20240502005618.png" alt="20240502005618"></li>
+</ul>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>错误信息 <code>/root/.ssh/config line 9: garbage at end of line</code>指出在 SSH 配置文件 <code>/root/.ssh/config</code> 的第 9 行存在一些无法识别的内容。这通常是因为该行的格式不正确或者包含了不必要的字符。<br><img src="https://image.camcad.cn/vscode/20240502004939.png" alt="20240502004939"><br><strong>修改 Runner 服务器<code>~/.ssh/config</code>配置文件</strong></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=5r8cd1ygtR0&list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu&index=19">為你自己學 GitLab CI&#x2F;CD Day 19 - 使用 SSH 連線伺服器</a></p>
 
     </div>
 
@@ -278,7 +292,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://notes.camcad.cn/post/ec1e8394.html" title="gitlab-ci&#x2F;cd学习10：debian系统注册gitlab runner">https://notes.camcad.cn/post/ec1e8394.html</a>
+      <a href="https://notes.camcad.cn/post/3e2c2269.html" title="gitlab-ci&#x2F;cd学习15：使用SSH连接服务器">https://notes.camcad.cn/post/3e2c2269.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -295,14 +309,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/ae4a6896.html" rel="prev" title="gitlab-ci/cd学习09：gitlab runner与executor">
-                  <i class="fa fa-chevron-left"></i> gitlab-ci/cd学习09：gitlab runner与executor
+                <a href="/post/f916f96d.html" rel="prev" title="gitlab-ci/cd学习14：使用docker compose">
+                  <i class="fa fa-chevron-left"></i> gitlab-ci/cd学习14：使用docker compose
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/c1d6c914.html" rel="next" title="Docker常用命令">
-                  Docker常用命令 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
