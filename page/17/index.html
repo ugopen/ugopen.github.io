@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">396</span>
+          <span class="site-state-item-count">398</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -139,7 +139,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -167,6 +167,3103 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/a66e8026.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/a66e8026.html" class="post-title-link" itemprop="url">NX二次开发-CAM模板类型/子类型分类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-12 10:21:34" itemprop="dateCreated datePublished" datetime="2020-08-12T10:21:34+00:00">2020-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bizca/p/5313971.html">https://www.cnblogs.com/bizca/p/5313971.html</a></p>
+<h3 id="CAM模板类型-x2F-子类型-表格如下："><a href="#CAM模板类型-x2F-子类型-表格如下：" class="headerlink" title="CAM模板类型&#x2F;子类型 表格如下："></a>CAM模板类型&#x2F;子类型 表格如下：</h3><table>
+<thead>
+<tr>
+<th align="left">视图</th>
+<th align="left">模板类型</th>
+<th align="left">模板子类型</th>
+<th align="left">类型</th>
+<th align="left">子类型</th>
+<th align="left">刀具类型</th>
+<th align="left">刀具子类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">FACE_MILLING_AREA</td>
+<td align="left">100</td>
+<td align="left">261</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">FACE_MILLING</td>
+<td align="left">100</td>
+<td align="left">261</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">FACE_MILLING_MANUAL</td>
+<td align="left">100</td>
+<td align="left">261</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">PLANAR_MILL</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">PLANAR_PROFILE</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">ROUGH_FOLLOW</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">ROUGH_ZIGZAG</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">ROUGH_ZIG</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">CLEANUP_CORNERS</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">FINISH_WALLS</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">FINISH_FLOOR</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">HOLE_MILLING</td>
+<td align="left">100</td>
+<td align="left">2700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">THREAD_MILLING</td>
+<td align="left">100</td>
+<td align="left">1700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">PLANAR_TEXT</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL_CONTROL</td>
+<td align="left">100</td>
+<td align="left">1100</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL_USER</td>
+<td align="left">100</td>
+<td align="left">800</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">CAVITY_MILL</td>
+<td align="left">100</td>
+<td align="left">260</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">PLUNGE_MILLING</td>
+<td align="left">100</td>
+<td align="left">265</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">CORNER_ROUGH</td>
+<td align="left">100</td>
+<td align="left">260</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">REST_MILLING</td>
+<td align="left">100</td>
+<td align="left">260</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">ZLEVEL_PROFILE</td>
+<td align="left">100</td>
+<td align="left">263</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">ZLEVEL_CORNER</td>
+<td align="left">100</td>
+<td align="left">263</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">FIXED_CONTOUR</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">CONTOUR_AREA</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">CONTOUR_SURFACE_AREA</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">STREAMLINE</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">CONTOUR_AREA_NON_STEEP</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">CONTOUR_AREA_DIR_STEEP</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">FLOWCUT_SINGLE</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">FLOWCUT_MULTIPLE</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">FLOWCUT_REF_TOOL</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">SOLID_PROFILE_3D</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">PROFILE_3D</td>
+<td align="left">100</td>
+<td align="left">110</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">CONTOUR_TEXT</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">MILL_USER</td>
+<td align="left">100</td>
+<td align="left">800</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_contour</td>
+<td align="left">MILL_CONTROL</td>
+<td align="left">100</td>
+<td align="left">1100</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">VARIABLE_CONTOUR</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">VARIABLE_STREAMLINE</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">CONTOUR_PROFILE</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">VC_MULTI_DEPTH</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">VC_BOUNDARY_ZZ_LEAD_LAG</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">VC_SURF_AREA_ZZ_LEAD_LAG</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">FIXED_CONTOUR</td>
+<td align="left">100</td>
+<td align="left">210</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">ZLEVEL_5AXIS</td>
+<td align="left">100</td>
+<td align="left">266</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">SEQUENTIAL_MILL</td>
+<td align="left">100</td>
+<td align="left">220</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">GENERIC_MOTION</td>
+<td align="left">100</td>
+<td align="left">900</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL_USER</td>
+<td align="left">100</td>
+<td align="left">800</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL_CONTROL</td>
+<td align="left">100</td>
+<td align="left">1100</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MULTI_BLADE_ROUGH</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">HUB_FINISH</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">BLADE_FINISH</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">BLEND_FINISH</td>
+<td align="left">100</td>
+<td align="left">211</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">GENERIC_MOTION</td>
+<td align="left">100</td>
+<td align="left">900</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MILL_USER</td>
+<td align="left">100</td>
+<td align="left">800</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MILL_CONTROL</td>
+<td align="left">100</td>
+<td align="left">1100</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">SPOT_FACING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">SPOT_DRILLING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">DRILLING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">PECK_DRILLING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">BREAKCHIP_DRILLING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">BORING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">REAMING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">COUNTERBORING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">COUNTERSINKING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">TAPPING</td>
+<td align="left">100</td>
+<td align="left">450</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">HOLE_MILLING</td>
+<td align="left">100</td>
+<td align="left">2700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">THREAD_MILLING</td>
+<td align="left">100</td>
+<td align="left">1700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">MILL_CONTROL</td>
+<td align="left">100</td>
+<td align="left">1100</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">drill</td>
+<td align="left">MILL_USER</td>
+<td align="left">100</td>
+<td align="left">800</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">hole_making</td>
+<td align="left">MILL_CONTROL</td>
+<td align="left">100</td>
+<td align="left">1100</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">hole_making</td>
+<td align="left">HOLE_MAKING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">hole_making</td>
+<td align="left">HOLE_MILL</td>
+<td align="left">100</td>
+<td align="left">264</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">hole_making</td>
+<td align="left">MANUAL_HOLE_MAKING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">hole_making</td>
+<td align="left">HOLE_MILLING</td>
+<td align="left">100</td>
+<td align="left">2700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">hole_making</td>
+<td align="left">THREAD_MILLING</td>
+<td align="left">100</td>
+<td align="left">1700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">CENTERLINE_SPOTDRILL</td>
+<td align="left">100</td>
+<td align="left">550</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">CENTERLINE_DRILLING</td>
+<td align="left">100</td>
+<td align="left">550</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">CENTERLINE_PECKDRILL</td>
+<td align="left">100</td>
+<td align="left">550</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">CENTERLINE_BREAKCHIP</td>
+<td align="left">100</td>
+<td align="left">550</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">CENTERLINE_REAMING</td>
+<td align="left">100</td>
+<td align="left">550</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">CENTERLINE_TAPPING</td>
+<td align="left">100</td>
+<td align="left">550</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">FACING</td>
+<td align="left">100</td>
+<td align="left">510</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">ROUGH_TURN_OD</td>
+<td align="left">100</td>
+<td align="left">510</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">ROUGH_BACK_TURN</td>
+<td align="left">100</td>
+<td align="left">510</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">ROUGH_BORE_ID</td>
+<td align="left">100</td>
+<td align="left">510</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">ROUGH_BACK_BORE</td>
+<td align="left">100</td>
+<td align="left">510</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">FINISH_TURN_OD</td>
+<td align="left">100</td>
+<td align="left">520</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">FINISH_BORE_ID</td>
+<td align="left">100</td>
+<td align="left">520</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">FINISH_BACK_BORE</td>
+<td align="left">100</td>
+<td align="left">520</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">TEACH_MODE</td>
+<td align="left">100</td>
+<td align="left">530</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">GROOVE_OD</td>
+<td align="left">100</td>
+<td align="left">510</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">GROOVE_ID</td>
+<td align="left">100</td>
+<td align="left">510</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">GROOVE_FACE</td>
+<td align="left">100</td>
+<td align="left">510</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">THREAD_OD</td>
+<td align="left">100</td>
+<td align="left">540</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">THREAD_ID</td>
+<td align="left">100</td>
+<td align="left">540</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">PARTOFF</td>
+<td align="left">100</td>
+<td align="left">530</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">BAR_FEED_STOP</td>
+<td align="left">100</td>
+<td align="left">1200</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">LATHE_CONTROL</td>
+<td align="left">100</td>
+<td align="left">1200</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">turning</td>
+<td align="left">LATHE_USER</td>
+<td align="left">100</td>
+<td align="left">1400</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">wire_edm</td>
+<td align="left">NOCORE</td>
+<td align="left">100</td>
+<td align="left">700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">wire_edm</td>
+<td align="left">INTERNAL_TRIM</td>
+<td align="left">100</td>
+<td align="left">700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">wire_edm</td>
+<td align="left">EXTERNAL_TRIM</td>
+<td align="left">100</td>
+<td align="left">700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">wire_edm</td>
+<td align="left">OPEN_PROFILE</td>
+<td align="left">100</td>
+<td align="left">700</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">wire_edm</td>
+<td align="left">WEDM_CONTROL</td>
+<td align="left">100</td>
+<td align="left">1300</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">wire_edm</td>
+<td align="left">WEDM_USER</td>
+<td align="left">100</td>
+<td align="left">1500</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">probing</td>
+<td align="left">PROBING</td>
+<td align="left">100</td>
+<td align="left">1000</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">probing</td>
+<td align="left">GENERIC_MOTION</td>
+<td align="left">100</td>
+<td align="left">900</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MAKING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MAKING_DRILL_TEXT</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MAKING_DRILL_DEEP</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MAKING_DRILL_BORE_DRAG</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MAKING_DRILL_BORE_NODRAG</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MAKING_DRILL_BORE_BACK</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MAKING_DRILL_BORE_MANUAL</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">SPOT_DRILLING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">DRILLING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">PECK_DRILLING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">BREAKCHIP_DRILLING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">COUNTERSINKING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">COUNTERBORING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">REAMING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">BORING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MILL</td>
+<td align="left">100</td>
+<td align="left">264</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">FACE_MILLING_AREA</td>
+<td align="left">100</td>
+<td align="left">261</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">FACE_MILLING</td>
+<td align="left">100</td>
+<td align="left">261</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">CAVITY_MILL</td>
+<td align="left">100</td>
+<td align="left">260</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">加工工序</td>
+<td align="left">machining_knowledge</td>
+<td align="left">TAPPING</td>
+<td align="left">100</td>
+<td align="left">600</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">mill_planar</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">mill_contour</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">drill</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">hole_making</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">turning</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">wire_edm</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">probing</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">machining_knowledge</td>
+<td align="left">PROGRAM</td>
+<td align="left">121</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">hole_making</td>
+<td align="left">OPTIMIZED_NC（优化的NC）</td>
+<td align="left">121</td>
+<td align="left">162</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">程序组</td>
+<td align="left">machining_knowledge</td>
+<td align="left">OPTIMIZED_NC（优化的NC）</td>
+<td align="left">121</td>
+<td align="left">162</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">MILL</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MILL</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">SPOTFACING_TOOL（键槽铣刀）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">COUNTERBORING_TOOL（沉头孔刀具）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">COUNTERSINKING_TOOL（锪孔钻）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">MILL</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">CARRIER（刀架）</td>
+<td align="left">106</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">CARRIER</td>
+<td align="left">106</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">CARRIER</td>
+<td align="left">106</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL_7_PARAMETER</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MILL_7_PARAMETER</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL_10_PARAMETER</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MILL_10_PARAMETER</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">BALL_MILL（铣刀-球头铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">BALL_MILL（铣刀-球头铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">CARRIER</td>
+<td align="left">106</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">CARRIER</td>
+<td align="left">106</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">CARRIER</td>
+<td align="left">106</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">BALL_MILL（铣刀-球头铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">BALL_MILL（铣刀-球头铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">CHAMFER_MILL（倒斜铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">CHAMFER_MILL（倒斜铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">CHAMFER_MILL（倒斜铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">CHAMFER_MILL（倒斜铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">SPHERICAL_MILL（球形铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">SPHERICAL_MILL（球形铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">CARRIER</td>
+<td align="left">106</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">machining_knowledge</td>
+<td align="left">CARRIER</td>
+<td align="left">106</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">MCT_POCKET（刀槽）</td>
+<td align="left">106</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">SPHERICAL_MILL（球形铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">SPHERICAL_MILL（球形铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">SPOTDRILLING_TOOL（中心钻）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">DRILLING_TOOL（麻花钻）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">BORING_BAR（镗刀）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">REAMER（铰刀）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">TAP（攻丝用丝锥）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">STD_DRILL</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">MCT_POCKET</td>
+<td align="left">106</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MCT_POCKET</td>
+<td align="left">106</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MCT_POCKET</td>
+<td align="left">106</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">SPOTDRILLING_TOOL</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">DRILLING_TOOL</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">CENTERDRILL（中心钻）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">COUNTER_SINK（埋头孔）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">SPOT_FACING（锪孔刀具）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">SPOT_DRILL（定心钻）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">BORE（镗孔工具）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">REAMER（铰床）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">COUNTER_BORE（沉头孔）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">7</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">MCT_POCKET</td>
+<td align="left">106</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">MCT_POCKET</td>
+<td align="left">106</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">MCT_POCKET</td>
+<td align="left">106</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">TAP（攻丝）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">THREAD_MILL（螺纹铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">10</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">THREAD_MILL（螺纹铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">10</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">THREAD_MILL（螺纹铣）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">10</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">STEP_DRILL（阶梯钻）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">2</td>
+<td align="left">12</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">OD_80_L（车刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">OD_80_R（车刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">OD_55_L（车刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">OD_55_R（车刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">ID_80_L（车刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">ID_55_L（车刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">BACKBORE_55_L（车刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">machining_knowledge</td>
+<td align="left">MCT_POCKET</td>
+<td align="left">106</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">HEAD（刀头）</td>
+<td align="left">106</td>
+<td align="left">16</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">HEAD</td>
+<td align="left">106</td>
+<td align="left">16</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">OD_GROOVE_L（槽刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">4</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">FACE_GROOVE_L（槽刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">4</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">ID_GROOVE_L（槽刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">4</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">OD_THREAD_L（螺纹刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">ID_THREAD_L（螺纹刀-标准）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">BARREL（铣刀-桶状）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">BARREL（铣刀-桶状）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">BARREL（铣刀-桶状）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">BARREL（铣刀-桶状）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">T_CUTTER（铣刀-T型刀）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">8</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_contour</td>
+<td align="left">T_CUTTER（铣刀-T型刀）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">8</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">T_CUTTER（铣刀-T型刀）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">8</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">T_CUTTER（铣刀-T型刀）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">8</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">turning</td>
+<td align="left">FORM_TOOL（成形刀具）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">9</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">probing</td>
+<td align="left">GENERIC（Solid Tool Generic）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">11</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">HEAD</td>
+<td align="left">106</td>
+<td align="left">16</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">HEAD</td>
+<td align="left">106</td>
+<td align="left">16</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">solid_tool</td>
+<td align="left">GENERIC（Solid Tool Generic）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">11</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">probing</td>
+<td align="left">PROBE（探测）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">11</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">solid_tool</td>
+<td align="left">PROBE（探测）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">11</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL_USER_DEFINED（用户定义的铣刀）</td>
+<td align="left">109</td>
+<td align="left">0</td>
+<td align="left">15</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">drill</td>
+<td align="left">HEAD</td>
+<td align="left">106</td>
+<td align="left">16</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">hole_making</td>
+<td align="left">HEAD</td>
+<td align="left">106</td>
+<td align="left">16</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">刀具</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HEAD</td>
+<td align="left">106</td>
+<td align="left">16</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">mill_contour</td>
+<td align="left">MILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">mill_contour</td>
+<td align="left">MOLD_ROUGH_HSM</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">mill_contour</td>
+<td align="left">MOLD_SEMI_FINISH_HSM</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">mill_contour</td>
+<td align="left">MOLD_FINISH_HSM</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">probing</td>
+<td align="left">MILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">MILL_METHOD_ROUGH</td>
+<td align="left">128</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">drill</td>
+<td align="left">DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">hole_making</td>
+<td align="left">DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">hole_making</td>
+<td align="left">HOLE_MILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">PRE_DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">DEBURRING_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">CSINK_THD_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">TAP_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">STEP_DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">THREAD_MILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">MILL_CB_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">BREAKCHIP_DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">BORE_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">CENTER_DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">CORE_DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">CBORE_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">CSINK_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">PECK_DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">REAMING_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">SPOT_DRILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">TAPPING_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">machining_knowledge</td>
+<td align="left">HOLE_MILL_METHOD</td>
+<td align="left">128</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">wire_edm</td>
+<td align="left">WEDM_METHOD</td>
+<td align="left">128</td>
+<td align="left">40</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">工法</td>
+<td align="left">turning</td>
+<td align="left">LATHE_METHOD</td>
+<td align="left">128</td>
+<td align="left">100</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_planar</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL_AREA</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL_GEOM</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_contour</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_contour</td>
+<td align="left">MILL_AREA</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_contour</td>
+<td align="left">MILL_GEOM</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL_AREA</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL_GEOM</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">drill</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">MILL_AREA</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">ALL_FEATURES</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">turning</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">probing</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">machining_knowledge</td>
+<td align="left">WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">machining_knowledge</td>
+<td align="left">MILL_AREA</td>
+<td align="left">105</td>
+<td align="left">10</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL_BND</td>
+<td align="left">105</td>
+<td align="left">20</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_contour</td>
+<td align="left">MILL_BND</td>
+<td align="left">105</td>
+<td align="left">20</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MILL_BND</td>
+<td align="left">105</td>
+<td align="left">20</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_planar</td>
+<td align="left">MCS</td>
+<td align="left">105</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_contour</td>
+<td align="left">MCS</td>
+<td align="left">105</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_multi-axis</td>
+<td align="left">MCS</td>
+<td align="left">105</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MCS</td>
+<td align="left">105</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">drill</td>
+<td align="left">MCS</td>
+<td align="left">105</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">MCS</td>
+<td align="left">105</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">probing</td>
+<td align="left">MCS_MILL</td>
+<td align="left">105</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">machining_knowledge</td>
+<td align="left">MCS</td>
+<td align="left">105</td>
+<td align="left">30</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">turning</td>
+<td align="left">TURNING_WORKPIECE</td>
+<td align="left">105</td>
+<td align="left">50</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">turning</td>
+<td align="left">TURNING_PART</td>
+<td align="left">105</td>
+<td align="left">50</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">turning</td>
+<td align="left">MCS_SPINDLE</td>
+<td align="left">105</td>
+<td align="left">60</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">turning</td>
+<td align="left">CONTAINMENT</td>
+<td align="left">105</td>
+<td align="left">65</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">turning</td>
+<td align="left">AVOIDANCE</td>
+<td align="left">105</td>
+<td align="left">65</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">wire_edm</td>
+<td align="left">SEQUENCE_EXTERNAL_TRIM</td>
+<td align="left">105</td>
+<td align="left">70</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">wire_edm</td>
+<td align="left">SEQUENCE_INTERNAL_TRIM</td>
+<td align="left">105</td>
+<td align="left">80</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">wire_edm</td>
+<td align="left">WEDM_GEOM</td>
+<td align="left">105</td>
+<td align="left">80</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">wire_edm</td>
+<td align="left">MCS_WEDM</td>
+<td align="left">105</td>
+<td align="left">120</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">drill</td>
+<td align="left">DRILL_GEOM</td>
+<td align="left">105</td>
+<td align="left">130</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">FBM_GEOM</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">MANUAL_HOLE</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">SIMPLE_HOLE</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">CB_HOLE</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">CS_HOLE</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">THD_SIMPLE_HOLE</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">THD_CB_HOLE</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">THD_CS_HOLE</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">SYMBOLIC_THREAD</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">CAP_SCREW_CB</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">CAP_SCREW_CS</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">FIT_HOLE</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">STANDARD_THREAD</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">machining_knowledge</td>
+<td align="left">PROCESS_FEATURES</td>
+<td align="left">105</td>
+<td align="left">160</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_planar</td>
+<td align="left">MILL_TEXT</td>
+<td align="left">105</td>
+<td align="left">170</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_contour</td>
+<td align="left">MILL_TEXT</td>
+<td align="left">105</td>
+<td align="left">170</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_multi_blade</td>
+<td align="left">MULTI_BLADE_GEOM</td>
+<td align="left">105</td>
+<td align="left">180</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">mill_planar</td>
+<td align="left">HOLE_BOSS_GEOM</td>
+<td align="left">105</td>
+<td align="left">190</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">drill</td>
+<td align="left">HOLE_BOSS_GEOM</td>
+<td align="left">105</td>
+<td align="left">190</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">几何体</td>
+<td align="left">hole_making</td>
+<td align="left">HOLE_BOSS_GEOM</td>
+<td align="left">105</td>
+<td align="left">190</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/12815376.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/12815376.html" class="post-title-link" itemprop="url">NX二次开发-CAM开发生成刀轨程序源码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-12 09:55:29" itemprop="dateCreated datePublished" datetime="2020-08-12T09:55:29+00:00">2020-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<p>此段是可以生成程序的完整代码，只有从坐标（10，10，10）到（500，500，500）一根刀轨。</p>
+<p>motion_ptr-&gt;feed_value 的值为0时生成G00，非0时生成G01。</p>
+<p>此代码只有直线，生成圆弧的方法类似，可参考open-api函数库里的ufd_cam_udop.c文件。</p>
+<p>加工CAM的入口函数是udop,此入口函数和常用的UG二次开发入口函数ufusr并列，不需要在ufusr中调用，直接在ufusr所在的CPP文件中写入udop函数即可，或者将udop放在一单独的.c文件中，在ufusr所在的CPP文件中包含也可以，#include “path.c”。</p>
+<p>编译出来的dll文件不能像普通的二次开发文件一样直接用Crtl + U 调用，必须先在ugii_env.dat文件中定义好变量，例如abs&#x3D;d:\path.dll。此abc即是变量，然后使用UG的自定义加工模板调用此变量就OK了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_defs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_cam.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_udop.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_oper.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_path.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_exit.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">void</span> <span class="title">udop</span><span class="params">(<span class="type">char</span> *param, <span class="type">int</span> *status, <span class="type">int</span> parm_len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">char</span>   op_name[UF_OPER_OPNAME_LEN];</span><br><span class="line">  UF_UDOP_id_t                udop_id;</span><br><span class="line">  UF_UDOP_purpose_t        purpose;</span><br><span class="line">  UF_OPER_id_t                oper_id;</span><br><span class="line">  UF_PATH_id_t                path_id;</span><br><span class="line"></span><br><span class="line">  UF_CAM_exit_id_t    exit_id = (UF_CAM_exit_id_t)param;</span><br><span class="line">  <span class="built_in">UF_initialize</span>();</span><br><span class="line">  <span class="built_in">UF_UDOP_ask_udop</span>( exit_id, &amp;udop_id);</span><br><span class="line">  <span class="built_in">UF_UDOP_ask_oper</span>( udop_id, &amp;oper_id);</span><br><span class="line">  <span class="built_in">UF_UDOP_ask_purpose</span>( udop_id, &amp;purpose);</span><br><span class="line">  <span class="built_in">UF_OPER_ask_name</span>( oper_id, op_name);</span><br><span class="line">  <span class="built_in">UF_OPER_ask_path</span>( oper_id, &amp;path_id);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>( purpose == UF_UDOP_GENERATE )</span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/************  To input GOTO/ motion*************/</span></span><br><span class="line">      UF_PATH_linear_motion_t    motion,*motion_ptr = &amp;motion;</span><br><span class="line">      motion_ptr-&gt;feed_value = <span class="number">0.0</span>;</span><br><span class="line">      motion_ptr-&gt;feed_unit = UF_PATH_FEED_UNIT_NONE;</span><br><span class="line">      motion_ptr-&gt;type = UF_PATH_MOTION_TYPE_CUT;</span><br><span class="line">      motion_ptr-&gt;tool_axis[<span class="number">0</span>] =<span class="number">0.0</span>;</span><br><span class="line">      motion_ptr-&gt;tool_axis[<span class="number">1</span>] =<span class="number">0.0</span>;</span><br><span class="line">      motion_ptr-&gt;tool_axis[<span class="number">2</span>] =<span class="number">1.0</span>;</span><br><span class="line"></span><br><span class="line">      motion_ptr-&gt;position[<span class="number">0</span>] =<span class="number">10.0</span>;</span><br><span class="line">      motion_ptr-&gt;position[<span class="number">1</span>] =<span class="number">10.0</span>;</span><br><span class="line">      motion_ptr-&gt;position[<span class="number">2</span>] =<span class="number">10.0</span>;</span><br><span class="line">      <span class="built_in">UF_PATH_create_linear_motion</span>( path_id, motion_ptr);</span><br><span class="line">      motion_ptr-&gt;position[<span class="number">0</span>] =<span class="number">500.0</span>;</span><br><span class="line">      motion_ptr-&gt;position[<span class="number">1</span>] =<span class="number">500.0</span>;</span><br><span class="line">      motion_ptr-&gt;position[<span class="number">2</span>] =<span class="number">500.0</span>;</span><br><span class="line">      <span class="built_in">UF_PATH_create_linear_motion</span>( path_id, motion_ptr);</span><br><span class="line"></span><br><span class="line">      UF_PATH_cutcom_t  cutcom_data;</span><br><span class="line">      cutcom_data.cutcom_mode = UF_PATH_CUTCOM_ON;</span><br><span class="line">      cutcom_data.plane_type = UF_PATH_PLANE_TYPE_XY;</span><br><span class="line">      cutcom_data.cutcom_on_status = </span><br><span class="line">                UF_PATH_CUTCOM_ON_BEFORE_ENGAGE;</span><br><span class="line">      cutcom_data.cutcom_off_status = </span><br><span class="line">            UF_PATH_CUTCOM_OFF_AFTER_RETRACT;</span><br><span class="line">      cutcom_data.adjust_register = <span class="number">2</span>;</span><br><span class="line">      cutcom_data.full_cutcom_output = TRUE;</span><br><span class="line">      cutcom_data.adjust_flag = TRUE;</span><br><span class="line">      <span class="built_in">UF_PATH_create_cutcom</span>( path_id, &amp;cutcom_data, <span class="literal">NULL</span> ); </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*=============================================================================</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">                    Copyright (c) 2009 Siemens PLM Software </span></span><br><span class="line"><span class="comment">                    Unpublished - All rights reserved</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">===============================================================================</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">=============================================================================</span></span><br><span class="line"><span class="comment">File description: Sample NX/Open Application</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">This is basic example of how to write a UDOP entry in CS</span></span><br><span class="line"><span class="comment">To use this after you build the dll as cs_udop.dll</span></span><br><span class="line"><span class="comment">1) Put the dll in a folder - for example c:\my_udops\</span></span><br><span class="line"><span class="comment">2) Create an system environment variable MYCORP_UDOP_2 and set it to</span></span><br><span class="line"><span class="comment">   c:\my_udops\cs_udop.dll</span></span><br><span class="line"><span class="comment">3) Now in NX CAM create a MILL_USER and in the UI enter MYCORP_UDOP_2</span></span><br><span class="line"><span class="comment">   for the &quot;CAM API Exit Name in the user interface</span></span><br><span class="line"><span class="comment">   press either &quot;User Parameters&quot; or &quot;Generate&quot; to see the results</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">===============================================================================</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"><span class="keyword">using</span> System.Globalization;</span><br><span class="line"><span class="keyword">using</span> NXOpen;</span><br><span class="line"><span class="keyword">using</span> NXOpen.UF;</span><br><span class="line"><span class="keyword">using</span> NXOpen.UIStyler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">test1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Class1</span></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment">//       SESSION ATTRIBUTES</span></span><br><span class="line">        <span class="comment">//&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment">// Native .NET Session</span></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> NXOpen.Session Nts = Session.GetSession();</span><br><span class="line">        <span class="comment">// User Function Session</span></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> NXOpen.UF.UFSession Ufs = UFSession.GetUFSession();</span><br><span class="line">        <span class="comment">// Native UI Session</span></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> NXOpen.UI Uis = UI.GetUI();</span><br><span class="line">        <span class="comment">// Native CAM Session</span></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> NXOpen.CAM.CAMSession Cams = Nts.CAMSession;</span><br><span class="line">        <span class="comment">// Native Remote Utilities Session</span></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> NXOpen.RemoteUtilities Rus = RemoteUtilities.GetRemoteUtilities();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment">//       SESSION OBJECT ATTRIBUTES</span></span><br><span class="line">        <span class="comment">//&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment">// Native Listing Window</span></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> NXOpen.ListingWindow LW = Nts.ListingWindow;</span><br><span class="line">        <span class="comment">// Native Message Box</span></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> NXOpen.NXMessageBox MBox = Uis.NXMessageBox;</span><br><span class="line">        <span class="comment">// WorkPart</span></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> NXOpen.Part WorkPart = Nts.Parts.Work;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ************************************************************************************</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">udop</span>(<span class="params"><span class="built_in">string</span> inString</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            IntPtr udopPtr = IntPtr.Zero;</span><br><span class="line">            IntPtr operPtr = IntPtr.Zero;</span><br><span class="line">            UFUdop.Purpose purpose;</span><br><span class="line">            <span class="built_in">string</span> operName = <span class="built_in">string</span>.Empty;</span><br><span class="line">            IntPtr pathPtr = IntPtr.Zero;</span><br><span class="line"></span><br><span class="line">            Ufs.Udop.AskUdop(IntPtr.Zero, <span class="keyword">out</span> udopPtr);</span><br><span class="line">            Ufs.Udop.AskOper(udopPtr, <span class="keyword">out</span> operPtr);</span><br><span class="line">            Ufs.Udop.AskPurpose(udopPtr, <span class="keyword">out</span> purpose);</span><br><span class="line">            Ufs.Oper.AskName(operPtr, <span class="keyword">out</span> operName);</span><br><span class="line">            Ufs.Oper.AskPath(operPtr, <span class="keyword">out</span> pathPtr);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (purpose == UFUdop.Purpose.UserParams)</span><br><span class="line">            &#123;</span><br><span class="line">                MBox.Show(<span class="string">&quot;User Params&quot;</span>, NXMessageBox.DialogType.Information, <span class="string">&quot;User Params&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (purpose == UFUdop.Purpose.Generate)</span><br><span class="line">            &#123;</span><br><span class="line">                Ufs.Path.InitToolPath(pathPtr);</span><br><span class="line"></span><br><span class="line">                UFPath.LinearMotion linearMotion;</span><br><span class="line">                linearMotion.feed_value = <span class="number">0</span>;</span><br><span class="line">                linearMotion.type = UFPath.MotionType.MotionTypeCut;</span><br><span class="line">                linearMotion.feed_unit = UFPath.FeedUnit.FeedUnitNone;</span><br><span class="line">                <span class="built_in">double</span>[] pos = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span> &#125;;</span><br><span class="line">                linearMotion.position = pos;</span><br><span class="line">                <span class="built_in">double</span>[] tAxis = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> &#125;;</span><br><span class="line">                linearMotion.tool_axis = tAxis;</span><br><span class="line">                Ufs.Path.CreateLinearMotion(pathPtr, <span class="keyword">ref</span> linearMotion);</span><br><span class="line"></span><br><span class="line">                linearMotion.position[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">                linearMotion.position[<span class="number">1</span>] = <span class="number">0.707</span>;</span><br><span class="line">                linearMotion.position[<span class="number">2</span>] = <span class="number">0.707</span>;</span><br><span class="line">                linearMotion.tool_axis[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">                linearMotion.tool_axis[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">                linearMotion.tool_axis[<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">                Ufs.Path.CreateLinearMotion(pathPtr, <span class="keyword">ref</span> linearMotion);</span><br><span class="line"></span><br><span class="line">                linearMotion.position[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">                linearMotion.position[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">                linearMotion.position[<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">                linearMotion.tool_axis[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">                linearMotion.tool_axis[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">                linearMotion.tool_axis[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">                Ufs.Path.CreateLinearMotion(pathPtr, <span class="keyword">ref</span> linearMotion);</span><br><span class="line"></span><br><span class="line">                Ufs.Path.EndToolPath(pathPtr);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ************************************************************************************</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="VB-NET源码"><a href="#VB-NET源码" class="headerlink" title="VB.NET源码"></a>VB.NET源码</h3><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;=============================================================================</span></span><br><span class="line"><span class="comment">&#x27;</span></span><br><span class="line"><span class="comment">&#x27;                    Copyright (c) 2009 Siemens PLM Software </span></span><br><span class="line"><span class="comment">&#x27;                    Unpublished - All rights reserved</span></span><br><span class="line"><span class="comment">&#x27;</span></span><br><span class="line"><span class="comment">&#x27;===============================================================================</span></span><br><span class="line"><span class="comment">&#x27; </span></span><br><span class="line"><span class="comment">&#x27;=============================================================================</span></span><br><span class="line"><span class="comment">&#x27;File description: Sample NX/Open Application</span></span><br><span class="line"><span class="comment">&#x27;</span></span><br><span class="line"><span class="comment">&#x27;This is basic example of how to write a UDOP entry in CS</span></span><br><span class="line"><span class="comment">&#x27;To use this after you build the dll as cs_udop.dll</span></span><br><span class="line"><span class="comment">&#x27;1) Put the dll in a folder - for example c:\my_udops\</span></span><br><span class="line"><span class="comment">&#x27;2) Create an system environment variable MYCORP_UDOP_2 and set it to</span></span><br><span class="line"><span class="comment">&#x27;   c:\my_udops\cs_udop.dll</span></span><br><span class="line"><span class="comment">&#x27;3) Now in NX CAM create a MILL_USER and in the UI enter MYCORP_UDOP_2</span></span><br><span class="line"><span class="comment">&#x27;   for the &quot;CAM API Exit Name in the user interface</span></span><br><span class="line"><span class="comment">&#x27;   press either &quot;User Parameters&quot; or &quot;Generate&quot; to see the results</span></span><br><span class="line"><span class="comment">&#x27;</span></span><br><span class="line"><span class="comment">&#x27;===============================================================================</span></span><br><span class="line"><span class="comment">&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Imports</span> System.Collections</span><br><span class="line"><span class="keyword">Imports</span> System.Collections.Generic</span><br><span class="line"><span class="keyword">Imports</span> System.IO</span><br><span class="line"><span class="keyword">Imports</span> System.Globalization</span><br><span class="line"><span class="keyword">Imports</span> NXOpen</span><br><span class="line"><span class="keyword">Imports</span> NXOpen.UF</span><br><span class="line"><span class="keyword">Imports</span> NXOpen.UIStyler</span><br><span class="line"></span><br><span class="line"><span class="keyword">Namespace</span> test1</span><br><span class="line">    <span class="keyword">Public</span> <span class="keyword">Class</span> Class1</span><br><span class="line"></span><br><span class="line">        <span class="comment">&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment">&#x27;       SESSION ATTRIBUTES</span></span><br><span class="line">        <span class="comment">&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment">&#x27; Native .NET Session</span></span><br><span class="line">        <span class="keyword">Friend</span> <span class="keyword">Shared</span> Nts <span class="keyword">As</span> NXOpen.Session = Session.GetSession()</span><br><span class="line">        <span class="comment">&#x27; User Function Session</span></span><br><span class="line">        <span class="keyword">Friend</span> <span class="keyword">Shared</span> Ufs <span class="keyword">As</span> NXOpen.UF.UFSession = UFSession.GetUFSession()</span><br><span class="line">        <span class="comment">&#x27; Native UI Session</span></span><br><span class="line">        <span class="keyword">Friend</span> <span class="keyword">Shared</span> Uis <span class="keyword">As</span> NXOpen.UI = UI.GetUI()</span><br><span class="line">        <span class="comment">&#x27; Native CAM Session</span></span><br><span class="line">        <span class="keyword">Friend</span> <span class="keyword">Shared</span> Cams <span class="keyword">As</span> NXOpen.CAM.CAMSession = Nts.CAMSession</span><br><span class="line">        <span class="comment">&#x27; Native Remote Utilities Session</span></span><br><span class="line">        <span class="keyword">Friend</span> <span class="keyword">Shared</span> Rus <span class="keyword">As</span> NXOpen.RemoteUtilities = RemoteUtilities.GetRemoteUtilities()</span><br><span class="line"></span><br><span class="line">        <span class="comment">&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment">&#x27;       SESSION OBJECT ATTRIBUTES</span></span><br><span class="line">        <span class="comment">&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment">&#x27; Native Listing Window</span></span><br><span class="line">        <span class="keyword">Friend</span> <span class="keyword">Shared</span> LW <span class="keyword">As</span> NXOpen.ListingWindow = Nts.ListingWindow</span><br><span class="line">        <span class="comment">&#x27; Native Message Box</span></span><br><span class="line">        <span class="keyword">Friend</span> <span class="keyword">Shared</span> MBox <span class="keyword">As</span> NXOpen.NXMessageBox = Uis.NXMessageBox</span><br><span class="line">        <span class="comment">&#x27; WorkPart</span></span><br><span class="line">        <span class="keyword">Friend</span> <span class="keyword">Shared</span> WorkPart <span class="keyword">As</span> NXOpen.Part = Nts.Parts.Work</span><br><span class="line"></span><br><span class="line">        <span class="comment">&#x27; ************************************************************************************</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">Public</span> <span class="keyword">Shared</span> <span class="keyword">Sub</span> Main()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">Public</span> <span class="keyword">Shared</span> <span class="keyword">Function</span> udop(inString <span class="keyword">As</span> <span class="type">String</span>) <span class="keyword">As</span> <span class="type">Integer</span></span><br><span class="line">            <span class="keyword">Dim</span> udopPtr <span class="keyword">As</span> IntPtr = IntPtr.Zero</span><br><span class="line">            <span class="keyword">Dim</span> operPtr <span class="keyword">As</span> IntPtr = IntPtr.Zero</span><br><span class="line">            <span class="keyword">Dim</span> purpose <span class="keyword">As</span> UFUdop.Purpose</span><br><span class="line">            <span class="keyword">Dim</span> operName <span class="keyword">As</span> <span class="type">String</span> = <span class="type">String</span>.Empty</span><br><span class="line">            <span class="keyword">Dim</span> pathPtr <span class="keyword">As</span> IntPtr = IntPtr.Zero</span><br><span class="line"></span><br><span class="line">            Ufs.Udop.AskUdop(IntPtr.Zero, udopPtr)</span><br><span class="line">            Ufs.Udop.AskOper(udopPtr, operPtr)</span><br><span class="line">            Ufs.Udop.AskPurpose(udopPtr, purpose)</span><br><span class="line">            Ufs.Oper.AskName(operPtr, operName)</span><br><span class="line">            Ufs.Oper.AskPath(operPtr, pathPtr)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">If</span> purpose = UFUdop.Purpose.UserParams <span class="keyword">Then</span></span><br><span class="line">                MBox.Show(<span class="string">&quot;User Params&quot;</span>, NXMessageBox.DialogType.Information, <span class="string">&quot;User Params&quot;</span>)</span><br><span class="line">            <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">If</span> purpose = UFUdop.Purpose.Generate <span class="keyword">Then</span></span><br><span class="line">                Ufs.Path.InitToolPath(pathPtr)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">Dim</span> linearMotion <span class="keyword">As</span> UFPath.LinearMotion</span><br><span class="line">                linearMotion.feed_value = <span class="number">0</span></span><br><span class="line">                linearMotion.type = UFPath.MotionType.MotionTypeCut</span><br><span class="line">                linearMotion.feed_unit = UFPath.FeedUnit.FeedUnitNone</span><br><span class="line">                <span class="keyword">Dim</span> pos <span class="keyword">As</span> <span class="type">Double</span>() = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;</span><br><span class="line">                linearMotion.position = pos</span><br><span class="line">                <span class="keyword">Dim</span> tAxis <span class="keyword">As</span> <span class="type">Double</span>() = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>&#125;</span><br><span class="line">                linearMotion.tool_axis = tAxis</span><br><span class="line">                Ufs.Path.CreateLinearMotion(pathPtr, linearMotion)</span><br><span class="line"></span><br><span class="line">                linearMotion.position(<span class="number">0</span>) = <span class="number">0</span></span><br><span class="line">                linearMotion.position(<span class="number">1</span>) = <span class="number">0.707</span></span><br><span class="line">                linearMotion.position(<span class="number">2</span>) = <span class="number">0.707</span></span><br><span class="line">                linearMotion.tool_axis(<span class="number">0</span>) = <span class="number">0</span></span><br><span class="line">                linearMotion.tool_axis(<span class="number">1</span>) = <span class="number">1</span></span><br><span class="line">                linearMotion.tool_axis(<span class="number">2</span>) = <span class="number">0</span></span><br><span class="line">                Ufs.Path.CreateLinearMotion(pathPtr, linearMotion)</span><br><span class="line"></span><br><span class="line">                linearMotion.position(<span class="number">0</span>) = <span class="number">1</span></span><br><span class="line">                linearMotion.position(<span class="number">1</span>) = <span class="number">0</span></span><br><span class="line">                linearMotion.position(<span class="number">2</span>) = <span class="number">0</span></span><br><span class="line">                linearMotion.tool_axis(<span class="number">0</span>) = <span class="number">0</span></span><br><span class="line">                linearMotion.tool_axis(<span class="number">1</span>) = <span class="number">1</span></span><br><span class="line">                linearMotion.tool_axis(<span class="number">2</span>) = <span class="number">1</span></span><br><span class="line">                Ufs.Path.CreateLinearMotion(pathPtr, linearMotion)</span><br><span class="line"></span><br><span class="line">                Ufs.Path.EndToolPath(pathPtr)</span><br><span class="line">            <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">            <span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&#x27; ************************************************************************************</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>转载：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bizca/p/4667874.html">https://www.cnblogs.com/bizca/p/4667874.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -839,190 +3936,6 @@
 
 <h3 id="以上源码编译执行结果如下"><a href="#以上源码编译执行结果如下" class="headerlink" title="以上源码编译执行结果如下:"></a>以上源码编译执行结果如下:</h3><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080905222244.jpg"><img src="http://image.camcad.cn/2020/08/2020080905222244.jpg"></a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/3eb7db29.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3eb7db29.html" class="post-title-link" itemprop="url">NX二次开发-UDO用户自定义对象(UFUN)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-07 10:31:13" itemprop="dateCreated datePublished" datetime="2020-08-07T10:31:13+00:00">2020-08-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg"></a></p>
-<h3 id="一、UDO概述"><a href="#一、UDO概述" class="headerlink" title="一、UDO概述"></a>一、UDO概述</h3><p>用户定义对象（User Defined Objects &#x3D; UDO）允许您在NX中添加自己的自定义对象，以最大限度地提高生产力。当需要NX中不存在的对象时，可以使用UDO。定义存储在UDO中的数据，并定义它在NX中的行为。<br><code>警告：在打开包含UDO的部件之前，确保包含UDO类和定义的行为（即回调和属性）的所需库存在于NX会话中是很重要的。默认情况下，NX不会发出任何关于此类丢失库的警告或通知。所需的库可以在系统初始化期间自动加载到NX中。 </code></p>
-<h4 id="启动时自动加载"><a href="#启动时自动加载" class="headerlink" title="启动时自动加载"></a>启动时自动加载</h4><p>在交互式会话和外部NX-Open程序的系统初始化期间，类和方法可以自动加载到NX中。要加载类和方法，请自动创建一个包含启动、应用程序和udo子目录的用户目录。创建用户目录结构后，将基本目录添加到$UGII_base_DIR&#x2F;UGII&#x2F;ug菜单中的custom_dirs.dat文件中。然后，将库放置在“udo”目录中。</p>
-<p>例如，如果将目录“&#x2F;user&#x2F;myhome”添加到custom_dirs.dat，则将库放置在目录“&#x2F;uuser&#x2F;myhome&#x2F;udo”中。<br><img src="http://image.camcad.cn/2023/07/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91-UDO%E5%90%AF%E5%8A%A8%E6%97%B6%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD.png" alt="NX二次开发-UDO启动时自动加载"></p>
-<h3 id="二、代码"><a href="#二、代码" class="headerlink" title="二、代码"></a>二、代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">       Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">                    All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> std::ostringstream;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"><span class="keyword">using</span> std::ends;</span><br><span class="line"><span class="keyword">using</span> std::cerr;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_exit.h&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_disp.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Session.hxx&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Part.hxx&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/PartCollection.hxx&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Callback.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/NXException.hxx&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UI.hxx&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/Selection.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/LogFile.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/NXObjectManager.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/ListingWindow.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/View.hxx&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedClass.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedClassManager.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedObject.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedObjectManager.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedEvent.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedDisplayEvent.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedLinkEvent.hxx&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;NXOpen/UserDefinedObjects_UserDefinedObjectDisplayContext.hxx&gt;</span> </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;elog.hpp&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> NXOpen;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> NXOpen::UserDefinedObjects;</span><br><span class="line"></span><br><span class="line"><span class="comment">//静态变量 </span></span><br><span class="line"><span class="type">static</span> NXOpen::Session* theSession = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">static</span> UI* theUI = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">static</span> UserDefinedClass* myUDOclass = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// 回调名称: myDisplayCB </span></span><br><span class="line"><span class="comment">// 这是一个与显示UDO相关联的回调方法。</span></span><br><span class="line"><span class="comment">// 这个相同的回调被注册用于显示、选择、拟合和关注点</span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">myDisplayCB</span><span class="params">(UserDefinedDisplayEvent* displayEvent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 获取用于定义此UDO的选定屏幕位置的替身。</span></span><br><span class="line">        std::vector&lt;<span class="type">double</span>&gt; myUDOdoubles = displayEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">GetDoubles</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用替身定义五角星的点 </span></span><br><span class="line">        <span class="function">std::vector&lt;Point3d&gt; <span class="title">myPoints</span><span class="params">(<span class="number">6</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">0</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">47.55282581476</span>;</span><br><span class="line">        myPoints[<span class="number">0</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">15.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">0</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">1</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">-47.55282581476</span>;</span><br><span class="line">        myPoints[<span class="number">1</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">15.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">1</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">2</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">29.38926261462</span>;</span><br><span class="line">        myPoints[<span class="number">2</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">-40.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">2</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">3</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">0.00000000000</span>;</span><br><span class="line">        myPoints[<span class="number">3</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">50.00000000000</span>;</span><br><span class="line">        myPoints[<span class="number">3</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">4</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">-29.38926261462</span>;</span><br><span class="line">        myPoints[<span class="number">4</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">-40.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">4</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        myPoints[<span class="number">5</span>].X = myUDOdoubles[<span class="number">0</span>] + <span class="number">47.55282581476</span>;</span><br><span class="line">        myPoints[<span class="number">5</span>].Y = myUDOdoubles[<span class="number">1</span>] + <span class="number">15.45084971875</span>;</span><br><span class="line">        myPoints[<span class="number">5</span>].Z = myUDOdoubles[<span class="number">2</span>] + <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 显示上下文</span></span><br><span class="line">        UserDefinedObjectDisplayContext* dispContext = displayEvent-&gt;<span class="built_in">DisplayContext</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 显示五角星</span></span><br><span class="line">        dispContext-&gt;<span class="built_in">DisplayPolyline</span>(myPoints);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 显示五角星中心文本</span></span><br><span class="line">		Point3d myPt = <span class="built_in">Point3d</span>(myUDOdoubles[<span class="number">0</span>], myUDOdoubles[<span class="number">1</span>], myUDOdoubles[<span class="number">2</span>]);</span><br><span class="line">        dispContext-&gt;<span class="built_in">DisplayText</span>(<span class="string">&quot;Text\nEmmet&quot;</span>, myPt, UserDefinedObjectDisplayContext::TextRefMiddleCenter);</span><br><span class="line">        <span class="keyword">delete</span> dispContext;</span><br><span class="line">        <span class="keyword">delete</span> displayEvent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (NXException ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ---- Enter your exception handling code here ----- </span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// 回调名称: myEditCB </span></span><br><span class="line"><span class="comment">// 这是一个与编辑UDO相关联的回调方法。</span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">myEditCB</span><span class="params">(UserDefinedEvent* editEvent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// UF函数调用初始化</span></span><br><span class="line">		<span class="comment">// 例如： UF_DISP_add_item_to_display </span></span><br><span class="line">        <span class="built_in">UF_initialize</span>();</span><br><span class="line"></span><br><span class="line">        View* myView = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="function">Point3d <span class="title">myCursor</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 突出显示我们要编辑的当前udo</span></span><br><span class="line">        editEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">Highlight</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 要求用户为此UDO选择一个新的原点 </span></span><br><span class="line">        Selection::DialogResponse myResponse = theUI-&gt;<span class="built_in">SelectionManager</span>()-&gt;<span class="built_in">SelectScreenPosition</span>(<span class="string">&quot;选择新的放置原点&quot;</span>, &amp;myView, &amp;myCursor);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 已经完成了向用户请求输入......取消高亮显示udo</span></span><br><span class="line">        editEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">Unhighlight</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用新的屏幕位置（如果用户选择了一个）</span></span><br><span class="line">        <span class="keyword">if</span> (myResponse == Selection::DialogResponsePick)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="function">std::vector&lt;<span class="type">double</span>&gt; <span class="title">myUDOdoubles</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line">            myUDOdoubles[<span class="number">0</span>] = myCursor.X;</span><br><span class="line">            myUDOdoubles[<span class="number">1</span>] = myCursor.Y;</span><br><span class="line">            myUDOdoubles[<span class="number">2</span>] = myCursor.Z;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 将新选择的原点与udo一起存储</span></span><br><span class="line">            editEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">SetDoubles</span>(myUDOdoubles);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 手动将udo添加到显示列表中</span></span><br><span class="line">            <span class="comment">// 这将强制重新生成udo显示</span></span><br><span class="line">            <span class="comment">// 立即显示我们刚刚做出的更改</span></span><br><span class="line">            <span class="built_in">UF_DISP_add_item_to_display</span>(editEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">Tag</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">UF_terminate</span>();</span><br><span class="line">        <span class="keyword">delete</span> editEvent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (NXException ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ---- Enter your exception handling code here ----- </span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// 回调名称: myInfoCB </span></span><br><span class="line"><span class="comment">// 这是一个与查询UDO信息相关联的回调方法。 </span></span><br><span class="line"><span class="comment">// 信息将打印在列表窗口中。 </span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">myInfoCB</span><span class="params">(UserDefinedEvent* infoEvent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        ListingWindow* theLW = theSession-&gt;<span class="built_in">ListingWindow</span>();</span><br><span class="line">        <span class="type">char</span> msg[<span class="number">256</span>];</span><br><span class="line">        theLW-&gt;<span class="built_in">Open</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot;------------------------------------------------------------&quot;</span>);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot;开始自定义信息&quot;</span>);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        NXOpen::NXString formattedMessage;</span><br><span class="line">        formattedMessage = <span class="string">&quot;UDO Class Name: &quot;</span> + (infoEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">UserDefinedClass</span>()-&gt;<span class="built_in">ClassName</span>());</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line">        formattedMessage = <span class="string">&quot;UDO Friendly Name: &quot;</span> + infoEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">UserDefinedClass</span>()-&gt;<span class="built_in">FriendlyName</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line"></span><br><span class="line">        std::vector&lt;<span class="type">double</span>&gt; myUDOdoubles = infoEvent-&gt;<span class="built_in">UserDefinedObject</span>()-&gt;<span class="built_in">GetDoubles</span>();</span><br><span class="line">        std::ostringstream DoubleBuffer;</span><br><span class="line">        DoubleBuffer &lt;&lt; myUDOdoubles[<span class="number">0</span>];</span><br><span class="line">        formattedMessage = DoubleBuffer.<span class="built_in">str</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line">        DoubleBuffer.<span class="built_in">str</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        DoubleBuffer.<span class="built_in">clear</span>();</span><br><span class="line">        DoubleBuffer &lt;&lt; myUDOdoubles[<span class="number">1</span>];</span><br><span class="line">        formattedMessage = DoubleBuffer.<span class="built_in">str</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line">        DoubleBuffer.<span class="built_in">str</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        DoubleBuffer.<span class="built_in">clear</span>();</span><br><span class="line">        DoubleBuffer &lt;&lt; myUDOdoubles[<span class="number">2</span>];</span><br><span class="line">        formattedMessage = DoubleBuffer.<span class="built_in">str</span>();</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(formattedMessage);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        theLW-&gt;<span class="built_in">WriteLine</span>(<span class="string">&quot;结束自定义信息&quot;</span>);</span><br><span class="line">        <span class="keyword">delete</span> infoEvent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (NXException ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ---- Enter your exception handling code here ----- </span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// 回调名称: initUDO </span></span><br><span class="line"><span class="comment">// 检查应用程序的哪些静态变量（如果有的话） </span></span><br><span class="line"><span class="comment">// 未初始化，并相应地设置它们。</span></span><br><span class="line"><span class="comment">// 初始化UDO类并注册其所有回调方法。 </span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">initUDO</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (theSession == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            theSession = Session::<span class="built_in">GetSession</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (theUI == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            theUI = UI::<span class="built_in">GetUI</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">ELOG</span>(<span class="number">3</span>) &lt;&lt; <span class="string">&quot;UDO初始化&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line">        <span class="keyword">if</span> (myUDOclass == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">			<span class="built_in">ELOG</span>(<span class="number">3</span>) &lt;&lt; <span class="string">&quot;正在注册C++UDO类&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 定义自定义UDO类 </span></span><br><span class="line">            myUDOclass = theSession-&gt;<span class="built_in">UserDefinedClassManager</span>()-&gt;<span class="built_in">CreateUserDefinedObjectClass</span>(<span class="string">&quot;Emmet_Cpp_UDO&quot;</span>, <span class="string">&quot;Emmet C++ UDO&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 设置自定义UDO类的属性 </span></span><br><span class="line">            myUDOclass-&gt;<span class="built_in">SetAllowQueryClassFromName</span>(UserDefinedClass::AllowQueryClassOn);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 为UDO类注册回调</span></span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddDisplayHandler</span>(<span class="built_in">make_callback</span>(&amp;myDisplayCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddAttentionPointHandler</span>(<span class="built_in">make_callback</span>(&amp;myDisplayCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddFitHandler</span>(<span class="built_in">make_callback</span>(&amp;myDisplayCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddSelectionHandler</span>(<span class="built_in">make_callback</span>(&amp;myDisplayCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddEditHandler</span>(<span class="built_in">make_callback</span>(&amp;myEditCB));</span><br><span class="line">            myUDOclass-&gt;<span class="built_in">AddInformationHandler</span>(<span class="built_in">make_callback</span>(&amp;myInfoCB));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 将此类添加到NX中可供选择的对象类型列表中。</span></span><br><span class="line">			<span class="comment">// 如果您跳过此步骤，您将无法选择此类的UDO，即使您注册了一个选择回调。 </span></span><br><span class="line">            theUI-&gt;<span class="built_in">SelectionManager</span>()-&gt;<span class="built_in">SetSelectionStatusOfUserDefinedClass</span>(myUDOclass, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (NXException ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// ---- Enter your exception handling code here ----- </span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">// ufusr（显式激活） </span></span><br><span class="line"><span class="comment">// 此入口点用于显式激活应用程序，如 </span></span><br><span class="line"><span class="comment">// “文件-&gt;执行UG/Open-&gt;NX Open…”</span></span><br><span class="line"><span class="comment">//------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">void</span> <span class="title">ufusr</span><span class="params">(<span class="type">char</span>* parm, <span class="type">int</span>* returnCode, <span class="type">int</span> rlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 跟踪是否调用了UF_initialize</span></span><br><span class="line">    <span class="comment">// 这告诉是否需要调用UF_terminate</span></span><br><span class="line">    <span class="type">bool</span> initialized = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        EMESSAGE &lt;&lt; <span class="string">&quot;\n&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line">        <span class="built_in">ELOG</span>(<span class="number">3</span>) &lt;&lt; <span class="string">&quot;ufusr 入口函数&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// UF函数调用初始化</span></span><br><span class="line">       <span class="comment">// 例如： UF_DISP_add_item_to_display </span></span><br><span class="line">        <span class="built_in">UF_initialize</span>();</span><br><span class="line">        initialized = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment">//初始化UDO，在启动时</span></span><br><span class="line">        <span class="built_in">initUDO</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果我们没有打开任何部件，请创建一个</span></span><br><span class="line">        BasePart* myBasePart = theSession-&gt;<span class="built_in">Parts</span>()-&gt;<span class="built_in">BaseDisplay</span>();</span><br><span class="line">        <span class="keyword">if</span> (myBasePart == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            myBasePart = theSession-&gt;<span class="built_in">Parts</span>()-&gt;<span class="built_in">NewBaseDisplay</span>(<span class="string">&quot;test_cpp_udo.prt&quot;</span>, BasePart::UnitsMillimeters);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        View* myView = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="function">Point3d <span class="title">myCursor</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 要求用户为此UDO选择原点</span></span><br><span class="line">        Selection::DialogResponse myResponse = theUI-&gt;<span class="built_in">SelectionManager</span>()-&gt;<span class="built_in">SelectScreenPosition</span>(<span class="string">&quot;Select Origin of C++ UDO&quot;</span>, &amp;myView, &amp;myCursor);</span><br><span class="line">        <span class="keyword">if</span> (myResponse == Selection::DialogResponsePick)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 用户选择了一个点-继续并创建udo </span></span><br><span class="line">            UserDefinedObjectManager* myUDOmanager = myBasePart-&gt;<span class="built_in">UserDefinedObjectManager</span>();</span><br><span class="line">            UserDefinedObject* firstUDO = myUDOmanager-&gt;<span class="built_in">CreateUserDefinedObject</span>(myUDOclass);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 设置udo的颜色属性</span></span><br><span class="line">            firstUDO-&gt;<span class="built_in">SetColor</span>(<span class="number">36</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 使用udo存储用户选择的原点</span></span><br><span class="line">            <span class="function">std::vector&lt;<span class="type">double</span>&gt; <span class="title">myUDOdoubles</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line">            myUDOdoubles[<span class="number">0</span>] = myCursor.X;</span><br><span class="line">            myUDOdoubles[<span class="number">1</span>] = myCursor.Y;</span><br><span class="line">            myUDOdoubles[<span class="number">2</span>] = myCursor.Z;</span><br><span class="line">            firstUDO-&gt;<span class="built_in">SetDoubles</span>(myUDOdoubles);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 手动将udo添加到显示列表中</span></span><br><span class="line">            <span class="comment">// 这将强制重新生成udo显示</span></span><br><span class="line">            <span class="built_in">UF_DISP_add_item_to_display</span>(firstUDO-&gt;<span class="built_in">Tag</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">UF_terminate</span>();</span><br><span class="line">        initialized = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (<span class="type">const</span> NXOpen::NXException&amp; ex)</span><br><span class="line">    &#123;</span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">if</span> (initialized)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">UF_terminate</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">void</span> <span class="title">ufsta</span><span class="params">(<span class="type">char</span>* param, <span class="type">int</span>* returnCode, <span class="type">int</span> rlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">		(*ELog::<span class="built_in">getInstance</span>()).<span class="built_in">deleteLogFile</span>();</span><br><span class="line">        <span class="built_in">ELOG</span>(<span class="number">3</span>) &lt;&lt; <span class="string">&quot;ufsta 入口函数&quot;</span> &lt;&lt; endlWrite;</span><br><span class="line">        <span class="built_in">initUDO</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (<span class="type">const</span> NXOpen::NXException&amp; ex)</span><br><span class="line">    &#123;</span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;Caught exception: &quot;</span> &lt;&lt; ex.<span class="built_in">Message</span>() &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">ufusr_ask_unload</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)Session::LibraryUnloadOptionAtTermination;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="三、文献"><a href="#三、文献" class="headerlink" title="三、文献"></a>三、文献</h3><h4 id="官方介绍：https-docs-sw-siemens-com-zh-CN-doc-209349590-PL20190529153442596-nxopen-prog-guide-genid-udo-overview-66-3929"><a href="#官方介绍：https-docs-sw-siemens-com-zh-CN-doc-209349590-PL20190529153442596-nxopen-prog-guide-genid-udo-overview-66-3929" class="headerlink" title="官方介绍：https://docs.sw.siemens.com/zh-CN/doc/209349590/PL20190529153442596.nxopen_prog_guide/genid_udo_overview_66_3929"></a>官方介绍：<a target="_blank" rel="noopener" href="https://docs.sw.siemens.com/zh-CN/doc/209349590/PL20190529153442596.nxopen_prog_guide/genid_udo_overview_66_3929">https://docs.sw.siemens.com/zh-CN/doc/209349590/PL20190529153442596.nxopen_prog_guide/genid_udo_overview_66_3929</a></h4><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080611573289.jpg"><img src="http://image.camcad.cn/2020/08/2020080611573289-724x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080611585368.jpg"><img src="http://image.camcad.cn/2020/08/2020080611585368-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080611595419.jpg"><img src="http://image.camcad.cn/2020/08/2020080611595419-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612005460.jpg"><img src="http://image.camcad.cn/2020/08/2020080612005460-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/202008061201516.jpg"><img src="http://image.camcad.cn/2020/08/202008061201516-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/202008061202588.jpg"><img src="http://image.camcad.cn/2020/08/202008061202588-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612034659.jpg"><img src="http://image.camcad.cn/2020/08/2020080612034659-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612043655.jpg"><img src="http://image.camcad.cn/2020/08/2020080612043655-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612052832.jpg"><img src="http://image.camcad.cn/2020/08/2020080612052832-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612061314.jpg"><img src="http://image.camcad.cn/2020/08/2020080612061314-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612072235.jpg"><img src="http://image.camcad.cn/2020/08/2020080612072235-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612081481.jpg"><img src="http://image.camcad.cn/2020/08/2020080612081481-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612091013.jpg"><img src="http://image.camcad.cn/2020/08/2020080612091013-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612100787.jpg"><img src="http://image.camcad.cn/2020/08/2020080612100787-734x1024.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080612105595.jpg"><img src="http://image.camcad.cn/2020/08/2020080612105595-734x1024.jpg"></a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/13756432.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/13756432.html" class="post-title-link" itemprop="url">C++提高编程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-06 10:33:44" itemprop="dateCreated datePublished" datetime="2020-08-06T10:33:44+00:00">2020-08-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>C++提高编程目录</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/13756432.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
