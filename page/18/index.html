@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">400</span>
+          <span class="site-state-item-count">402</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,187 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/c00b4728.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/c00b4728.html" class="post-title-link" itemprop="url">NX二次开发-文本刻字功能的实现原理与核心代码(UFUN/NX OPEN)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-09 16:15:04" itemprop="dateCreated datePublished" datetime="2020-08-09T16:15:04+00:00">2020-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a><br>通过对 NX <code>菜单--插入--曲线--文本</code>功能进行二次开发，实现对零件、电极等实体定制刻字功能</p>
+<p><img src="http://image.camcad.cn/2020/08/202008090805192-1024x793.jpg"></p>
+<h2 id="刻字功能实现原理："><a href="#刻字功能实现原理：" class="headerlink" title="刻字功能实现原理："></a>刻字功能实现原理：</h2><p>1：先用鼠标选取平面，获得选择点的坐标和面的tag_t标识 选择点可以通过C++的UI控件 <code>Point3d pickPoint = selection0-&gt;PickPoint()</code> 获得选择点的坐标值。 选择的面tag_t通过 <code>Face *iface-&gt;Tag()</code> 获得。</p>
+<p>2，自定义一个函数，来获得选择平面的法向方向和X、Y的向量值，可以定义一个vector来返回，后面刻字定义放置平面的时候需要用到，函数原型在下面会列出。</p>
+<p>3，通过NXopen C++录制手动菜单–插入–曲线–文本功能进行创建文本，可以得到以下核心的代码部分，只需要对其中 Point3d origin放置原点的位置，和Vector3d xDirection与Vector3d yDirection两个方向的向量值进行传递即可快速创建文本，核心代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Part *<span class="title">workPart</span><span class="params">(theSession-&gt;Parts()-&gt;Work())</span></span>;</span><br><span class="line"><span class="function">Part *<span class="title">displayPart</span><span class="params">(theSession-&gt;Parts()-&gt;Display())</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">Features::Text *<span class="title">nullFeatures_Text</span><span class="params">(<span class="literal">NULL</span>)</span></span>;</span><br><span class="line">Features::TextBuilder *textBuilder1;</span><br><span class="line">textBuilder1 = workPart-&gt;<span class="built_in">Features</span>()-&gt;<span class="built_in">CreateTextBuilder</span>(nullFeatures_Text);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">AnchorPosition</span>()-&gt;<span class="built_in">Expression</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;50&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">SetScript</span>(Features::TextBuilder::ScriptOptionsWestern); </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">SetAnchorLocation</span>(GeometricUtilities::RectangularFrameBuilder::AnchorLocationTypeBottomCenter);   </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Length</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;5&quot;</span>);  </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置字体的高度</span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Height</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;2&quot;</span>);  </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置长宽比例                </span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">SetWScale</span>(<span class="number">100.0</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">PlanarFrame</span>()-&gt;<span class="built_in">Shear</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;0&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">AnchorPosition</span>()-&gt;<span class="built_in">Expression</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;50&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Offset</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;0&quot;</span>);   </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Length</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;1&quot;</span>);    </span><br><span class="line">textBuilder1-&gt;<span class="built_in">FrameOnPath</span>()-&gt;<span class="built_in">Height</span>()-&gt;<span class="built_in">SetRightHandSide</span>(<span class="string">&quot;2&quot;</span>);    </span><br><span class="line"></span><br><span class="line"><span class="comment">//设置字体</span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">SelectFont</span>(<span class="string">&quot;Arial&quot;</span>, Features::TextBuilder::ScriptOptionsWestern);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置要刻的文本                </span></span><br><span class="line">textBuilder1-&gt;<span class="built_in">SetTextString</span>(<span class="string">&quot;NX90&quot;</span>);    </span><br><span class="line"></span><br><span class="line"><span class="comment">//获取鼠标选择的坐标点Point3d pickPoint = selection0-&gt;PickPoint()        </span></span><br><span class="line"><span class="function">Point3d <span class="title">origin2</span><span class="params">(pickPoint.X, pickPoint.Y,pickPoint.Z)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过自定义函数GetxyDirection来获得返回的X、y的向量值</span></span><br><span class="line">vector&lt;<span class="type">double</span>&gt; Directi= <span class="built_in">GetxyDirection</span>(objs);</span><br><span class="line"><span class="function">Vector3d <span class="title">xDirection1</span><span class="params">(Directi[<span class="number">0</span>], Directi[<span class="number">1</span>], Directi[<span class="number">2</span>])</span></span>;</span><br><span class="line"><span class="function">Vector3d <span class="title">yDirection1</span><span class="params">(Directi[<span class="number">3</span>], Directi[<span class="number">4</span>], Directi[<span class="number">5</span>])</span></span>;</span><br><span class="line"></span><br><span class="line">Xform *xform1;</span><br><span class="line">xform1 = workPart-&gt;<span class="built_in">Xforms</span>()-&gt;<span class="built_in">CreateXform</span>(origin2, xDirection1, yDirection1, SmartObject::UpdateOptionWithinModeling, <span class="number">1.0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>4，结合UI界面的定制，可以让用户自由选择字体样式、修改字体大小、字体方向、刻字深度等功能！</p>
+<p><img src="http://image.camcad.cn/2020/08/2020080908073281.jpg"></p>
+<p>5，通过对创建好的文本进行拉伸和布尔求差，即可实现刻字功能。</p>
+<p>以下是自定义的函数来获得选择面的X和Y的向量值，通过vector来返回一个数组。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">double</span>&gt; <span class="title">GetxyDirection</span><span class="params">(<span class="type">tag_t</span> object_tag)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UF_initialize</span>();</span><br><span class="line">    <span class="type">double</span> wsc_9[<span class="number">9</span>]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;; <span class="comment">//3x3矩阵</span></span><br><span class="line">    <span class="type">tag_t</span> matrix_id=NULL_TAG;  <span class="comment">//3x3矩阵标识</span></span><br><span class="line">    <span class="type">double</span> o_point[<span class="number">3</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;   <span class="comment">//坐标原点</span></span><br><span class="line">    <span class="type">tag_t</span> csys_id;            <span class="comment">//坐标标识</span></span><br><span class="line">    <span class="type">double</span> x_vec[ <span class="number">3</span> ]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;<span class="comment">//坐标x方向</span></span><br><span class="line">    <span class="type">double</span> y_vec[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;<span class="comment">//坐标y方向</span></span><br><span class="line">    <span class="type">double</span> z_vec[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;<span class="comment">//坐标z方向</span></span><br><span class="line">    <span class="type">int</span>  is_equal;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> type=<span class="number">0</span>;  <span class="comment">//判断面类型</span></span><br><span class="line">    <span class="type">int</span> norm_dir=<span class="number">0</span>;</span><br><span class="line">    <span class="type">double</span> point[<span class="number">3</span>]; <span class="comment">//轴中心 点</span></span><br><span class="line">    <span class="type">double</span> dir[<span class="number">3</span>];    <span class="comment">//轴方向</span></span><br><span class="line">    <span class="type">double</span> box[<span class="number">6</span>];    <span class="comment">//极点坐标</span></span><br><span class="line">    <span class="type">double</span> radius[<span class="number">1</span>];   <span class="comment">//半径 圆锥=最小半径 + 最大半径 /2</span></span><br><span class="line">    <span class="type">double</span> rad_data[<span class="number">3</span>]; <span class="comment">////面法向</span></span><br><span class="line">    <span class="type">double</span> z_vec2[ <span class="number">3</span> ]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="type">double</span> uvs[<span class="number">4</span>];   <span class="comment">//面uv最小和最大值</span></span><br><span class="line">    <span class="type">double</span> param[<span class="number">2</span>];   <span class="comment">//输入U,V方向值</span></span><br><span class="line">    <span class="type">double</span> x_point[<span class="number">3</span>];   <span class="comment">//面点坐标</span></span><br><span class="line">    <span class="type">double</span> y_point[<span class="number">3</span>];   <span class="comment">//面点坐标</span></span><br><span class="line">    <span class="type">double</span> u1[ <span class="number">3</span> ];    <span class="comment">//输出 输出一阶导数在U位置</span></span><br><span class="line">    <span class="type">double</span> v1[ <span class="number">3</span> ];    <span class="comment">//输出 输出一阶导数在V位置</span></span><br><span class="line">    <span class="type">double</span> u2[ <span class="number">3</span> ];    <span class="comment">//输出 输出二阶导数在U位置</span></span><br><span class="line">    <span class="type">double</span> v2[ <span class="number">3</span> ];    <span class="comment">//输出 输出二阶导数在V位置</span></span><br><span class="line">    <span class="type">double</span> unit_norm[<span class="number">3</span>]; <span class="comment">//输出面上该点的矢量方向--------输出矢量方向</span></span><br><span class="line">    <span class="type">double</span> radii[ <span class="number">2</span> ];     <span class="comment">//输出，双半径，输出主曲率半径</span></span><br><span class="line">    <span class="type">double</span> vec[ <span class="number">3</span> ];<span class="comment">//输入向量</span></span><br><span class="line">    <span class="type">double</span> tolerance=<span class="number">0.001</span>; <span class="comment">//输入公差</span></span><br><span class="line">    <span class="type">double</span> magnitude[<span class="number">1</span>];   <span class="comment">//输出 向量的大小</span></span><br><span class="line">    <span class="type">double</span> unit_vec[ <span class="number">3</span> ];   <span class="comment">//输出单位向量</span></span><br><span class="line">    <span class="type">tag_t</span> point_tag=NULL_TAG;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_data</span> (object_tag,&amp;type,point,dir,box,radius,rad_data,&amp;norm_dir); </span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_uv_minmax</span> (object_tag, uvs); <span class="comment">//获得面u,v参数空间（u,v最小,最大值）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获得曲面上的中点</span></span><br><span class="line">    param[<span class="number">0</span>]=(uvs[<span class="number">0</span>]+uvs[<span class="number">1</span>])/<span class="number">2</span>; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=(uvs[<span class="number">2</span>]+uvs[<span class="number">3</span>])/<span class="number">2</span>; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,o_point,u1,v1,u2,v2,unit_norm,radii);</span><br><span class="line">    <span class="comment">//坐标z方向=曲面矢量方向</span></span><br><span class="line">    wsc_9[<span class="number">6</span>]=unit_norm[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">7</span>]=unit_norm[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">8</span>]=unit_norm[<span class="number">2</span>];</span><br><span class="line">    z_vec[<span class="number">0</span>]=wsc_9[<span class="number">6</span>];</span><br><span class="line">    z_vec[<span class="number">1</span>]=wsc_9[<span class="number">7</span>];</span><br><span class="line">    z_vec[<span class="number">2</span>]=wsc_9[<span class="number">8</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//x方向单位向量</span></span><br><span class="line">    param[<span class="number">0</span>]=(uvs[<span class="number">0</span>]+uvs[<span class="number">1</span>])/<span class="number">2</span>; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=uvs[<span class="number">3</span>]; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,x_point,u1,v1,u2,v2,unit_norm,radii);<span class="comment">//获得曲面上的点</span></span><br><span class="line">    vec[<span class="number">0</span>]=x_point[<span class="number">0</span>]-o_point[<span class="number">0</span>];</span><br><span class="line">    vec[<span class="number">1</span>]=x_point[<span class="number">1</span>]-o_point[<span class="number">1</span>];</span><br><span class="line">    vec[<span class="number">2</span>]=x_point[<span class="number">2</span>]-o_point[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">UF_VEC3_unitize</span> (vec,tolerance,magnitude,unit_vec); </span><br><span class="line">    wsc_9[<span class="number">0</span>]=unit_vec[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">1</span>]=unit_vec[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">2</span>]=unit_vec[<span class="number">2</span>];</span><br><span class="line">    x_vec[<span class="number">0</span>]=wsc_9[<span class="number">0</span>];</span><br><span class="line">    x_vec[<span class="number">1</span>]=wsc_9[<span class="number">1</span>];</span><br><span class="line">    x_vec[<span class="number">2</span>]=wsc_9[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//y方向单位向量</span></span><br><span class="line">    param[<span class="number">0</span>]=uvs[<span class="number">0</span>]; <span class="comment">//输入U方向值</span></span><br><span class="line">    param[<span class="number">1</span>]=(uvs[<span class="number">2</span>]+uvs[<span class="number">3</span>])/<span class="number">2</span>; <span class="comment">//输入V方向值</span></span><br><span class="line">    <span class="built_in">UF_MODL_ask_face_props</span> (object_tag,param,y_point,u1,v1,u2,v2,unit_norm,radii);<span class="comment">//获得曲面上的点</span></span><br><span class="line">    vec[<span class="number">0</span>]=y_point[<span class="number">0</span>]-o_point[<span class="number">0</span>];</span><br><span class="line">    vec[<span class="number">1</span>]=y_point[<span class="number">1</span>]-o_point[<span class="number">1</span>];</span><br><span class="line">    vec[<span class="number">2</span>]=y_point[<span class="number">2</span>]-o_point[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">UF_VEC3_unitize</span> (vec,tolerance,magnitude,unit_vec); </span><br><span class="line">    wsc_9[<span class="number">3</span>]=unit_vec[<span class="number">0</span>];</span><br><span class="line">    wsc_9[<span class="number">4</span>]=unit_vec[<span class="number">1</span>];</span><br><span class="line">    wsc_9[<span class="number">5</span>]=unit_vec[<span class="number">2</span>];</span><br><span class="line">    y_vec[<span class="number">0</span>]=wsc_9[<span class="number">3</span>];</span><br><span class="line">    y_vec[<span class="number">1</span>]=wsc_9[<span class="number">4</span>];</span><br><span class="line">    y_vec[<span class="number">2</span>]=wsc_9[<span class="number">5</span>];</span><br><span class="line">    <span class="comment">//---</span></span><br><span class="line">    <span class="comment">//输入x和y方向，获得3x3矩阵</span></span><br><span class="line">    <span class="built_in">UF_MTX3_initialize</span>(x_vec,y_vec,wsc_9);</span><br><span class="line">    <span class="comment">//输入一个矩阵返回z方向向量</span></span><br><span class="line">    <span class="built_in">UF_MTX3_z_vec</span>(wsc_9,z_vec2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断2个3维向量是否相等</span></span><br><span class="line">    <span class="built_in">UF_VEC3_is_equal</span>(z_vec,z_vec2,<span class="number">0.01</span>,&amp;is_equal);</span><br><span class="line">    <span class="keyword">if</span>(is_equal!=<span class="number">1</span>)  <span class="comment">//不相等</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获得3维向量反向</span></span><br><span class="line">        wsc_9[<span class="number">3</span>]=-wsc_9[<span class="number">3</span>];</span><br><span class="line">        wsc_9[<span class="number">4</span>]=-wsc_9[<span class="number">4</span>];</span><br><span class="line">        wsc_9[<span class="number">5</span>]=-wsc_9[<span class="number">5</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="type">double</span>&gt; matdouble;</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">0</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">1</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">2</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">3</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">4</span>]);</span><br><span class="line">    matdouble.<span class="built_in">push_back</span>(wsc_9[<span class="number">5</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>转载：<a target="_blank" rel="noopener" href="http://www.vmould.cn/?post=79" title="http://www.vmould.cn/?post=79">http://www.vmould.cn/?post=79</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/bfbcff9b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/bfbcff9b.html" class="post-title-link" itemprop="url">NX二次开发-实现缩略图源代码，包含h头文件和cpp文件代码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-09 15:44:25" itemprop="dateCreated datePublished" datetime="2020-08-09T15:44:25+00:00">2020-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="步骤一："><a href="#步骤一：" class="headerlink" title="步骤一："></a>步骤一：</h2><ul>
+<li><p>自定义一个头文件取名为：get_prt_image.h</p>
+</li>
+<li><p>然后复制粘贴以下代码到get_prt_image.h头文件中并保存</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;afxwin.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Gdiplus.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib,<span class="string">&quot;gdiplus.lib&quot;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Gdiplus;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">GetEncoderClsid</span><span class="params">(<span class="type">const</span> WCHAR* format, CLSID* pClsid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">ULONG_PTR m_gdiplusToken;</span><br><span class="line">Gdiplus::GdiplusStartupInput StartupInput;  </span><br><span class="line"><span class="built_in">GdiplusStartup</span>(&amp;m_gdiplusToken,&amp;StartupInput,<span class="literal">NULL</span>); </span><br><span class="line">UINT  num = <span class="number">0</span>;</span><br><span class="line">UINT  size = <span class="number">0</span>;</span><br><span class="line">ImageCodecInfo* pImageCodecInfo = <span class="literal">NULL</span>;</span><br><span class="line"><span class="built_in">GetImageEncodersSize</span>(&amp;num, &amp;size);</span><br><span class="line"><span class="keyword">if</span>(size == <span class="number">0</span>)        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">pImageCodecInfo = (ImageCodecInfo*)(<span class="built_in">malloc</span>(size));</span><br><span class="line"><span class="keyword">if</span>(pImageCodecInfo == <span class="literal">NULL</span>)        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"><span class="built_in">GetImageEncoders</span>(num, size, pImageCodecInfo);</span><br><span class="line"><span class="keyword">for</span>(UINT j = <span class="number">0</span>; j &lt; num; ++j)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="built_in">wcscmp</span>(pImageCodecInfo[j].MimeType, format) == <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        *pClsid = pImageCodecInfo[j].Clsid;</span><br><span class="line">        <span class="built_in">free</span>(pImageCodecInfo);</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">free</span>(pImageCodecInfo);</span><br><span class="line"><span class="built_in">GdiplusShutdown</span>(m_gdiplusToken);</span><br><span class="line"><span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_thumb</span><span class="params">(string file_name,string bmppath)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">CLSID bmpClsid;</span><br><span class="line"><span class="built_in">GetEncoderClsid</span>(<span class="string">L&quot;image/bmp&quot;</span>, &amp;bmpClsid);</span><br><span class="line">string path=file_name;</span><br><span class="line"><span class="type">size_t</span> len =path.<span class="built_in">size</span>()+<span class="number">1</span>;</span><br><span class="line"><span class="type">size_t</span> converted = <span class="number">0</span>;</span><br><span class="line"><span class="type">wchar_t</span> *WStr;</span><br><span class="line">WStr=(<span class="type">wchar_t</span>*)<span class="built_in">malloc</span>(len*<span class="built_in">sizeof</span>(<span class="type">wchar_t</span>));</span><br><span class="line"><span class="built_in">mbstowcs_s</span>(&amp;converted, WStr, len, path.<span class="built_in">c_str</span>(), _TRUNCATE);</span><br><span class="line">Gdiplus::Image * pImage = Gdiplus::Image::<span class="built_in">FromFile</span>(WStr);</span><br><span class="line">Gdiplus::Image * smage=pImage-&gt;<span class="built_in">GetThumbnailImage</span>(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">string path2=bmppath;</span><br><span class="line"><span class="type">size_t</span> len2 =path2.<span class="built_in">size</span>()+<span class="number">1</span>;</span><br><span class="line"><span class="type">size_t</span> converted2 = <span class="number">0</span>;</span><br><span class="line"><span class="type">wchar_t</span> *WStr2;</span><br><span class="line">WStr2=(<span class="type">wchar_t</span>*)<span class="built_in">malloc</span>(len2*<span class="built_in">sizeof</span>(<span class="type">wchar_t</span>));</span><br><span class="line"><span class="built_in">mbstowcs_s</span>(&amp;converted, WStr2, len2, path2.<span class="built_in">c_str</span>(), _TRUNCATE);</span><br><span class="line">pImage-&gt;~<span class="built_in">Image</span>();</span><br><span class="line">Status rr=         smage-&gt;<span class="built_in">Save</span>(WStr2,&amp;bmpClsid);        </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_prt_image</span><span class="params">(string file_name,string bmppath)</span> </span></span><br><span class="line"><span class="function"></span>&#123;        </span><br><span class="line">IStorage* pStorage = <span class="literal">NULL</span>;</span><br><span class="line">HRESULT hResult;         </span><br><span class="line"><span class="type">wchar_t</span> path_file[MAX_PATH];         </span><br><span class="line"><span class="built_in">MultiByteToWideChar</span>(CP_ACP, <span class="number">0</span>, file_name.<span class="built_in">c_str</span>(), <span class="number">-1</span>, path_file, MAX_PATH);</span><br><span class="line">hResult = <span class="built_in">StgOpenStorage</span>(path_file, <span class="literal">NULL</span>,          STGM_READ  STGM_SHARE_DENY_WRITE,  <span class="literal">NULL</span>, <span class="number">0</span>, &amp;pStorage);</span><br><span class="line"><span class="keyword">if</span>(hResult != S_OK)<span class="keyword">return</span><span class="number">-1</span>;        </span><br><span class="line">IStorage* pSubStorage = <span class="literal">NULL</span>;                </span><br><span class="line">HRESULT hr = pStorage-&gt;<span class="built_in">OpenStorage</span>(<span class="string">L&quot;images&quot;</span>, <span class="literal">NULL</span>,         STGM_READ  STGM_SHARE_EXCLUSIVE,  <span class="literal">NULL</span>, <span class="number">0</span>, &amp;pSubStorage);</span><br><span class="line">IStream *pStream;          pStream=<span class="literal">NULL</span>;  </span><br><span class="line">DWORD dwMode=STGM_READSTGM_SHARE_EXCLUSIVE; </span><br><span class="line"><span class="keyword">if</span>(pSubStorage!=<span class="literal">NULL</span>) pSubStorage-&gt;<span class="built_in">OpenStream</span>(   <span class="string">L&quot;preview&quot;</span>,  <span class="literal">NULL</span>,  dwMode,  <span class="number">0</span>,  &amp;pStream );  </span><br><span class="line"><span class="keyword">if</span>(pStream!=<span class="literal">NULL</span>) </span><br><span class="line">&#123;</span><br><span class="line">    CLSID bmpClsid;</span><br><span class="line">    <span class="built_in">GetEncoderClsid</span>(<span class="string">L&quot;image/bmp&quot;</span>, &amp;bmpClsid);</span><br><span class="line">    Image *image1=Image::<span class="built_in">FromStream</span>(pStream);</span><br><span class="line">    <span class="comment">//image1=image1-&gt;GetThumbnailImage(300,300);</span></span><br><span class="line">    <span class="keyword">if</span> (image1!=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">wchar_t</span> path_file[MAX_PATH];         </span><br><span class="line">        <span class="built_in">MultiByteToWideChar</span>(CP_ACP, <span class="number">0</span>, bmppath.<span class="built_in">c_str</span>(), <span class="number">-1</span>, path_file, MAX_PATH);</span><br><span class="line">        image1-&gt;<span class="built_in">Save</span>(path_file,&amp;bmpClsid,<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    pStream-&gt;<span class="built_in">Release</span>();</span><br><span class="line">&#125;</span><br><span class="line">pStorage-&gt;<span class="built_in">Release</span>();        </span><br><span class="line">pStorage = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//get_thumb(bmppath,bmppath);</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="步骤二："><a href="#步骤二：" class="headerlink" title="步骤二："></a>步骤二：</h2><ul>
+<li>再新建一个text.cpp文件，并引用加载上面get_prt_image.h的头文件，具体代码如下：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> ! defined ( __hp9000s800 ) &amp;&amp; ! defined ( __sgi ) &amp;&amp; ! defined ( __sun )</span></span><br><span class="line"><span class="meta">#   <span class="keyword">include</span> <span class="string">&lt;strstream&gt;</span></span></span><br><span class="line"><span class="meta">#   <span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> std::ostrstream;</span><br><span class="line"><span class="keyword">using</span> std::endl;    </span><br><span class="line"><span class="keyword">using</span> std::ends;</span><br><span class="line"><span class="keyword">using</span> std::cerr;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#   <span class="keyword">include</span> <span class="string">&lt;strstream.h&gt;</span></span></span><br><span class="line"><span class="meta">#   <span class="keyword">include</span> <span class="string">&lt;iostream.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_exit.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;get_prt_image.h&quot;</span>  <span class="comment">//添加上面保存的头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UF_CALL(X) (report_error( __FILE__, __LINE__, #X, (X)))</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">report_error</span><span class="params">( <span class="type">char</span> *file, <span class="type">int</span> line, <span class="type">char</span> *call, <span class="type">int</span> irc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (irc)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">char</span> err[<span class="number">133</span>],</span><br><span class="line">            msg[<span class="number">133</span>];</span><br><span class="line"></span><br><span class="line">        <span class="built_in">sprintf</span>(msg, <span class="string">&quot;*** ERROR code %d at line %d in %s:\n+++ &quot;</span>,</span><br><span class="line">            irc, line, file);</span><br><span class="line">        <span class="built_in">UF_get_fail_message</span>(irc, err);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(msg, FALSE);</span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(err, FALSE);</span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(<span class="string">&quot;\n&quot;</span>, FALSE);</span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(call, FALSE);</span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(<span class="string">&quot;;\n&quot;</span>, FALSE);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">UF_UI_open_listing_window</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(msg);</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(err);</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(call);</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(<span class="string">&quot;;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>(irc);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> DllExport <span class="type">void</span> <span class="title">ufusr</span><span class="params">( <span class="type">char</span> *parm, <span class="type">int</span> *returnCode, <span class="type">int</span> rlen )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>( <span class="built_in">UF_CALL</span>(<span class="built_in">UF_initialize</span>()) ) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    string prtpath=<span class="string">&quot;C:\\112233.prt&quot;</span>;</span><br><span class="line">    string bmppath=<span class="string">&quot;C:\\a.bmp&quot;</span>;</span><br><span class="line">    string bmppath2=<span class="string">&quot;C:\\b.bmp&quot;</span>;</span><br><span class="line">    <span class="built_in">get_prt_image</span>(prtpath,bmppath);   <span class="comment">//调用函数生成小缩略图</span></span><br><span class="line">    <span class="built_in">get_thumb</span>(bmppath,bmppath2);   <span class="comment">//调用函数生成大缩略图</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">UF_CALL</span>(<span class="built_in">UF_terminate</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">ufusr_ask_unload</span><span class="params">( <span class="type">void</span> )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>( UF_UNLOAD_IMMEDIATELY );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转载：<a target="_blank" rel="noopener" href="http://www.vmould.cn/?post=75" title="http://www.vmould.cn/?post=75">http://www.vmould.cn/?post=75</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -860,178 +1041,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/dfef9d8b.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/dfef9d8b.html" class="post-title-link" itemprop="url">C++提高编程80：STL常用算法（常用集合算法）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-04 17:05:19" itemprop="dateCreated datePublished" datetime="2020-08-04T17:05:19+00:00">2020-08-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL常用算法（常用集合算法）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/dfef9d8b.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/56601927.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/56601927.html" class="post-title-link" itemprop="url">C++提高编程79：STL常用算法（常用算术生成算法）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-04 14:43:56" itemprop="dateCreated datePublished" datetime="2020-08-04T14:43:56+00:00">2020-08-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>STL常用算法（常用算术生成算法）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/56601927.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/19/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/19/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
