@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">402</span>
+          <span class="site-state-item-count">403</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,90 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/738fb218.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/738fb218.html" class="post-title-link" itemprop="url">NX二次开发-获取面的最外边缘实例代码(UFUN)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-10 10:13:44" itemprop="dateCreated datePublished" datetime="2020-08-10T10:13:44+00:00">2020-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="头文件："><a href="#头文件：" class="headerlink" title="头文件："></a>头文件：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取面的最外边缘实例代码</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_exit.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> ! defined ( __hp9000s800 ) &amp;&amp; ! defined ( __sgi ) &amp;&amp; ! defined ( __sun )</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;strstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> std::ostrstream;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"><span class="keyword">using</span> std::ends;</span><br><span class="line"><span class="keyword">using</span> std::cerr;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;strstream.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_csys.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_obj.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_modl.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="源文件："><a href="#源文件：" class="headerlink" title="源文件："></a>源文件：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置选择的实体类型</span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">init_proc</span><span class="params">(UF_UI_selection_p_t select, <span class="type">void</span> *user_data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span>  errorCode = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>  num_triples = <span class="number">1</span>; <span class="comment">//选择类型 数量</span></span><br><span class="line">    UF_UI_mask_t mask_triples[] = &#123; UF_face_type,<span class="number">0</span>,<span class="number">0</span>, &#125;; <span class="comment">//定义选择类型</span></span><br><span class="line"></span><br><span class="line">    errorCode = <span class="built_in">UF_UI_set_sel_mask</span>(select, UF_UI_SEL_MASK_CLEAR_AND_ENABLE_SPECIFIC, num_triples, mask_triples);</span><br><span class="line">    <span class="keyword">if</span> (errorCode == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> UF_UI_SEL_SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> UF_UI_SEL_FAILURE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function">DllExport <span class="type">void</span> <span class="title">ufsta</span><span class="params">(<span class="type">char</span> *param, <span class="type">int</span> *returnCode, <span class="type">int</span> rlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* Initialize the API environment */</span></span><br><span class="line">    <span class="type">int</span> errorCode = <span class="built_in">UF_initialize</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> == errorCode)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span> *message = <span class="string">&quot;提示！请选择表面。&quot;</span>;</span><br><span class="line">        <span class="type">char</span> *title = <span class="string">&quot;请选择表面&quot;</span>;</span><br><span class="line">        <span class="type">int</span>  scope = UF_UI_SEL_SCOPE_WORK_PART;<span class="comment">//UF_UI_SEL_SCOPE_NO_CHANGE</span></span><br><span class="line">        <span class="type">int</span>  response;</span><br><span class="line">        <span class="type">tag_t</span> object_tag;</span><br><span class="line">        <span class="type">double</span>  cursor[<span class="number">3</span>] = &#123; <span class="number">0.0</span> &#125;;</span><br><span class="line">        <span class="type">tag_t</span> view = NULL_TAG;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">UF_UI_lock_ug_access</span>(UF_UI_FROM_CUSTOM);<span class="comment">//加锁</span></span><br><span class="line">        <span class="built_in">UF_UI_select_with_single_dialog</span>(message, title, scope, init_proc, <span class="literal">NULL</span>, &amp;response, &amp;object_tag, cursor, &amp;view);  <span class="comment">//选择框</span></span><br><span class="line">        <span class="built_in">UF_DISP_set_highlight</span>(object_tag, <span class="number">0</span>); <span class="comment">//1 高亮显示 0 不高亮显示</span></span><br><span class="line">        <span class="built_in">UF_UI_unlock_ug_access</span>(UF_UI_FROM_CUSTOM);<span class="comment">//解锁</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (response == UF_UI_OBJECT_SELECTED)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//获得面最外边缘 </span></span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">            <span class="type">tag_t</span>    edge_id[<span class="number">2000</span>];</span><br><span class="line">            <span class="type">uf_loop_p_t</span>   loops_list = NULL_TAG;</span><br><span class="line">            <span class="built_in">UF_MODL_ask_face_loops</span>(object_tag, &amp;loops_list);     <span class="comment">//查询面的边</span></span><br><span class="line"></span><br><span class="line">            <span class="type">int</span>      loops_count = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">UF_MODL_ask_loop_list_count</span>(loops_list, &amp;loops_count);<span class="comment">//查询数量</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> l_i = <span class="number">0</span>; l_i &lt; loops_count; l_i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">int</span>    loops_type = <span class="number">0</span>;              <span class="comment">//类型</span></span><br><span class="line">                <span class="type">uf_list_p_t</span>   edge_list = NULL_TAG; <span class="comment">//边缘菜单指针 ID</span></span><br><span class="line">                <span class="built_in">UF_MODL_ask_loop_list_item</span>(loops_list, l_i, &amp;loops_type, &amp;edge_list);</span><br><span class="line">                <span class="keyword">if</span> (<span class="number">1</span> == loops_type)                <span class="comment">//边界=1, 洞=2, 其他=3</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="type">int</span>  edge_count = <span class="number">0</span>;             <span class="comment">//边缘数量</span></span><br><span class="line">                    <span class="built_in">UF_MODL_ask_list_count</span>(edge_list, &amp;edge_count);</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> edge_i = <span class="number">0</span>; edge_i &lt; edge_count; edge_i++)</span><br><span class="line">                    &#123;</span><br><span class="line">                        n = n + <span class="number">1</span>;</span><br><span class="line">                        <span class="built_in">UF_MODL_ask_list_item</span>(edge_list, edge_i, &amp;edge_id[n - <span class="number">1</span>]);     <span class="comment">//n-1 是因为 数组是从 0 开始的</span></span><br><span class="line">                        <span class="built_in">UF_MODL_create_curve_from_edge</span>(edge_id[n - <span class="number">1</span>], &amp;edge_id[n - <span class="number">1</span>]); <span class="comment">//提取实体边缘  </span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (n != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">char</span> msg[<span class="number">32</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                <span class="built_in">sprintf</span>(msg, <span class="string">&quot;%d&quot;</span>, n);</span><br><span class="line">                <span class="built_in">uc1601</span>(msg, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">uc1601</span>(<span class="string">&quot;提示！你选择的面没有发现边缘（比如：首尾相连的圆柱面不返回边缘）&quot;</span>, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        errorCode = <span class="built_in">UF_terminate</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="function"><span class="type">int</span> <span class="title">ufusr_ask_unload</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (UF_UNLOAD_IMMEDIATELY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转载：<a target="_blank" rel="noopener" href="http://www.vmould.cn/?post=71">http://www.vmould.cn/?post=71</a> </p>
+<h2 id="以上代码编译执行结果如下（GIF动态图）："><a href="#以上代码编译执行结果如下（GIF动态图）：" class="headerlink" title="以上代码编译执行结果如下（GIF动态图）："></a>以上代码编译执行结果如下（GIF动态图）：</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080909231936.gif"><img src="http://image.camcad.cn/2020/08/2020080909231936-1024x690.gif"></a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -934,91 +1018,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/17c061d0.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/adbe7ef1.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/adbe7ef1.html" class="post-title-link" itemprop="url">C++提高编程81：演讲比赛流程管理系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-05 09:23:46" itemprop="dateCreated datePublished" datetime="2020-08-05T09:23:46+00:00">2020-08-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">C++提高编程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>演讲比赛流程管理系统</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/adbe7ef1.html">
                 阅读全文 &raquo;
               </a>
             </div>

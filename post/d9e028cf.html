@@ -19,32 +19,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="这个配置是自动化部署流程中通过 SSH 连接到远程服务器并执行 Docker Compose 命令的典型示例，适用于需要部署到不同环境的场景。">
+    <meta name="description" content="手动控制部署production环境。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gitlab-ci&#x2F;cd学习17：通过模板的方式部署多个服务">
-<meta property="og:url" content="https://notes.camcad.cn/post/8255c28.html">
+<meta property="og:title" content="gitlab-ci&#x2F;cd学习18：手动控制部署production环境">
+<meta property="og:url" content="https://notes.camcad.cn/post/d9e028cf.html">
 <meta property="og:site_name" content="知识储存库">
-<meta property="og:description" content="这个配置是自动化部署流程中通过 SSH 连接到远程服务器并执行 Docker Compose 命令的典型示例，适用于需要部署到不同环境的场景。">
+<meta property="og:description" content="手动控制部署production环境。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://image.camcad.cn/vscode/20240502153253.png">
-<meta property="og:image" content="https://image.camcad.cn/vscode/20240502154604.png">
-<meta property="article:published_time" content="2024-05-02T15:23:08.000Z">
-<meta property="article:modified_time" content="2024-05-02T08:35:56.022Z">
+<meta property="og:image" content="https://image.camcad.cn/vscode/20240502162123.png">
+<meta property="article:published_time" content="2024-05-02T16:18:04.000Z">
+<meta property="article:modified_time" content="2024-05-02T08:35:56.026Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="gitlab">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://image.camcad.cn/vscode/20240502153253.png">
+<meta name="twitter:image" content="https://image.camcad.cn/vscode/20240502162123.png">
 
 
-<link rel="canonical" href="https://notes.camcad.cn/post/8255c28.html">
+<link rel="canonical" href="https://notes.camcad.cn/post/d9e028cf.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/8255c28.html","path":"post/8255c28.html","title":"gitlab-ci/cd学习17：通过模板的方式部署多个服务"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/d9e028cf.html","path":"post/d9e028cf.html","title":"gitlab-ci/cd学习18：手动控制部署production环境"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>gitlab-ci/cd学习17：通过模板的方式部署多个服务 | 知识储存库</title>
+<title>gitlab-ci/cd学习18：手动控制部署production环境 | 知识储存库</title>
   
 
 
@@ -120,7 +119,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5-Stages"><span class="nav-number">1.</span> <span class="nav-text">阶段 (Stages)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%BD%9C%E4%B8%9A-Job-Template"><span class="nav-number">2.</span> <span class="nav-text">模板作业 (Job Template)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A-Jobs"><span class="nav-number">3.</span> <span class="nav-text">作业 (Jobs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5-Stages"><span class="nav-number">1.</span> <span class="nav-text">阶段 (Stages)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%BD%9C%E4%B8%9A-Job-Template"><span class="nav-number">2.</span> <span class="nav-text">模板作业 (Job Template)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E4%BD%9C%E4%B8%9A-Jobs"><span class="nav-number">3.</span> <span class="nav-text">具体作业 (Jobs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -184,7 +183,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/8255c28.html">
+    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/d9e028cf.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -197,12 +196,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="gitlab-ci/cd学习17：通过模板的方式部署多个服务 | 知识储存库">
+      <meta itemprop="name" content="gitlab-ci/cd学习18：手动控制部署production环境 | 知识储存库">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          gitlab-ci/cd学习17：通过模板的方式部署多个服务
+          gitlab-ci/cd学习18：手动控制部署production环境
         </h1>
 
         <div class="post-meta-container">
@@ -213,7 +212,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2024-05-02 15:23:08" itemprop="dateCreated datePublished" datetime="2024-05-02T15:23:08+00:00">2024-05-02</time>
+      <time title="创建时间：2024-05-02 16:18:04" itemprop="dateCreated datePublished" datetime="2024-05-02T16:18:04+00:00">2024-05-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -239,29 +238,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>这个配置是自动化部署流程中通过 SSH 连接到远程服务器并执行 Docker Compose 命令的典型示例，适用于需要部署到不同环境的场景。</p>
+        <p>手动控制部署production环境。</p>
 <span id="more"></span>
 
-<figure class="highlight bash"><figcaption><span>gitlab-ci.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">stages:</span><br><span class="line">  - deploy_to_dev</span><br><span class="line">  - deploy_to_staging</span><br><span class="line"></span><br><span class="line">.IDeploy:</span><br><span class="line">  tags:</span><br><span class="line">    - mydebian</span><br><span class="line">  variables:</span><br><span class="line">    SERVER_PRIVATE_KEY: <span class="string">&quot;&quot;</span></span><br><span class="line">    SERVER_USER: <span class="string">&quot;&quot;</span></span><br><span class="line">    SERVER_URL: <span class="string">&quot;&quot;</span></span><br><span class="line">    ENV: <span class="string">&quot;&quot;</span></span><br><span class="line">    APP_PORT: <span class="string">&quot;&quot;</span></span><br><span class="line">  before_script:</span><br><span class="line">    - <span class="built_in">eval</span> $(ssh-agent -s)</span><br><span class="line">    - ssh-add &lt;(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$SERVER_PRIVATE_KEY</span>&quot;</span>)</span><br><span class="line">  script:</span><br><span class="line">    - scp -o StrictHostKeyChecking=no ./docker-compose.yml </span><br><span class="line">      <span class="variable">$SERVER_USER</span>@<span class="variable">$SERVER_URL</span>:/<span class="variable">$SERVER_USER</span></span><br><span class="line"></span><br><span class="line">    - ssh -o StrictHostKeyChecking=no <span class="variable">$SERVER_USER</span>@<span class="variable">$SERVER_URL</span> <span class="string">&quot;</span></span><br><span class="line"><span class="string">     docker login -u <span class="variable">$CI_REGISTRY_USER</span> -p <span class="variable">$CI_REGISTRY_PASSWORD</span> <span class="variable">$CI_REGISTRY</span> &amp;&amp;</span></span><br><span class="line"><span class="string">     apt-get install docker-compose &amp;&amp;</span></span><br><span class="line"><span class="string">     export COMPOSE_PROJECT_NAME=<span class="variable">$ENV</span> &amp;&amp;</span></span><br><span class="line"><span class="string">     export APP_PORT=<span class="variable">$APP_PORT</span> &amp;&amp;</span></span><br><span class="line"><span class="string">     docker-compose down &amp;&amp;</span></span><br><span class="line"><span class="string">     docker-compose up -d&quot;</span></span><br><span class="line">  environment:</span><br><span class="line">    name: <span class="variable">$ENV</span></span><br><span class="line">    url: http://<span class="variable">$SERVER_URL</span>:<span class="variable">$APP_PORT</span></span><br><span class="line"></span><br><span class="line">ssh_dev:</span><br><span class="line">  stage: deploy_to_dev</span><br><span class="line">  extends: .IDeploy</span><br><span class="line">  variables:</span><br><span class="line">    SERVER_PRIVATE_KEY: <span class="variable">$DEV_SERVER_PRIVATE_KEY</span></span><br><span class="line">    SERVER_USER: <span class="variable">$DEV_SERVER_USER</span></span><br><span class="line">    SERVER_URL: <span class="variable">$DEV_SERVER_URL</span></span><br><span class="line">    ENV: dev</span><br><span class="line">    APP_PORT: 8000</span><br><span class="line"></span><br><span class="line">ssh_staging:</span><br><span class="line">  stage: deploy_to_staging</span><br><span class="line">  extends: .IDeploy</span><br><span class="line">  variables:</span><br><span class="line">    SERVER_PRIVATE_KEY: <span class="variable">$DEV_SERVER_PRIVATE_KEY</span></span><br><span class="line">    SERVER_USER: <span class="variable">$DEV_SERVER_USER</span></span><br><span class="line">    SERVER_URL: <span class="variable">$DEV_SERVER_URL</span></span><br><span class="line">    ENV: staging</span><br><span class="line">    APP_PORT: 80</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><figcaption><span>gitalb-ci.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">stages:</span><br><span class="line">  - deploy_to_dev</span><br><span class="line">  - deploy_to_staging</span><br><span class="line">  - deploy_to_production</span><br><span class="line"></span><br><span class="line">.IDeploy:</span><br><span class="line">  tags:</span><br><span class="line">    - mydebian</span><br><span class="line">  variables:</span><br><span class="line">    SERVER_PRIVATE_KEY: <span class="string">&quot;&quot;</span></span><br><span class="line">    SERVER_USER: <span class="string">&quot;&quot;</span></span><br><span class="line">    SERVER_URL: <span class="string">&quot;&quot;</span></span><br><span class="line">    ENV: <span class="string">&quot;&quot;</span></span><br><span class="line">    APP_PORT: <span class="string">&quot;&quot;</span></span><br><span class="line">  before_script:</span><br><span class="line">    - <span class="built_in">eval</span> $(ssh-agent -s)</span><br><span class="line">    - ssh-add &lt;(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$SERVER_PRIVATE_KEY</span>&quot;</span>)</span><br><span class="line">  script:</span><br><span class="line">    - scp -o StrictHostKeyChecking=no ./docker-compose.yml </span><br><span class="line">      <span class="variable">$SERVER_USER</span>@<span class="variable">$SERVER_URL</span>:/<span class="variable">$SERVER_USER</span></span><br><span class="line"></span><br><span class="line">    - ssh -o StrictHostKeyChecking=no <span class="variable">$SERVER_USER</span>@<span class="variable">$SERVER_URL</span> <span class="string">&quot;</span></span><br><span class="line"><span class="string">     docker login -u <span class="variable">$CI_REGISTRY_USER</span> -p <span class="variable">$CI_REGISTRY_PASSWORD</span> <span class="variable">$CI_REGISTRY</span> &amp;&amp;</span></span><br><span class="line"><span class="string">     apt-get install docker-compose &amp;&amp;</span></span><br><span class="line"><span class="string">     export COMPOSE_PROJECT_NAME=<span class="variable">$ENV</span> &amp;&amp;</span></span><br><span class="line"><span class="string">     export APP_PORT=<span class="variable">$APP_PORT</span> &amp;&amp;</span></span><br><span class="line"><span class="string">     docker-compose down &amp;&amp;</span></span><br><span class="line"><span class="string">     docker-compose up -d&quot;</span></span><br><span class="line">  environment:</span><br><span class="line">    name: <span class="variable">$ENV</span></span><br><span class="line">    url: http://<span class="variable">$SERVER_URL</span>:<span class="variable">$APP_PORT</span></span><br><span class="line"></span><br><span class="line">ssh_dev:</span><br><span class="line">  stage: deploy_to_dev</span><br><span class="line">  extends: .IDeploy</span><br><span class="line">  variables:</span><br><span class="line">    SERVER_PRIVATE_KEY: <span class="variable">$DEV_SERVER_PRIVATE_KEY</span></span><br><span class="line">    SERVER_USER: <span class="variable">$DEV_SERVER_USER</span></span><br><span class="line">    SERVER_URL: <span class="variable">$DEV_SERVER_URL</span></span><br><span class="line">    ENV: dev</span><br><span class="line">    APP_PORT: 8000</span><br><span class="line"></span><br><span class="line">ssh_staging:</span><br><span class="line">  stage: deploy_to_staging</span><br><span class="line">  extends: .IDeploy</span><br><span class="line">  variables:</span><br><span class="line">    SERVER_PRIVATE_KEY: <span class="variable">$DEV_SERVER_PRIVATE_KEY</span></span><br><span class="line">    SERVER_USER: <span class="variable">$DEV_SERVER_USER</span></span><br><span class="line">    SERVER_URL: <span class="variable">$DEV_SERVER_URL</span></span><br><span class="line">    ENV: staging</span><br><span class="line">    APP_PORT: 8090</span><br><span class="line"></span><br><span class="line">ssh_production:</span><br><span class="line">  stage: deploy_to_production</span><br><span class="line">  needs:</span><br><span class="line">    - job: ssh_staging</span><br><span class="line">  extends: .IDeploy</span><br><span class="line">  when: manual</span><br><span class="line">  variables:</span><br><span class="line">    SERVER_PRIVATE_KEY: <span class="variable">$DEV_SERVER_PRIVATE_KEY</span></span><br><span class="line">    SERVER_USER: <span class="variable">$DEV_SERVER_USER</span></span><br><span class="line">    SERVER_URL: <span class="variable">$DEV_SERVER_URL</span></span><br><span class="line">    ENV: production</span><br><span class="line">    APP_PORT: 80</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><figcaption><span>docker-compose.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&#x27;3.3&#x27;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  myCat:</span><br><span class="line">    image: registry.camcad.cn:9528/ci-cd/shopping</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;<span class="variable">$&#123;APP_PORT&#125;</span>:8000&quot;</span></span><br><span class="line">    restart: always</span><br></pre></td></tr></table></figure>
 
-<p>您的 <code>.gitlab-ci.yml</code> 配置文件定义了两个部署阶段 <code>deploy_to_dev</code> 和 <code>deploy_to_staging</code>，以及一个名为 <code>.IDeploy</code> 的模板作业，它被 <code>ssh_dev</code> 和 <code>ssh_staging</code> 作业扩展。以下是配置的详细说明：</p>
+<p>您的 <code>.gitlab-ci.yml</code> 配置文件定义了三个部署阶段，每个阶段都旨在部署到不同的环境：开发环境 (<code>deploy_to_dev</code>)、预生产环境 (<code>deploy_to_staging</code>) 和生产环境 (<code>deploy_to_production</code>)。此外，您还定义了一个模板作业 <code>.IDeploy</code>，它被其他具体的部署作业扩展。以下是配置的详细说明：</p>
 <h3 id="阶段-Stages"><a href="#阶段-Stages" class="headerlink" title="阶段 (Stages)"></a>阶段 (Stages)</h3><ul>
-<li><code>deploy_to_dev</code>：定义了一个名为 <code>deploy_to_dev</code> 的阶段，通常用于部署到开发环境。</li>
-<li><code>deploy_to_staging</code>：定义了一个名为 <code>deploy_to_staging</code> 的阶段，用于部署到预生产环境。</li>
+<li><code>deploy_to_dev</code>：部署到开发环境的阶段。</li>
+<li><code>deploy_to_staging</code>：部署到预生产环境的阶段。</li>
+<li><code>deploy_to_production</code>：部署到生产环境的阶段。</li>
 </ul>
 <h3 id="模板作业-Job-Template"><a href="#模板作业-Job-Template" class="headerlink" title="模板作业 (Job Template)"></a>模板作业 (Job Template)</h3><ul>
 <li><code>.IDeploy</code><ul>
 <li><code>tags</code>：指定了作业需要在具有 <code>mydebian</code> 标签的 Runner 上运行。</li>
-<li><code>variables</code>：定义了一些变量，这些变量在模板中被设置为空字符串或空值，它们将在扩展此模板的作业中被覆盖。</li>
+<li><code>variables</code>：定义了一组变量，这些变量在模板中被设置为空字符串，它们将在扩展此模板的作业中被覆盖。</li>
 <li><code>before_script</code>：初始化 SSH 代理并添加私钥。</li>
 <li><code>script</code>：执行一系列命令，包括使用 <code>scp</code> 复制 <code>docker-compose.yml</code> 文件，通过 SSH 执行远程服务器上的 Docker 命令。</li>
 <li><code>environment</code>：定义了环境名称和 URL，这些将在作业运行时被使用。</li>
 </ul>
 </li>
 </ul>
-<h3 id="作业-Jobs"><a href="#作业-Jobs" class="headerlink" title="作业 (Jobs)"></a>作业 (Jobs)</h3><ul>
+<h3 id="具体作业-Jobs"><a href="#具体作业-Jobs" class="headerlink" title="具体作业 (Jobs)"></a>具体作业 (Jobs)</h3><ul>
 <li><code>ssh_dev</code><ul>
 <li><code>stage</code>：将作业分配到 <code>deploy_to_dev</code> 阶段。</li>
 <li><code>extends</code>：扩展了 <code>.IDeploy</code> 模板作业。</li>
@@ -272,16 +272,25 @@
 <li>类似于 <code>ssh_dev</code>，但是将作业分配到 <code>deploy_to_staging</code> 阶段，并且设置了不同的环境变量，用于预生产环境。</li>
 </ul>
 </li>
+<li><code>ssh_production</code><ul>
+<li><code>stage</code>：将作业分配到 <code>deploy_to_production</code> 阶段。</li>
+<li><code>needs</code>：指定了此作业依赖于 <code>ssh_staging</code> 作业，这意味着 <code>ssh_production</code> 将在 <code>ssh_staging</code> 成功完成后执行。</li>
+<li><code>when: manual</code>：表示这个作业需要手动触发才会运行。</li>
+<li><code>extends</code>：同样扩展了 <code>.IDeploy</code> 模板作业。</li>
+<li><code>variables</code>：覆盖了模板中的变量，但是这里有一个问题：<code>ENV</code> 变量被设置为 <code>staging</code> 而不是 <code>production</code>，这可能是一个配置错误。</li>
+</ul>
+</li>
 </ul>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
 <li><code>SERVER_PRIVATE_KEY</code>、<code>SERVER_USER</code>、<code>SERVER_URL</code>、<code>CI_REGISTRY_USER</code>、<code>CI_REGISTRY_PASSWORD</code> 和 <code>CI_REGISTRY</code> 需要在项目的 CI&#x2F;CD 设置中定义为受保护的变量，以确保安全。</li>
 <li><code>-o StrictHostKeyChecking=no</code> 参数禁用了 SSH 连接时的严格主机密钥检查，这在自动化脚本中很常见，但可能会带来安全风险。</li>
-<li><code>docker-compose down</code> 命令会停止并删除所有服务及其网络，这可能会导致数据丢失，因此请确保这是预期的行为。</li>
-<li><code>export COMPOSE_PROJECT_NAME=$ENV</code> 和 <code>export APP_PORT=$APP_PORT</code> 命令设置了环境变量，这些变量需要在 <code>docker-compose.yml</code> 文件中被正确使用。<br><img src="https://image.camcad.cn/vscode/20240502153253.png" alt="20240502153253"><br><img src="https://image.camcad.cn/vscode/20240502154604.png" alt="20240502154604"></li>
+<li><code>docker login</code> 命令中的 <code>$CI_REGISTRY</code> 应该是您的 Docker Registry 的 URL，确保它已经被正确设置。</li>
+<li><code>needs</code> 关键字用于定义作业之间的依赖关系，确保按照正确的顺序执行部署。</li>
+<li><code>when: manual</code> 关键字用于阻止作业自动运行，需要在 GitLab UI 中手动触发。</li>
 </ol>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://docs.docker.com/compose/environment-variables/envvars/">Set or change pre-defined environment variables in Docker Compose</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=k9XmJTh0vk4&list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu&index=21">為你自己學 GitLab CI&#x2F;CD Day 21 - 部署 Staging 伺服器</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=yA9awgMzUL8&list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu&index=22">為你自己學 GitLab CI&#x2F;CD Day 22 - 整理重複的工作</a></p>
+<p>请确保所有的变量都已经被正确设置，并且远程服务器的 Docker 服务已经启动。此外，检查 <code>docker-compose.yml</code> 文件以确保它适用于目标环境，并且所有服务都配置了正确的端口。</p>
+<p><img src="https://image.camcad.cn/vscode/20240502162123.png" alt="20240502162123"></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=XLaNujWr2Rk&list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu&index=23">為你自己學 GitLab CI&#x2F;CD Day 23 - 手動部署 Production 環境</a></p>
 
     </div>
 
@@ -299,7 +308,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://notes.camcad.cn/post/8255c28.html" title="gitlab-ci&#x2F;cd学习17：通过模板的方式部署多个服务">https://notes.camcad.cn/post/8255c28.html</a>
+      <a href="https://notes.camcad.cn/post/d9e028cf.html" title="gitlab-ci&#x2F;cd学习18：手动控制部署production环境">https://notes.camcad.cn/post/d9e028cf.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -316,14 +325,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/497256a2.html" rel="prev" title="gitlab-ci/cd学习16：部署docker image到服务器上">
-                  <i class="fa fa-chevron-left"></i> gitlab-ci/cd学习16：部署docker image到服务器上
+                <a href="/post/8255c28.html" rel="prev" title="gitlab-ci/cd学习17：通过模板的方式部署多个服务">
+                  <i class="fa fa-chevron-left"></i> gitlab-ci/cd学习17：通过模板的方式部署多个服务
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/d9e028cf.html" rel="next" title="gitlab-ci/cd学习18：手动控制部署production环境">
-                  gitlab-ci/cd学习18：手动控制部署production环境 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
