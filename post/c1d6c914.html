@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://image.camcad.cn/vscode/20240425210824.png">
 <meta property="article:published_time" content="2024-04-23T22:37:02.000Z">
-<meta property="article:modified_time" content="2024-05-02T10:46:12.636Z">
+<meta property="article:modified_time" content="2024-05-05T14:28:08.708Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
@@ -238,6 +238,11 @@
 
 <h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p><a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/windows-install/">https://docs.docker.com/desktop/install/windows-install/</a></p>
 <p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/debian/">https://docs.docker.com/engine/install/debian/</a></p>
+<p><strong>方式一：自定义安装路径</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Start-Process -FilePath &#x27;Docker Desktop Installer.exe&#x27; -Wait -ArgumentList &quot;install --installation-dir=D:\ProgramData\Docker&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>方式二：创建符号链接</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mklink /j &quot;C:\Program Files\Docker&quot; &quot;D:\ProgramData\Docker&quot;</span><br></pre></td></tr></table></figure>
+
 <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install docker.io</span><br><span class="line">$ sudo systemctl start docker</span><br><span class="line">$ sudo systemctl <span class="built_in">enable</span> docker</span><br><span class="line">查看是否安装成功</span><br><span class="line"> </span><br><span class="line">$ docker -v</span><br><span class="line">Docker version 17.12.1-ce, build 7390fc6</span><br></pre></td></tr></table></figure>
 <p><strong>docker login</strong>: 登录到 Docker Hub。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u 用户 -p 密码 服务器:端口</span><br></pre></td></tr></table></figure>
