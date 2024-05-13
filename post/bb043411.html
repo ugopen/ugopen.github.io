@@ -17,18 +17,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="类和对象（C++对象模型和this指针-空指针访问成员函数）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++核心知识28：类和对象（C++对象模型和this指针-空指针访问成员函数）">
-<meta property="og:url" content="https://notes.camcad.cn/post/bb043411.html">
+<meta property="og:url" content="http://example.com/post/bb043411.html">
 <meta property="og:site_name" content="知识储存库">
 <meta property="og:description" content="类和对象（C++对象模型和this指针-空指针访问成员函数）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.camcad.cn/2020/06/2020060511190471-1024x441.jpg">
 <meta property="article:published_time" content="2020-06-29T13:55:19.000Z">
-<meta property="article:modified_time" content="2024-05-13T01:49:23.269Z">
+<meta property="article:modified_time" content="2024-05-13T13:30:15.481Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蚂蚁Emmet">
@@ -37,11 +37,11 @@
 <meta name="twitter:image" content="http://image.camcad.cn/2020/06/2020060511190471-1024x441.jpg">
 
 
-<link rel="canonical" href="https://notes.camcad.cn/post/bb043411.html">
+<link rel="canonical" href="http://example.com/post/bb043411.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/bb043411.html","path":"post/bb043411.html","title":"C++核心知识28：类和对象（C++对象模型和this指针-空指针访问成员函数）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/bb043411.html","path":"post/bb043411.html","title":"C++核心知识28：类和对象（C++对象模型和this指针-空指针访问成员函数）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C++核心知识28：类和对象（C++对象模型和this指针-空指针访问成员函数） | 知识储存库</title>
@@ -184,7 +184,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/bb043411.html">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/bb043411.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -236,7 +236,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="教程目录《C-核心知识》"><a href="#教程目录《C-核心知识》" class="headerlink" title="教程目录《C++核心知识》"></a>教程目录《<a href="https://notes.camcad.cn/post/7fd4f72a.html">C++核心知识</a>》</h3><h1 id="4-3-C-对象模型和this指针"><a href="#4-3-C-对象模型和this指针" class="headerlink" title="4.3 C++对象模型和this指针"></a>4.3 C++对象模型和this指针</h1><h2 id="4-3-3-空指针访问成员函数"><a href="#4-3-3-空指针访问成员函数" class="headerlink" title="4.3.3 空指针访问成员函数"></a>4.3.3 空指针访问成员函数</h2><p>C++中空指针也是可以调用成员函数的，但是也要注意有没有用到this指针。</p>
+        <h3 id="教程目录《C-核心知识》"><a href="#教程目录《C-核心知识》" class="headerlink" title="教程目录《C++核心知识》"></a>教程目录《<a target="_blank" rel="noopener" href="https://notes.camcad.cn/post/7fd4f72a.html">C++核心知识</a>》</h3><h1 id="4-3-C-对象模型和this指针"><a href="#4-3-C-对象模型和this指针" class="headerlink" title="4.3 C++对象模型和this指针"></a>4.3 C++对象模型和this指针</h1><h2 id="4-3-3-空指针访问成员函数"><a href="#4-3-3-空指针访问成员函数" class="headerlink" title="4.3.3 空指针访问成员函数"></a>4.3.3 空指针访问成员函数</h2><p>C++中空指针也是可以调用成员函数的，但是也要注意有没有用到this指针。</p>
 <p>如果用到this指针，需要加以判断保证代码的健壮性。</p>
 <h3 id="示例代码："><a href="#示例代码：" class="headerlink" title="示例代码："></a>示例代码：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">public:</span><br><span class="line"></span><br><span class="line">    <span class="type">void</span> <span class="title function_">showClassName</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;this is class&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">void</span> <span class="title function_">showClassAge</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//报错原因：因为传入的指针为NULL（所以需要加以下判断）</span></span><br><span class="line">        <span class="keyword">if</span> (this == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;年龄为：&quot;</span> &lt;&lt; m_age &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> m_age;  <span class="comment">//年龄</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test01</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    Person *p = <span class="literal">NULL</span>;   <span class="comment">//创建指针时，需要初始化（NULL）</span></span><br><span class="line">    p-&gt;showClassName();</span><br><span class="line">    p-&gt;showClassAge();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    test01();</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);  <span class="comment">//暂停（请按任意键继续...）</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -258,7 +258,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://notes.camcad.cn/post/bb043411.html" title="C++核心知识28：类和对象（C++对象模型和this指针-空指针访问成员函数）">https://notes.camcad.cn/post/bb043411.html</a>
+      <a href="http://example.com/post/bb043411.html" title="C++核心知识28：类和对象（C++对象模型和this指针-空指针访问成员函数）">http://example.com/post/bb043411.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

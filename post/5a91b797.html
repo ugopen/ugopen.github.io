@@ -17,12 +17,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="“领域规则”模式在特定领域中，某些变化虽然频繁，但可以抽象为某种规则。这时候，结合特定领域，将问题抽象为语法规则，从而给出在该领域下的一般性解决方案。 典型模式 Interpreter  动机（Motivation） 1）在软件构建过程中，如果某一特定领域的问题比较复杂，类似的结构不断重复出现，如果使用普通的编程方式来实现将面临非常频繁的变化。 2）在这种情况下，将特定领域的问题表达为某种语法规">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++设计模式25：解析器（Interpreter）">
-<meta property="og:url" content="https://notes.camcad.cn/post/5a91b797.html">
+<meta property="og:url" content="http://example.com/post/5a91b797.html">
 <meta property="og:site_name" content="知识储存库">
 <meta property="og:description" content="“领域规则”模式在特定领域中，某些变化虽然频繁，但可以抽象为某种规则。这时候，结合特定领域，将问题抽象为语法规则，从而给出在该领域下的一般性解决方案。 典型模式 Interpreter  动机（Motivation） 1）在软件构建过程中，如果某一特定领域的问题比较复杂，类似的结构不断重复出现，如果使用普通的编程方式来实现将面临非常频繁的变化。 2）在这种情况下，将特定领域的问题表达为某种语法规">
 <meta property="og:locale" content="zh_CN">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://image.camcad.cn/2021/07/2021071812332490.jpg">
 <meta property="og:image" content="http://image.camcad.cn/2021/07/2021071812355982.jpg">
 <meta property="article:published_time" content="2021-07-25T15:04:10.000Z">
-<meta property="article:modified_time" content="2024-05-13T01:49:23.277Z">
+<meta property="article:modified_time" content="2024-05-13T13:30:15.485Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="蚂蚁Emmet">
 <meta property="article:tag" content="C++设计模式">
@@ -38,11 +38,11 @@
 <meta name="twitter:image" content="http://image.camcad.cn/2021/07/2021072207573188-1024x696.png">
 
 
-<link rel="canonical" href="https://notes.camcad.cn/post/5a91b797.html">
+<link rel="canonical" href="http://example.com/post/5a91b797.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/5a91b797.html","path":"post/5a91b797.html","title":"C++设计模式25：解析器（Interpreter）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/5a91b797.html","path":"post/5a91b797.html","title":"C++设计模式25：解析器（Interpreter）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C++设计模式25：解析器（Interpreter） | 知识储存库</title>
@@ -185,7 +185,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/5a91b797.html">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/5a91b797.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -269,7 +269,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://notes.camcad.cn/post/5a91b797.html" title="C++设计模式25：解析器（Interpreter）">https://notes.camcad.cn/post/5a91b797.html</a>
+      <a href="http://example.com/post/5a91b797.html" title="C++设计模式25：解析器（Interpreter）">http://example.com/post/5a91b797.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

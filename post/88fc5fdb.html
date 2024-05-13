@@ -17,12 +17,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="C++的项目，字符编码是一个大坑，不同平台之间的编码往往不一样，如果不同编码格式用一套字符读取格式读取就会出现乱码。因此，一般都是转化成UTF-8这种平台通用，且支持性很好的编码格式。 Unicode、UTF-8的概念不做过多解释，这里说一下ANSI，我第一次看到这个名词，我看成了ASCII。被Mentor狠批一顿。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++中字符编码的转换(Unicode、UTF-8、ANSI)">
-<meta property="og:url" content="https://notes.camcad.cn/post/88fc5fdb.html">
+<meta property="og:url" content="http://example.com/post/88fc5fdb.html">
 <meta property="og:site_name" content="知识储存库">
 <meta property="og:description" content="C++的项目，字符编码是一个大坑，不同平台之间的编码往往不一样，如果不同编码格式用一套字符读取格式读取就会出现乱码。因此，一般都是转化成UTF-8这种平台通用，且支持性很好的编码格式。 Unicode、UTF-8的概念不做过多解释，这里说一下ANSI，我第一次看到这个名词，我看成了ASCII。被Mentor狠批一顿。">
 <meta property="og:locale" content="zh_CN">
@@ -30,18 +30,18 @@
 <meta property="og:image" content="http://image.camcad.cn/2023/10/Unicode-UTF-8-ANSI.jpg">
 <meta property="og:image" content="http://image.camcad.cn/2023/10/ubuntu_locale.jpg">
 <meta property="article:published_time" content="2023-10-31T12:14:33.000Z">
-<meta property="article:modified_time" content="2024-05-13T01:49:23.257Z">
+<meta property="article:modified_time" content="2024-05-13T13:30:15.465Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://image.camcad.cn/2023/11/%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7.jpg">
 
 
-<link rel="canonical" href="https://notes.camcad.cn/post/88fc5fdb.html">
+<link rel="canonical" href="http://example.com/post/88fc5fdb.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://notes.camcad.cn/post/88fc5fdb.html","path":"post/88fc5fdb.html","title":"C++中字符编码的转换(Unicode、UTF-8、ANSI)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/88fc5fdb.html","path":"post/88fc5fdb.html","title":"C++中字符编码的转换(Unicode、UTF-8、ANSI)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C++中字符编码的转换(Unicode、UTF-8、ANSI) | 知识储存库</title>
@@ -184,7 +184,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://notes.camcad.cn/post/88fc5fdb.html">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/88fc5fdb.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -312,7 +312,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://notes.camcad.cn/post/88fc5fdb.html" title="C++中字符编码的转换(Unicode、UTF-8、ANSI)">https://notes.camcad.cn/post/88fc5fdb.html</a>
+      <a href="http://example.com/post/88fc5fdb.html" title="C++中字符编码的转换(Unicode、UTF-8、ANSI)">http://example.com/post/88fc5fdb.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
