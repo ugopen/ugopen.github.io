@@ -17,12 +17,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="GOF-23模式分类从目的来看 1）创建型（Creational）模式：将对象的部分创建工作延迟到子类或者其他对象，从而应对需求变化为对象创建时具体类型实现引来的冲击。 2）结构型（Structural）模式：通过类继承或者对象组合获得更灵活的结构，从而应对需求变化为对象的结构带来的冲击。 3）行为型（Behavioral）模式：通过类继承或者对象组合来划分类与对象间的职责，从而应对需求变化为多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++设计模式03：模板方法（Template Method）">
-<meta property="og:url" content="http://example.com/post/1850cb09.html">
+<meta property="og:url" content="http://notes.camcad.cn/post/1850cb09.html">
 <meta property="og:site_name" content="知识储存库">
 <meta property="og:description" content="GOF-23模式分类从目的来看 1）创建型（Creational）模式：将对象的部分创建工作延迟到子类或者其他对象，从而应对需求变化为对象创建时具体类型实现引来的冲击。 2）结构型（Structural）模式：通过类继承或者对象组合获得更灵活的结构，从而应对需求变化为对象的结构带来的冲击。 3）行为型（Behavioral）模式：通过类继承或者对象组合来划分类与对象间的职责，从而应对需求变化为多">
 <meta property="og:locale" content="zh_CN">
@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://image.camcad.cn/2021/06/2021062414144750-1024x480.jpg">
 <meta property="og:image" content="http://image.camcad.cn/2021/06/2021062414164999.jpg">
 <meta property="article:published_time" content="2021-07-22T16:01:30.000Z">
-<meta property="article:modified_time" content="2024-05-16T15:06:22.095Z">
+<meta property="article:modified_time" content="2024-05-16T15:43:32.011Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="蚂蚁Emmet">
@@ -41,11 +41,11 @@
 <meta name="twitter:image" content="http://image.camcad.cn/2021/07/2021072207573188-1024x696.png">
 
 
-<link rel="canonical" href="http://example.com/post/1850cb09.html">
+<link rel="canonical" href="http://notes.camcad.cn/post/1850cb09.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/1850cb09.html","path":"post/1850cb09.html","title":"C++设计模式03：模板方法（Template Method）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.camcad.cn/post/1850cb09.html","path":"post/1850cb09.html","title":"C++设计模式03：模板方法（Template Method）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C++设计模式03：模板方法（Template Method） | 知识储存库</title>
@@ -188,7 +188,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/post/1850cb09.html">
+    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/1850cb09.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -345,7 +345,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/post/1850cb09.html" title="C++设计模式03：模板方法（Template Method）">http://example.com/post/1850cb09.html</a>
+      <a href="http://notes.camcad.cn/post/1850cb09.html" title="C++设计模式03：模板方法（Template Method）">http://notes.camcad.cn/post/1850cb09.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

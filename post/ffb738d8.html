@@ -17,18 +17,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="STL常用容器（deque容器-deque大小操作）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++提高编程39：STL常用容器（deque容器-deque大小操作）">
-<meta property="og:url" content="http://example.com/post/ffb738d8.html">
+<meta property="og:url" content="http://notes.camcad.cn/post/ffb738d8.html">
 <meta property="og:site_name" content="知识储存库">
 <meta property="og:description" content="STL常用容器（deque容器-deque大小操作）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.camcad.cn/2020/06/2020062706062394-1024x399.jpg">
 <meta property="article:published_time" content="2020-07-25T11:32:08.000Z">
-<meta property="article:modified_time" content="2024-05-16T15:06:22.083Z">
+<meta property="article:modified_time" content="2024-05-16T15:43:32.007Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蚂蚁Emmet">
@@ -38,11 +38,11 @@
 <meta name="twitter:image" content="http://image.camcad.cn/2020/06/2020062706062394-1024x399.jpg">
 
 
-<link rel="canonical" href="http://example.com/post/ffb738d8.html">
+<link rel="canonical" href="http://notes.camcad.cn/post/ffb738d8.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/ffb738d8.html","path":"post/ffb738d8.html","title":"C++提高编程39：STL常用容器（deque容器-deque大小操作）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.camcad.cn/post/ffb738d8.html","path":"post/ffb738d8.html","title":"C++提高编程39：STL常用容器（deque容器-deque大小操作）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C++提高编程39：STL常用容器（deque容器-deque大小操作） | 知识储存库</title>
@@ -185,7 +185,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/post/ffb738d8.html">
+    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/ffb738d8.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -237,7 +237,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="教程目录《C-提高编程》"><a href="#教程目录《C-提高编程》" class="headerlink" title="教程目录《C++提高编程》"></a>教程目录《<a target="_blank" rel="noopener" href="https://notes.camcad.cn/post/13756432.html">C++提高编程</a>》</h3><h2 id="3-3-4-deque大小操作"><a href="#3-3-4-deque大小操作" class="headerlink" title="3.3.4 deque大小操作"></a>3.3.4 deque大小操作</h2><p><strong>功能描述：</strong><br>对deque容器的大小进行操作。 </p>
+        <h3 id="教程目录《C-提高编程》"><a href="#教程目录《C-提高编程》" class="headerlink" title="教程目录《C++提高编程》"></a>教程目录《<a href="https://notes.camcad.cn/post/13756432.html">C++提高编程</a>》</h3><h2 id="3-3-4-deque大小操作"><a href="#3-3-4-deque大小操作" class="headerlink" title="3.3.4 deque大小操作"></a>3.3.4 deque大小操作</h2><p><strong>功能描述：</strong><br>对deque容器的大小进行操作。 </p>
 <p><strong>函数原型：</strong></p>
 <ul>
 <li><code>deque.empty();</code> &#x2F;&#x2F;判断容器是否为空</li>
@@ -271,7 +271,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/post/ffb738d8.html" title="C++提高编程39：STL常用容器（deque容器-deque大小操作）">http://example.com/post/ffb738d8.html</a>
+      <a href="http://notes.camcad.cn/post/ffb738d8.html" title="C++提高编程39：STL常用容器（deque容器-deque大小操作）">http://notes.camcad.cn/post/ffb738d8.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
