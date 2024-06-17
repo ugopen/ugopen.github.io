@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">409</span>
+          <span class="site-state-item-count">410</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,91 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/4131cd26.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/4131cd26.html" class="post-title-link" itemprop="url">MFC进度条</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-12 10:58:41" itemprop="dateCreated datePublished" datetime="2021-01-12T10:58:41+00:00">2021-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/4131cd26.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -910,86 +995,6 @@
 <h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">*       Copyright (c) 2021 @author[蚂蚁 Emmet](camcad.cn)        *</span></span><br><span class="line"><span class="comment">*                      All Rights Reserved                          *</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">tag_t</span>&gt; <span class="title">JoinCurves</span><span class="params">(vector&lt;<span class="type">tag_t</span>&gt; Curves)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> CurveCount = (<span class="type">int</span>)Curves.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> ErrorCode = <span class="number">0</span>;</span><br><span class="line">    <span class="type">tag_t</span>* CurveList = <span class="literal">NULL</span>;</span><br><span class="line">    CurveList = (<span class="type">tag_t</span>*)<span class="built_in">UF_allocate_memory</span>(CurveCount * <span class="built_in">sizeof</span>(<span class="type">tag_t</span>), &amp;ErrorCode);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; CurveCount; i++) &#123;</span><br><span class="line">        CurveList[i] = Curves[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">tag_t</span>* JoinList = <span class="literal">NULL</span>;</span><br><span class="line">    JoinList = (<span class="type">tag_t</span>*)<span class="built_in">UF_allocate_memory</span>(CurveCount * <span class="built_in">sizeof</span>(<span class="type">tag_t</span>), &amp;ErrorCode);</span><br><span class="line">    <span class="type">int</span> JoinCount = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">UF_CURVE_auto_join_curves</span>(CurveList, CurveCount, <span class="number">1</span>, JoinList, &amp;JoinCount);</span><br><span class="line">    vector&lt;<span class="type">tag_t</span>&gt; ACurves;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; JoinCount; i++) &#123;</span><br><span class="line">        ACurves.<span class="built_in">push_back</span>(JoinList[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ACurves;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">              All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line">NXOpen::Session *theSession = NXOpen::Session::<span class="built_in">GetSession</span>();</span><br><span class="line"><span class="function">NXOpen::Part *<span class="title">workPart</span><span class="params">(theSession-&gt;Parts()-&gt;Work())</span></span>;</span><br><span class="line"><span class="function">NXOpen::Part *<span class="title">displayPart</span><span class="params">(theSession-&gt;Parts()-&gt;Display())</span></span>;</span><br><span class="line"></span><br><span class="line">NXOpen::<span class="function">Features::Feature *<span class="title">nullNXOpen_Features_Feature</span><span class="params">(<span class="literal">NULL</span>)</span></span>;</span><br><span class="line">NXOpen::Features::JoinCurvesBuilder *joinCurvesBuilder1;</span><br><span class="line">joinCurvesBuilder1 = workPart-&gt;<span class="built_in">Features</span>()-&gt;<span class="built_in">CreateJoinCurvesBuilder</span>(nullNXOpen_Features_Feature);</span><br><span class="line"></span><br><span class="line">joinCurvesBuilder1-&gt;<span class="built_in">SetDistanceTolerance</span>(<span class="number">0.01</span>);</span><br><span class="line">joinCurvesBuilder1-&gt;<span class="built_in">SetAngleTolerance</span>(<span class="number">0.5</span>);</span><br><span class="line"></span><br><span class="line">joinCurvesBuilder1-&gt;<span class="built_in">Section</span>()-&gt;<span class="built_in">SetAllowedEntityTypes</span>(NXOpen::Section::AllowTypesOnlyCurves);</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">tag_t</span>&gt; Objs = UGOPEN::TypeCast::<span class="built_in">GetBlockObjs</span>(CurSel_CreSec_Glass);</span><br><span class="line"><span class="function">std::vector&lt;NXOpen::SelectionIntentRule *&gt; <span class="title">rules1</span><span class="params">(Objs.size())</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; Objs.<span class="built_in">size</span>(); i++)</span><br><span class="line">&#123;</span><br><span class="line"><span class="function">NXOpen::IBaseCurve *<span class="title">line1</span><span class="params">(<span class="keyword">dynamic_cast</span>&lt;NXOpen::IBaseCurve *&gt;(NXOpen::NXObjectManager::Get(Objs[i])))</span></span>;</span><br><span class="line"><span class="function">std::vector&lt;NXOpen::IBaseCurve *&gt; <span class="title">curves1</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">curves1[<span class="number">0</span>] = line1;</span><br><span class="line"><span class="function">NXOpen::CurveDumbRule *<span class="title">curveDumbRule1</span><span class="params">(workPart-&gt;ScRuleFactory()-&gt;CreateRuleBaseCurveDumb(curves1))</span></span>;</span><br><span class="line">rules1[i] = curveDumbRule1;</span><br><span class="line">&#125;</span><br><span class="line">joinCurvesBuilder1-&gt;<span class="built_in">CurveOptions</span>()-&gt;<span class="built_in">SetAssociative</span>(<span class="literal">false</span>);</span><br><span class="line">joinCurvesBuilder1-&gt;<span class="built_in">CurveOptions</span>()-&gt;<span class="built_in">SetInputCurveOption</span>(NXOpen::GeometricUtilities::CurveOptions::InputCurveReplace);</span><br><span class="line"></span><br><span class="line">joinCurvesBuilder1-&gt;<span class="built_in">Section</span>()-&gt;<span class="built_in">AllowSelfIntersection</span>(<span class="literal">true</span>);</span><br><span class="line"><span class="function">NXOpen::NXObject *<span class="title">nullNXOpen_NXObject</span><span class="params">(<span class="literal">NULL</span>)</span></span>;</span><br><span class="line"><span class="function">NXOpen::Point3d <span class="title">helpPoint1</span><span class="params">(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>)</span></span>;</span><br><span class="line">joinCurvesBuilder1-&gt;<span class="built_in">Section</span>()-&gt;<span class="built_in">AddToSection</span>(rules1, nullNXOpen_NXObject, nullNXOpen_NXObject, nullNXOpen_NXObject, helpPoint1, NXOpen::Section::ModeCreate, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">NXOpen::NXObject *nXObject1;</span><br><span class="line">nXObject1 = joinCurvesBuilder1-&gt;<span class="built_in">Commit</span>();</span><br><span class="line">joinCurvesBuilder1-&gt;<span class="built_in">Destroy</span>();</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/a0de910c.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/a0de910c.html" class="post-title-link" itemprop="url">NX二次开发-创建直线的方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-26 19:18:25" itemprop="dateCreated datePublished" datetime="2020-12-26T19:18:25+00:00">2020-12-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
-<h2 id="NX创建直线的方法有很多种，下面介绍其中两种，方法如下："><a href="#NX创建直线的方法有很多种，下面介绍其中两种，方法如下：" class="headerlink" title="NX创建直线的方法有很多种，下面介绍其中两种，方法如下："></a>NX创建直线的方法有很多种，下面介绍其中两种，方法如下：</h2><h3 id="NXOPEN"><a href="#NXOPEN" class="headerlink" title="NXOPEN"></a>NXOPEN</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">            All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建直线</span></span><br><span class="line"><span class="function">Point3d <span class="title">startPoint</span><span class="params">(dOrigin[<span class="number">0</span>], dOrigin[<span class="number">1</span>], dOrigin[<span class="number">2</span>])</span></span>;</span><br><span class="line"><span class="function">Point3d <span class="title">endPoint</span><span class="params">(dAffinePnt[<span class="number">0</span>], dAffinePnt[<span class="number">1</span>], dAffinePnt[<span class="number">2</span>])</span></span>;</span><br><span class="line">NXOpen::Line *line = NXOpen::Session::<span class="built_in">GetSession</span>()-&gt;<span class="built_in">Parts</span>()-&gt;<span class="built_in">BaseWork</span>()-&gt;<span class="built_in">Curves</span>()-&gt;<span class="built_in">CreateLine</span>(startPoint, endPoint);</span><br><span class="line">line-&gt;<span class="built_in">SetVisibility</span>(NXOpen::SmartObject::VisibilityOption::VisibilityOptionVisible);</span><br></pre></td></tr></table></figure>
-
-<h3 id="UFUNC（UF-CURVE-create-line）"><a href="#UFUNC（UF-CURVE-create-line）" class="headerlink" title="UFUNC（UF_CURVE_create_line）"></a>UFUNC（<a href="https://notes.camcad.cn/NXOPEN_UFun_API/uf_curve/global.html#UF_CURVE_create_line" title="UF_CURVE_create_line">UF_CURVE_create_line</a>）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">          Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">                       All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="type">tag_t</span> tLe = NULL_TAG;</span><br><span class="line">UF_CURVE_line_t line_coords;</span><br><span class="line"></span><br><span class="line">line_coords.start_point[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">line_coords.start_point[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">line_coords.start_point[<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">line_coords.end_point[<span class="number">0</span>] = <span class="number">10.0</span>;</span><br><span class="line">line_coords.end_point[<span class="number">1</span>] = <span class="number">10.0</span>;</span><br><span class="line">line_coords.end_point[<span class="number">2</span>] = <span class="number">10.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">UF_CURVE_create_line</span>(&amp;line_coords, &amp;tLe);</span><br></pre></td></tr></table></figure>
       
     </div>
 
