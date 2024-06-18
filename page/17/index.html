@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">409</span>
+          <span class="site-state-item-count">410</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,105 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/54c852dd.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/54c852dd.html" class="post-title-link" itemprop="url">NX二次开发-UFUN对象（tag_t）转换成NXOPEN对象（NXObjectManager）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-14 21:30:40" itemprop="dateCreated datePublished" datetime="2020-09-14T21:30:40+00:00">2020-09-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h3 id="通用NX对象："><a href="#通用NX对象：" class="headerlink" title="通用NX对象："></a>通用NX对象：</h3><p>按照是否被保存到部件文件中，分为永久和临时NX对象</p>
+<p>1.永久NX对象：全部继承TaggedObject</p>
+<p>2.临时NX对象：用来辅助创建永久对象，或者临时在NX用户界面中显示的对象。</p>
+<hr>
+<h3 id="通用NX对象的操作"><a href="#通用NX对象的操作" class="headerlink" title="通用NX对象的操作"></a>通用NX对象的操作</h3><p>通用对象标识：Tag Handle TaggedObject typedef unsigned int tag_t 所有NX对象都是通过Tag被标识和访问。Tag在代码中用tag_t表示 用于标识对象的变量tag_t 只在当前Session中固定不变。NULL_TAG是保留的特殊Tag,表示暂时不标识任何对象的Tag。</p>
+<p>Handle 是NX对象句柄，每个NX对象都有个字符串编码的Handle,他在文件中是唯一的，是可以随文件一起保存，永远不变。</p>
+<p>可以直接调用UF_TAG_ask_handle_of_tag和UF_TAG_ask_tag_of_handle实现Tag与Handle的互换。</p>
+<p>TaggedObject 是NXopen中所有NX对象的基类。</p>
+<p>TaggedObject -&gt;Tag 得到NX对象的Tag标识；</p>
+<p>已知Tag对象标识时，可以通过NXObjectManager::Get(tag_t)得到TaggedObject 对象指针，再通过C++类型转换符dynamic_cast将TaggedObjeect对象指针转换为实际NX对象指针。</p>
+<p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/09/2020100408195345.png"><img src="http://image.camcad.cn/2020/09/2020100408195345.png"></a></p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><h3 id="NXObject"><a href="#NXObject" class="headerlink" title="NXObject"></a>NXObject</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//tag_t *part_occs;</span></span><br><span class="line"><span class="comment">//part_occs[0] = 66666;</span></span><br><span class="line"></span><br><span class="line">NXObject *component_tag = <span class="built_in">dynamic_cast</span>&lt;NXObject *&gt;(NXObjectManager::<span class="built_in">Get</span>(part_occs[<span class="number">0</span>]));</span><br></pre></td></tr></table></figure>
+
+<h3 id="TaggedObject"><a href="#TaggedObject" class="headerlink" title="TaggedObject"></a>TaggedObject</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">    NXOpen::Routing::ControlPoint *TestPoint = linearPathBuilder1-&gt;<span class="built_in">GetLastControlPoint</span>();</span><br><span class="line">    Point3d point3d = TestPoint-&gt;<span class="built_in">Position</span>();</span><br><span class="line">    UGOpen::UGPrint::<span class="built_in">PrintMessage</span>(point3d);</span><br><span class="line"></span><br><span class="line">    NXOpen::TaggedObject *TestObj = <span class="built_in">dynamic_cast</span>&lt;NXOpen::TaggedObject *&gt;(NXOpen::NXObjectManager::<span class="built_in">Get</span>(TestPoint-&gt;<span class="built_in">Tag</span>()));</span><br><span class="line"></span><br><span class="line">    UGOpen::UGPrint::<span class="built_in">PrintMessage</span>(TestObj-&gt;<span class="built_in">Tag</span>());</span><br><span class="line"><span class="comment">///////////////////////////////////////////////////////////////////////////</span></span><br><span class="line">    std::vector&lt;NXOpen::NXObject *&gt; objects1;</span><br><span class="line">    objects1 = linearPathBuilder1-&gt;<span class="built_in">GetCommittedObjects</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//===============================================</span></span><br><span class="line">    <span class="comment">//打印</span></span><br><span class="line">    vector&lt;<span class="type">tag_t</span>&gt; vecTag;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; objects1.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        NXOpen::TaggedObject *vecObj = (<span class="built_in">dynamic_cast</span>&lt;NXOpen::TaggedObject *&gt;(NXOpen::NXObjectManager::<span class="built_in">Get</span>(objects1[i]-&gt;<span class="built_in">Tag</span>())));</span><br><span class="line">        UGOpen::UGPrint::<span class="built_in">PrintMessage</span>(vecObj-&gt;<span class="built_in">Tag</span>());</span><br><span class="line">        vecTag.<span class="built_in">push_back</span>(vecObj-&gt;<span class="built_in">Tag</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    UGOpen::UGObject::<span class="built_in">SetHighlights</span>(vecTag);</span><br><span class="line">    <span class="comment">//===============================================</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Point"><a href="#Point" class="headerlink" title="Point"></a>Point</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//tag_t bodyTag1 = 66666;</span></span><br><span class="line"></span><br><span class="line"><span class="function">Point *<span class="title">point1</span><span class="params">(<span class="keyword">dynamic_cast</span>&lt;Point *&gt;(NXObjectManager::Get(bodyTag1)))</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Curve"><a href="#Curve" class="headerlink" title="Curve"></a>Curve</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//tag_t Tallcurve = 66666;</span></span><br><span class="line"></span><br><span class="line">    <span class="function">std::vector&lt;IBaseCurve *&gt; <span class="title">curves1</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="function">Curve *<span class="title">spline1</span><span class="params">(<span class="keyword">dynamic_cast</span>&lt;Curve *&gt;(NXObjectManager::Get(Tallcurve)))</span></span>;</span><br><span class="line">    curves1[<span class="number">0</span>] = spline1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Edge"><a href="#Edge" class="headerlink" title="Edge"></a>Edge</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//tag_t tagEdge = 66666;</span></span><br><span class="line"></span><br><span class="line"><span class="function">std::vector&lt;NXOpen::Edge *&gt; <span class="title">edges1</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">NXOpen::Edge *edge1 = <span class="built_in">dynamic_cast</span>&lt;NXOpen::Edge *&gt;(NXOpen::NXObjectManager::<span class="built_in">Get</span>(tagEdge));</span><br><span class="line">    edges1[<span class="number">0</span>] = edge1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Point-1"><a href="#Point-1" class="headerlink" title="Point"></a>Point</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//tag_t bodyTag1 = 66666;</span></span><br><span class="line"></span><br><span class="line"><span class="function">Point *<span class="title">point1</span><span class="params">(<span class="keyword">dynamic_cast</span>&lt;Point *&gt;(NXObjectManager::Get(bodyTag1)))</span></span>;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -912,86 +1011,6 @@
 
 <p>转载：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nxopen2018/p/10957257.html">https://www.cnblogs.com/nxopen2018/p/10957257.html</a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/ae07157b.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/ae07157b.html" class="post-title-link" itemprop="url">NX二次开发-求两个对象最短距离（UF_MODL_ask_minimum_dist）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-16 20:01:00" itemprop="dateCreated datePublished" datetime="2020-08-16T20:01:00+00:00">2020-08-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
-<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_modl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="源文件"><a href="#源文件" class="headerlink" title="源文件"></a>源文件</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyFunc</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建点1</span></span><br><span class="line">    <span class="type">double</span> PointCoords1[<span class="number">3</span>] = &#123; <span class="number">125.5</span>, <span class="number">263.2</span>, <span class="number">135.2</span> &#125;;</span><br><span class="line">    <span class="type">tag_t</span> Point1Tag = NULL_TAG;</span><br><span class="line">    <span class="built_in">UF_CURVE_create_point</span>(PointCoords1, &amp;Point1Tag);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建点2</span></span><br><span class="line">    <span class="type">double</span> PointCoords2[<span class="number">3</span>] = &#123; <span class="number">65.5</span>, <span class="number">95.6</span>, <span class="number">78.6</span> &#125;;</span><br><span class="line">    <span class="type">tag_t</span> Point2Tag = NULL_TAG;</span><br><span class="line">    <span class="built_in">UF_CURVE_create_point</span>(PointCoords2, &amp;Point2Tag);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//求两个对象的最短距离</span></span><br><span class="line">    <span class="type">double</span> Guess1[<span class="number">3</span>];</span><br><span class="line">    <span class="type">double</span> Guess2[<span class="number">3</span>];</span><br><span class="line">    <span class="type">double</span> MinDist;</span><br><span class="line">    <span class="type">double</span> PtOnObj1[<span class="number">3</span>];</span><br><span class="line">    <span class="type">double</span> PtOnObj2[<span class="number">3</span>];</span><br><span class="line">    <span class="built_in">UF_MODL_ask_minimum_dist</span>(Point1Tag, Point2Tag, <span class="number">0</span>, Guess1, <span class="number">0</span>, Guess2, &amp;MinDist, PtOnObj1, PtOnObj2);</span><br></pre></td></tr></table></figure>
       
     </div>
 
