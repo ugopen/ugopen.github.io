@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">410</span>
+          <span class="site-state-item-count">411</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -139,7 +139,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -167,6 +167,89 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/b5b6ebdb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/b5b6ebdb.html" class="post-title-link" itemprop="url">NX二次开发-已知两个向量方向求夹角角度（UF_VEC3_angle_between）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-16 20:22:06" itemprop="dateCreated datePublished" datetime="2020-08-16T20:22:06+00:00">2020-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
+<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_vec.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_curve.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="源文件"><a href="#源文件" class="headerlink" title="源文件"></a>源文件</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::MyFunc</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment">          Copyright (c) 2020 @author[蚂蚁 Emmet](camcad.cn)</span></span><br><span class="line"><span class="comment">                        All Rights Reserved</span></span><br><span class="line"><span class="comment">*****************************************************************************/</span></span><br><span class="line"><span class="comment">//创建直线1</span></span><br><span class="line">    UF_CURVE_line_t LineCoords1;</span><br><span class="line">    LineCoords1.start_point[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">    LineCoords1.start_point[<span class="number">1</span>] = <span class="number">0.0</span>;</span><br><span class="line">    LineCoords1.start_point[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line">    LineCoords1.end_point[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">    LineCoords1.end_point[<span class="number">1</span>] = <span class="number">100.0</span>;</span><br><span class="line">    LineCoords1.end_point[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line">    <span class="type">tag_t</span> Line1Tag = NULL_TAG;</span><br><span class="line">    <span class="built_in">UF_CURVE_create_line</span>(&amp;LineCoords1, &amp;Line1Tag);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建直线2</span></span><br><span class="line">    UF_CURVE_line_t LineCoords2;</span><br><span class="line">    LineCoords2.start_point[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">    LineCoords2.start_point[<span class="number">1</span>] = <span class="number">0.0</span>;</span><br><span class="line">    LineCoords2.start_point[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line">    LineCoords2.end_point[<span class="number">0</span>] = <span class="number">110.0</span>;</span><br><span class="line">    LineCoords2.end_point[<span class="number">1</span>] = <span class="number">80.0</span>;</span><br><span class="line">    LineCoords2.end_point[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line">    <span class="type">tag_t</span> Line2Tag = NULL_TAG;</span><br><span class="line">    <span class="built_in">UF_CURVE_create_line</span>(&amp;LineCoords2, &amp;Line2Tag);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//直线1的向量方向,终点减起点</span></span><br><span class="line">    <span class="type">double</span> Vec1[<span class="number">3</span>] = &#123; LineCoords1.end_point[<span class="number">0</span>] - LineCoords1.start_point[<span class="number">0</span>], LineCoords1.end_point[<span class="number">1</span>] - LineCoords1.start_point[<span class="number">1</span>], LineCoords1.end_point[<span class="number">2</span>] - LineCoords1.start_point[<span class="number">2</span>] &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//直线2的向量方向,终点减起点</span></span><br><span class="line">    <span class="type">double</span> Vec2[<span class="number">3</span>] = &#123; LineCoords2.end_point[<span class="number">0</span>] - LineCoords2.start_point[<span class="number">0</span>], LineCoords2.end_point[<span class="number">1</span>] - LineCoords2.start_point[<span class="number">1</span>], LineCoords2.end_point[<span class="number">2</span>] - LineCoords2.start_point[<span class="number">2</span>] &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//求两个向量的叉乘</span></span><br><span class="line">    <span class="type">double</span> CrossProduct[<span class="number">3</span>];</span><br><span class="line">    <span class="built_in">UF_VEC3_cross</span>(Vec1, Vec2, CrossProduct);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//已知两个向量求夹角(输出的是弧度)</span></span><br><span class="line">    <span class="type">double</span> Angle;</span><br><span class="line">    <span class="built_in">UF_VEC3_angle_between</span>(Vec1, Vec2, CrossProduct, &amp;Angle);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>转载：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nxopen2018/p/10957257.html">https://www.cnblogs.com/nxopen2018/p/10957257.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3860,98 +3943,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/bfbcff9b.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾C++和被它折腾 ^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/bfbcff9b.html" class="post-title-link" itemprop="url">NX二次开发-实现缩略图源代码，包含h头文件和cpp文件代码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-09 15:44:25" itemprop="dateCreated datePublished" datetime="2020-08-09T15:44:25+00:00">2020-08-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NX%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">NX二次开发</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2020/08/2020080705105187.jpg"><img src="http://image.camcad.cn/2020/08/2020080705105187-1024x696.jpg" alt="NX二次开发"></a></p>
-<h2 id="步骤一："><a href="#步骤一：" class="headerlink" title="步骤一："></a>步骤一：</h2><ul>
-<li><p>自定义一个头文件取名为：get_prt_image.h</p>
-</li>
-<li><p>然后复制粘贴以下代码到get_prt_image.h头文件中并保存</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;afxwin.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Gdiplus.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib,<span class="string">&quot;gdiplus.lib&quot;</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Gdiplus;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">GetEncoderClsid</span><span class="params">(<span class="type">const</span> WCHAR* format, CLSID* pClsid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">ULONG_PTR m_gdiplusToken;</span><br><span class="line">Gdiplus::GdiplusStartupInput StartupInput;  </span><br><span class="line"><span class="built_in">GdiplusStartup</span>(&amp;m_gdiplusToken,&amp;StartupInput,<span class="literal">NULL</span>); </span><br><span class="line">UINT  num = <span class="number">0</span>;</span><br><span class="line">UINT  size = <span class="number">0</span>;</span><br><span class="line">ImageCodecInfo* pImageCodecInfo = <span class="literal">NULL</span>;</span><br><span class="line"><span class="built_in">GetImageEncodersSize</span>(&amp;num, &amp;size);</span><br><span class="line"><span class="keyword">if</span>(size == <span class="number">0</span>)        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">pImageCodecInfo = (ImageCodecInfo*)(<span class="built_in">malloc</span>(size));</span><br><span class="line"><span class="keyword">if</span>(pImageCodecInfo == <span class="literal">NULL</span>)        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"><span class="built_in">GetImageEncoders</span>(num, size, pImageCodecInfo);</span><br><span class="line"><span class="keyword">for</span>(UINT j = <span class="number">0</span>; j &lt; num; ++j)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="built_in">wcscmp</span>(pImageCodecInfo[j].MimeType, format) == <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        *pClsid = pImageCodecInfo[j].Clsid;</span><br><span class="line">        <span class="built_in">free</span>(pImageCodecInfo);</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">free</span>(pImageCodecInfo);</span><br><span class="line"><span class="built_in">GdiplusShutdown</span>(m_gdiplusToken);</span><br><span class="line"><span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_thumb</span><span class="params">(string file_name,string bmppath)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">CLSID bmpClsid;</span><br><span class="line"><span class="built_in">GetEncoderClsid</span>(<span class="string">L&quot;image/bmp&quot;</span>, &amp;bmpClsid);</span><br><span class="line">string path=file_name;</span><br><span class="line"><span class="type">size_t</span> len =path.<span class="built_in">size</span>()+<span class="number">1</span>;</span><br><span class="line"><span class="type">size_t</span> converted = <span class="number">0</span>;</span><br><span class="line"><span class="type">wchar_t</span> *WStr;</span><br><span class="line">WStr=(<span class="type">wchar_t</span>*)<span class="built_in">malloc</span>(len*<span class="built_in">sizeof</span>(<span class="type">wchar_t</span>));</span><br><span class="line"><span class="built_in">mbstowcs_s</span>(&amp;converted, WStr, len, path.<span class="built_in">c_str</span>(), _TRUNCATE);</span><br><span class="line">Gdiplus::Image * pImage = Gdiplus::Image::<span class="built_in">FromFile</span>(WStr);</span><br><span class="line">Gdiplus::Image * smage=pImage-&gt;<span class="built_in">GetThumbnailImage</span>(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">string path2=bmppath;</span><br><span class="line"><span class="type">size_t</span> len2 =path2.<span class="built_in">size</span>()+<span class="number">1</span>;</span><br><span class="line"><span class="type">size_t</span> converted2 = <span class="number">0</span>;</span><br><span class="line"><span class="type">wchar_t</span> *WStr2;</span><br><span class="line">WStr2=(<span class="type">wchar_t</span>*)<span class="built_in">malloc</span>(len2*<span class="built_in">sizeof</span>(<span class="type">wchar_t</span>));</span><br><span class="line"><span class="built_in">mbstowcs_s</span>(&amp;converted, WStr2, len2, path2.<span class="built_in">c_str</span>(), _TRUNCATE);</span><br><span class="line">pImage-&gt;~<span class="built_in">Image</span>();</span><br><span class="line">Status rr=         smage-&gt;<span class="built_in">Save</span>(WStr2,&amp;bmpClsid);        </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_prt_image</span><span class="params">(string file_name,string bmppath)</span> </span></span><br><span class="line"><span class="function"></span>&#123;        </span><br><span class="line">IStorage* pStorage = <span class="literal">NULL</span>;</span><br><span class="line">HRESULT hResult;         </span><br><span class="line"><span class="type">wchar_t</span> path_file[MAX_PATH];         </span><br><span class="line"><span class="built_in">MultiByteToWideChar</span>(CP_ACP, <span class="number">0</span>, file_name.<span class="built_in">c_str</span>(), <span class="number">-1</span>, path_file, MAX_PATH);</span><br><span class="line">hResult = <span class="built_in">StgOpenStorage</span>(path_file, <span class="literal">NULL</span>,          STGM_READ  STGM_SHARE_DENY_WRITE,  <span class="literal">NULL</span>, <span class="number">0</span>, &amp;pStorage);</span><br><span class="line"><span class="keyword">if</span>(hResult != S_OK)<span class="keyword">return</span><span class="number">-1</span>;        </span><br><span class="line">IStorage* pSubStorage = <span class="literal">NULL</span>;                </span><br><span class="line">HRESULT hr = pStorage-&gt;<span class="built_in">OpenStorage</span>(<span class="string">L&quot;images&quot;</span>, <span class="literal">NULL</span>,         STGM_READ  STGM_SHARE_EXCLUSIVE,  <span class="literal">NULL</span>, <span class="number">0</span>, &amp;pSubStorage);</span><br><span class="line">IStream *pStream;          pStream=<span class="literal">NULL</span>;  </span><br><span class="line">DWORD dwMode=STGM_READSTGM_SHARE_EXCLUSIVE; </span><br><span class="line"><span class="keyword">if</span>(pSubStorage!=<span class="literal">NULL</span>) pSubStorage-&gt;<span class="built_in">OpenStream</span>(   <span class="string">L&quot;preview&quot;</span>,  <span class="literal">NULL</span>,  dwMode,  <span class="number">0</span>,  &amp;pStream );  </span><br><span class="line"><span class="keyword">if</span>(pStream!=<span class="literal">NULL</span>) </span><br><span class="line">&#123;</span><br><span class="line">    CLSID bmpClsid;</span><br><span class="line">    <span class="built_in">GetEncoderClsid</span>(<span class="string">L&quot;image/bmp&quot;</span>, &amp;bmpClsid);</span><br><span class="line">    Image *image1=Image::<span class="built_in">FromStream</span>(pStream);</span><br><span class="line">    <span class="comment">//image1=image1-&gt;GetThumbnailImage(300,300);</span></span><br><span class="line">    <span class="keyword">if</span> (image1!=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">wchar_t</span> path_file[MAX_PATH];         </span><br><span class="line">        <span class="built_in">MultiByteToWideChar</span>(CP_ACP, <span class="number">0</span>, bmppath.<span class="built_in">c_str</span>(), <span class="number">-1</span>, path_file, MAX_PATH);</span><br><span class="line">        image1-&gt;<span class="built_in">Save</span>(path_file,&amp;bmpClsid,<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    pStream-&gt;<span class="built_in">Release</span>();</span><br><span class="line">&#125;</span><br><span class="line">pStorage-&gt;<span class="built_in">Release</span>();        </span><br><span class="line">pStorage = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//get_thumb(bmppath,bmppath);</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="步骤二："><a href="#步骤二：" class="headerlink" title="步骤二："></a>步骤二：</h2><ul>
-<li>再新建一个text.cpp文件，并引用加载上面get_prt_image.h的头文件，具体代码如下：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> ! defined ( __hp9000s800 ) &amp;&amp; ! defined ( __sgi ) &amp;&amp; ! defined ( __sun )</span></span><br><span class="line"><span class="meta">#   <span class="keyword">include</span> <span class="string">&lt;strstream&gt;</span></span></span><br><span class="line"><span class="meta">#   <span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> std::ostrstream;</span><br><span class="line"><span class="keyword">using</span> std::endl;    </span><br><span class="line"><span class="keyword">using</span> std::ends;</span><br><span class="line"><span class="keyword">using</span> std::cerr;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#   <span class="keyword">include</span> <span class="string">&lt;strstream.h&gt;</span></span></span><br><span class="line"><span class="meta">#   <span class="keyword">include</span> <span class="string">&lt;iostream.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_ui.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;uf_exit.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;get_prt_image.h&quot;</span>  <span class="comment">//添加上面保存的头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UF_CALL(X) (report_error( __FILE__, __LINE__, #X, (X)))</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">report_error</span><span class="params">( <span class="type">char</span> *file, <span class="type">int</span> line, <span class="type">char</span> *call, <span class="type">int</span> irc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (irc)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">char</span> err[<span class="number">133</span>],</span><br><span class="line">            msg[<span class="number">133</span>];</span><br><span class="line"></span><br><span class="line">        <span class="built_in">sprintf</span>(msg, <span class="string">&quot;*** ERROR code %d at line %d in %s:\n+++ &quot;</span>,</span><br><span class="line">            irc, line, file);</span><br><span class="line">        <span class="built_in">UF_get_fail_message</span>(irc, err);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(msg, FALSE);</span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(err, FALSE);</span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(<span class="string">&quot;\n&quot;</span>, FALSE);</span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(call, FALSE);</span><br><span class="line">        <span class="built_in">UF_print_syslog</span>(<span class="string">&quot;;\n&quot;</span>, FALSE);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">UF_UI_open_listing_window</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(msg);</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(err);</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(call);</span><br><span class="line">            <span class="built_in">UF_UI_write_listing_window</span>(<span class="string">&quot;;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>(irc);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> DllExport <span class="type">void</span> <span class="title">ufusr</span><span class="params">( <span class="type">char</span> *parm, <span class="type">int</span> *returnCode, <span class="type">int</span> rlen )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>( <span class="built_in">UF_CALL</span>(<span class="built_in">UF_initialize</span>()) ) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    string prtpath=<span class="string">&quot;C:\\112233.prt&quot;</span>;</span><br><span class="line">    string bmppath=<span class="string">&quot;C:\\a.bmp&quot;</span>;</span><br><span class="line">    string bmppath2=<span class="string">&quot;C:\\b.bmp&quot;</span>;</span><br><span class="line">    <span class="built_in">get_prt_image</span>(prtpath,bmppath);   <span class="comment">//调用函数生成小缩略图</span></span><br><span class="line">    <span class="built_in">get_thumb</span>(bmppath,bmppath2);   <span class="comment">//调用函数生成大缩略图</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">UF_CALL</span>(<span class="built_in">UF_terminate</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">ufusr_ask_unload</span><span class="params">( <span class="type">void</span> )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>( UF_UNLOAD_IMMEDIATELY );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>转载：<a target="_blank" rel="noopener" href="http://www.vmould.cn/?post=75" title="http://www.vmould.cn/?post=75">http://www.vmould.cn/?post=75</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/19/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/17/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/19/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
