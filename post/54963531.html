@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="uf_param_indices.h文件，包含UF CAM中可用参数索引的列表。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NX二次开发-CAM参数说明">
+<meta property="og:url" content="http://notes.camcad.cn/post/54963531.html">
+<meta property="og:site_name" content="知识储存库">
+<meta property="og:description" content="uf_param_indices.h文件，包含UF CAM中可用参数索引的列表。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-14T09:55:48.000Z">
+<meta property="article:modified_time" content="2024-10-15T01:17:36.925Z">
+<meta property="article:author" content="蚂蚁Emmet">
+<meta property="article:tag" content="蚂蚁Emmet,蚂蚁,emmet,ugopen,nxopen,nx二次开发,ug二次开发">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://notes.camcad.cn/post/54963531.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.camcad.cn/post/54963531.html","path":"post/54963531.html","title":"NX二次开发-CAM参数说明"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NX二次开发-CAM参数说明 | 知识储存库</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="知识储存库" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">知识储存库</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">“尽一切努力提高生产率”</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友链"><a href="/links/" rel="section"><i class="fa fa-globe fa-fw"></i>友链</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="蚂蚁Emmet"
+      src="http://image.camcad.cn/2020/06/2020061804552287.png">
+  <p class="site-author-name" itemprop="name">蚂蚁Emmet</p>
+  <div class="site-description" itemprop="description">制造业IT宅男,喜欢折腾和被折腾<br>^_^ ^_^</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">413</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:emmet@camcad.cn" title="E-Mail → mailto:emmet@camcad.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/ugopen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ugopen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/54963531.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾和被折腾<br>^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NX二次开发-CAM参数说明 | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NX二次开发-CAM参数说明
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-14 09:55:48" itemprop="dateCreated datePublished" datetime="2024-09-14T09:55:48+00:00">2024-09-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><code>uf_param_indices.h</code>文件，包含UF CAM中可用参数索引的列表。</p>
+<span id="more"></span>
+
+<table>
+<thead>
+<tr>
+<th>宏变量</th>
+<th>描述</th>
+<th>类型</th>
+<th>名称</th>
+<th>变量名称</th>
+<th>合适值</th>
+<th>变量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UF_PARAM_DISP_PATH</td>
+<td>此索引包含一个指向一组用于显示刀具路径的参数的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>显示路径选项</td>
+<td><prefix>_display_path_option</td>
+<td>UF_PARAM_disp_path_t</td>
+<td>5</td>
+</tr>
+<tr>
+<td>UF_PARAM_DISP_TOOL</td>
+<td>此索引包含一个指向一组用于显示刀具的参数的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>显示刀具选项</td>
+<td><prefix>_display_tool_options</td>
+<td>UF_PARAM_disp_tool_t</td>
+<td>6</td>
+</tr>
+<tr>
+<td>UF_PARAM_DISP_PATTERN</td>
+<td>此索引包含一个指向一组用于显示图案的参数的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>显示图案选项</td>
+<td><prefix>_display_pattern_options</td>
+<td>UF_PARAM_disp_pattern_t</td>
+<td>7</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_SIDE_CUT</td>
+<td>此索引包含一个指向侧切进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给侧切</td>
+<td><prefix>_feed_side_cut</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>9</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_RAPID</td>
+<td>此索引包含一个指向快速进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给快速</td>
+<td><prefix>_feed_rapid</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>10</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_ENGAGE</td>
+<td>此索引包含一个指向切入进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给切入</td>
+<td><prefix>_feed_engage</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>11</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_RETRACT</td>
+<td>此索引包含一个指向退刀进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给退刀</td>
+<td><prefix>_feed_retract</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>12</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_APPROACH</td>
+<td>此索引包含一个指向接近进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给接近</td>
+<td><prefix>_feed_approach</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>13</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_DEPARTURE</td>
+<td>此索引包含一个指向离开进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给离开</td>
+<td><prefix>_feed_departure</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>14</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_RETURN</td>
+<td>此索引包含一个指向返回进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给返回</td>
+<td><prefix>_feed_return</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>15</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_TRAVERSAL</td>
+<td>此索引包含一个指向横移进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给横移</td>
+<td><prefix>_feed_traversal</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>16</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_CUT</td>
+<td>此索引包含一个指向切削进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给切削</td>
+<td><prefix>_feed_cut</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>17</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_FIRST_CUT</td>
+<td>此索引包含一个指向首次切削进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给首次切削</td>
+<td><prefix>_feed_first_cut</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>18</td>
+</tr>
+<tr>
+<td>UF_PARAM_FEED_STEPOVER</td>
+<td>此索引包含一个指向步距进给率结构的指针</td>
+<td>UF_PARAM_type_pointer</td>
+<td>进给步距</td>
+<td><prefix>_feed_stepover</td>
+<td>UF_PARAM_feedrate_t</td>
+<td>19</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_CONTROL_METHOD</td>
+<td>拐角控制方法</td>
+<td>UF_PARAM_type_int</td>
+<td>拐角控制方法</td>
+<td><prefix>_corner_control_method</td>
+<td>对于车床：<br>0 &#x3D; 未定义<br>1 &#x3D; 绕圆（添加圆弧）<br>2 &#x3D; 清除拐角（延长切线）<br>3 &#x3D; 圆角拐角<br>4 &#x3D; 倒角拐角<br>对于 2 - 2.5 轴铣床：<br>0 &#x3D; 未定义<br>1 &#x3D; 激活（添加圆弧）<br>2 &#x3D; 未激活（延长切线）<br>对于 3 - 5 轴铣床：<br>0 &#x3D; 未定义<br>1 &#x3D; 无拐角控制<br>2 &#x3D; 发出警告<br>3 &#x3D; 抬起直到越过拐角<br>4 &#x3D; 使用切线扩展<br>5 &#x3D; 停止处理</td>
+<td>24</td>
+</tr>
+<tr>
+<td>UF_PARAM_FROM_STATUS</td>
+<td>起点状态</td>
+<td>UF_PARAM_type_int</td>
+<td>起点状态</td>
+<td><prefix>_from_status</td>
+<td>0 &#x3D; 未定义<br>1 &#x3D; 激活<br>2 &#x3D; 未激活</td>
+<td>27</td>
+</tr>
+<tr>
+<td>UF_PARAM_RETURN_METHOD</td>
+<td>此参数定义了刀具从操作的最后一个刀具位置移动到返回点的策略</td>
+<td>UF_PARAM_type_int</td>
+<td>返回方法</td>
+<td><prefix>_return_method</td>
+<td>对于车削，使用：UF_PARAM_turn_return_method_t<br>否则使用：<br>0 &#x3D; 自动<br>1 &#x3D; 直接移动<br>2 &#x3D; 垂直然后水平<br>3 &#x3D; 水平然后垂直<br>4 &#x3D; 垂直间隙平面然后直接<br>5 &#x3D; 水平间隙平面然后直接<br>6 &#x3D; 垂直间隙<br>7 &#x3D; 水平间隙<br>8 &#x3D; 垂直然后水平然后直接（仅 ID）<br>9 &#x3D; 垂直然后水平然后垂直（仅 ID）<br>10 &#x3D; 垂直然后到水平间隙（仅 ID）</td>
+<td>30</td>
+</tr>
+<tr>
+<td>UF_PARAM_RETURN_STATUS</td>
+<td>（返回点状态）此参数指定回避返回状态</td>
+<td>UF_PARAM_type_int</td>
+<td>返回状态</td>
+<td><prefix>_return_status</td>
+<td>0 &#x3D; 未定义<br>1 &#x3D; 激活<br>2 &#x3D; 未激活</td>
+<td>32</td>
+</tr>
+<tr>
+<td>UF_PARAM_GOHOME_STATUS</td>
+<td>归零点状态</td>
+<td>UF_PARAM_type_int</td>
+<td>归零点状态</td>
+<td><prefix>_gohome_status</td>
+<td>0 &#x3D; 未定义<br>1 &#x3D; 激活<br>2 &#x3D; 未激活<br>3 &#x3D; 使用起点位置<br>4 &#x3D; 输出“GOHOME”</td>
+<td>34</td>
+</tr>
+<tr>
+<td>UF_PARAM_BOUNDARY_TOL</td>
+<td>此参数指定边界公差</td>
+<td>UF_PARAM_type_2d_length</td>
+<td>边界公差</td>
+<td><prefix>_boundary_tolerances</td>
+<td>正实数</td>
+<td>37</td>
+</tr>
+<tr>
+<td>UF_PARAM_RCS_LINKED_TO_MCS</td>
+<td>RCS 与 MCS 的链接状态</td>
+<td>UF_PARAM_type_logical</td>
+<td>RCS 链接到 MCS 状态</td>
+<td><prefix>_rcs_linked_to_mcs_status</td>
+<td>FALSE &#x3D; 未链接<br>TRUE &#x3D; 链接</td>
+<td>41</td>
+</tr>
+<tr>
+<td>UF_PARAM_CLR_MIN</td>
+<td>最小间隙距离（安全距离）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>最小间隙</td>
+<td><prefix>_clearance_min</td>
+<td>零或正 UF_PARAM_type_double_length</td>
+<td>42</td>
+</tr>
+<tr>
+<td>UF_PARAM_START_METHOD</td>
+<td>此参数定义了刀具从最后一个刀具位置移动到操作起点的策略</td>
+<td>UF_PARAM_type_int</td>
+<td>起点方法</td>
+<td><prefix>_start_method</td>
+<td>对于车削，使用：UF_PARAM_turn_start_method_t<br>否则使用：<br>0 &#x3D; 未定义<br>1 &#x3D; 直接移动<br>2 &#x3D; 垂直然后水平<br>3 &#x3D; 水平然后垂直<br>4 &#x3D; 水平间隙然后直接<br>5 &#x3D; 垂直间隙然后直接</td>
+<td>45</td>
+</tr>
+<tr>
+<td>UF_PARAM_START_STATUS</td>
+<td>起点状态</td>
+<td>UF_PARAM_type_int</td>
+<td>起点状态</td>
+<td><prefix>_start_status</td>
+<td>0 &#x3D; 未定义<br>1 &#x3D; 激活<br>2 &#x3D; 未激活</td>
+<td>47</td>
+</tr>
+<tr>
+<td>UF_PARAM_START_OF_ENGAGE_METHOD</td>
+<td>此参数定义了刀具从最后一个刀具位置移动到操作的切入点的策略</td>
+<td>UF_PARAM_type_int</td>
+<td>切入起点方法</td>
+<td><prefix>_start_of_engage_method</td>
+<td>UF_PARAM_turn_start_ofengage_method_t</td>
+<td>48</td>
+</tr>
+<tr>
+<td>UF_PARAM_GOHOME_METHOD</td>
+<td>此参数定义了刀具从最后一个刀具位置移动到操作的归零点的策略</td>
+<td>UF_PARAM_type_int</td>
+<td>归零点方法</td>
+<td><prefix>_gohome_method</td>
+<td>UF_PARAM_turn_gohome_method_t</td>
+<td>49</td>
+</tr>
+<tr>
+<td>UF_PARAM_STOCK_DRIVE</td>
+<td>用于驱动几何体的库存</td>
+<td>UF_PARAM_type_double_length</td>
+<td>库存驱动</td>
+<td><prefix>_stock_drive</td>
+<td>实数</td>
+<td>54</td>
+</tr>
+<tr>
+<td>UF_PARAM_MOTION_OUTPUT_TYPE</td>
+<td>输出到刀具路径的运动类型</td>
+<td>UF_PARAM_type_int</td>
+<td>运动输出类型</td>
+<td><prefix>_motion_output_type</td>
+<td>UF_PARAM_motion_output_t</td>
+<td>55</td>
+</tr>
+<tr>
+<td>UF_PARAM_NURBS_OP</td>
+<td>NURBS 输出标志，用于连接段</td>
+<td>UF_PARAM_type_int</td>
+<td>NURBS 连接段标志</td>
+<td><prefix>_nurbs_joining_segments_flag</td>
+<td>UF_PARAM_nurbs_output_flag_t</td>
+<td>56</td>
+</tr>
+<tr>
+<td>UF_PARAM_NURBS_FIT_TOL</td>
+<td>NURBS 拟合公差</td>
+<td>UF_PARAM_type_double_length</td>
+<td>NURBS 拟合公差</td>
+<td><prefix>_nurbs_fitting_tolerance</td>
+<td>UF_PARAM_type_double_length</td>
+<td>57</td>
+</tr>
+<tr>
+<td>UF_PARAM_NURBS_ANG_TOL</td>
+<td>NURBS 角度公差</td>
+<td>UF_PARAM_type_double</td>
+<td>NURBS 角度公差</td>
+<td><prefix>_nurbs_angular_tolerance</td>
+<td>UF_PARAM_type_double</td>
+<td>58</td>
+</tr>
+<tr>
+<td>UF_PARAM_MCS</td>
+<td>机器坐标系</td>
+<td>UF_PARAM_type_tag</td>
+<td>MCS</td>
+<td><prefix>_mcs</td>
+<td>标签</td>
+<td>59</td>
+</tr>
+<tr>
+<td>UF_PARAM_RCS</td>
+<td>参考坐标系</td>
+<td>UF_PARAM_type_tag</td>
+<td>RCS</td>
+<td><prefix>_rcs</td>
+<td></td>
+<td>60</td>
+</tr>
+<tr>
+<td>UF_PARAM_FIXTURE_OFFSET_STATUS</td>
+<td>夹具偏移状态</td>
+<td>UF_PARAM_type_int</td>
+<td>夹具偏移状态</td>
+<td><prefix>_fixture_offset_status</td>
+<td>0&#x2F;1（开&#x2F;关）</td>
+<td>61</td>
+</tr>
+<tr>
+<td>UF_PARAM_FIXTURE_OFFSET_NUM</td>
+<td>夹具偏移值</td>
+<td>UF_PARAM_type_int</td>
+<td>夹具偏移值</td>
+<td><prefix>_fixture_offset_value</td>
+<td></td>
+<td>62</td>
+</tr>
+<tr>
+<td>UF_PARAM_SCS_TYPE</td>
+<td>主轴坐标系定义类型</td>
+<td>UF_PARAM_type_int</td>
+<td>主轴定义类型</td>
+<td><prefix>_spindle_definition_type</td>
+<td>UF_PARAM_scs_type_t</td>
+<td>64</td>
+</tr>
+<tr>
+<td>UF_PARAM_SUPPRESS_PATH_DISPLAY</td>
+<td>此索引包含一个切换指示，用于指示在计算刀具路径时是否抑制其显示</td>
+<td>UF_PARAM_type_int</td>
+<td>抑制路径显示选项</td>
+<td><prefix>_suppress_path_display_option</td>
+<td>0 &#x3D; 不抑制刀具路径在生成期间的显示<br>1 &#x3D; 在路径生成期间抑制刀具路径的显示</td>
+<td>65</td>
+</tr>
+<tr>
+<td>UF_PARAM_CSYS_PURPOSE</td>
+<td></td>
+<td>UF_PARAM_type_int</td>
+<td>坐标系目的</td>
+<td><prefix>_coordinate_system_purpose</td>
+<td>UF_PARAM_csys_purpose_t</td>
+<td>66</td>
+</tr>
+<tr>
+<td>UF_PARAM_SPECIAL_OUTPUT</td>
+<td></td>
+<td>UF_PARAM_type_int</td>
+<td>特殊输出</td>
+<td><prefix>_special_output</td>
+<td>UF_PARAM_special_output_t</td>
+<td>67</td>
+</tr>
+<tr>
+<td>UF_PARAM_TEMPLATE_TYPE</td>
+<td>对象模板类型</td>
+<td>UF_PARAM_type_string</td>
+<td>模板类型</td>
+<td><prefix>_template_type</td>
+<td></td>
+<td>105</td>
+</tr>
+<tr>
+<td>UF_PARAM_TEMPLATE_SUBTYPE</td>
+<td>模板子类型</td>
+<td>UF_PARAM_type_string</td>
+<td>模板子类型</td>
+<td><prefix>__template_subtype</td>
+<td></td>
+<td>106</td>
+</tr>
+<tr>
+<td>UF_PARAM_TOL_IN_OUT</td>
+<td>内外公差</td>
+<td>UF_PARAM_type_2d_length</td>
+<td>内外公差</td>
+<td><prefix>_inside_outside_tolerances</td>
+<td></td>
+<td>109</td>
+</tr>
+<tr>
+<td>UF_PARAM_OUTPUT_LOAD_TOOL</td>
+<td>指示在添加标记时输出 LOAD&#x2F;TOOL 后处理命令的标志</td>
+<td>UF_PARAM_type_logical</td>
+<td>输出加载工具状态</td>
+<td><prefix>_output_load_tool_status</td>
+<td>True&#x2F;False</td>
+<td>117</td>
+</tr>
+<tr>
+<td>UF_PARAM_DIAGNOSTICS</td>
+<td>在生成操作的过程中，如果遇到任何条件，该参数将包含发现的条件的错误代码。它最多支持 10 个条件。与任何错误代码相关的任何消息都可以像查询任何其他错误代码一样进行查询。如果该参数不存在，则表示没有遇到条件。注意：每次生成操作时，该参数都会从操作中删除</td>
+<td>UF_PARAM_type_vla_int</td>
+<td>诊断数组</td>
+<td><prefix>_diagnositics_array</td>
+<td>数组的正整数</td>
+<td>123</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_CIR_FEED_COMP</td>
+<td>参数指示圆形进给率补偿是否开启</td>
+<td>UF_PARAM_type_int</td>
+<td>拐角圆形进给补偿</td>
+<td><prefix>_corner_circular_feed_compensation</td>
+<td>UF_PARAM_corner_cir_feed_comp_t</td>
+<td>201</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_FILLET_TYPE</td>
+<td>参数指示刀具路径拐角处的倒圆类型</td>
+<td>UF_PARAM_type_int</td>
+<td>拐角倒圆类型</td>
+<td><prefix>_corner_fillet_type</td>
+<td>UF_PARAM_corner_fillet_type_t</td>
+<td>202</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_FILLET_PATH_RADIUS</td>
+<td>参数是拐角倒圆的半径</td>
+<td>UF_PARAM_type_double_length</td>
+<td>拐角倒圆路径半径</td>
+<td><prefix>_corner_fillet_path_radius</td>
+<td>正 UF_PARAM_type_double_length</td>
+<td>203</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_MAX_TLAXIS</td>
+<td>最大刀具轴在拐角处的变化</td>
+<td>UF_PARAM_type_double</td>
+<td>拐角最大刀具轴</td>
+<td><prefix>_corner_max_tool_axis</td>
+<td></td>
+<td>204</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_MAX_ANGLE</td>
+<td>参数是拐角控制的最大角度，即用于拐角倒圆或拐角减速的最大角度</td>
+<td>UF_PARAM_type_double</td>
+<td>拐角最大包含角度</td>
+<td><prefix>_corner_max_included_angle</td>
+<td>0.0 &lt; 最大角度 &lt; 180.0</td>
+<td>205</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_MIN_ANGLE</td>
+<td>参数是拐角控制的最小角度，即用于拐角倒圆或拐角减速的最小角度</td>
+<td>UF_PARAM_type_double</td>
+<td>拐角最小包含角度</td>
+<td><prefix>_corner_min_included_angle</td>
+<td>0.0 &lt;&#x3D; 最小角度 &lt; 180.0</td>
+<td>206</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_SLOWDOWN_STATUS</td>
+<td>参数指示拐角减速是否开启</td>
+<td>UF_PARAM_type_int</td>
+<td>拐角减速状态</td>
+<td><prefix>_corner_slowdown_status</td>
+<td>UF_PARAM_corner_slowdown_status_t</td>
+<td>207</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_SLOWDOWN_LENGTH_METHOD</td>
+<td>参数确定如果减速开启，将使用哪种减速方法</td>
+<td>UF_PARAM_type_int</td>
+<td>拐角减速长度方法</td>
+<td><prefix>_corner_slowdown_length_method</td>
+<td>UF_PARAM_corner_slowdown_length_method_t</td>
+<td>208</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_TL_DIAM_PERCENT</td>
+<td>参数（如果选择了“百分比刀具”方法用于拐角减速）是减速长度与刀具直径的比率的 100 倍</td>
+<td>UF_PARAM_type_double</td>
+<td>拐角刀具直径百分比</td>
+<td><prefix>_corner_tool_diameter_percent</td>
+<td>正 UF_PARAM_type_double</td>
+<td>209</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_NUM_STEPS</td>
+<td>参数是用于实现减速的进给率递减的数量</td>
+<td>UF_PARAM_type_int</td>
+<td>拐角减速步数</td>
+<td><prefix>_corner_slowdown_num_steps</td>
+<td>正 UF_PARAM_type_int</td>
+<td>210</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_PREV_TL_DIAM</td>
+<td>参数（如果选择了“上一个刀具直径”方法用于拐角减速）是上一个用于切削零件的刀具的直径</td>
+<td>UF_PARAM_type_double_length</td>
+<td>拐角上一个刀具直径</td>
+<td><prefix>_corner_previous_tool_diameter</td>
+<td>正 UF_PARAM_type_double_length</td>
+<td>211</td>
+</tr>
+<tr>
+<td>UF_PARAM_CORNER_FEED_ADJUST_PERCENT</td>
+<td>参数（仅用于拐角减速）是减速结束时的进给率与减速开始时的进给率的比率的 100 倍</td>
+<td>UF_PARAM_type_double</td>
+<td>拐角进给调整百分比</td>
+<td><prefix>_corner_feed_adjust_percent</td>
+<td>正 UF_PARAM_type_double</td>
+<td>212</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENGRET_AUTO_TYPE</td>
+<td>参数表示当前选择的自动切入和切出的类型</td>
+<td>UF_PARAM_type_int</td>
+<td>切入切出自动类型</td>
+<td><prefix>_engage_retract_auto_type</td>
+<td>0 - 线性<br>1 - 圆形</td>
+<td>214</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENGRET_AUTO_OVERLAP</td>
+<td>参数是自动切入和自动切出使用的重叠距离（仅在切割闭合路径时使用）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>切入切出自动重叠</td>
+<td><prefix>_engage_retract_auto_overlap</td>
+<td>非负 UF_PARAM_type_double_length</td>
+<td>215</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENGRET_AUTO_RADIUS</td>
+<td>参数是用于圆形切入和圆形切出的圆弧半径</td>
+<td>UF_PARAM_type_double_length</td>
+<td>切入切出自动半径</td>
+<td><prefix>_engage_retract_auto_radius</td>
+<td>正 UF_PARAM_type_double_length</td>
+<td>216</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENGRET_AUTO_ACTIVE_RANGE</td>
+<td>参数是自动切入和切出使用的激活范围</td>
+<td>UF_PARAM_type_double_length</td>
+<td>切入切出自动激活范围</td>
+<td>UF_PARAM_type_double_length</td>
+<td>217</td>
+<td></td>
+</tr>
+<tr>
+<td>UF_PARAM_ENG_AUTO_RAMP_METHOD</td>
+<td>参数表示如果自动切入处于活动状态，则使用的斜坡类型</td>
+<td>UF_PARAM_type_int</td>
+<td>切入自动斜坡方法</td>
+<td><prefix>_engage_auto_ramp_method</td>
+<td>UF_PARAM_eng_auto_ramp_method_t</td>
+<td>218</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENG_AUTO_RAMP_ANGLE</td>
+<td>参数是自动切入使用斜坡时的斜坡角度</td>
+<td>UF_PARAM_type_double</td>
+<td>切入自动斜坡角度</td>
+<td><prefix>_engage_auto_ramp_angle</td>
+<td>UF_PARAM_type_double<br>0 &lt; 斜坡角度 &lt; 90</td>
+<td>219</td>
+</tr>
+<tr>
+<td>UF_PARAM_CLRPLANE_STATUS</td>
+<td>参数是间隙平面的状态</td>
+<td>UF_PARAM_type_int</td>
+<td>间隙平面状态</td>
+<td><prefix>_clearance_plane_status</td>
+<td>UF_PARAM_clrplane_status_t</td>
+<td>220</td>
+</tr>
+<tr>
+<td>UF_PARAM_CLRPLANE_USAGE</td>
+<td>参数表示何时进行到或离开间隙平面的移动（仅当 UF_PARAM_CLRPLANE_STATUS 为 1 时使用）</td>
+<td>UF_PARAM_type_int</td>
+<td>间隙平面用法</td>
+<td><prefix>_clearance_plane_usage</td>
+<td>UF_PARAM_clrplane_usage_t</td>
+<td>221</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENG_AUTO_MIN_RAMP_LENGTH</td>
+<td>参数是自动切入使用斜坡时的最小斜坡长度</td>
+<td>UF_PARAM_type_double</td>
+<td>切入自动最小斜坡长度</td>
+<td><prefix>_engage_auto_minimum_ramp_length</td>
+<td>正 UF_PARAM_type_double</td>
+<td>224</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENG_AUTO_HELICAL_DIAMETER</td>
+<td>参数是自动切入使用螺旋斜坡时的螺旋直径（表示为刀具直径的百分比）</td>
+<td>UF_PARAM_type_double</td>
+<td>切入自动螺旋直径</td>
+<td><prefix>_engage_auto_helical_diameter</td>
+<td>正 UF_PARAM_type_double</td>
+<td>225</td>
+</tr>
+<tr>
+<td>UF_PARAM_LWPLANE_STATUS</td>
+<td>参数是下限平面的状态</td>
+<td>UF_PARAM_type_int</td>
+<td>下限平面状态</td>
+<td><prefix>_lower_plane_status</td>
+<td>UF_PARAM_lwplane_status_t</td>
+<td>226</td>
+</tr>
+<tr>
+<td>UF_PARAM_LWPLANE_USAGE</td>
+<td>参数表示当存在活动的下限平面（LLP）且刀具末端低于 LLP 时应采取的操作</td>
+<td>UF_PARAM_type_int</td>
+<td>下限平面用法</td>
+<td><prefix>_lower_plane_usage</td>
+<td>UF_PARAM_lwplane_usage_t</td>
+<td>229</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUTCOM_TYPE</td>
+<td>参数指示要执行的切削类型（如果有）</td>
+<td>UF_PARAM_type_int</td>
+<td>切削类型</td>
+<td><prefix>_cutcom_type</td>
+<td>UF_PARAM_cutcom_type_t</td>
+<td>230</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUTCOM_ANGLE</td>
+<td>参数是切削移动和切削移动之间允许的最小角度</td>
+<td>UF_PARAM_type_double</td>
+<td>切削角度</td>
+<td><prefix>_cutcom_angle</td>
+<td>非负 UF_PARAM_type_double</td>
+<td>231</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUTCOM_DIST</td>
+<td>参数是切削移动的最小长度</td>
+<td>UF_PARAM_type_double_length</td>
+<td>切削距离</td>
+<td><prefix>_cutcom_distance</td>
+<td>正 UF_PARAM_type_double_length</td>
+<td>232</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUTCOM_REGISTER_NUM</td>
+<td>参数是切削寄存器编号（在 NX2.0 中已被 UF_PARAM_TL_CUTCOM_REG 取代，从 NX4.0 开始在用户函数中将被淘汰）（仅当参数 UF_PARAM_CUTCOM_REGISTER_STATUS 为 1 时使用）</td>
+<td>UF_PARAM_type_int</td>
+<td>切削寄存器编号</td>
+<td><prefix>_cutcom_register_number</td>
+<td>UF_PARAM_type_int</td>
+<td>233</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUTCOM_REGISTER_STATUS</td>
+<td>参数确定在输出切削语句到 CLSF 时是否输出寄存器编号</td>
+<td>UF_PARAM_type_int</td>
+<td>切削寄存器状态</td>
+<td><prefix>_cutcom_register_status</td>
+<td>UF_PARAM_cutcom_register_status_t</td>
+<td>234</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUTCOM_PLANE_STATUS</td>
+<td>参数确定在切削移动不在主平面时是否输出切削移动所在平面到 CLSF</td>
+<td>UF_PARAM_type_int</td>
+<td>切削平面状态</td>
+<td><prefix>_cutcom_plane_status</td>
+<td>0 - 不输出切削平面数据<br>1 - 输出切削平面数据到 CLSF（前提是切削移动在主平面）</td>
+<td>235</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUTLEV_METHOD</td>
+<td>参数确定切削深度类型</td>
+<td>UF_PARAM_type_int</td>
+<td>切削深度方法</td>
+<td><prefix>_cut_level_method</td>
+<td>UF_PARAM_cutlev_method_t</td>
+<td>236</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENG_INIT_TYPE</td>
+<td>参数是初始切入类型</td>
+<td>UF_PARAM_type_int</td>
+<td>切入初始类型</td>
+<td><prefix>_engage_initial_type</td>
+<td>UF_PARAM_eng_init_type_t</td>
+<td>240</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENG_INTER_TYPE</td>
+<td>参数是内部切入类型</td>
+<td>UF_PARAM_type_int</td>
+<td>切入内部类型</td>
+<td><prefix>_engage_internal_type</td>
+<td>UF_PARAM_eng_inter_type_t</td>
+<td>241</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENG_DIST</td>
+<td>参数是切入移动的长度（用于切入方法：刀具轴；角度，角度，距离；和向量）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>切入距离</td>
+<td><prefix>_engage_distance</td>
+<td>UF_PARAM_type_double_length</td>
+<td>244</td>
+</tr>
+<tr>
+<td>UF_PARAM_ENG_ANGLES</td>
+<td>参数是用于切入类型：角度，角度，距离；和角度，角度，平面的角度对</td>
+<td>UF_PARAM_type_2d</td>
+<td>切入角度</td>
+<td><prefix>_engage_angles</td>
+<td>UF_PARAM_type_2d</td>
+<td>246</td>
+</tr>
+<tr>
+<td>UF_PARAM_PREDRILL_TYPE</td>
+<td>参数指示如果有预钻孔，哪些区域（如果有）将在切削开始的点处有预钻孔。对于预钻孔选项，所有区域，无论是初始还是内部切入，都必须是刀具轴类型。对于选项，底部区域，无论是初始还是内部切入，都必须是自动的</td>
+<td>UF_PARAM_type_int</td>
+<td>预钻孔类型</td>
+<td><prefix>_pre_drill_type</td>
+<td>UF_PARAM_predrill_type_t</td>
+<td>247</td>
+</tr>
+<tr>
+<td>UF_PARAM_RET_FINAL_TYPE</td>
+<td>参数是最终切出类型</td>
+<td>UF_PARAM_type_int</td>
+<td>切出最终类型</td>
+<td><prefix>_retract_final_type</td>
+<td>UF_PARAM_ret_final_type_t</td>
+<td>250</td>
+</tr>
+<tr>
+<td>UF_PARAM_RET_INTER_TYPE</td>
+<td>参数是内部切出类型</td>
+<td>UF_PARAM_type_int</td>
+<td>切出内部类型</td>
+<td><prefix>_retract_internal_type</td>
+<td>UF_PARAM_ret_inter_type_t</td>
+<td>251</td>
+</tr>
+<tr>
+<td>UF_PARAM_RET_POINT</td>
+<td>参数是最终切出方法中使用的点，例如从一个点等</td>
+<td>UF_PARAM_type_3d_length</td>
+<td>切出点</td>
+<td><prefix>_retract_point</td>
+<td>UF_PARAM_type_3d_length</td>
+<td>252</td>
+</tr>
+<tr>
+<td>UF_PARAM_RET_DIST</td>
+<td>参数是切出移动的长度（用于切出方法：刀具轴；角度，角度，距离；和向量）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>切出距离</td>
+<td><prefix>_retract_distance</td>
+<td>UF_PARAM_type_double_length</td>
+<td>254</td>
+</tr>
+<tr>
+<td>UF_PARAM_RET_ANGLES</td>
+<td>参数是用于切出类型：角度，角度，距离；和角度，角度，平面的角度对</td>
+<td>UF_PARAM_type_2d</td>
+<td>切出角度</td>
+<td><prefix>_retract_angles</td>
+<td>UF_PARAM_type_2d</td>
+<td>256</td>
+</tr>
+<tr>
+<td>UF_PARAM_RET_AUTO_DIST</td>
+<td>参数是自动切出的切出间隙（仅当自动类型为线性时使用）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>切出自动距离</td>
+<td><prefix>_retract_auto_distance</td>
+<td>正 UF_PARAM_type_double_length</td>
+<td>257</td>
+</tr>
+<tr>
+<td>UF_PARAM_CLR_HORIZ</td>
+<td>参数是水平间隙</td>
+<td>UF_PARAM_type_double_length</td>
+<td>间隙水平</td>
+<td><prefix>_clearance_horizontal</td>
+<td>非负 UF_PARAM_type_double_length</td>
+<td>258</td>
+</tr>
+<tr>
+<td>UF_PARAM_CLR_VERT</td>
+<td>参数是垂直间隙距离</td>
+<td>UF_PARAM_type_double_length</td>
+<td>间隙垂直</td>
+<td><prefix>_clearance_vertical</td>
+<td>非负 UF_PARAM_type_double_length</td>
+<td>259</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_ISLAND_CLEANUP_STATUS</td>
+<td>参数表示如果使用“跟随周边”切削方法，是否进行岛屿清理</td>
+<td>UF_PARAM_type_int</td>
+<td>切削岛屿清理状态</td>
+<td><prefix>_cut_island_cleanup_status</td>
+<td>UF_PARAM_cut_island_cleanup_status_t</td>
+<td>260</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_PROFILE_PASS_STATUS</td>
+<td>参数表示是否生成精加工路径（用于各种 Zig 切削方法、Zig - zag 和“跟随周边”）</td>
+<td>UF_PARAM_type_int</td>
+<td>切削轮廓路径状态</td>
+<td><prefix>_cut_profile_pass_status</td>
+<td>UF_PARAM_cut_profile_pass_status_t</td>
+<td>262</td>
+</tr>
+<tr>
+<td>UF_PARAM_STOCK_PROFILE_PASS</td>
+<td>参数是精加工路径的库存</td>
+<td>UF_PARAM_type_double_length</td>
+<td>库存轮廓路径</td>
+<td><prefix>_stock_profile_pass</td>
+<td>UF_PARAM_type_double_length</td>
+<td>263</td>
+</tr>
+<tr>
+<td>UF_PARAM_STOCK_FLOOR</td>
+<td>参数是地板库存</td>
+<td>UF_PARAM_type_double_length</td>
+<td>库存地板</td>
+<td><prefix>_stock_floor</td>
+<td>UF_PARAM_type_double_length</td>
+<td>264</td>
+</tr>
+<tr>
+<td>UF_PARAM_STOCK_PART</td>
+<td>参数是零件侧库存</td>
+<td>UF_PARAM_type_double_length</td>
+<td>库存零件</td>
+<td><prefix>_stock_part</td>
+<td>UF_PARAM_type_double_length</td>
+<td>265</td>
+</tr>
+<tr>
+<td>UF_PARAM_BLANK_DIST</td>
+<td>参数是零件几何形状偏移以产生毛坯几何形状而无需创建 CAD 几何形状的量</td>
+<td>UF_PARAM_type_double_length</td>
+<td>毛坯距离</td>
+<td><prefix>_blank_distance</td>
+<td>正 UF_PARAM_type_double_length</td>
+<td>266</td>
+</tr>
+<tr>
+<td>UF_PARAM_BLANK_OVERHANG</td>
+<td>此参数控制刀具可能超出毛坯几何形状的最大量。距离是从刀具的前缘到毛坯边缘的测量，并表示为刀具直径的百分比</td>
+<td>UF_PARAM_type_double</td>
+<td>毛坯悬垂</td>
+<td><prefix>_blank_overhang</td>
+<td>UF_PARAM_type_double<br>0.0 &lt;&#x3D; 毛坯悬垂 &lt;&#x3D; 100.0</td>
+<td>267</td>
+</tr>
+<tr>
+<td>UF_PARAM_CTR_ANG_TOLER</td>
+<td>角度公差，用于在跟踪面&#x2F;体时的拓扑结构</td>
+<td>UF_PARAM_type_double</td>
+<td>跟踪角度公差</td>
+<td><prefix>_tracing_angular_tolerance</td>
+<td>UF_PARAM_type_double</td>
+<td>268</td>
+</tr>
+<tr>
+<td>UF_PARAM_CTR_DIS_TOLER</td>
+<td>距离公差，用于在跟踪面&#x2F;体时的拓扑结构</td>
+<td>UF_PARAM_type_double_length</td>
+<td>跟踪线性公差</td>
+<td><prefix>_tracing_linear_tolerance</td>
+<td>UF_PARAM_type_double_length</td>
+<td>269</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEPOVER_TYPE</td>
+<td>参数是步距类型</td>
+<td>UF_PARAM_type_int</td>
+<td>步距类型</td>
+<td><prefix>_stepover_type</td>
+<td>UF_PARAM_stepover_type_t</td>
+<td>270</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEPOVER_SCALLOP</td>
+<td>参数是步距 scallop 高度</td>
+<td>UF_PARAM_type_double_length</td>
+<td>步距 scallop</td>
+<td><prefix>_stepover_scallop</td>
+<td>正 UF_PARAM_type_double_length</td>
+<td>271</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEPOVER_DIST</td>
+<td>参数是如果步距类型为 1（即恒定），则使用的步距大小</td>
+<td>UF_PARAM_type_double_length</td>
+<td>步距距离</td>
+<td><prefix>_stepover_distance</td>
+<td>正 UF_PARAM_type_double_length</td>
+<td>272</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEPOVER_PERCENT</td>
+<td>参数是步距类型为“% 刀具直径”时使用的百分比值</td>
+<td>UF_PARAM_type_double</td>
+<td>步距百分比</td>
+<td><prefix>_stepover_percent</td>
+<td>正 UF_PARAM_type_double</td>
+<td>273</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEPOVER_VAR_DISTS</td>
+<td>参数是步距类型为变量时的步距大小值（此参数已过时，在 NX6 中使用 UF_PARAM_STEPOVER_VAR_DISTS_TOOL_DEPENDENT 代替）</td>
+<td>UF_PARAM_type_vla_length</td>
+<td>步距变量距离</td>
+<td><prefix>_stepover_variable_distances</td>
+<td>UF_PARAM_type_vla_length<br>数组的双精度数（大小 &#x3D; 6）</td>
+<td>274</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEPOVER_VAR_PASSES</td>
+<td>参数是与步距类型为变量的步距大小对应的通过次数</td>
+<td>UF_PARAM_type_int_vla</td>
+<td>步距变量通过次数</td>
+<td><prefix>_stepover_variable_passes</td>
+<td>UF_PARAM_type_int_vla<br>数组的整数（大小 &#x3D; 6）</td>
+<td>275</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEPOVER_DEGREE</td>
+<td>参数是步距类型为“角度”时使用的角度值</td>
+<td>UF_PARAM_type_double</td>
+<td>步距角度</td>
+<td><prefix>_stepover_degree</td>
+<td>正 UF_PARAM_type_double</td>
+<td>276</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_FOLLOW_PROGRESSION</td>
+<td>对于“跟随周边”和“螺旋”切削方法，参数确定连续的切削移动是朝向还是远离周边边界</td>
+<td>UF_PARAM_type_int</td>
+<td>跟随进展</td>
+<td><prefix>_follow_progression</td>
+<td>UF_PARAM_cut_follow_progression_t</td>
+<td>277</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_WALL_CLEANUP_STATUS</td>
+<td>参数确定是否进行扇形去除路径（zig、zig - zag、zig - with_countour、zig - with - stepover、仅“跟随周边”）。UF_PARAM_cut_wall_cleanup_automatic 仅适用于“跟随周边”</td>
+<td>UF_PARAM_type_int</td>
+<td>切削壁清理状态</td>
+<td><prefix>_cut_wall_cleanup_staus</td>
+<td>UF_PARAM_cut_wall_cleanup_status_t</td>
+<td>278</td>
+</tr>
+<tr>
+<td>UF_PARAM_TOOL_AXIS_TYPE</td>
+<td>参数表示刀具轴类型</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具轴类型</td>
+<td><prefix>_tool_axis_type</td>
+<td>UF_PARAM_tool_axis_type_t</td>
+<td>280</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEPOVER_APPLY_METHOD</td>
+<td>确定用于确定如何计算步距距离的方法</td>
+<td>UF_PARAM_type_int</td>
+<td>步距应用方法</td>
+<td><prefix>_stepover_apply_method</td>
+<td>UF_PARAM_stepover_apply_t</td>
+<td>281</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_STEP_TYPE</td>
+<td>此参数指定使用的步控制类型</td>
+<td>UF_PARAM_type_int</td>
+<td>切削步类型</td>
+<td><prefix>_cut_step_type</td>
+<td>UF_PARAM_step_control_t</td>
+<td>282</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_STEP_MAX</td>
+<td>此参数指定允许的最大步距离</td>
+<td>UF_PARAM_type_double_length</td>
+<td>切削步最大尺寸</td>
+<td><prefix>_cut_step_max_size</td>
+<td>正实数</td>
+<td>283</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_TLAXIS_DELTA</td>
+<td>此参数指定在拐角处允许的最大刀具轴变化</td>
+<td>UF_PARAM_type_double</td>
+<td>刀具轴最大变化</td>
+<td><prefix>_tool_axis_max_delta</td>
+<td>实数</td>
+<td>284</td>
+</tr>
+<tr>
+<td>UF_PARAM_TLAXIS_HEEL_CLEARANCE</td>
+<td>此参数指定最小脚跟间隙</td>
+<td>UF_PARAM_type_double</td>
+<td>最小脚跟间隙</td>
+<td><prefix>_minumum_heel_clearance</td>
+<td>实数</td>
+<td>286</td>
+</tr>
+<tr>
+<td>UF_PARAM_TLAXIS_LEAD_ANGLE</td>
+<td>此参数指定刀具轴超前角度</td>
+<td>UF_PARAM_type_double</td>
+<td>刀具轴超前角度</td>
+<td><prefix>_tool_axis_lead_angle</td>
+<td>实数</td>
+<td>287</td>
+</tr>
+<tr>
+<td>UF_PARAM_TLAXIS_THRU_POINT</td>
+<td>此参数指定刀具轴焦点</td>
+<td>UF_PARAM_type_3d_length</td>
+<td>刀具轴焦点</td>
+<td><prefix>_tool_axis_focal_point</td>
+<td>实数数组</td>
+<td>289</td>
+</tr>
+<tr>
+<td>UF_PARAM_TLAXIS_ANGLES</td>
+<td>此参数指定刀具轴角度</td>
+<td>UF_PARAM_type_vla_real</td>
+<td>刀具轴角度</td>
+<td><prefix>_tool_axis_angles</td>
+<td>实数数组（6）<br>0 - 2 刀具轴角度<br>3 - 5 双 4 轴角度</td>
+<td>290</td>
+</tr>
+<tr>
+<td>UF_PARAM_DRIVE_METHOD</td>
+<td>此参数指定表面轮廓驱动方法</td>
+<td>UF_PARAM_type_int</td>
+<td>表面轮廓驱动方法</td>
+<td><prefix>_surface_contour_drive_method</td>
+<td>UF_PARAM_dpm_type_t</td>
+<td>291</td>
+</tr>
+<tr>
+<td>UF_PARAM_CTP_CHK_TOL</td>
+<td>此参数指定表面轮廓检查表面公差</td>
+<td>UF_PARAM_type_double_length</td>
+<td>表面轮廓检查表面公差</td>
+<td><prefix>_surface_contour_check_surface_tolerance</td>
+<td>实数</td>
+<td>292</td>
+</tr>
+<tr>
+<td>UF_PARAM_TLAXIS_PERP_VEC</td>
+<td>此参数指定这些刀具轴模式的参考向量：<br>UF_PARAM_tlaxis_type_away_from_line<br>UF_PARAM_tlaxis_type_toward_line<br>UF_PARAM_tlaxis_type_4axis_normal_to_part<br>UF_PARAM_tlaxis_type_4axis_normal_to_drive<br>UF_PARAM_tlaxis_type_4axis_relative_to_part<br>UF_PARAM_tlaxis_type_4axis_relative_to_drive<br>UF_PARAM_tlaxis_type_dual4axis_relative_to_part<br>UF_PARAM_tlaxis_type_dual4axis_relative_to_drive</td>
+<td>UF_PARAM_type_3d</td>
+<td>表面轮廓垂直向量</td>
+<td><prefix>_surface_contour_perpto_vector</td>
+<td>实数数组</td>
+<td>295</td>
+</tr>
+<tr>
+<td>UF_PARAM_TLAXIS_DUAL_VECS</td>
+<td>此参数指定这些刀具轴模式的第二个参考向量：<br>UF_PARAM_tlaxis_type_dual4axis_relative_to_part<br>UF_PARAM_tlaxis_type_dual4axis_relative_to_drive</td>
+<td>UF_PARAM_type_3d</td>
+<td>表面轮廓双垂直向量</td>
+<td><prefix>_surface_contour_dual_perpto_vector</td>
+<td>实数数组</td>
+<td>296</td>
+</tr>
+<tr>
+<td>UF_PARAM_AVOIDANCE</td>
+<td>此参数指定当处理器检测到检查表面的 gouge 时应采取的操作</td>
+<td>UF_PARAM_type_int</td>
+<td>避免</td>
+<td><prefix>_surface_contour_check_surface_avoidance_action</td>
+<td>UF_PARAM_avoid_type_t</td>
+<td>297</td>
+</tr>
+<tr>
+<td>UF_PARAM_CONVEX_CORNER</td>
+<td>当凸角扩展启用时，此参数指定两个表面彼此形成的最大角度，以便处理器扩展角</td>
+<td>UF_PARAM_type_double</td>
+<td>表面轮廓凸角扩展角度</td>
+<td><prefix>_surface_contour_convex_corner_extension_angle</td>
+<td>角度在 0 到 180 度之间</td>
+<td>298</td>
+</tr>
+<tr>
+<td>UF_PARAM_CONVEX_TAX_VAR</td>
+<td>当凸角提升启用时，此参数指定刀具轴向量的最小变化，以导致角处的提升</td>
+<td>UF_PARAM_type_double</td>
+<td>表面轮廓凸角提升角度</td>
+<td><prefix>_surface_contour_convex_corner_lift_angle</td>
+<td>角度在 0 到 180 度之间</td>
+<td>299</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_METHOD</td>
+<td>此参数指定区域的切削模式</td>
+<td>UF_PARAM_type_int</td>
+<td>切削方法</td>
+<td><prefix>_cut_method</td>
+<td>UF_PARAM_cut_method_t</td>
+<td>300</td>
+</tr>
+<tr>
+<td>UF_PARAM_PATTERN_SECONDARY</td>
+<td>此参数指定在使用“跟随部分”切削方法切割区域时如何遍历开放路径</td>
+<td>UF_PARAM_type_int</td>
+<td>切削模式次要</td>
+<td><prefix>_cut_pattern_secondary</td>
+<td>UF_PARAM_pattern_secondary_t</td>
+<td>302</td>
+</tr>
+<tr>
+<td>UF_PARAM_CUT_LEVEL_ORDER</td>
+<td>此参数指定切削层的切削顺序。切削顺序可以是层优先或深度优先</td>
+<td>UF_PARAM_type_int</td>
+<td>切削层顺序</td>
+<td><prefix>_cut_level_order</td>
+<td>UF_PARAM_cut_level_order_t</td>
+<td>303</td>
+</tr>
+<tr>
+<td>UF_PARAM_TRANSFER_METHOD</td>
+<td>此参数指定刀具在转移移动期间将缩回的级别</td>
+<td>UF_PARAM_type_int</td>
+<td>区域转移方法</td>
+<td><prefix>_region_transfer_method</td>
+<td>UF_PARAM_transfer_method_t</td>
+<td>304</td>
+</tr>
+<tr>
+<td>UF_PARAM_DISP_REGION_STATUS</td>
+<td>此参数指定在每个切削层显示区域的状态</td>
+<td>UF_PARAM_type_int</td>
+<td>显示区域状态</td>
+<td><prefix>_display_region_status</td>
+<td>UF_PARAM_disp_region_status_t</td>
+<td>307</td>
+</tr>
+<tr>
+<td>UF_PARAM_DISP_REGION_PAUSE_STATUS</td>
+<td>此参数指定在处理每个区域后或显示切削区域后是否暂停</td>
+<td>UF_PARAM_type_int</td>
+<td>区域暂停状态</td>
+<td><prefix>_region_pause_status</td>
+<td>UF_PARAM_disp_region_pause_status_t</td>
+<td>308</td>
+</tr>
+<tr>
+<td>UF_PARAM_FLOWCUT_MODE</td>
+<td>定义流切模式</td>
+<td>UF_PARAM_type_int</td>
+<td>流切模式</td>
+<td><prefix>_flow_cut_mode</td>
+<td>UF_PARAM_fcut_mode_t</td>
+<td>418</td>
+</tr>
+<tr>
+<td>UF_PARAM_FLOWCUT_OVERLAP_DIST</td>
+<td>流切参考刀具直径沿切线表面定义的扩展区域的宽度</td>
+<td>UF_PARAM_type_double_length</td>
+<td>流切重叠距离</td>
+<td><prefix>_flow_cut_overlap_distance</td>
+<td>正的 UF_PARAM_type_double_length</td>
+<td>419</td>
+</tr>
+<tr>
+<td>UF_PARAM_OFFSETS_NUM</td>
+<td>定义偏移通道的数量</td>
+<td>UF_PARAM_type_int</td>
+<td>偏移数量</td>
+<td><prefix>_offsets_number</td>
+<td>0 或正的 UF_PARAM_type_int</td>
+<td>420</td>
+</tr>
+<tr>
+<td>UF_PARAM_SEQUENCE_OPT</td>
+<td>定义切割通道的顺序</td>
+<td>UF_PARAM_type_int</td>
+<td>顺序选项</td>
+<td><prefix>_sequence_option</td>
+<td>UF_PARAM_sequence_opt_t</td>
+<td>421</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEEP_CUT_DIR</td>
+<td>定义通过陡峭区域的切割方向</td>
+<td>UF_PARAM_type_int</td>
+<td>陡峭切割方向</td>
+<td><prefix>_steep_cut_directin</td>
+<td>UF_PARAM_steep_cut_dir_t</td>
+<td>423</td>
+</tr>
+<tr>
+<td>UF_PARAM_PLUNGE_DIRECTION</td>
+<td>定义在钻孔铣削中，轮廓图案的切入方向</td>
+<td>UF_PARAM_type_int</td>
+<td>切入方向</td>
+<td><prefix>_plunge_direction</td>
+<td>UF_PARAM_plunge_direction_t</td>
+<td>427</td>
+</tr>
+<tr>
+<td>UF_PARAM_RET_AUTO_ANGLE</td>
+<td>定义在钻孔铣削中，自动退刀的角度（以度为单位）</td>
+<td>UF_PARAM_type_double</td>
+<td>自动退刀角度</td>
+<td><prefix>_retract_out_angle</td>
+<td>非负的 UF_PARAM_type_double</td>
+<td>428</td>
+</tr>
+<tr>
+<td>UF_PARAM_MAX_CUT_WIDTH_TYPE</td>
+<td>定义最大切削宽度的类型</td>
+<td>UF_PARAM_type_int</td>
+<td>最大切削宽度类型</td>
+<td><prefix>_max_cut_width_type</td>
+<td>UF_PARAM_max_cut_width_type_t</td>
+<td>429</td>
+</tr>
+<tr>
+<td>UF_PARAM_MAX_CUT_WIDTH_DIST</td>
+<td>定义最大切削宽度的距离值（当最大切削宽度类型为距离时使用）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>最大切削宽度距离</td>
+<td><prefix>_max_cut_width_distance</td>
+<td>正的 UF_PARAM_type_double_length</td>
+<td>430</td>
+</tr>
+<tr>
+<td>UF_PARAM_MAX_CUT_WIDTH_PERCENT</td>
+<td>定义最大切削宽度的百分比值（当最大切削宽度类型为百分比刀具直径时使用）</td>
+<td>UF_PARAM_type_double</td>
+<td>最大切削宽度百分比</td>
+<td><prefix>_max_cut_width_percent</td>
+<td>正的 UF_PARAM_type_double</td>
+<td>431</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEP_AHEAD_TYPE</td>
+<td>定义步进类型</td>
+<td>UF_PARAM_type_int</td>
+<td>步进类型</td>
+<td><prefix>_step_ahead_type</td>
+<td>UF_PARAM_step_ahead_type_t</td>
+<td>432</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEP_AHEAD_DIST</td>
+<td>定义步进距离（当步进类型为距离时使用）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>步进距离</td>
+<td><prefix>_step_ahead_distance</td>
+<td>正的 UF_PARAM_type_double_length</td>
+<td>433</td>
+</tr>
+<tr>
+<td>UF_PARAM_STEP_AHEAD_PERCENT</td>
+<td>定义步进百分比（当步进类型为百分比刀具直径时使用）</td>
+<td>UF_PARAM_type_double</td>
+<td>步进百分比</td>
+<td><prefix>_step_ahead_percent</td>
+<td>正的 UF_PARAM_type_double</td>
+<td>434</td>
+</tr>
+<tr>
+<td>UF_PARAM_TROCHOID_PATH_STEPOVER_TYPE</td>
+<td>定义 trochoidal 向外切削方法的路径步长类型</td>
+<td>UF_PARAM_type_int</td>
+<td>Trochoidal 路径步长类型</td>
+<td><prefix>_trochoidal_path_stepover_type</td>
+<td>UF_PARAM_trochoid_path_stepover_type_t</td>
+<td>450</td>
+</tr>
+<tr>
+<td>UF_PARAM_TROCHOID_PATH_STEPOVER_DIST</td>
+<td>定义 trochoidal 向外切削方法的路径步长距离（当路径步长类型为距离时使用）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>Trochoidal 路径步长距离</td>
+<td><prefix>_trochoidal_path_stepover_distance</td>
+<td>非负的 UF_PARAM_type_double_length</td>
+<td>451</td>
+</tr>
+<tr>
+<td>UF_PARAM_TROCHOID_PATH_STEPOVER_PERCENT</td>
+<td>定义 trochoidal 向外切削方法的路径步长百分比（当路径步长类型为百分比刀具直径时使用）</td>
+<td>UF_PARAM_type_double</td>
+<td>Trochoidal 路径步长百分比</td>
+<td><prefix>_trochoidal_path_stepover_percent</td>
+<td>非负的 UF_PARAM_type_double</td>
+<td>452</td>
+</tr>
+<tr>
+<td>UF_PARAM_TOOL_EMBEDDING_LIMIT_PERCENT</td>
+<td>定义工具嵌入限制的百分比（用于 trochoidal 向外切削方法和圆角修整）</td>
+<td>UF_PARAM_type_double</td>
+<td>工具嵌入限制百分比</td>
+<td><prefix>_tool_embedding_limit</td>
+<td>在 [100, 300] 范围内</td>
+<td>453</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_DIAMETER</td>
+<td>指定刀具的直径</td>
+<td>UF_PARAM_type_length</td>
+<td>刀具直径</td>
+<td><prefix>_tool_diameter</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_MILL、UF_CUTTER_TYPE_DRILL、UF_CUTTER_TYPE_BARREL、UF_CUTTER_TYPE_T</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_HEIGHT</td>
+<td>指定刀具的实际高度</td>
+<td>UF_PARAM_type_length</td>
+<td>刀具长度</td>
+<td><prefix>_tool_length</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_MILL、UF_CUTTER_TYPE_DRILL、UF_CUTTER_TYPE_BARREL、UF_CUTTER_TYPE_T</td>
+<td>1001</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_FLUTE_LN</td>
+<td>指定刀具的 flute 长度（flute 长度是指从开始到结束齿的测量距离，不一定表示切削长度）</td>
+<td>UF_PARAM_type_length</td>
+<td>刀具 flute 长度</td>
+<td><prefix>_tool_flute_length</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_MILL、UF_CUTTER_TYPE_DRILL、UF_CUTTER_TYPE_BARREL、UF_CUTTER_TYPE_T</td>
+<td>1002</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_TAPER_ANG</td>
+<td>指定刀具的锥度角度（如果锥度角度为正，则刀具顶部比底部宽；如果为负，则刀具底部比顶部宽；如果为零，则刀具侧面与刀具轴线平行）</td>
+<td>UF_PARAM_type_double</td>
+<td>刀具锥度角度</td>
+<td><prefix>_tool_taper_angle</td>
+<td>角度以弧度测量，适用于刀具类型 UF_CUTTER_TYPE_MILL</td>
+<td>1003</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_TIP_ANG</td>
+<td>指定刀具尖端的角度（对于铣刀，这是刀尖处两个边缘相交形成的非负角度；对于车削刀具，它定义了凹槽刀具尖端的方向）</td>
+<td>UF_PARAM_type_double</td>
+<td>刀具尖端角度</td>
+<td><prefix>_tool_tip_angle</td>
+<td>角度以弧度测量，适用于刀具类型 UF_CUTTER_TYPE_MILL、UF_CUTTER_TYPE_GROOVE</td>
+<td>1004</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_COR1_RAD</td>
+<td>指定刀具下圆角的半径</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具下圆角半径</td>
+<td><prefix>_tool_corner1_radius</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_MILL、UF_CUTTER_TYPE_DRILL</td>
+<td>1005</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_XCEN_COR1</td>
+<td>是刀具下圆角半径中心的水平距离（可以为正、负或零）的一部分定义</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具下圆角中心 X</td>
+<td><prefix>_tool_corner1_center_x</td>
+<td>适用于刀具子类型 UF_CUTTER_SUBTYPE_MILL_7、UF_CUTTER_SUBTYPE_MILL_10</td>
+<td>1006</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_YCEN_COR1</td>
+<td>是刀具下圆角半径中心的垂直距离（必须为非负）的一部分定义</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具下圆角中心 Y</td>
+<td><prefix>_tool_corner1_center_y</td>
+<td>适用于刀具子类型 UF_CUTTER_SUBTYPE_MILL_7、UF_CUTTER_SUBTYPE_MILL_10</td>
+<td>1007</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_COR2_RAD</td>
+<td>指定刀具上圆角的半径（仅适用于刀具子类型 UF_CUTTER_SUBTYPE_MILL_10）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具上圆角半径</td>
+<td><prefix>_tool_corner2_radius</td>
+<td>适用于刀具子类型 UF_CUTTER_SUBTYPE_MILL_10</td>
+<td>1008</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_XCEN_COR2</td>
+<td>是刀具上圆角半径中心的水平距离（可以为正、负或零）的一部分定义（仅适用于刀具子类型 UF_CUTTER_SUBTYPE_MILL_10）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具上圆角中心 X</td>
+<td><prefix>_tool_corner2_center_x</td>
+<td>适用于刀具子类型 UF_CUTTER_SUBTYPE_MILL_10</td>
+<td>1009</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_YCEN_COR2</td>
+<td>是刀具上圆角半径中心的垂直距离（必须为非负）的一部分定义（仅适用于刀具子类型 UF_CUTTER_SUBTYPE_MILL_10）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具上圆角中心 Y</td>
+<td><prefix>_tool_corner2_center_y</td>
+<td>适用于刀具子类型 UF_CUTTER_SUBTYPE_MILL_10</td>
+<td>1010</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_BARREL_RAD</td>
+<td>指定刀具 barrel 的半径（仅适用于刀具类型 UF_CUTTER_TYPE_BARREL）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具 barrel 半径</td>
+<td><prefix>_tool_barrel_radius</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_BARREL</td>
+<td>1011</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_SHANK_DIA</td>
+<td>指定刀具 shank 的直径（适用于刀具类型 UF_CUTTER_TYPE_BARREL 和 UF_CUTTER_TYPE_T）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具 shank 直径</td>
+<td><prefix>_tool_shank_diameter</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_BARREL、UF_CUTTER_TYPE_T</td>
+<td>1012</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_LOW_COR_RAD</td>
+<td>指定刀具的下圆角半径（适用于刀具类型 UF_CUTTER_TYPE_BARREL 和 UF_CUTTER_TYPE_T）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具下圆角半径</td>
+<td><prefix>_tool_lower_corner_radius</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_BARREL、UF_CUTTER_TYPE_T</td>
+<td>1013</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_UP_COR_RAD</td>
+<td>指定刀具的上圆角半径（适用于刀具类型 UF_CUTTER_TYPE_BARREL 和 UF_CUTTER_TYPE_T）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具上圆角半径</td>
+<td><prefix>_tool_upper_corner_radius</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_BARREL、UF_CUTTER_TYPE_T</td>
+<td>1014</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_YCEN_BARREL</td>
+<td>指定刀具 barrel 外边缘中心的高度（仅适用于刀具类型 UF_CUTTER_TYPE_BARREL）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具 barrel 中心 Y</td>
+<td><prefix>_tool_barrel_center_y</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_BARREL</td>
+<td>1015</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_POINT_ANG</td>
+<td>指定刀具的点角度（仅适用于刀具类型 UF_CUTTER_TYPE_DRILL）</td>
+<td>UF_PARAM_type_double</td>
+<td>刀具点角度</td>
+<td><prefix>_tool_point_angle</td>
+<td>角度以弧度测量，适用于刀具类型 UF_CUTTER_TYPE_DRILL</td>
+<td>1016</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_NUM_FLUTES</td>
+<td>指定刀具的 flute 数量</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具 flute 数量</td>
+<td><prefix>_tool_flutes_number</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_MILL、UF_CUTTER_TYPE_DRILL、UF_CUTTER_TYPE_BARREL、UF_CUTTER_TYPE_T</td>
+<td>1017</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_RELIEF_ANG</td>
+<td>指定由刀具切削刃远离切削边缘的斜坡引起的角度（以弧度为单位）</td>
+<td>UF_PARAM_type_double</td>
+<td>刀具后角</td>
+<td><prefix>_tool_relief_angle</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_MILL</td>
+<td>1019</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_HOLDER_WIDTH</td>
+<td>指定按钮刀具 holder 的宽度</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具 holder 宽度</td>
+<td><prefix>_tool_holder_width</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_MILL</td>
+<td>1021</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_INSERT_WIDTH</td>
+<td>描述车削中标准、环形接头和用户定义刀具的插入宽度（对于槽加工和螺纹加工，该参数仅在标准和梯形螺纹插入时出现）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具插入宽度</td>
+<td><prefix>_tool_insert_width</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_GROOVE、UF_CUTTER_TYPE_THREAD、UF_CUTTER_TYPE_FORM（标准、环形接头和用户定义刀具）</td>
+<td>1022</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_NOSE_WIDTH</td>
+<td>描述车削中环形接头凹槽刀具或梯形螺纹刀具的鼻尖宽度（它表示刀具切削表面的宽度，对于标准凹槽刀具、全鼻半径凹槽刀具或用户定义凹槽刀具，该参数不适用）</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具鼻尖宽度</td>
+<td><prefix>_tool_nose_width</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_GROOVE（环形接头）、UF_CUTTER_TYPE_THREAD（梯形）</td>
+<td>1023</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_ORIENTATION</td>
+<td>指定车削刀具插入的角度（弧度）</td>
+<td>UF_PARAM_type_double</td>
+<td>刀具方向</td>
+<td><prefix>_tool_orientation</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_TURN、UF_CUTTER_TYPE_THREAD、UF_CUTTER_TYPE_GROOVE、UF_CUTTER_TYPE_FORM</td>
+<td>1025</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_INSERT_ANG</td>
+<td>指定车削中 Form 刀具插入的极角（弧度）</td>
+<td>UF_PARAM_type_double</td>
+<td>刀具插入角度</td>
+<td><prefix>_tool_insert_angle</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_FORM</td>
+<td>1029</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_LEFT_COR_RAD</td>
+<td>定义槽加工不对称刀具的左圆角半径</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具左圆角半径</td>
+<td><prefix>_tool_left_corner_radius</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_GROOVE、UF_CUTTER_TYPE_THREAD</td>
+<td>1030</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_RIGHT_COR_RAD</td>
+<td>定义槽加工不对称刀具的右圆角半径</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具右圆角半径</td>
+<td><prefix>_right_corner_radius</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_GROOVE、UF_CUTTER_TYPE_THREAD</td>
+<td>1031</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_INSERT_LENGTH</td>
+<td>指定槽加工和螺纹加工刀具插入的总长度</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具插入长度</td>
+<td><prefix>_tool_insert_length</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_GROOVE、UF_CUTTER_TYPE_THREAD</td>
+<td>1032</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_MAX_DEPTH_TOG</td>
+<td>必须激活此索引才能使用参数 UF_PARAM_TL_MAX_DEPTH</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具最大深度切换</td>
+<td><prefix>_tool_max_depth_toggle</td>
+<td>0 &#x3D; 不激活，1 &#x3D; 激活</td>
+<td>1033</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_X_OFFSET_TOG</td>
+<td>必须激活此索引才能使用参数 UF_PARAM_TL_X_OFFSET</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具 X 偏移切换</td>
+<td><prefix>_tool_x_offset_toggle</td>
+<td>0 &#x3D; 不激活，1 &#x3D; 激活</td>
+<td>1034</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_Y_OFFSET_TOG</td>
+<td>必须激活此索引才能使用参数 UF_PARAM_TL_Y_OFFSET</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具 Y 偏移切换</td>
+<td><prefix>_tool_y_offset_toggle</td>
+<td>0 &#x3D; 不激活，1 &#x3D; 激活</td>
+<td>1035</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_THICKNESS</td>
+<td>指定车削刀具插入的厚度</td>
+<td>UF_PARAM_type_double_length</td>
+<td>刀具厚度</td>
+<td><prefix>_tool_thickness</td>
+<td>适用于刀具类型 UF_CUTTER_TYPE_TURN、UF_CUTTER_TYPE_THREAD、UF_CUTTER_TYPE_GROOVE、UF_CUTTER_TYPE_FORM</td>
+<td>1036</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_ADJ_REG_TOG</td>
+<td>必须激活此索引才能使用参数 UF_PARAM_TL_ADJ_REG</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具调整寄存器切换</td>
+<td><prefix>_tool_adjust_register_toggle</td>
+<td>0 &#x3D; 不激活，1 &#x3D; 激活</td>
+<td>1037</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_CUTCOM_REG_TOG</td>
+<td>必须激活此索引才能使用参数 UF_PARAM_TL_CUTCOM_REG</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具 Cutcom 寄存器切换</td>
+<td><prefix>_tool_cutcom_reg_toggle</td>
+<td>0 &#x3D; 不激活，1 &#x3D; 激活</td>
+<td>1038</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_MANUAL_TOOLCHANGE</td>
+<td>该索引是刀具是否可以手动加载的状态</td>
+<td>UF_PARAM_type_logical</td>
+<td>刀具手动换刀</td>
+<td><prefix>_tool_manual_toolchange</td>
+<td>1 或 0</td>
+<td>1155</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_HOLDER_NUMBER</td>
+<td>该索引是刀具加载的刀架号码</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具刀架号码</td>
+<td><prefix>_tool_holder_num</td>
+<td>所有</td>
+<td>1156</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_HEAD_DESIGN</td>
+<td>该索引是车削刀具头部的类型指定</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具头部设计</td>
+<td><prefix>_tool_head_designation</td>
+<td>所有</td>
+<td>1157</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_TEXT</td>
+<td>该索引用于刀具的附加参数</td>
+<td>UF_PARAM_type_string</td>
+<td>刀具文本</td>
+<td><prefix>_tool_text</td>
+<td>所有</td>
+<td>1158</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_NUMBER_TOG</td>
+<td>该索引用于激活或禁用刀具号码</td>
+<td>UF_PARAM_type_int</td>
+<td>刀具号码切换</td>
+<td><prefix>_tool_number_toggle</td>
+<td>0 &#x3D; 不激活，1 &#x3D; 激活</td>
+<td>1159</td>
+</tr>
+<tr>
+<td>UF_PARAM_TL_Z_OFFSET_TOG</td>
+<td>必须激活此索引才能使用参数 UF_PARAM_TL_Z_OFFSET</td>
+<td>UF_PARAM</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>蚂蚁Emmet
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://notes.camcad.cn/post/54963531.html" title="NX二次开发-CAM参数说明">http://notes.camcad.cn/post/54963531.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/1e0e0020.html" rel="prev" title="国际化-GeoIP根据客户端地理位置，展示不同的内容">
+                  <i class="fa fa-chevron-left"></i> 国际化-GeoIP根据客户端地理位置，展示不同的内容
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">湘ICP备20003716号-1 </a>
+      <img src="http://image.camcad.cn/2024/02/gongan_icon.png" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43122302000045" rel="noopener" target="_blank">湘公网安备43122302000045号 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">蚂蚁Emmet</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
