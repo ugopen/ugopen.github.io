@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://image.camcad.cn/2024/03/gitlab-ce.png">
 <meta property="og:image" content="http://image.camcad.cn/2024/03/gitlab-upgrade-done.png">
 <meta property="article:published_time" content="2024-04-02T12:49:52.000Z">
-<meta property="article:modified_time" content="2024-10-15T03:18:57.325Z">
+<meta property="article:modified_time" content="2024-12-19T14:28:51.669Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="gitlab">
 <meta property="article:tag" content="ubuntu">
@@ -242,7 +242,7 @@
 <h3 id="查看本地的GitLab-CE版本"><a href="#查看本地的GitLab-CE版本" class="headerlink" title="查看本地的GitLab CE版本"></a>查看本地的GitLab CE版本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># apt policy gitlab-ce</span><br><span class="line"></span><br><span class="line">gitlab-ce:</span><br><span class="line">  Installed: 15.1.0-ce.0</span><br><span class="line">  Candidate: 15.1.0-ce.0</span><br><span class="line">  Version table:</span><br><span class="line"> *** 15.1.0-ce.0 100</span><br><span class="line">        100 /var/lib/dpkg/status</span><br></pre></td></tr></table></figure>
 
 <h3 id="备份gitlab"><a href="#备份gitlab" class="headerlink" title="备份gitlab"></a>备份gitlab</h3><p>备份</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
 <p>并备份下列两个文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/gitlab/gitlab.rb</span><br><span class="line">/etc/gitlab/gitlab-secrets.json</span><br></pre></td></tr></table></figure>
 
@@ -253,16 +253,16 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --content-disposition 安装包URL</span><br><span class="line"></span><br><span class="line">wget --content-disposition https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/focal/gitlab-ce_15.1.6-ce.0_amd64.deb/download.deb</span><br></pre></td></tr></table></figure>
 
 <h3 id="gitlab升级"><a href="#gitlab升级" class="headerlink" title="gitlab升级"></a>gitlab升级</h3><p>停止服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl stop unicorn</span><br><span class="line">gitlab-ctl stop sidekiq</span><br><span class="line">gitlab-ctl stop nginx</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl stop unicorn</span><br><span class="line">sudo gitlab-ctl stop sidekiq</span><br><span class="line">sudo gitlab-ctl stop nginx</span><br><span class="line">sudo gitlab-ctl stop puma</span><br></pre></td></tr></table></figure>
 
 <p><code>15.11.13 --&gt; 16.1.6</code>需要升级数据库（PostgreSQL）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl pg-upgrade</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl pg-upgrade</span><br></pre></td></tr></table></figure>
 
 <p>安装软件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i 软件包</span><br><span class="line"></span><br><span class="line">dpkg -i gitlab-ce_15.4.6-ce.0_amd64.deb</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i 软件包</span><br><span class="line"></span><br><span class="line">sudo dpkg -i gitlab-ce_15.4.6-ce.0_amd64.deb</span><br></pre></td></tr></table></figure>
 <p>如下图所示，表示升级完成<br><img src="http://image.camcad.cn/2024/03/gitlab-upgrade-done.png" alt="gitlab-upgrade-done"></p>
 <p>安装完成之后，执行下列命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl reconfigure</span><br><span class="line">gitlab-ctl restart</span><br><span class="line">gitlab-rake gitlab:check SANITIZE=true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br><span class="line">sudo gitlab-ctl restart</span><br><span class="line">sudo gitlab-rake gitlab:check SANITIZE=true</span><br></pre></td></tr></table></figure>
 
 <p>查看gitlab版本</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /opt/gitlab/embedded/service/gitlab-rails/VERSION</span><br></pre></td></tr></table></figure>
