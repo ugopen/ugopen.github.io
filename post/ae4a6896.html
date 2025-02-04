@@ -17,19 +17,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.caxtoolkit.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Runnerhttps:&#x2F;&#x2F;docs.gitlab.com&#x2F;runner&#x2F;GitLab Runner是一个与GitLab CI&#x2F;CD一起在管道中运行作业的应用程序。它可以在不同的操作系统和平台上运行，例如 Linux、Windows 和 macOS，并且可以通过 Docker 和 Kubernetes 等容器化技术运行。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gitlab-ci&#x2F;cd学习09：gitlab runner与executor">
-<meta property="og:url" content="http://notes.camcad.cn/post/ae4a6896.html">
+<meta property="og:url" content="http://notes.caxtoolkit.com/post/ae4a6896.html">
 <meta property="og:site_name" content="知识储存库">
 <meta property="og:description" content="Runnerhttps:&#x2F;&#x2F;docs.gitlab.com&#x2F;runner&#x2F;GitLab Runner是一个与GitLab CI&#x2F;CD一起在管道中运行作业的应用程序。它可以在不同的操作系统和平台上运行，例如 Linux、Windows 和 macOS，并且可以通过 Docker 和 Kubernetes 等容器化技术运行。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://image.camcad.cn/vscode/20240421204523.png">
 <meta property="og:image" content="https://image.camcad.cn/vscode/20240421203718.png">
 <meta property="article:published_time" content="2024-04-21T14:51:23.000Z">
-<meta property="article:modified_time" content="2025-02-04T12:55:52.698Z">
+<meta property="article:modified_time" content="2025-02-04T15:44:32.844Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="gitlab">
 <meta property="article:tag" content="CI&#x2F;CD">
@@ -37,11 +37,11 @@
 <meta name="twitter:image" content="https://image.camcad.cn/vscode/20240421204523.png">
 
 
-<link rel="canonical" href="http://notes.camcad.cn/post/ae4a6896.html">
+<link rel="canonical" href="http://notes.caxtoolkit.com/post/ae4a6896.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.camcad.cn/post/ae4a6896.html","path":"post/ae4a6896.html","title":"gitlab-ci/cd学习09：gitlab runner与executor"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.caxtoolkit.com/post/ae4a6896.html","path":"post/ae4a6896.html","title":"gitlab-ci/cd学习09：gitlab runner与executor"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>gitlab-ci/cd学习09：gitlab runner与executor | 知识储存库</title>
@@ -184,7 +184,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/ae4a6896.html">
+    <link itemprop="mainEntityOfPage" href="http://notes.caxtoolkit.com/post/ae4a6896.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -263,7 +263,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://notes.camcad.cn/post/ae4a6896.html" title="gitlab-ci&#x2F;cd学习09：gitlab runner与executor">http://notes.camcad.cn/post/ae4a6896.html</a>
+      <a href="http://notes.caxtoolkit.com/post/ae4a6896.html" title="gitlab-ci&#x2F;cd学习09：gitlab runner与executor">http://notes.caxtoolkit.com/post/ae4a6896.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

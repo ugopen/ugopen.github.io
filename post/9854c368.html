@@ -17,18 +17,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.caxtoolkit.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="类和对象（多态-纯虚函数和抽象类）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++核心知识49：类和对象（多态-纯虚函数和抽象类）">
-<meta property="og:url" content="http://notes.camcad.cn/post/9854c368.html">
+<meta property="og:url" content="http://notes.caxtoolkit.com/post/9854c368.html">
 <meta property="og:site_name" content="知识储存库">
 <meta property="og:description" content="类和对象（多态-纯虚函数和抽象类）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.camcad.cn/2020/06/2020060902100292-1024x489.jpg">
 <meta property="article:published_time" content="2020-07-07T11:38:09.000Z">
-<meta property="article:modified_time" content="2025-02-04T12:55:52.693Z">
+<meta property="article:modified_time" content="2025-02-04T15:44:32.841Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蚂蚁Emmet">
@@ -37,11 +37,11 @@
 <meta name="twitter:image" content="http://image.camcad.cn/2020/06/2020060902100292-1024x489.jpg">
 
 
-<link rel="canonical" href="http://notes.camcad.cn/post/9854c368.html">
+<link rel="canonical" href="http://notes.caxtoolkit.com/post/9854c368.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.camcad.cn/post/9854c368.html","path":"post/9854c368.html","title":"C++核心知识49：类和对象（多态-纯虚函数和抽象类）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.caxtoolkit.com/post/9854c368.html","path":"post/9854c368.html","title":"C++核心知识49：类和对象（多态-纯虚函数和抽象类）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C++核心知识49：类和对象（多态-纯虚函数和抽象类） | 知识储存库</title>
@@ -184,7 +184,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/9854c368.html">
+    <link itemprop="mainEntityOfPage" href="http://notes.caxtoolkit.com/post/9854c368.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -236,7 +236,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="教程目录《C-核心知识》"><a href="#教程目录《C-核心知识》" class="headerlink" title="教程目录《C++核心知识》"></a>教程目录《<a target="_blank" rel="noopener" href="https://notes.caxtoolkit.com/post/7fd4f72a.html">C++核心知识</a>》</h3><h1 id="4-7-多态"><a href="#4-7-多态" class="headerlink" title="4.7 多态"></a>4.7 多态</h1><h2 id="4-7-3-纯虚函数和抽象类"><a href="#4-7-3-纯虚函数和抽象类" class="headerlink" title="4.7.3 纯虚函数和抽象类"></a>4.7.3 纯虚函数和抽象类</h2><p>在多态中，通常父类中的虚函数实现是毫无意义的，主要都是调用子类重写的内容。</p>
+        <h3 id="教程目录《C-核心知识》"><a href="#教程目录《C-核心知识》" class="headerlink" title="教程目录《C++核心知识》"></a>教程目录《<a href="https://notes.caxtoolkit.com/post/7fd4f72a.html">C++核心知识</a>》</h3><h1 id="4-7-多态"><a href="#4-7-多态" class="headerlink" title="4.7 多态"></a>4.7 多态</h1><h2 id="4-7-3-纯虚函数和抽象类"><a href="#4-7-3-纯虚函数和抽象类" class="headerlink" title="4.7.3 纯虚函数和抽象类"></a>4.7.3 纯虚函数和抽象类</h2><p>在多态中，通常父类中的虚函数实现是毫无意义的，主要都是调用子类重写的内容。</p>
 <p>因此可以将虚函数改为<strong>纯虚函数</strong>。</p>
 <p><code>纯虚函数语法：virtual 返回值类型 函数名 (参数列表) = 0;</code></p>
 <p>当类中有了纯虚函数，这个类也称为抽象类。</p>
@@ -265,7 +265,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://notes.camcad.cn/post/9854c368.html" title="C++核心知识49：类和对象（多态-纯虚函数和抽象类）">http://notes.camcad.cn/post/9854c368.html</a>
+      <a href="http://notes.caxtoolkit.com/post/9854c368.html" title="C++核心知识49：类和对象（多态-纯虚函数和抽象类）">http://notes.caxtoolkit.com/post/9854c368.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

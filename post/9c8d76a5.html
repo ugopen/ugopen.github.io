@@ -17,12 +17,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.camcad.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"notes.caxtoolkit.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="在.gitlab-ci.yml文件中，stages关键字用于定义CI&#x2F;CD流水线中的各个阶段。CI&#x2F;CD流水线是一系列的阶段，每个阶段可以包含一个或多个作业（jobs），用于完成特定的任务。stages关键字允许您明确指定流水线中的各个阶段，以便组织和控制作业的执行顺序。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gitlab-ci&#x2F;cd学习04：工作阶段和相依性">
-<meta property="og:url" content="http://notes.camcad.cn/post/9c8d76a5.html">
+<meta property="og:url" content="http://notes.caxtoolkit.com/post/9c8d76a5.html">
 <meta property="og:site_name" content="知识储存库">
 <meta property="og:description" content="在.gitlab-ci.yml文件中，stages关键字用于定义CI&#x2F;CD流水线中的各个阶段。CI&#x2F;CD流水线是一系列的阶段，每个阶段可以包含一个或多个作业（jobs），用于完成特定的任务。stages关键字允许您明确指定流水线中的各个阶段，以便组织和控制作业的执行顺序。">
 <meta property="og:locale" content="zh_CN">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://image.camcad.cn/vscode/20240419204840.png">
 <meta property="og:image" content="https://image.camcad.cn/vscode/20240419204845.png">
 <meta property="article:published_time" content="2024-04-19T20:27:28.000Z">
-<meta property="article:modified_time" content="2025-02-04T12:55:52.697Z">
+<meta property="article:modified_time" content="2025-02-04T15:44:32.844Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="gitlab">
 <meta property="article:tag" content="CI&#x2F;CD">
@@ -38,11 +38,11 @@
 <meta name="twitter:image" content="https://image.camcad.cn/vscode/20240419204816.png">
 
 
-<link rel="canonical" href="http://notes.camcad.cn/post/9c8d76a5.html">
+<link rel="canonical" href="http://notes.caxtoolkit.com/post/9c8d76a5.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.camcad.cn/post/9c8d76a5.html","path":"post/9c8d76a5.html","title":"gitlab-ci/cd学习04：工作阶段和相依性"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://notes.caxtoolkit.com/post/9c8d76a5.html","path":"post/9c8d76a5.html","title":"gitlab-ci/cd学习04：工作阶段和相依性"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>gitlab-ci/cd学习04：工作阶段和相依性 | 知识储存库</title>
@@ -185,7 +185,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://notes.camcad.cn/post/9c8d76a5.html">
+    <link itemprop="mainEntityOfPage" href="http://notes.caxtoolkit.com/post/9c8d76a5.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
@@ -266,7 +266,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://notes.camcad.cn/post/9c8d76a5.html" title="gitlab-ci&#x2F;cd学习04：工作阶段和相依性">http://notes.camcad.cn/post/9c8d76a5.html</a>
+      <a href="http://notes.caxtoolkit.com/post/9c8d76a5.html" title="gitlab-ci&#x2F;cd学习04：工作阶段和相依性">http://notes.caxtoolkit.com/post/9c8d76a5.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
