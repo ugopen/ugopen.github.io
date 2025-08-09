@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://image.camcad.cn/vscode/20240410203112.png">
 <meta property="article:published_time" content="2024-04-10T20:29:18.000Z">
-<meta property="article:modified_time" content="2025-08-03T09:48:10.557Z">
+<meta property="article:modified_time" content="2025-08-09T14:36:03.905Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="gitlab">
 <meta property="article:tag" content="CI&#x2F;CD">
@@ -119,7 +119,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCI-x2F-CD"><span class="nav-number">1.</span> <span class="nav-text">什么是CI&#x2F;CD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CI-x2F-CD%E7%9A%84%E4%BC%98%E7%82%B9%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">CI&#x2F;CD的优点包括：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CI-x2F-CD%E7%9A%84%E7%BC%BA%E7%82%B9%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">CI&#x2F;CD的缺点包括：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CI-x2F-CD%E5%B8%B8%E8%A7%81%E5%BC%80%E5%8F%91%E4%B8%8A%E7%BA%BF%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">CI&#x2F;CD常见开发上线流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCI-CD"><span class="nav-number">1.</span> <span class="nav-text">什么是CI&#x2F;CD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CI-CD%E7%9A%84%E4%BC%98%E7%82%B9%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">CI&#x2F;CD的优点包括：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CI-CD%E7%9A%84%E7%BC%BA%E7%82%B9%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">CI&#x2F;CD的缺点包括：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CI-CD%E5%B8%B8%E8%A7%81%E5%BC%80%E5%8F%91%E4%B8%8A%E7%BA%BF%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">CI&#x2F;CD常见开发上线流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -134,18 +134,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">414</span>
+          <span class="site-state-item-count">415</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -238,23 +238,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="什么是CI-x2F-CD"><a href="#什么是CI-x2F-CD" class="headerlink" title="什么是CI&#x2F;CD"></a>什么是CI&#x2F;CD</h3><p>CI&#x2F;CD是持续集成（Continuous Integration）和持续交付（Continuous Delivery）的缩写。它是一种软件开发实践，旨在通过自动化的流程和工具来提高软件交付的速度和质量。</p>
+        <h3 id="什么是CI-CD"><a href="#什么是CI-CD" class="headerlink" title="什么是CI&#x2F;CD"></a>什么是CI&#x2F;CD</h3><p>CI&#x2F;CD是持续集成（Continuous Integration）和持续交付（Continuous Delivery）的缩写。它是一种软件开发实践，旨在通过自动化的流程和工具来提高软件交付的速度和质量。</p>
 <p><strong>持续集成（Continuous Integration，CI）</strong>：CI是一种开发实践，开发人员将代码频繁地合并到共享存储库中（gitlab、github），每次合并都会触发自动化构建和测试流程。这样可以尽早地发现和解决代码集成问题，确保团队的代码始终保持在一个可集成状态。</p>
 <p><strong>持续交付（Continuous Delivery，CD）</strong>：CD是在持续集成的基础上构建的，它将代码集成后通过自动化流程将其部署到生产环境中。持续交付的目标是确保软件在任何时候都是可部署的，从而使团队能够更快地将新功能、修复和改进推送到生产环境中。</p>
 <span id="more"></span>
 
-<h4 id="CI-x2F-CD的优点包括："><a href="#CI-x2F-CD的优点包括：" class="headerlink" title="CI&#x2F;CD的优点包括："></a>CI&#x2F;CD的优点包括：</h4><p><strong>快速反馈</strong>：CI&#x2F;CD使开发团队能够更快地获得关于其代码质量和功能的反馈，有助于快速发现和解决问题。</p>
+<h4 id="CI-CD的优点包括："><a href="#CI-CD的优点包括：" class="headerlink" title="CI&#x2F;CD的优点包括："></a>CI&#x2F;CD的优点包括：</h4><p><strong>快速反馈</strong>：CI&#x2F;CD使开发团队能够更快地获得关于其代码质量和功能的反馈，有助于快速发现和解决问题。</p>
 <p><strong>降低风险</strong>：自动化的测试和部署过程有助于降低人为错误，减少因人为操作而引入的风险。</p>
 <p><strong>增强可靠性</strong>：通过自动化流程，可以提高软件交付的一致性和可靠性，减少部署失败的可能性。</p>
 <p><strong>加速交付</strong>：CI&#x2F;CD使团队能够更频繁地交付软件，从而提高了交付速度，使市场反馈更加及时。</p>
-<h4 id="CI-x2F-CD的缺点包括："><a href="#CI-x2F-CD的缺点包括：" class="headerlink" title="CI&#x2F;CD的缺点包括："></a>CI&#x2F;CD的缺点包括：</h4><p><strong>复杂性</strong>：CI&#x2F;CD的实施可能涉及许多不同的工具和技术，需要团队成员具备相应的技能和知识。这种复杂性可能增加了学习曲线和维护成本。</p>
+<h4 id="CI-CD的缺点包括："><a href="#CI-CD的缺点包括：" class="headerlink" title="CI&#x2F;CD的缺点包括："></a>CI&#x2F;CD的缺点包括：</h4><p><strong>复杂性</strong>：CI&#x2F;CD的实施可能涉及许多不同的工具和技术，需要团队成员具备相应的技能和知识。这种复杂性可能增加了学习曲线和维护成本。</p>
 <p><strong>成本</strong>：实施CI&#x2F;CD所需的工具和基础设施可能需要显著的投资。此外，需要额外的时间和资源来配置、管理和维护CI&#x2F;CD管道。</p>
 <p><strong>自动化风险</strong>：尽管自动化流程可以减少人为错误，但如果流程配置不当或测试不充分，自动化也可能导致错误和问题在生产环境中更快地传播。</p>
 <p><strong>文化变革</strong>：CI&#x2F;CD不仅仅是工具和流程的实施，还需要组织文化上的变革。有些团队可能对持续集成、持续交付和自动化流程的理念存在抵触情绪，需要适应和接受这种变革。</p>
 <p><strong>安全风险</strong>：CI&#x2F;CD管道中的自动化流程可能存在安全漏洞，尤其是如果安全性不是充分考虑的话。不当的配置、权限管理不当或者第三方工具的漏洞都可能导致安全问题。</p>
 <p><strong>部署复杂性</strong>：持续交付意味着软件会更频繁地部署到生产环境中，这可能增加部署过程的复杂性。特别是在复杂的系统中，部署可能需要额外的策略和手段来确保稳定性和可用性。</p>
 <p><strong>总结</strong>： 总的来说，CI&#x2F;CD是现代软件开发中的关键实践，有助于团队更快地交付高质量的软件。</p>
-<h3 id="CI-x2F-CD常见开发上线流程"><a href="#CI-x2F-CD常见开发上线流程" class="headerlink" title="CI&#x2F;CD常见开发上线流程"></a>CI&#x2F;CD常见开发上线流程</h3><p><img src="https://image.camcad.cn/vscode/20240410203112.png" alt="20240410203112"></p>
+<h3 id="CI-CD常见开发上线流程"><a href="#CI-CD常见开发上线流程" class="headerlink" title="CI&#x2F;CD常见开发上线流程"></a>CI&#x2F;CD常见开发上线流程</h3><p><img src="https://image.camcad.cn/vscode/20240410203112.png" alt="20240410203112"></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://chat.openai.com/">open ai</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=zCFFot5HnEw&list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu&index=2">為你自己學 GitLab CI&#x2F;CD Day 02 - 什麼是 CI&#x2F;CD</a></p>
 

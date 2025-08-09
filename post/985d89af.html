@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.camcad.cn/2020/05/2020052311460692-1024x476.jpg">
 <meta property="article:published_time" content="2020-06-11T14:58:23.000Z">
-<meta property="article:modified_time" content="2025-08-03T09:48:10.542Z">
+<meta property="article:modified_time" content="2025-08-09T14:36:03.896Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蚂蚁Emmet">
@@ -134,18 +134,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">414</span>
+          <span class="site-state-item-count">415</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -235,7 +235,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="教程目录《C-基础教程》"><a href="#教程目录《C-基础教程》" class="headerlink" title="教程目录《C++基础教程》"></a>教程目录《<a href="https://notes.caxtoolkit.com/post/b2d53884.html">C++基础教程</a>》</h3><h1 id="第七章：指针"><a href="#第七章：指针" class="headerlink" title="第七章：指针"></a>第七章：指针</h1><h2 id="7-3-指针所占内存空间"><a href="#7-3-指针所占内存空间" class="headerlink" title="7.3 指针所占内存空间"></a>7.3 指针所占内存空间</h2><p><strong>提问：</strong>指针也是数据类型，那么这些数据类型占用多少内存空间？ <strong>示例：</strong></p>
+        <h3 id="教程目录《C-基础教程》"><a href="#教程目录《C-基础教程》" class="headerlink" title="教程目录《C++基础教程》"></a>教程目录《<a href="https://notes.caxtoolkit.com/post/b2d53884.html">C++基础教程</a>》</h3><h1 id="第七章：指针"><a href="#第七章：指针" class="headerlink" title="第七章：指针"></a>第七章：指针</h1><h2 id="7-3-指针所占内存空间"><a href="#7-3-指针所占内存空间" class="headerlink" title="7.3 指针所占内存空间"></a>7.3 指针所占内存空间</h2><p>**提问：**指针也是数据类型，那么这些数据类型占用多少内存空间？ <strong>示例：</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//定义整型变量</span></span><br><span class="line">    <span class="type">int</span> iNum = <span class="number">10</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">//指针的定义</span></span><br><span class="line">    <span class="type">int</span> *p = &amp;iNum;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;sizeof(p) 占用内存空间\t&quot;</span> &lt;&lt; <span class="keyword">sizeof</span>(p) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;sizeof(int *) 占用内存空间\t&quot;</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="type">int</span> *) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;sizeof(char *) 占用内存空间\t&quot;</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="type">char</span> *) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;sizeof(double *) 占用内存空间\t&quot;</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="type">double</span> *) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;sizeof(long *) 占用内存空间\t&quot;</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="type">long</span> *) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>以上代码编译执行结果如下： <img src="http://image.camcad.cn/2020/05/2020052311460692-1024x476.jpg"></p>

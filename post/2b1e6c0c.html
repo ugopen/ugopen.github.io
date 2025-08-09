@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://image.camcad.cn/2021/07/2021072207573188-1024x696.png">
 <meta property="og:image" content="http://image.camcad.cn/2021/07/2021071615182280.jpg">
 <meta property="article:published_time" content="2021-07-25T12:28:24.000Z">
-<meta property="article:modified_time" content="2025-08-03T09:48:10.557Z">
+<meta property="article:modified_time" content="2025-08-09T14:36:03.905Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="蚂蚁Emmet">
 <meta property="article:tag" content="C++设计模式">
@@ -135,18 +135,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">414</span>
+          <span class="site-state-item-count">415</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -243,8 +243,10 @@
 </ul>
 <h1 id="Memento备忘录"><a href="#Memento备忘录" class="headerlink" title="Memento备忘录"></a>Memento备忘录</h1><h2 id="动机（Motivation）"><a href="#动机（Motivation）" class="headerlink" title="动机（Motivation）"></a>动机（Motivation）</h2><ul>
 <li>1）在软件构建过程中，某些对象的状态在转换过程中，可能由于某种需要，要求程序能够回溯到对象之前处于某个点时的状态。如果使用一些公有接口来让其他对象得到对象的状态，便会暴露对象的细节实现。</li>
-<li>2）如何实现对象状态的良好保存与恢复?但同时又不会因此而破坏对象本身的封装性。<span id="more"></span></li>
+<li>2）如何实现对象状态的良好保存与恢复?但同时又不会因此而破坏对象本身的封装性。</li>
 </ul>
+<span id="more"></span>
+
 <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可以将该对象恢复到原先保存的状态。——《设计模式》GoF</p>
 <h2 id="结构（Structure）"><a href="#结构（Structure）" class="headerlink" title="结构（Structure）"></a>结构（Structure）</h2><p><a target="_blank" rel="noopener" href="http://image.camcad.cn/2021/07/2021071615182280.jpg"><img src="http://image.camcad.cn/2021/07/2021071615182280.jpg"></a></p>
 <h2 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h2><ul>

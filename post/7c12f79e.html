@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -27,7 +27,7 @@
 <meta property="og:description" content="程序流程结构-跳转语句（continue语句）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-03T15:09:45.000Z">
-<meta property="article:modified_time" content="2025-08-03T09:48:10.541Z">
+<meta property="article:modified_time" content="2025-08-09T14:36:03.895Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蚂蚁Emmet">
@@ -132,18 +132,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">414</span>
+          <span class="site-state-item-count">415</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -233,7 +233,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="教程目录《C-基础教程》"><a href="#教程目录《C-基础教程》" class="headerlink" title="教程目录《C++基础教程》"></a>教程目录《<a href="https://notes.caxtoolkit.com/post/b2d53884.html">C++基础教程</a>》</h3><h1 id="第四章：程序流程结构"><a href="#第四章：程序流程结构" class="headerlink" title="第四章：程序流程结构"></a>第四章：程序流程结构</h1><h2 id="4-3-跳转结构"><a href="#4-3-跳转结构" class="headerlink" title="4.3 跳转结构"></a>4.3 跳转结构</h2><h3 id="4-3-2-continue语句"><a href="#4-3-2-continue语句" class="headerlink" title="4.3.2 continue语句"></a>4.3.2 continue语句</h3><p><strong>作用：</strong>在循环语句中，跳过本次循环中余下尚未执行的语句，继续执行下一次循环。 <strong>示例：</strong></p>
+        <h3 id="教程目录《C-基础教程》"><a href="#教程目录《C-基础教程》" class="headerlink" title="教程目录《C++基础教程》"></a>教程目录《<a href="https://notes.caxtoolkit.com/post/b2d53884.html">C++基础教程</a>》</h3><h1 id="第四章：程序流程结构"><a href="#第四章：程序流程结构" class="headerlink" title="第四章：程序流程结构"></a>第四章：程序流程结构</h1><h2 id="4-3-跳转结构"><a href="#4-3-跳转结构" class="headerlink" title="4.3 跳转结构"></a>4.3 跳转结构</h2><h3 id="4-3-2-continue语句"><a href="#4-3-2-continue语句" class="headerlink" title="4.3.2 continue语句"></a>4.3.2 continue语句</h3><p>**作用：**在循环语句中，跳过本次循环中余下尚未执行的语句，继续执行下一次循环。 <strong>示例：</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//continue语句</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//如果是奇数输出。偶数不输出</span></span><br><span class="line">        <span class="keyword">if</span> (i%<span class="number">2</span> == <span class="number">0</span>)   </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="注意：continue并没有使整个循环终止，面break会跳出循环。"><a href="#注意：continue并没有使整个循环终止，面break会跳出循环。" class="headerlink" title="注意：continue并没有使整个循环终止，面break会跳出循环。"></a>注意：continue并没有使整个循环终止，面break会跳出循环。</h3>

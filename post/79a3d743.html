@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.camcad.cn/2023/12/%E7%BD%91%E7%BB%9C%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg">
 <meta property="article:published_time" content="2023-12-10T21:36:12.000Z">
-<meta property="article:modified_time" content="2025-08-03T09:48:10.562Z">
+<meta property="article:modified_time" content="2025-08-09T14:36:03.908Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="socket">
 <meta property="article:tag" content="网络编程">
@@ -119,7 +119,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">网络系统调用流程图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#socket%E7%B3%BB%E7%BB%9F%E5%8E%9F%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">socket系统原型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-Ubuntu"><span class="nav-number">2.0.1.</span> <span class="nav-text">Linux Ubuntu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#windows"><span class="nav-number">2.0.2.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#domain-x2F-af-%E5%B8%B8%E7%94%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.0.3.</span> <span class="nav-text">[domain&#x2F;af]常用互联网协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="nav-number">2.0.4.</span> <span class="nav-text">[type]常用参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protocol-%E5%8F%82%E6%95%B0"><span class="nav-number">2.0.5.</span> <span class="nav-text">[protocol]参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#linux"><span class="nav-number">2.0.5.1.</span> <span class="nav-text">linux</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#windows-1"><span class="nav-number">2.0.5.2.</span> <span class="nav-text">windows</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#return-value%EF%BC%88%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%89"><span class="nav-number">2.0.6.</span> <span class="nav-text">return value（返回值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.0.7.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">网络系统调用流程图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#socket%E7%B3%BB%E7%BB%9F%E5%8E%9F%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">socket系统原型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-Ubuntu"><span class="nav-number">2.0.1.</span> <span class="nav-text">Linux Ubuntu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#windows"><span class="nav-number">2.0.2.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#domain-af-%E5%B8%B8%E7%94%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.0.3.</span> <span class="nav-text">[domain&#x2F;af]常用互联网协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="nav-number">2.0.4.</span> <span class="nav-text">[type]常用参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protocol-%E5%8F%82%E6%95%B0"><span class="nav-number">2.0.5.</span> <span class="nav-text">[protocol]参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#linux"><span class="nav-number">2.0.5.1.</span> <span class="nav-text">linux</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#windows-1"><span class="nav-number">2.0.5.2.</span> <span class="nav-text">windows</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#return-value%EF%BC%88%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%89"><span class="nav-number">2.0.6.</span> <span class="nav-text">return value（返回值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.0.7.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -134,18 +134,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">414</span>
+          <span class="site-state-item-count">415</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -238,120 +238,120 @@
 <span id="more"></span>
 
 <table>
-    <tr>
-        <th>类别</th>
-        <th>名称</th>
-        <th>功能</th>  
-    </tr >
-    <tr >
-        <td align="center" colspan="3">Net/3中的网络系统调用</td>
-    </tr>
-    <tr >
-        <td rowspan="2">建立</td>
-        <td>socket</td>
-        <td>在指明的通信域内产生一个未命名的插口</td>
-    </tr>
-    <tr>
-        <td>bind</td>
-        <td>分配一个本地地址给插口</td>
-    </tr>
-    <tr>
-        <td rowspan="2">服务器</td>
-        <td>listen</td>
-        <td>使插口准备接收连接请求</td>
-    </tr>
-    <tr>
-        <td>accept</td>
-        <td>等待并接受连接</td>
-    </tr>
-    <tr>
+	<tr>
+	    <th>类别</th>
+	    <th>名称</th>
+	    <th>功能</th>  
+	</tr >
+	<tr >
+	    <td align="center" colspan="3">Net/3中的网络系统调用</td>
+	</tr>
+	<tr >
+	    <td rowspan="2">建立</td>
+	    <td>socket</td>
+	    <td>在指明的通信域内产生一个未命名的插口</td>
+	</tr>
+	<tr>
+	    <td>bind</td>
+	    <td>分配一个本地地址给插口</td>
+	</tr>
+	<tr>
+	    <td rowspan="2">服务器</td>
+	    <td>listen</td>
+	    <td>使插口准备接收连接请求</td>
+	</tr>
+	<tr>
+	    <td>accept</td>
+	    <td>等待并接受连接</td>
+	</tr>
+	<tr>
       <td>客户</td>
       <td>connect</td>
-        <td>同外部插口建立连接</td>
-    </tr>
-    <tr>
-        <td rowspan="5">输入</td>
-        <td>read</td>
-        <td>接收数据到一个缓存中</td>
-    </tr>
-    <tr>
-        <td>readv</td>
-        <td>接收数据到多个缓存中</td>
-    </tr>
-    <tr>
-        <td>recv</td>
-        <td>指明选项接收数据</td>
-    </tr>
-    <tr>
-        <td>recvfrom</td>
-        <td>接收数据和发送者的地址</td>
-    </tr>
-    <tr>
-        <td >recvmsg</td>
-        <td>接收数据到多个缓存中，接收控制信息和发送者地址；指明接收选项</td>
-    </tr>
-    <tr>
-        <td rowspan="5">输出</td>
-        <td >write</td>
-        <td >发送一个缓存中的数据</td>
-    </tr>
-    <tr>
-        <td >writev</td>
-        <td >发送多个缓存中的数据</td>
-    </tr>
-    <tr>
-        <td >send</td>
-        <td >指明选项发送数据</td>
-    </tr>
-    <tr>
-        <td >sendto</td>
-        <td >发送数据到指明的地址</td>
-    </tr>
-    <tr>
-        <td >sendmsg</td>
-        <td >从多个缓存发送数据和控制信息到指明的地址；指明发送选项</td>
-    </tr>
-    <tr>
-        <td >I/O</td>
-        <td >select</td>
-        <td >等待I/O事件</td>
-    </tr>
-    <tr>
-        <td rowspan="2">终止</td>
-        <td >shutdown</td>
-        <td >终止一个或两个方向上的连接</td>
-    </tr>
-    <tr>
-        <td >close</td>
-        <td >终止连接并释放插口</td>
-    </tr>
-    <tr>
-        <td rowspan="6">管理</td>
-        <td >fcntl</td>
-        <td >修改I/O语义</td>
-    </tr>
-    <tr>
-        <td >ioctl</td>
-        <td >各类插口操作</td>
-    </tr>
-    <tr>
-        <td >setsockopt</td>
-        <td >设置插口或协议选项</td>
-    </tr>
-    <tr>
-        <td >getsockopt</td>
-        <td >得到插口或协议选项</td>
-    </tr>
-    <tr>
-        <td >getsockname</td>
-        <td >得到分配给插口的本地地址</td>
-    </tr>
-    <tr>
-        <td >getpeername</td>
-        <td >得到分配给插口的远端地址</td>
-    <tr >
-        <td align="center" colspan="3">蚂蚁Emmet</td>
-    </tr>
+	    <td>同外部插口建立连接</td>
+	</tr>
+	<tr>
+	    <td rowspan="5">输入</td>
+	    <td>read</td>
+	    <td>接收数据到一个缓存中</td>
+	</tr>
+	<tr>
+	    <td>readv</td>
+	    <td>接收数据到多个缓存中</td>
+	</tr>
+	<tr>
+	    <td>recv</td>
+	    <td>指明选项接收数据</td>
+	</tr>
+	<tr>
+	    <td>recvfrom</td>
+	    <td>接收数据和发送者的地址</td>
+	</tr>
+	<tr>
+	    <td >recvmsg</td>
+	    <td>接收数据到多个缓存中，接收控制信息和发送者地址；指明接收选项</td>
+	</tr>
+	<tr>
+	    <td rowspan="5">输出</td>
+	    <td >write</td>
+	    <td >发送一个缓存中的数据</td>
+	</tr>
+	<tr>
+	    <td >writev</td>
+	    <td >发送多个缓存中的数据</td>
+	</tr>
+	<tr>
+	    <td >send</td>
+	    <td >指明选项发送数据</td>
+	</tr>
+	<tr>
+	    <td >sendto</td>
+	    <td >发送数据到指明的地址</td>
+	</tr>
+	<tr>
+	    <td >sendmsg</td>
+	    <td >从多个缓存发送数据和控制信息到指明的地址；指明发送选项</td>
+	</tr>
+	<tr>
+	    <td >I/O</td>
+	    <td >select</td>
+	    <td >等待I/O事件</td>
+	</tr>
+	<tr>
+	    <td rowspan="2">终止</td>
+	    <td >shutdown</td>
+	    <td >终止一个或两个方向上的连接</td>
+	</tr>
+	<tr>
+	    <td >close</td>
+	    <td >终止连接并释放插口</td>
+	</tr>
+	<tr>
+	    <td rowspan="6">管理</td>
+	    <td >fcntl</td>
+	    <td >修改I/O语义</td>
+	</tr>
+	<tr>
+	    <td >ioctl</td>
+	    <td >各类插口操作</td>
+	</tr>
+	<tr>
+	    <td >setsockopt</td>
+	    <td >设置插口或协议选项</td>
+	</tr>
+	<tr>
+	    <td >getsockopt</td>
+	    <td >得到插口或协议选项</td>
+	</tr>
+	<tr>
+	    <td >getsockname</td>
+	    <td >得到分配给插口的本地地址</td>
+	</tr>
+	<tr>
+	    <td >getpeername</td>
+	    <td >得到分配给插口的远端地址</td>
+	<tr >
+	    <td align="center" colspan="3">蚂蚁Emmet</td>
+	</tr>
 </table>
 
 
@@ -359,7 +359,7 @@
 <h2 id="socket系统原型"><a href="#socket系统原型" class="headerlink" title="socket系统原型"></a>socket系统原型</h2><h4 id="Linux-Ubuntu"><a href="#Linux-Ubuntu" class="headerlink" title="Linux Ubuntu"></a>Linux Ubuntu</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span>    <span class="comment">/* See NOTES */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">socket</span><span class="params">(<span class="type">int</span> domain, <span class="type">int</span> type, <span class="type">int</span> protocol)</span>;</span><br></pre></td></tr></table></figure>
 
 <h4 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">SOCKET WSAAPI <span class="title function_">socket</span><span class="params">([in] <span class="type">int</span> af,[in] <span class="type">int</span> type,[in] <span class="type">int</span> protocol)</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="domain-x2F-af-常用互联网协议"><a href="#domain-x2F-af-常用互联网协议" class="headerlink" title="[domain&#x2F;af]常用互联网协议"></a>[domain&#x2F;af]常用互联网协议</h4><p>Internet地址协议族格式。</p>
+<h4 id="domain-af-常用互联网协议"><a href="#domain-af-常用互联网协议" class="headerlink" title="[domain&#x2F;af]常用互联网协议"></a>[domain&#x2F;af]常用互联网协议</h4><p>Internet地址协议族格式。</p>
 <table>
 <thead>
 <tr>

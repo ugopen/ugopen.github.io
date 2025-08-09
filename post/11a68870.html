@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -27,7 +27,7 @@
 <meta property="og:description" content="函数提高（函数占位参数）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-24T19:39:21.000Z">
-<meta property="article:modified_time" content="2025-08-03T09:48:10.550Z">
+<meta property="article:modified_time" content="2025-08-09T14:36:03.901Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta property="article:tag" content="蚂蚁Emmet">
@@ -133,18 +133,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">414</span>
+          <span class="site-state-item-count">415</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -235,7 +235,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h3 id="教程目录《C-核心知识》"><a href="#教程目录《C-核心知识》" class="headerlink" title="教程目录《C++核心知识》"></a>教程目录《<a href="https://notes.caxtoolkit.com/post/7fd4f72a.html">C++核心知识</a>》</h3><h1 id="3、函数提高"><a href="#3、函数提高" class="headerlink" title="3、函数提高"></a>3、函数提高</h1><h2 id="3-2-函数占位参数"><a href="#3-2-函数占位参数" class="headerlink" title="3.2 函数占位参数"></a>3.2 函数占位参数</h2><p>C++中函数的形参列表里可以有占位参数，用来做占位，调用函数时必须填补该位置。 </p>
-<p><strong>语法：</strong>返回值类型 函数名 ( 数据类型 ){ 代码列表 };</p>
+<p>**语法：**返回值类型 函数名 ( 数据类型 ){ 代码列表 };</p>
 <p>在现阶段函数的占位参数存在的意义不大，但是后面的课程中会用到该技术。 </p>
 <p><strong>示例：</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数占位参数，占位参数也可以有默认参数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">func01</span><span class="params">(<span class="type">int</span> a ,<span class="type">int</span> <span class="comment">/* int =10 */</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;this is func&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    func01(<span class="number">10</span>,<span class="number">10</span>);  <span class="comment">//占位参数必须填补</span></span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);  <span class="comment">//暂停（请按任意键继续...）</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
