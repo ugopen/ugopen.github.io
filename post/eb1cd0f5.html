@@ -27,7 +27,7 @@
 <meta property="og:description" content="creo 与 Visual Studio 对应版本   Creo Visual Studio 备注    Creo 2.0 Visual Studio 2010    Creo 3.0 Visual Studio 2015    Creo 4.0 Visual Studio 2015    Creo 6.0 Visual Studio 2017    Creo 7.0 Visual Studio">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-09T21:16:00.000Z">
-<meta property="article:modified_time" content="2025-08-09T14:36:03.905Z">
+<meta property="article:modified_time" content="2025-08-09T14:42:20.851Z">
 <meta property="article:author" content="蚂蚁Emmet">
 <meta property="article:tag" content="creo toolkit二次开发">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#creo-%E4%B8%8E-Visual-Studio-%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">creo 与 Visual Studio 对应版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#creo-parametric-toolkit-%E7%9B%AE%E5%BD%95%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">creo parametric toolkit 目录说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">3.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">启动文件</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#creo-%E4%B8%8E-Visual-Studio-%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">creo 与 Visual Studio 对应版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#creo-parametric-toolkit-%E7%9B%AE%E5%BD%95%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">creo parametric toolkit 目录说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">3.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">启动文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -344,7 +344,7 @@
 <h2 id="启动文件"><a href="#启动文件" class="headerlink" title="启动文件"></a>启动文件</h2><p>定义<code>.dat</code>后缀的配置文件，主要作用是定义键盘快捷键与 Creo 命令（包括二次开发自定义命令）之间的映射关系。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">name MaterialSet</span><br><span class="line">exec_file E:\e-book\CREO\creo_toolkit\MaterialSet\x64\Debug\MaterialSet.dll</span><br><span class="line">text_dir  E:\e-book\CREO\creo_toolkit\MaterialSet\text</span><br><span class="line">startup dll </span><br><span class="line">allow_stop TRUE </span><br><span class="line">revision   1.0</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">name：本项目的名称</span><br><span class="line">exec_file：dll的绝对路径</span><br><span class="line">text_dir：资源路径（一般默认选择CREO安装路径下的TEXT文件夹）</span><br><span class="line">startup：DLL类型的文件</span><br><span class="line">allow_stop：是否允许关闭该对话框</span><br></pre></td></tr></table></figure>
 
-
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.hudi.site/">工匠之心</a></p>
 
     </div>
 
