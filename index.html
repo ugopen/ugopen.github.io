@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">415</span>
+          <span class="site-state-item-count">416</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,93 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://notes.caxtoolkit.com/post/7099518c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
+      <meta itemprop="name" content="蚂蚁Emmet">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识储存库">
+      <meta itemprop="description" content="制造业IT宅男,喜欢折腾和被折腾<br>^_^ ^_^">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 知识储存库">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/7099518c.html" class="post-title-link" itemprop="url">NX二次开发-使用NXOpen::Body::GetFaces()接口导致软件崩溃问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-08-14 17:36:05" itemprop="dateCreated datePublished" datetime="2025-08-14T17:36:05+00:00">2025-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" itemprop="url" rel="index"><span itemprop="name">疑难杂症</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h2><p>NX 11.0.2.7 MP13<br>Visual Studio 2017（v141）<br><code>注：原则上 NX 11.0.2.7 MP13 应该使用Visual Studio 2013（V120）编译</code></p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用<code>NXOpen::Body::GetFaces()</code>接口获取实体所有面，当面的数量达到<code>512</code>个，就会导致NX软件崩溃。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NXOpen::Body* theBody = <span class="built_in">dynamic_cast</span>&lt;NXOpen::Body*&gt;(NXOpen::NXObjectManager::<span class="built_in">Get</span>(tBody));</span><br><span class="line">std::vector&lt;NXOpen::Face*&gt; faces = theBody-&gt;<span class="built_in">GetFaces</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 业务代码</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/7099518c.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -963,91 +1050,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/6bce4249.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://notes.caxtoolkit.com/post/f151eb4f.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.camcad.cn/2020/06/2020061804552287.png">
-      <meta itemprop="name" content="蚂蚁Emmet">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识储存库">
-      <meta itemprop="description" content="制造业IT宅男,喜欢折腾和被折腾<br>^_^ ^_^">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 知识储存库">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/f151eb4f.html" class="post-title-link" itemprop="url">Windows操作系统编译curl源代码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-08 22:24:42" itemprop="dateCreated datePublished" datetime="2024-05-08T22:24:42+00:00">2024-05-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index"><span itemprop="name">辅助</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>libcurl-多协议文件传输库。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/f151eb4f.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
